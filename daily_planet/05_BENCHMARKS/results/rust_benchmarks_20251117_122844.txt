@@ -1,0 +1,1547 @@
+warning: unused import: `ToString`
+  --> hcvlang/src/symbolic_polynomial.rs:35:29
+   |
+35 | use alloc::string::{String, ToString};
+   |                             ^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `alloc::format`
+  --> hcvlang/src/symbolic_polynomial.rs:37:5
+   |
+37 | use alloc::format;
+   |     ^^^^^^^^^^^^^
+
+warning: unused import: `super::montgomery::MontgomeryContext`
+  --> hcvlang/src/neural/anchor_first.rs:42:5
+   |
+42 | use super::montgomery::MontgomeryContext;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::Arc`
+  --> hcvlang/src/neural/training.rs:42:5
+   |
+42 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `ResidueConfig`
+  --> hcvlang/src/neural/training.rs:43:28
+   |
+43 | use super::residue_space::{ResidueConfig, ResidueVector, ResidueDenseLayer};
+   |                            ^^^^^^^^^^^^^
+
+warning: unused import: `super::montgomery::MontgomeryContext`
+  --> hcvlang/src/neural/simd.rs:37:5
+   |
+37 | use super::montgomery::MontgomeryContext;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `super::montgomery::MontgomeryContext`
+  --> hcvlang/src/neural/embedding.rs:23:5
+   |
+23 | use super::montgomery::MontgomeryContext;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `GearMapper`
+  --> hcvlang/src/neural/residue_similarity.rs:32:47
+   |
+32 | use super::manifold_tokenizer::{M2MTokenizer, GearMapper};
+   |                                               ^^^^^^^^^^
+
+warning: unused import: `crate::neural::training::MSELoss`
+  --> hcvlang/src/neural/residue_confidence.rs:26:5
+   |
+26 | use crate::neural::training::MSELoss;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::crt_bigint::CRTBigInt`
+ --> hcvlang/src/math/combinatorics.rs:6:5
+  |
+6 | use crate::crt_bigint::CRTBigInt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unexpected `cfg` condition value: `float_guard`
+  --> hcvlang/src/diagnostics/mod.rs:21:7
+   |
+21 | #[cfg(feature = "float_guard")]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+   = help: consider adding `float_guard` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition value: `gso_integration`
+  --> hcvlang/src/diagnostics/mod.rs:23:7
+   |
+23 | #[cfg(feature = "gso_integration")]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+   = help: consider adding `gso_integration` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `fhe_integration`
+  --> hcvlang/src/diagnostics/mod.rs:25:7
+   |
+25 | #[cfg(feature = "fhe_integration")]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+   = help: consider adding `fhe_integration` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `entropy_integration`
+  --> hcvlang/src/diagnostics/mod.rs:27:7
+   |
+27 | #[cfg(feature = "entropy_integration")]
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+   = help: consider adding `entropy_integration` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unused import: `Plaintext`
+  --> hcvlang/src/pqc/lattice.rs:32:79
+   |
+32 | use crate::fhe::{FHEContext, SecurityLevel, SecretKey, PublicKey, Ciphertext, Plaintext};
+   |                                                                               ^^^^^^^^^
+
+warning: unused import: `PQCSecurityLevel`
+ --> hcvlang/src/pqc/health.rs:6:50
+  |
+6 | use crate::pqc::{PQCPrimitive, PQCSystemSummary, PQCSecurityLevel};
+  |                                                  ^^^^^^^^^^^^^^^^
+
+warning: unexpected `cfg` condition value: `examples`
+    --> hcvlang/src/adaptive_crt_bigint.rs:1142:7
+     |
+1142 | #[cfg(feature = "examples")]
+     |       ^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+     = help: consider adding `examples` as a feature in `Cargo.toml`
+     = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `examples`
+   --> hcvlang/src/adaptive_crt_bigint_v2.rs:908:7
+    |
+908 | #[cfg(feature = "examples")]
+    |       ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+    = help: consider adding `examples` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unused import: `alloc::vec::Vec`
+  --> hcvlang/src/adaptive_crt_bigint_v3.rs:19:5
+   |
+19 | use alloc::vec::Vec;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::apollonian::ApollonianCircle`
+  --> hcvlang/src/codex_gear_manifold.rs:47:5
+   |
+47 | use crate::apollonian::ApollonianCircle;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::bigint_hcv::HCVLangBigInt`
+  --> hcvlang/src/codex_gear_manifold.rs:48:5
+   |
+48 | use crate::bigint_hcv::HCVLangBigInt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::crt_bigint::CRTBigInt`
+  --> hcvlang/src/codex_gear_manifold.rs:49:5
+   |
+49 | use crate::crt_bigint::CRTBigInt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::modint::ModInt`
+  --> hcvlang/src/codex_gear_manifold.rs:50:5
+   |
+50 | use crate::modint::ModInt;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::rational::Rational`
+  --> hcvlang/src/codex_gear_manifold.rs:52:5
+   |
+52 | use crate::rational::Rational;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `core::marker::PhantomData`
+  --> hcvlang/src/codex_gear_manifold.rs:57:5
+   |
+57 | use core::marker::PhantomData;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Ordering`, `PartialEq`, and `PartialOrd`
+ --> hcvlang/src/core_types.rs:5:16
+  |
+5 | use std::cmp::{PartialEq, PartialOrd, Ordering};
+  |                ^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `Display`
+ --> hcvlang/src/core_types.rs:6:16
+  |
+6 | use std::fmt::{Display, Debug};
+  |                ^^^^^^^
+
+warning: unused imports: `From` and `TryFrom`
+ --> hcvlang/src/core_types.rs:7:20
+  |
+7 | use std::convert::{From, TryFrom};
+  |                    ^^^^  ^^^^^^^
+
+warning: unused import: `crate::adaptive_crt_bigint::AdaptiveCRTBigInt`
+ --> hcvlang/src/fhe_realtime/batch_operations.rs:8:5
+  |
+8 | use crate::adaptive_crt_bigint::AdaptiveCRTBigInt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `RealTimeFHEError` and `RealTimeFHEResult`
+ --> hcvlang/src/fhe_realtime/noise_aware_tier.rs:7:13
+  |
+7 | use super::{RealTimeFHEError, RealTimeFHEResult};
+  |             ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `RealTimeFHEError`
+ --> hcvlang/src/fhe_realtime/realtime_context.rs:7:66
+  |
+7 |     noise_aware_tier::NoiseAwareTierManager, RealTimeCiphertext, RealTimeFHEError,
+  |                                                                  ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> hcvlang/src/multi_prime_rns.rs:29:5
+   |
+29 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unexpected `cfg` condition value: `cffi-i128-disabled`
+   --> hcvlang/src/qmnf_ffi_boundary.rs:773:7
+    |
+773 | #[cfg(feature = "cffi-i128-disabled")]
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+    = help: consider adding `cffi-i128-disabled` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `cffi-i128-disabled`
+   --> hcvlang/src/qmnf_ffi_boundary.rs:847:7
+    |
+847 | #[cfg(feature = "cffi-i128-disabled")]
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `all-optimizations`, `default`, `fast-paths`, `parallel`, `pyo3`, `python`, `rayon`, and `simd`
+    = help: consider adding `cffi-i128-disabled` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unused import: `core::mem`
+  --> hcvlang/src/qmnf_ffi_boundary.rs:24:5
+   |
+24 | use core::mem;
+   |     ^^^^^^^^^
+
+warning: unused import: `MERSENNE_PRIME`
+  --> hcvlang/src/fhe/polynomial.rs:15:29
+   |
+15 | use crate::modint::{ModInt, MERSENNE_PRIME};
+   |                             ^^^^^^^^^^^^^^
+
+warning: the `#![no_std]` attribute can only be used at the crate root
+  --> hcvlang/src/math/big_rational.rs:15:1
+   |
+15 | #![no_std]
+   | ^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` (part of `#[warn(unused)]`) on by default
+
+warning: the `#![no_std]` attribute can only be used at the crate root
+  --> hcvlang/src/adaptive_crt_bigint_v3.rs:16:1
+   |
+16 | #![no_std]
+   | ^^^^^^^^^^
+
+warning: unused attribute
+  --> hcvlang/src/lib.rs:36:1
+   |
+36 | #![recursion_limit = "8192"]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: remove this attribute
+   |
+note: attribute also specified here
+  --> hcvlang/src/lib.rs:1:1
+   |
+ 1 | #![recursion_limit = "8192"]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+
+warning: use of deprecated method `modint::ModInt::modular_inverse`: Use modular_inverse_constant_time() for cryptographic applications. This function has timing side-channels.
+   --> hcvlang/src/modint.rs:331:38
+    |
+331 |         let base_inv_m = base.pow(m).modular_inverse()?;
+    |                                      ^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated method `modint::ModInt::modular_inverse`: Use modular_inverse_constant_time() for cryptographic applications. This function has timing side-channels.
+   --> hcvlang/src/modint.rs:380:14
+    |
+380 |             .modular_inverse()
+    |              ^^^^^^^^^^^^^^^
+
+warning: use of deprecated method `modint::ModInt::modular_inverse`: Use modular_inverse_constant_time() for cryptographic applications. This function has timing side-channels.
+   --> hcvlang/src/modint.rs:456:43
+    |
+456 |         let final_inv = match products[n].modular_inverse() {
+    |                                           ^^^^^^^^^^^^^^^
+
+warning: use of deprecated method `modint::ModInt::modular_inverse`: Use modular_inverse_constant_time() for cryptographic applications. This function has timing side-channels.
+   --> hcvlang/src/modint.rs:460:48
+    |
+460 |                 return values.iter().map(|v| v.modular_inverse()).collect();
+    |                                                ^^^^^^^^^^^^^^^
+
+warning: use of deprecated method `modint::ModInt::modular_inverse`: Use modular_inverse_constant_time() for cryptographic applications. This function has timing side-channels.
+   --> hcvlang/src/modint.rs:638:28
+    |
+638 |         let result = value.modular_inverse()?;
+    |                            ^^^^^^^^^^^^^^^
+
+warning: use of deprecated method `fhe::params::FHEParams::security_parameter`: Use security_parameter_int() for QMNF compliance
+   --> hcvlang/src/fhe/params.rs:202:31
+    |
+202 |         (q / t).log2() - self.security_parameter()
+    |                               ^^^^^^^^^^^^^^^^^^
+
+warning: use of deprecated method `fhe::params::FHEParams::noise_budget`: Use noise_budget_scaled() for QMNF compliance
+   --> hcvlang/src/fhe/params.rs:224:33
+    |
+224 |         let noise_budget = self.noise_budget();
+    |                                 ^^^^^^^^^^^^
+
+warning: use of deprecated method `fhe::params::FHEParams::noise_budget`: Use noise_budget_scaled() for QMNF compliance
+   --> hcvlang/src/fhe/params.rs:256:33
+    |
+256 |         let noise_budget = self.noise_budget();
+    |                                 ^^^^^^^^^^^^
+
+warning: unused variable: `variables`
+   --> hcvlang/src/symbolic_polynomial.rs:599:5
+    |
+599 |     variables: Vec<String>,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_variables`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `ff`
+   --> hcvlang/src/category_theory.rs:508:17
+    |
+508 |             let ff = source_functor.apply_to_morphism(mor.id)
+    |                 ^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+508 |             let _ff = source_functor.apply_to_morphism(mor.id)
+    |                 +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+508 -             let ff = source_functor.apply_to_morphism(mor.id)
+508 +             let quantum_modular_superposition::MAX_SUPERPOSITION_SIZE = source_functor.apply_to_morphism(mor.id)
+    |
+
+warning: unused variable: `gf`
+   --> hcvlang/src/category_theory.rs:510:17
+    |
+510 |             let gf = target_functor.apply_to_morphism(mor.id)
+    |                 ^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+510 |             let _gf = target_functor.apply_to_morphism(mor.id)
+    |                 +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+510 -             let gf = target_functor.apply_to_morphism(mor.id)
+510 +             let quantum_modular_superposition::MAX_SUPERPOSITION_SIZE = target_functor.apply_to_morphism(mor.id)
+    |
+
+warning: unused variable: `group`
+   --> hcvlang/src/representation_theory.rs:283:34
+    |
+283 |     pub fn is_irreducible(&self, group: &FiniteGroup) -> bool {
+    |                                  ^^^^^ help: if this is intentional, prefix it with an underscore: `_group`
+
+warning: unused variable: `task_id`
+   --> hcvlang/src/mana_orchestration.rs:382:33
+    |
+382 |     fn execute_on_domain(&self, task_id: u64, domain: ExecutionDomain) {
+    |                                 ^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+382 |     fn execute_on_domain(&self, _task_id: u64, domain: ExecutionDomain) {
+    |                                 +
+help: you might have meant to pattern match on the similarly named constant `Q1`
+    |
+382 -     fn execute_on_domain(&self, task_id: u64, domain: ExecutionDomain) {
+382 +     fn execute_on_domain(&self, fhe::rns::Q1: u64, domain: ExecutionDomain) {
+    |
+
+warning: unused variable: `domain`
+   --> hcvlang/src/mana_orchestration.rs:382:47
+    |
+382 |     fn execute_on_domain(&self, task_id: u64, domain: ExecutionDomain) {
+    |                                               ^^^^^^ help: if this is intentional, prefix it with an underscore: `_domain`
+
+warning: unused variable: `patch`
+   --> hcvlang/src/mana_orchestration.rs:656:36
+    |
+656 |     fn apply_in_place_patch(&self, patch: LivePatch, tasks: Vec<u64>) -> Result<(), String> {
+    |                                    ^^^^^ help: if this is intentional, prefix it with an underscore: `_patch`
+
+warning: unused variable: `task_id`
+   --> hcvlang/src/mana_orchestration.rs:677:13
+    |
+677 |         for task_id in tasks {
+    |             ^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+677 |         for _task_id in tasks {
+    |             +
+help: you might have meant to pattern match on the similarly named constant `Q1`
+    |
+677 -         for task_id in tasks {
+677 +         for fhe::rns::Q1 in tasks {
+    |
+
+warning: unused variable: `patch`
+   --> hcvlang/src/mana_orchestration.rs:675:34
+    |
+675 |     fn apply_phased_patch(&self, patch: LivePatch, tasks: Vec<u64>) -> Result<(), String> {
+    |                                  ^^^^^ help: if this is intentional, prefix it with an underscore: `_patch`
+
+warning: variable does not need to be mutable
+   --> hcvlang/src/swarm_gso.rs:602:13
+    |
+602 |         let mut offsets = vec![vec![-1, 0, 1]; dimension];
+    |             ----^^^^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `anchor_montgomery`
+   --> hcvlang/src/neural/residue_space.rs:694:17
+    |
+694 |             let anchor_montgomery = self.config.anchor_montgomery.to_montgomery(anchor_result);
+    |                 ^^^^^^^^^^^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+694 |             let _anchor_montgomery = self.config.anchor_montgomery.to_montgomery(anchor_result);
+    |                 +
+help: you might have meant to pattern match on the similarly named constant `K_I`
+    |
+694 -             let anchor_montgomery = self.config.anchor_montgomery.to_montgomery(anchor_result);
+694 +             let ede_micro_swarm::MicroSwarm::phase_lock_modules::K_I = self.config.anchor_montgomery.to_montgomery(anchor_result);
+    |
+
+warning: unused variable: `input_dim`
+   --> hcvlang/src/neural/simd.rs:126:13
+    |
+126 |         let input_dim = weights.len();
+    |             ^^^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+126 |         let _input_dim = weights.len();
+    |             +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+126 -         let input_dim = weights.len();
+126 +         let quantum_modular_superposition::MAX_SUPERPOSITION_SIZE = weights.len();
+    |
+
+warning: unused variable: `leading`
+   --> hcvlang/src/math/polynomial.rs:279:13
+    |
+279 |         let leading = self.leading_coefficient();
+    |             ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_leading`
+
+warning: unused variable: `two`
+    --> hcvlang/src/math/rational_math.rs:1008:13
+     |
+1008 |         let two = Rational::new(CRTBigInt::new(2), CRTBigInt::new(1));
+     |             ^^^ help: if this is intentional, prefix it with an underscore: `_two`
+
+warning: variable does not need to be mutable
+   --> hcvlang/src/diagnostics/wire_protocol.rs:369:13
+    |
+369 |         let mut event = TraceEvent {
+    |             ----^^^^^
+    |             |
+    |             help: remove this `mut`
+
+warning: variable does not need to be mutable
+  --> hcvlang/src/diagnostics/metrics_collection.rs:36:13
+   |
+36 |         let mut v = if neg { -x } else { x } as i128;
+   |             ----^
+   |             |
+   |             help: remove this `mut`
+
+warning: unused variable: `probe`
+   --> hcvlang/src/diagnostics/probe_infrastructure.rs:550:17
+    |
+550 |         for (_, probe) in probes.iter_mut() {
+    |                 ^^^^^ help: if this is intentional, prefix it with an underscore: `_probe`
+
+warning: unused variable: `locked`
+   --> hcvlang/src/diagnostics/invariant_engine.rs:227:13
+    |
+227 |         let locked = (sample.status & 0x01) != 0;
+    |             ^^^^^^ help: if this is intentional, prefix it with an underscore: `_locked`
+
+warning: unused variable: `anomaly`
+   --> hcvlang/src/diagnostics/response_system.rs:177:58
+    |
+177 |     fn execute(&mut self, checkpoint: &SystemCheckpoint, anomaly: &Anomaly) -> Result<ActionOutcome, String> {
+    |                                                          ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_anomaly`
+
+warning: unused variable: `checkpoint`
+   --> hcvlang/src/diagnostics/response_system.rs:194:22
+    |
+194 |     fn verify(&self, checkpoint: &SystemCheckpoint) -> bool {
+    |                      ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_checkpoint`
+
+warning: unused variable: `e`
+   --> hcvlang/src/diagnostics/mod.rs:116:21
+    |
+116 |                 Err(e) => {
+    |                     ^ help: if this is intentional, prefix it with an underscore: `_e`
+
+warning: unused variable: `remainder`
+  --> hcvlang/src/simd_distance.rs:62:17
+   |
+62 |             let remainder = dimension % 4;
+   |                 ^^^^^^^^^
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+62 |             let _remainder = dimension % 4;
+   |                 +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+   |
+62 -             let remainder = dimension % 4;
+62 +             let quantum_modular_superposition::MAX_SUPERPOSITION_SIZE = dimension % 4;
+   |
+
+warning: unused variable: `i`
+   --> hcvlang/src/shadow_ahop_bridge.rs:815:14
+    |
+815 |         for (i, &entropy_val) in entropy.iter().enumerate().take(100) {
+    |              ^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+815 |         for (_i, &entropy_val) in entropy.iter().enumerate().take(100) {
+    |              +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+815 -         for (i, &entropy_val) in entropy.iter().enumerate().take(100) {
+815 +         for (quantum_modular_superposition::MAX_SUPERPOSITION_SIZE, &entropy_val) in entropy.iter().enumerate().take(100) {
+    |
+
+warning: unused variable: `info`
+   --> hcvlang/src/adaptive_crt_bigint_v1.rs:487:13
+    |
+487 |         let info = tier_info(tier);
+    |             ^^^^ help: if this is intentional, prefix it with an underscore: `_info`
+
+warning: unused variable: `residues`
+   --> hcvlang/src/adaptive_crt_bigint_v1.rs:735:25
+    |
+735 | fn reconstruct_from_crt(residues: &[u64], moduli: &[u64]) -> Option<i128> {
+    |                         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_residues`
+
+warning: unused variable: `moduli`
+   --> hcvlang/src/adaptive_crt_bigint_v1.rs:735:43
+    |
+735 | fn reconstruct_from_crt(residues: &[u64], moduli: &[u64]) -> Option<i128> {
+    |                                           ^^^^^^ help: if this is intentional, prefix it with an underscore: `_moduli`
+
+warning: unused variable: `residues`
+   --> hcvlang/src/adaptive_crt_bigint_v2.rs:809:25
+    |
+809 | fn reconstruct_from_crt(residues: &[u64], moduli: &[u64]) -> Option<i128> {
+    |                         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_residues`
+
+warning: unused variable: `moduli`
+   --> hcvlang/src/adaptive_crt_bigint_v2.rs:809:43
+    |
+809 | fn reconstruct_from_crt(residues: &[u64], moduli: &[u64]) -> Option<i128> {
+    |                                           ^^^^^^ help: if this is intentional, prefix it with an underscore: `_moduli`
+
+warning: unused variable: `sum_squares`
+   --> hcvlang/src/math_core.rs:346:13
+    |
+346 |         let sum_squares = k1 * k1 + k2 * k2 + k3 * k3;
+    |             ^^^^^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+346 |         let _sum_squares = k1 * k1 + k2 * k2 + k3 * k3;
+    |             +
+help: you might have meant to pattern match on the similarly named constant `K_I`
+    |
+346 -         let sum_squares = k1 * k1 + k2 * k2 + k3 * k3;
+346 +         let ede_micro_swarm::MicroSwarm::phase_lock_modules::K_I = k1 * k1 + k2 * k2 + k3 * k3;
+    |
+
+warning: unused variable: `r`
+   --> hcvlang/src/core_types.rs:268:60
+    |
+268 |     pub fn montgomery_mul(self, other: Self, modulus: i32, r: i32, r_inv: i32) -> Self {
+    |                                                            ^ help: if this is intentional, prefix it with an underscore: `_r`
+
+warning: unused variable: `i`
+   --> hcvlang/src/coprime_cascade.rs:188:14
+    |
+188 |         for (i, (&mod_i, (&ai, &bi))) in self
+    |              ^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+188 |         for (_i, (&mod_i, (&ai, &bi))) in self
+    |              +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+188 -         for (i, (&mod_i, (&ai, &bi))) in self
+188 +         for (quantum_modular_superposition::MAX_SUPERPOSITION_SIZE, (&mod_i, (&ai, &bi))) in self
+    |
+
+warning: unused variable: `level`
+   --> hcvlang/src/fractal_modular_hierarchy.rs:470:9
+    |
+470 |         level: usize,
+    |         ^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+470 |         _level: usize,
+    |         +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+470 -         level: usize,
+470 +         quantum_modular_superposition::MAX_SUPERPOSITION_SIZE: usize,
+    |
+
+warning: unused variable: `dominant_idx`
+   --> hcvlang/src/quantum_modular_superposition.rs:344:14
+    |
+344 |         let (dominant_idx, _) = state
+    |              ^^^^^^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+344 |         let (_dominant_idx, _) = state
+    |              +
+help: you might have meant to pattern match on the similarly named constant `MAX_SUPERPOSITION_SIZE`
+    |
+344 -         let (dominant_idx, _) = state
+344 +         let (quantum_modular_superposition::MAX_SUPERPOSITION_SIZE, _) = state
+    |
+
+warning: unused variable: `primary_gears`
+   --> hcvlang/src/qmnf_ffi_boundary.rs:756:38
+    |
+756 | pub extern "C" fn qmnf_handle_create(primary_gears: u32) -> *mut QmnfHandle {
+    |                                      ^^^^^^^^^^^^^
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+756 | pub extern "C" fn qmnf_handle_create(_primary_gears: u32) -> *mut QmnfHandle {
+    |                                      +
+help: you might have meant to pattern match on the similarly named constant `SCALE_BITS`
+    |
+756 - pub extern "C" fn qmnf_handle_create(primary_gears: u32) -> *mut QmnfHandle {
+756 + pub extern "C" fn qmnf_handle_create(fhe::noise::SCALE_BITS: u32) -> *mut QmnfHandle {
+    |
+
+warning: variable does not need to be mutable
+   --> hcvlang/src/fhe/noise.rs:346:28
+    |
+346 | pub fn update_noise_budget(mut ciphertext: Ciphertext, noise_consumed_bits: f64) -> Ciphertext {
+    |                            ----^^^^^^^^^^
+    |                            |
+    |                            help: remove this `mut`
+
+warning: unused variable: `params`
+  --> hcvlang/src/fhe/operations.rs:74:48
+   |
+74 | pub fn add(ct1: &Ciphertext, ct2: &Ciphertext, params: &FHEParams) -> Ciphertext {
+   |                                                ^^^^^^ help: if this is intentional, prefix it with an underscore: `_params`
+
+warning: unused variable: `params`
+   --> hcvlang/src/fhe/operations.rs:105:48
+    |
+105 | pub fn sub(ct1: &Ciphertext, ct2: &Ciphertext, params: &FHEParams) -> Ciphertext {
+    |                                                ^^^^^^ help: if this is intentional, prefix it with an underscore: `_params`
+
+warning: unused variable: `params`
+   --> hcvlang/src/fhe/operations.rs:153:5
+    |
+153 |     params: &FHEParams,
+    |     ^^^^^^ help: if this is intentional, prefix it with an underscore: `_params`
+
+warning: unused variable: `rescaled_q1`
+   --> hcvlang/src/fhe/operations.rs:227:23
+    |
+227 |     let (rescaled_q0, rescaled_q1) = rescale_bfv_delta_rns(&coeffs_q0, &coeffs_q1, t, big_delta);
+    |                       ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_rescaled_q1`
+
+warning: unused variable: `params`
+   --> hcvlang/src/fhe/operations.rs:521:59
+    |
+521 | pub fn mul_plain(ct: &Ciphertext, plaintext: &Polynomial, params: &FHEParams) -> Ciphertext {
+    |                                                           ^^^^^^ help: if this is intentional, prefix it with an underscore: `_params`
+
+warning: variable does not need to be mutable
+   --> hcvlang/src/fhe/polynomial.rs:376:17
+    |
+376 |             let mut result_nnt: Vec<i64> = self_nnt
+    |                 ----^^^^^^^^^^
+    |                 |
+    |                 help: remove this `mut`
+
+warning: unused variable: `b_promoted`
+   --> hcvlang/src/exact_runtime.rs:308:21
+    |
+308 |                 let b_promoted = other.repr.clone().promote();
+    |                     ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_b_promoted`
+
+warning: unused variable: `b_promoted`
+   --> hcvlang/src/exact_runtime.rs:360:21
+    |
+360 |                 let b_promoted = other.repr.clone().promote();
+    |                     ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_b_promoted`
+
+warning: fields `timestamp`, `data_size`, and `target_address` are never read
+   --> hcvlang/src/mana_orchestration.rs:835:5
+    |
+834 | struct MigrationEvent {
+    |        -------------- fields in this struct
+835 |     timestamp: Instant,
+    |     ^^^^^^^^^
+836 |     data_size: usize,
+    |     ^^^^^^^^^
+837 |     target_address: u64,
+    |     ^^^^^^^^^^^^^^
+    |
+    = note: `MigrationEvent` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `timestamp` and `message` are never read
+   --> hcvlang/src/mana_orchestration.rs:883:5
+    |
+882 | struct ContaminationEvent {
+    |        ------------------ fields in this struct
+883 |     timestamp: Instant,
+    |     ^^^^^^^^^
+884 |     message: String,
+    |     ^^^^^^^
+    |
+    = note: `ContaminationEvent` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `r` and `r_inv` are never read
+  --> hcvlang/src/neural/montgomery.rs:48:5
+   |
+45 | pub struct MontgomeryContext {
+   |            ----------------- fields in this struct
+...
+48 |     r: u128,
+   |     ^
+...
+51 |     r_inv: i64,
+   |     ^^^^^
+   |
+   = note: `MontgomeryContext` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `weights_transposed` is never read
+   --> hcvlang/src/neural/simd.rs:253:5
+    |
+247 | pub struct CacheOptimizedWeights {
+    |            --------------------- field in this struct
+...
+253 |     weights_transposed: Vec<Vec<ResidueVector>>,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: associated items `integer_log2_i64`, `hash_manifold`, and `compute_position_encoding` are never used
+   --> hcvlang/src/neural/manifold_tokenizer.rs:201:8
+    |
+ 60 | impl M2MTokenizer {
+    | ----------------- associated items in this implementation
+...
+201 |     fn integer_log2_i64(n: i64) -> i64 {
+    |        ^^^^^^^^^^^^^^^^
+...
+299 |     fn hash_manifold(&self, manifold: &CodexManifold) -> i64 {
+    |        ^^^^^^^^^^^^^
+...
+337 |     fn compute_position_encoding(&self, manifold: &CodexManifold) -> ResidueVector {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated function `integer_log2` is never used
+   --> hcvlang/src/neural/residue_similarity.rs:521:8
+    |
+ 58 | impl ResidueSimilarityEngine {
+    | ---------------------------- associated function in this implementation
+...
+521 |     fn integer_log2(n: u64) -> u64 {
+    |        ^^^^^^^^^^^^
+
+warning: fields `prime_cache` and `rho_seed` are never read
+  --> hcvlang/src/math/primes.rs:12:5
+   |
+10 | pub struct PrimeOperations {
+   |            --------------- fields in this struct
+11 |     /// Cache of previously computed primes for optimization
+12 |     prime_cache: Arc<RwLock<Vec<u64>>>,
+   |     ^^^^^^^^^^^
+13 |     /// Pollard's rho DRBG seed for deterministic factorization
+14 |     rho_seed: u64,
+   |     ^^^^^^^^
+
+warning: field `capacity` is never read
+   --> hcvlang/src/diagnostics/wire_protocol.rs:227:5
+    |
+224 | pub struct ARXSponge {
+    |            --------- field in this struct
+...
+227 |     capacity: usize,
+    |     ^^^^^^^^
+    |
+    = note: `ARXSponge` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: field `p_q` is never read
+   --> hcvlang/src/diagnostics/metrics_collection.rs:104:5
+    |
+103 | pub struct P2QuantileEstimator {
+    |            ------------------- field in this struct
+104 |     p_q: i64,              // Target quantile in FixedQ (e.g., 0.95 for 95th percentile)
+    |     ^^^
+    |
+    = note: `P2QuantileEstimator` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: field `injection_strength_q` is never read
+   --> hcvlang/src/diagnostics/response_system.rs:250:5
+    |
+249 | pub struct SwarmDiversityInjectionAction {
+    |            ----------------------------- field in this struct
+250 |     injection_strength_q: i64,
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `gf256_add` is never used
+  --> hcvlang/src/pqc/multivariate.rs:74:4
+   |
+74 | fn gf256_add(a: u8, b: u8) -> u8 { a ^ b }
+   |    ^^^^^^^^^
+
+warning: function `gf256_mul` is never used
+  --> hcvlang/src/pqc/multivariate.rs:75:4
+   |
+75 | fn gf256_mul(a: u8, b: u8) -> u8 {
+   |    ^^^^^^^^^
+
+warning: struct `ProjectivePoint` is never constructed
+  --> hcvlang/src/pqc/isogeny.rs:73:8
+   |
+73 | struct ProjectivePoint {
+   |        ^^^^^^^^^^^^^^^
+
+warning: associated functions `new` and `identity` are never used
+  --> hcvlang/src/pqc/isogeny.rs:79:8
+   |
+78 | impl ProjectivePoint {
+   | -------------------- associated functions in this implementation
+79 |     fn new(x: (i64, i64), z: (i64, i64)) -> Self {
+   |        ^^^
+...
+83 |     fn identity() -> Self {
+   |        ^^^^^^^^
+
+warning: function `gfp2_add` is never used
+  --> hcvlang/src/pqc/isogeny.rs:89:4
+   |
+89 | fn gfp2_add(a: (i64, i64), b: (i64, i64), p: i64) -> (i64, i64) {
+   |    ^^^^^^^^
+
+warning: function `gfp2_mul` is never used
+  --> hcvlang/src/pqc/isogeny.rs:93:4
+   |
+93 | fn gfp2_mul(a: (i64, i64), b: (i64, i64), p: i64) -> (i64, i64) {
+   |    ^^^^^^^^
+
+warning: field `r_inv` is never read
+  --> hcvlang/src/division_optimizer.rs:65:5
+   |
+62 | struct MontgomeryContext {
+   |        ----------------- field in this struct
+...
+65 |     r_inv: u64,   // R^-1 mod modulus
+   |     ^^^^^
+   |
+   = note: `MontgomeryContext` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `ahop_orbit` is never read
+   --> hcvlang/src/ede_micro_swarm.rs:445:5
+    |
+442 | pub struct MicroSwarm {
+    |            ---------- field in this struct
+...
+445 |     ahop_orbit: Vec<i64>,
+    |     ^^^^^^^^^^
+    |
+    = note: `MicroSwarm` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: field `sample_buffer` is never read
+   --> hcvlang/src/ede_micro_swarm.rs:606:5
+    |
+603 | pub struct EDENoiseGenerator {
+    |            ----------------- field in this struct
+...
+606 |     sample_buffer: Vec<i16>,
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `EDENoiseGenerator` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: field `morphisms` is never read
+   --> hcvlang/src/codex_gear_manifold.rs:207:5
+    |
+199 | pub struct CodexManifold {
+    |            ------------- field in this struct
+...
+207 |     morphisms: BTreeMap<(usize, usize), usize>,
+    |     ^^^^^^^^^
+    |
+    = note: `CodexManifold` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: method `reduce_cyclotomic` is never used
+   --> hcvlang/src/fhe_realtime/adaptive_polynomial.rs:371:8
+    |
+160 | impl AdaptivePolynomial {
+    | ----------------------- method in this implementation
+...
+371 |     fn reduce_cyclotomic(&mut self) {
+    |        ^^^^^^^^^^^^^^^^^
+
+warning: fields `batch_size` and `simd_enabled` are never read
+  --> hcvlang/src/fhe_realtime/batch_operations.rs:39:5
+   |
+37 | pub struct BatchProcessor {
+   |            -------------- fields in this struct
+38 |     /// Batch size for parallel processing
+39 |     batch_size: usize,
+   |     ^^^^^^^^^^
+...
+42 |     simd_enabled: bool,
+   |     ^^^^^^^^^^^^
+
+warning: fields `ring` and `auto_bootstrap` are never read
+  --> hcvlang/src/fhe_realtime/realtime_context.rs:58:5
+   |
+50 | pub struct RealTimeFHEContext {
+   |            ------------------ fields in this struct
+...
+58 |     ring: PolynomialRing,
+   |     ^^^^
+...
+61 |     auto_bootstrap: bool,
+   |     ^^^^^^^^^^^^^^
+
+warning: field `avg_cascade_depth` is never read
+  --> hcvlang/src/coprime_cascade.rs:79:5
+   |
+74 | pub struct CascadeStats {
+   |            ------------ field in this struct
+...
+79 |     avg_cascade_depth: f64,
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = note: `CascadeStats` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `latency_ns` and `precision_bits` are never read
+   --> hcvlang/src/dynamical_modulus_oracle.rs:108:5
+    |
+105 | pub struct OperationRecord {
+    |            --------------- fields in this struct
+...
+108 |     latency_ns: u64,
+    |     ^^^^^^^^^^
+109 |     success: bool,
+110 |     precision_bits: u32,
+    |     ^^^^^^^^^^^^^^
+    |
+    = note: `OperationRecord` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `base_moduli` is never read
+  --> hcvlang/src/fractal_modular_hierarchy.rs:52:5
+   |
+47 | pub struct FractalModularHierarchy {
+   |            ----------------------- field in this struct
+...
+52 |     base_moduli: Vec<u64>,
+   |     ^^^^^^^^^^^
+   |
+   = note: `FractalModularHierarchy` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `parent_indices` is never read
+  --> hcvlang/src/fractal_modular_hierarchy.rs:71:5
+   |
+66 | pub struct HierarchyLevel {
+   |            -------------- field in this struct
+...
+71 |     parent_indices: Vec<Vec<usize>>,
+   |     ^^^^^^^^^^^^^^
+   |
+   = note: `HierarchyLevel` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: field `crt_constants` is never read
+  --> hcvlang/src/quantum_modular_superposition.rs:50:5
+   |
+45 | pub struct QuantumModularSystem {
+   |            -------------------- field in this struct
+...
+50 |     crt_constants: HashMap<(u64, u64), u64>,
+   |     ^^^^^^^^^^^^^
+   |
+   = note: `QuantumModularSystem` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `state_a` and `state_b` are never read
+  --> hcvlang/src/quantum_modular_superposition.rs:94:5
+   |
+93 | pub struct EntangledPair {
+   |            ------------- fields in this struct
+94 |     state_a: SuperpositionState,
+   |     ^^^^^^^
+95 |     state_b: SuperpositionState,
+   |     ^^^^^^^
+   |
+   = note: `EntangledPair` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: associated items `set_value` and `from_crt` are never used
+   --> hcvlang/src/qmnf_ffi_boundary.rs:139:8
+    |
+131 | impl CodexGear {
+    | -------------- associated items in this implementation
+...
+139 |     fn set_value(&mut self, value: i64) {
+    |        ^^^^^^^^^
+...
+149 |     fn from_crt(crt: &CRTBigInt, index: usize) -> Self {
+    |        ^^^^^^^^
+
+warning: associated items `from_crt` and `encode` are never used
+   --> hcvlang/src/qmnf_ffi_boundary.rs:171:8
+    |
+164 | impl CodexManifold {
+    | ------------------ associated items in this implementation
+...
+171 |     fn from_crt(crt: &CRTBigInt) -> Self {
+    |        ^^^^^^^^
+...
+188 |     fn encode(&mut self, value: i64) {
+    |        ^^^^^^
+
+warning: fields `constellation_cache` and `wave_workspace` are never read
+   --> hcvlang/src/qmnf_ffi_boundary.rs:247:5
+    |
+235 | pub struct QmnfHandle {
+    |            ---------- fields in this struct
+...
+247 |     constellation_cache: [ConstellationPoint; 32],
+    |     ^^^^^^^^^^^^^^^^^^^
+...
+251 |     wave_workspace: Box<WaveFunction>,
+    |     ^^^^^^^^^^^^^^
+
+warning: function `get_qmnf_noise` is never used
+  --> hcvlang/src/fhe/operations.rs:33:4
+   |
+33 | fn get_qmnf_noise() -> i64 {
+   |    ^^^^^^^^^^^^^^
+
+warning: function `scale_and_round_to_delta` is never used
+   --> hcvlang/src/fhe/operations.rs:253:4
+    |
+253 | fn scale_and_round_to_delta(poly: &Polynomial, t: u64, q: u64) -> Polynomial {
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `divide_by_delta` is never used
+   --> hcvlang/src/fhe/operations.rs:279:4
+    |
+279 | fn divide_by_delta(poly: &Polynomial, delta: u64) -> Polynomial {
+    |    ^^^^^^^^^^^^^^^
+
+warning: function `divide_poly_by_delta` is never used
+   --> hcvlang/src/fhe/operations.rs:312:4
+    |
+312 | fn divide_poly_by_delta(poly: &Polynomial, delta: u64, modulus: u64) -> Polynomial {
+    |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `rescale_after_multiply_v2` is never used
+   --> hcvlang/src/fhe/operations.rs:326:4
+    |
+326 | fn rescale_after_multiply_v2(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `rescale_by_inverse` is never used
+   --> hcvlang/src/fhe/operations.rs:349:4
+    |
+349 | fn rescale_by_inverse(poly: &Polynomial, inv: u64, modulus: u64) -> Polynomial {
+    |    ^^^^^^^^^^^^^^^^^^
+
+warning: function `mod_inverse` is never used
+   --> hcvlang/src/fhe/operations.rs:367:4
+    |
+367 | fn mod_inverse(a: u64, m: u64) -> u64 {
+    |    ^^^^^^^^^^^
+
+warning: function `egcd` is never used
+  --> hcvlang/src/fhe/rns.rs:17:4
+   |
+17 | fn egcd(mut a: i128, mut b: i128) -> (i128, i128, i128) {
+   |    ^^^^
+
+warning: creating a mutable reference to mutable static
+   --> hcvlang/src/prime_gen.rs:319:9
+    |
+319 |         PRIME_POOL.copy_from_slice(&primes);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mutable reference to mutable static
+    |
+    = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/static-mut-references.html>
+    = note: mutable references to mutable statics are dangerous; it's undefined behavior if any other pointer to the static is used or if any other reference is created for the static while the mutable reference lives
+    = note: `#[warn(static_mut_refs)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: structure field `eA` should have a snake case name
+  --> hcvlang/src/pqc/isogeny.rs:43:9
+   |
+43 |     pub eA: usize,    // Alice's isogeny degree 2^eA
+   |         ^^ help: convert the identifier to snake case: `e_a`
+   |
+   = note: `#[warn(non_snake_case)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: structure field `eB` should have a snake case name
+  --> hcvlang/src/pqc/isogeny.rs:44:9
+   |
+44 |     pub eB: usize,    // Bob's isogeny degree 3^eB
+   |         ^^ help: convert the identifier to snake case: `e_b`
+
+warning: `hcvlang` (lib) generated 133 warnings (run `cargo fix --lib -p hcvlang` to apply 47 suggestions)
+warning: unused `Result` that must be used
+   --> hcvlang/benches/neural_modules_benchmark.rs:148:17
+    |
+148 |                 black_box(parser.parse());
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: this `Result` may be an `Err` variant, which should be handled
+    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+148 |                 let _ = black_box(parser.parse());
+    |                 +++++++
+
+   Compiling hcvlang v0.1.0 (/home/user/QMNF_System/hcvlang)
+warning: unused import: `One`
+  --> hcvlang/benches/industry_comparison.rs:13:18
+   |
+13 | use num_traits::{One, Zero};
+   |                  ^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Zero`
+  --> hcvlang/benches/industry_comparison.rs:13:23
+   |
+13 | use num_traits::{One, Zero};
+   |                       ^^^^
+
+warning: `hcvlang` (bench "neural_modules_benchmark") generated 1 warning
+warning: `hcvlang` (bench "industry_comparison") generated 2 warnings (run `cargo fix --bench "industry_comparison"` to apply 1 suggestion)
+warning: unused variable: `r_mod_p`
+  --> hcvlang/benches/adaptive_crt_benchmark.rs:22:17
+   |
+22 |             let r_mod_p = (r % p as u128) as u64;
+   |                 ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_r_mod_p`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `hcvlang` (bench "adaptive_crt_benchmark") generated 1 warning
+    Finished `bench` profile [optimized] target(s) in 2.34s
+     Running benches/adaptive_crt_benchmark.rs (/home/user/QMNF_System/target/release/deps/adaptive_crt_benchmark-2c61e2c2c12affd3)
+Gnuplot not found, using plotters backend
+Benchmarking montgomery_baseline/montgomery_mul_32bit
+Benchmarking montgomery_baseline/montgomery_mul_32bit: Warming up for 3.0000 s
+Benchmarking montgomery_baseline/montgomery_mul_32bit: Collecting 100 samples in estimated 5.0001 s (125M iterations)
+Benchmarking montgomery_baseline/montgomery_mul_32bit: Analyzing
+montgomery_baseline/montgomery_mul_32bit
+                        time:   [39.769 ns 40.206 ns 40.842 ns]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) high mild
+  5 (5.00%) high severe
+
+Benchmarking tier_addition/tier_add/Tier0_1primes
+Benchmarking tier_addition/tier_add/Tier0_1primes: Warming up for 3.0000 s
+Benchmarking tier_addition/tier_add/Tier0_1primes: Collecting 100 samples in estimated 5.0002 s (57M iterations)
+Benchmarking tier_addition/tier_add/Tier0_1primes: Analyzing
+tier_addition/tier_add/Tier0_1primes
+                        time:   [84.818 ns 85.231 ns 85.690 ns]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking tier_addition/tier_add/Tier1_2primes
+Benchmarking tier_addition/tier_add/Tier1_2primes: Warming up for 3.0000 s
+Benchmarking tier_addition/tier_add/Tier1_2primes: Collecting 100 samples in estimated 5.0001 s (57M iterations)
+Benchmarking tier_addition/tier_add/Tier1_2primes: Analyzing
+tier_addition/tier_add/Tier1_2primes
+                        time:   [85.456 ns 86.476 ns 87.643 ns]
+Found 10 outliers among 100 measurements (10.00%)
+  6 (6.00%) high mild
+  4 (4.00%) high severe
+Benchmarking tier_addition/tier_add/Tier2_4primes
+Benchmarking tier_addition/tier_add/Tier2_4primes: Warming up for 3.0000 s
+Benchmarking tier_addition/tier_add/Tier2_4primes: Collecting 100 samples in estimated 5.0001 s (58M iterations)
+Benchmarking tier_addition/tier_add/Tier2_4primes: Analyzing
+tier_addition/tier_add/Tier2_4primes
+                        time:   [85.091 ns 85.890 ns 86.864 ns]
+Found 9 outliers among 100 measurements (9.00%)
+  2 (2.00%) high mild
+  7 (7.00%) high severe
+Benchmarking tier_addition/tier_add/Tier3_8primes
+Benchmarking tier_addition/tier_add/Tier3_8primes: Warming up for 3.0000 s
+Benchmarking tier_addition/tier_add/Tier3_8primes: Collecting 100 samples in estimated 5.0004 s (55M iterations)
+Benchmarking tier_addition/tier_add/Tier3_8primes: Analyzing
+tier_addition/tier_add/Tier3_8primes
+                        time:   [90.345 ns 90.708 ns 91.146 ns]
+Found 9 outliers among 100 measurements (9.00%)
+  6 (6.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking tier_multiplication/tier_mul/Tier0_1primes
+Benchmarking tier_multiplication/tier_mul/Tier0_1primes: Warming up for 3.0000 s
+Benchmarking tier_multiplication/tier_mul/Tier0_1primes: Collecting 100 samples in estimated 5.0002 s (58M iterations)
+Benchmarking tier_multiplication/tier_mul/Tier0_1primes: Analyzing
+tier_multiplication/tier_mul/Tier0_1primes
+                        time:   [85.289 ns 85.685 ns 86.130 ns]
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+Benchmarking tier_multiplication/tier_mul/Tier1_2primes
+Benchmarking tier_multiplication/tier_mul/Tier1_2primes: Warming up for 3.0000 s
+Benchmarking tier_multiplication/tier_mul/Tier1_2primes: Collecting 100 samples in estimated 5.0000 s (57M iterations)
+Benchmarking tier_multiplication/tier_mul/Tier1_2primes: Analyzing
+tier_multiplication/tier_mul/Tier1_2primes
+                        time:   [87.628 ns 88.556 ns 89.700 ns]
+Found 8 outliers among 100 measurements (8.00%)
+  3 (3.00%) high mild
+  5 (5.00%) high severe
+Benchmarking tier_multiplication/tier_mul/Tier2_4primes
+Benchmarking tier_multiplication/tier_mul/Tier2_4primes: Warming up for 3.0000 s
+Benchmarking tier_multiplication/tier_mul/Tier2_4primes: Collecting 100 samples in estimated 5.0005 s (53M iterations)
+Benchmarking tier_multiplication/tier_mul/Tier2_4primes: Analyzing
+tier_multiplication/tier_mul/Tier2_4primes
+                        time:   [88.713 ns 89.076 ns 89.438 ns]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) high mild
+  5 (5.00%) high severe
+Benchmarking tier_multiplication/tier_mul/Tier3_8primes
+Benchmarking tier_multiplication/tier_mul/Tier3_8primes: Warming up for 3.0000 s
+Benchmarking tier_multiplication/tier_mul/Tier3_8primes: Collecting 100 samples in estimated 5.0001 s (50M iterations)
+Benchmarking tier_multiplication/tier_mul/Tier3_8primes: Analyzing
+tier_multiplication/tier_mul/Tier3_8primes
+                        time:   [99.914 ns 100.61 ns 101.48 ns]
+Found 8 outliers among 100 measurements (8.00%)
+  4 (4.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking tier_transitions/promote/Tier0->Tier1
+Benchmarking tier_transitions/promote/Tier0->Tier1: Warming up for 3.0000 s
+Benchmarking tier_transitions/promote/Tier0->Tier1: Collecting 100 samples in estimated 5.0002 s (21M iterations)
+Benchmarking tier_transitions/promote/Tier0->Tier1: Analyzing
+tier_transitions/promote/Tier0->Tier1
+                        time:   [230.85 ns 233.17 ns 236.37 ns]
+Found 10 outliers among 100 measurements (10.00%)
+  4 (4.00%) high mild
+  6 (6.00%) high severe
+Benchmarking tier_transitions/promote/Tier1->Tier2
+Benchmarking tier_transitions/promote/Tier1->Tier2: Warming up for 3.0000 s
+Benchmarking tier_transitions/promote/Tier1->Tier2: Collecting 100 samples in estimated 5.0000 s (30M iterations)
+Benchmarking tier_transitions/promote/Tier1->Tier2: Analyzing
+tier_transitions/promote/Tier1->Tier2
+                        time:   [167.00 ns 167.75 ns 168.84 ns]
+Found 11 outliers among 100 measurements (11.00%)
+  2 (2.00%) high mild
+  9 (9.00%) high severe
+Benchmarking tier_transitions/promote/Tier2->Tier3
+Benchmarking tier_transitions/promote/Tier2->Tier3: Warming up for 3.0000 s
+Benchmarking tier_transitions/promote/Tier2->Tier3: Collecting 100 samples in estimated 5.0021 s (9.0M iterations)
+Benchmarking tier_transitions/promote/Tier2->Tier3: Analyzing
+tier_transitions/promote/Tier2->Tier3
+                        time:   [557.50 ns 560.12 ns 563.32 ns]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) high mild
+  5 (5.00%) high severe
+
+Benchmarking tier_demotion/demote/Tier1->Tier0
+Benchmarking tier_demotion/demote/Tier1->Tier0: Warming up for 3.0000 s
+Benchmarking tier_demotion/demote/Tier1->Tier0: Collecting 100 samples in estimated 5.0007 s (30M iterations)
+Benchmarking tier_demotion/demote/Tier1->Tier0: Analyzing
+tier_demotion/demote/Tier1->Tier0
+                        time:   [162.81 ns 163.55 ns 164.38 ns]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking tier_demotion/demote/Tier2->Tier1
+Benchmarking tier_demotion/demote/Tier2->Tier1: Warming up for 3.0000 s
+Benchmarking tier_demotion/demote/Tier2->Tier1: Collecting 100 samples in estimated 5.0004 s (9.0M iterations)
+Benchmarking tier_demotion/demote/Tier2->Tier1: Analyzing
+tier_demotion/demote/Tier2->Tier1
+                        time:   [557.43 ns 560.70 ns 564.64 ns]
+Found 8 outliers among 100 measurements (8.00%)
+  6 (6.00%) high mild
+  2 (2.00%) high severe
+Benchmarking tier_demotion/demote/Tier3->Tier2
+Benchmarking tier_demotion/demote/Tier3->Tier2: Warming up for 3.0000 s
+Benchmarking tier_demotion/demote/Tier3->Tier2: Collecting 100 samples in estimated 5.0004 s (4.9M iterations)
+Benchmarking tier_demotion/demote/Tier3->Tier2: Analyzing
+tier_demotion/demote/Tier3->Tier2
+                        time:   [1.0141 µs 1.0213 µs 1.0309 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking workload_patterns/monotone_growth_100ops
+Benchmarking workload_patterns/monotone_growth_100ops: Warming up for 3.0000 s
+Benchmarking workload_patterns/monotone_growth_100ops: Collecting 100 samples in estimated 10.007 s (1.9M iterations)
+Benchmarking workload_patterns/monotone_growth_100ops: Analyzing
+workload_patterns/monotone_growth_100ops
+                        time:   [5.1167 µs 5.1822 µs 5.2614 µs]
+Found 8 outliers among 100 measurements (8.00%)
+  2 (2.00%) high mild
+  6 (6.00%) high severe
+
+Benchmarking stable_workload/stable_1000ops
+Benchmarking stable_workload/stable_1000ops: Warming up for 3.0000 s
+Benchmarking stable_workload/stable_1000ops: Collecting 100 samples in estimated 10.304 s (101k iterations)
+Benchmarking stable_workload/stable_1000ops: Analyzing
+stable_workload/stable_1000ops
+                        time:   [97.712 µs 98.782 µs 100.54 µs]
+Found 11 outliers among 100 measurements (11.00%)
+  5 (5.00%) high mild
+  6 (6.00%) high severe
+
+Benchmarking mixed_workload/mixed_add_mul_500ops
+Benchmarking mixed_workload/mixed_add_mul_500ops: Warming up for 3.0000 s
+Benchmarking mixed_workload/mixed_add_mul_500ops: Collecting 100 samples in estimated 10.071 s (389k iterations)
+Benchmarking mixed_workload/mixed_add_mul_500ops: Analyzing
+mixed_workload/mixed_add_mul_500ops
+                        time:   [25.528 µs 25.664 µs 25.815 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  3 (3.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking hysteresis/no_oscillation_hovering
+Benchmarking hysteresis/no_oscillation_hovering: Warming up for 3.0000 s
+Benchmarking hysteresis/no_oscillation_hovering: Collecting 100 samples in estimated 10.004 s (944k iterations)
+Benchmarking hysteresis/no_oscillation_hovering: Analyzing
+hysteresis/no_oscillation_hovering
+                        time:   [10.476 µs 10.534 µs 10.601 µs]
+Found 11 outliers among 100 measurements (11.00%)
+  3 (3.00%) high mild
+  8 (8.00%) high severe
+
+Benchmarking cost_model_validation/reconstruction/Tier0
+Benchmarking cost_model_validation/reconstruction/Tier0: Warming up for 3.0000 s
+Benchmarking cost_model_validation/reconstruction/Tier0: Collecting 100 samples in estimated 5.0000 s (1.0B iterations)
+Benchmarking cost_model_validation/reconstruction/Tier0: Analyzing
+cost_model_validation/reconstruction/Tier0
+                        time:   [4.7585 ns 4.7970 ns 4.8449 ns]
+Found 8 outliers among 100 measurements (8.00%)
+  6 (6.00%) high mild
+  2 (2.00%) high severe
+Benchmarking cost_model_validation/reconstruction/Tier1
+Benchmarking cost_model_validation/reconstruction/Tier1: Warming up for 3.0000 s
+Benchmarking cost_model_validation/reconstruction/Tier1: Collecting 100 samples in estimated 5.0004 s (25M iterations)
+Benchmarking cost_model_validation/reconstruction/Tier1: Analyzing
+cost_model_validation/reconstruction/Tier1
+                        time:   [193.62 ns 194.48 ns 195.57 ns]
+Found 11 outliers among 100 measurements (11.00%)
+  5 (5.00%) high mild
+  6 (6.00%) high severe
+Benchmarking cost_model_validation/reconstruction/Tier2
+Benchmarking cost_model_validation/reconstruction/Tier2: Warming up for 3.0000 s
+Benchmarking cost_model_validation/reconstruction/Tier2: Collecting 100 samples in estimated 5.0011 s (13M iterations)
+Benchmarking cost_model_validation/reconstruction/Tier2: Analyzing
+cost_model_validation/reconstruction/Tier2
+                        time:   [395.99 ns 401.10 ns 407.42 ns]
+Found 10 outliers among 100 measurements (10.00%)
+  3 (3.00%) high mild
+  7 (7.00%) high severe
+Benchmarking cost_model_validation/reconstruction/Tier3
+Benchmarking cost_model_validation/reconstruction/Tier3: Warming up for 3.0000 s
+Benchmarking cost_model_validation/reconstruction/Tier3: Collecting 100 samples in estimated 5.0010 s (5.9M iterations)
+Benchmarking cost_model_validation/reconstruction/Tier3: Analyzing
+cost_model_validation/reconstruction/Tier3
+                        time:   [844.29 ns 847.19 ns 850.64 ns]
+Found 10 outliers among 100 measurements (10.00%)
+  4 (4.00%) high mild
+  6 (6.00%) high severe
+
+Benchmarking adaptive_variants/current
+Benchmarking adaptive_variants/current: Warming up for 3.0000 s
+Benchmarking adaptive_variants/current: Collecting 100 samples in estimated 10.013 s (1.9M iterations)
+Benchmarking adaptive_variants/current: Analyzing
+adaptive_variants/current
+                        time:   [5.1187 µs 5.1846 µs 5.2771 µs]
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+Benchmarking adaptive_variants/v1_basic
+Benchmarking adaptive_variants/v1_basic: Warming up for 3.0000 s
+Benchmarking adaptive_variants/v1_basic: Collecting 100 samples in estimated 10.020 s (1.9M iterations)
+Benchmarking adaptive_variants/v1_basic: Analyzing
+adaptive_variants/v1_basic
+                        time:   [5.1109 µs 5.1769 µs 5.2829 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  2 (2.00%) high mild
+  4 (4.00%) high severe
+Benchmarking adaptive_variants/v2_production
+Benchmarking adaptive_variants/v2_production: Warming up for 3.0000 s
+Benchmarking adaptive_variants/v2_production: Collecting 100 samples in estimated 10.007 s (1.9M iterations)
+Benchmarking adaptive_variants/v2_production: Analyzing
+adaptive_variants/v2_production
+                        time:   [5.0647 µs 5.0972 µs 5.1342 µs]
+Found 9 outliers among 100 measurements (9.00%)
+  4 (4.00%) high mild
+  5 (5.00%) high severe
+Benchmarking adaptive_variants/v3_simplified
+Benchmarking adaptive_variants/v3_simplified: Warming up for 3.0000 s
+Benchmarking adaptive_variants/v3_simplified: Collecting 100 samples in estimated 10.074 s (460k iterations)
+Benchmarking adaptive_variants/v3_simplified: Analyzing
+adaptive_variants/v3_simplified
+                        time:   [21.624 µs 21.719 µs 21.825 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+
+     Running benches/extreme_scale_stress_test.rs (/home/user/QMNF_System/target/release/deps/extreme_scale_stress_test-b6a9a433fb638931)
+Gnuplot not found, using plotters backend
+Benchmarking CRTBigInt max value operations
+Benchmarking CRTBigInt max value operations: Warming up for 3.0000 s
+Benchmarking CRTBigInt max value operations: Collecting 100 samples in estimated 5.0000 s (58M iterations)
+Benchmarking CRTBigInt max value operations: Analyzing
+CRTBigInt max value operations
+                        time:   [86.233 ns 86.705 ns 87.216 ns]
+Found 5 outliers among 100 measurements (5.00%)
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking Factorial Scaling/10
+Benchmarking Factorial Scaling/10: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/10: Collecting 10 samples in estimated 5.0000 s (6.6M iterations)
+Benchmarking Factorial Scaling/10: Analyzing
+Factorial Scaling/10    time:   [759.56 ns 768.08 ns 778.89 ns]
+Benchmarking Factorial Scaling/20
+Benchmarking Factorial Scaling/20: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/20: Collecting 10 samples in estimated 5.0001 s (3.2M iterations)
+Benchmarking Factorial Scaling/20: Analyzing
+Factorial Scaling/20    time:   [1.5476 µs 1.5638 µs 1.5927 µs]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking Factorial Scaling/50
+Benchmarking Factorial Scaling/50: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/50: Collecting 10 samples in estimated 5.0002 s (1.4M iterations)
+Benchmarking Factorial Scaling/50: Analyzing
+Factorial Scaling/50    time:   [3.6757 µs 3.6933 µs 3.7114 µs]
+Benchmarking Factorial Scaling/100
+Benchmarking Factorial Scaling/100: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/100: Collecting 10 samples in estimated 5.0001 s (726k iterations)
+Benchmarking Factorial Scaling/100: Analyzing
+Factorial Scaling/100   time:   [6.8012 µs 6.8449 µs 6.9218 µs]
+Benchmarking Factorial Scaling/200
+Benchmarking Factorial Scaling/200: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/200: Collecting 10 samples in estimated 5.0001 s (316k iterations)
+Benchmarking Factorial Scaling/200: Analyzing
+Factorial Scaling/200   time:   [15.987 µs 16.458 µs 17.136 µs]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking Factorial Scaling/500
+Benchmarking Factorial Scaling/500: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/500: Collecting 10 samples in estimated 5.0024 s (78k iterations)
+Benchmarking Factorial Scaling/500: Analyzing
+Factorial Scaling/500   time:   [62.476 µs 62.717 µs 63.028 µs]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) high mild
+  1 (10.00%) high severe
+Benchmarking Factorial Scaling/1000
+Benchmarking Factorial Scaling/1000: Warming up for 3.0000 s
+Benchmarking Factorial Scaling/1000: Collecting 10 samples in estimated 5.0042 s (22k iterations)
+Benchmarking Factorial Scaling/1000: Analyzing
+Factorial Scaling/1000  time:   [222.07 µs 223.18 µs 224.70 µs]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) high mild
+  1 (10.00%) high severe
+
+Benchmarking Fibonacci Scaling/100
+Benchmarking Fibonacci Scaling/100: Warming up for 3.0000 s
+Benchmarking Fibonacci Scaling/100: Collecting 10 samples in estimated 5.0002 s (1.3M iterations)
+Benchmarking Fibonacci Scaling/100: Analyzing
+Fibonacci Scaling/100   time:   [3.6138 µs 3.6402 µs 3.6602 µs]
+Benchmarking Fibonacci Scaling/500
+Benchmarking Fibonacci Scaling/500: Warming up for 3.0000 s
+Benchmarking Fibonacci Scaling/500: Collecting 10 samples in estimated 5.0006 s (253k iterations)
+Benchmarking Fibonacci Scaling/500: Analyzing
+Fibonacci Scaling/500   time:   [19.326 µs 19.712 µs 20.448 µs]
+Benchmarking Fibonacci Scaling/1000
+Benchmarking Fibonacci Scaling/1000: Warming up for 3.0000 s
+Benchmarking Fibonacci Scaling/1000: Collecting 10 samples in estimated 5.0021 s (118k iterations)
+Benchmarking Fibonacci Scaling/1000: Analyzing
+Fibonacci Scaling/1000  time:   [40.448 µs 40.924 µs 41.716 µs]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking Fibonacci Scaling/5000
+Benchmarking Fibonacci Scaling/5000: Warming up for 3.0000 s
+Benchmarking Fibonacci Scaling/5000: Collecting 10 samples in estimated 5.0055 s (15k iterations)
+Benchmarking Fibonacci Scaling/5000: Analyzing
+Fibonacci Scaling/5000  time:   [331.20 µs 333.81 µs 339.52 µs]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking Fibonacci Scaling/10000
+Benchmarking Fibonacci Scaling/10000: Warming up for 3.0000 s
+Benchmarking Fibonacci Scaling/10000: Collecting 10 samples in estimated 5.0495 s (5005 iterations)
+Benchmarking Fibonacci Scaling/10000: Analyzing
+Fibonacci Scaling/10000 time:   [1.0103 ms 1.0273 ms 1.0497 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+
+Benchmarking RSA-sized Arithmetic/addition/512
+Benchmarking RSA-sized Arithmetic/addition/512: Warming up for 3.0000 s
+Benchmarking RSA-sized Arithmetic/addition/512: Collecting 10 samples in estimated 30.000 s (593M iterations)
+Benchmarking RSA-sized Arithmetic/addition/512: Analyzing
+RSA-sized Arithmetic/addition/512
+                        time:   [44.938 ns 45.124 ns 45.375 ns]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) high mild
+  1 (10.00%) high severe
+Benchmarking RSA-sized Arithmetic/multiplication/512
+Benchmarking RSA-sized Arithmetic/multiplication/512: Warming up for 3.0000 s
+Benchmarking RSA-sized Arithmetic/multiplication/512: Collecting 10 samples in estimated 30.000 s (207M iterations)
+Benchmarking RSA-sized Arithmetic/multiplication/512: Analyzing
+RSA-sized Arithmetic/multiplication/512
+                        time:   [139.40 ns 140.84 ns 141.84 ns]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking RSA-sized Arithmetic/addition/1024
+Benchmarking RSA-sized Arithmetic/addition/1024: Warming up for 3.0000 s
+Benchmarking RSA-sized Arithmetic/addition/1024: Collecting 10 samples in estimated 30.000 s (273M iterations)

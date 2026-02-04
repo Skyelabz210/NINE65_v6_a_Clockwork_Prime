@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.2",
+  "title": "QMNF Unified Formalization - Coq, Lean4, NIST",
+  "main_goal": "Complete all remaining proofs across Coq (13 files), Lean4 (19 files), and NIST security (21 nodes)",
+  "context": "QMNF integer-only arithmetic, K-Elimination, bootstrap-free FHE, NIST ML-KEM compliance",
+  "created_at": "2026-02-02T00:00:00Z",
+  "rounds_completed": 0,
+  "validation": {
+    "last_validated": "2026-02-02T00:00:00Z",
+    "validator": "phi-Decomposer (Φ0 CREATE)",
+    "status": "INITIALIZED",
+    "dag_acyclic": true,
+    "all_dependencies_exist": true
+  },
+
+  "summary": {
+    "coq_files": 13,
+    "coq_admitted": 30,
+    "lean_files": 19,
+    "lean_sorry": 45,
+    "nist_nodes_pending": 13,
+    "total_proof_gaps": 88,
+    "grails_complete": 4,
+    "grails_partial": 8,
+    "grails_missing": 0
+  },
+
+  "nodes": [
+    {
+      "id": "COQ-001",
+      "label": "KElimination.v - add_mul_mod",
+      "type": "lemma",
+      "file": "/home/acid/Projects/NINE65/verified-innovations/proofs/coq/KElimination.v",
+      "line": 113,
+      "statement": "(a + b * M) mod M = a mod M for M > 0",
+      "dependencies": [],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "coq",
+      "gap_type": "modular_arithmetic",
+      "estimated_hours": 1
+    },
+    {
+      "id": "COQ-002",
+      "label": "KElimination.v - division_exact",
+      "type": "lemma",
+      "file": "/home/acid/Projects/NINE65/verified-innovations/proofs/coq/KElimination.v",
+      "line": 237,
+      "statement": "d > 0 -> Nat.divide d X -> X mod d = 0",
+      "dependencies": [],
+      "difficulty": "easy",
+      "status": "pending",
+      "prover": "coq",
+      "gap_type": "divisibility",
+      "estimated_hours": 0.5
+    },
+    {
+      "id": "COQ-003",
+      "label": "KElimination.v - k_elimination_sound",
+      "type": "theorem",
+      "file": "/home/acid/Projects/NINE65/verified-innovations/proofs/coq/KElimination.v",
+      "line": 303,
+      "statement": "K-Elimination soundness: computed k equals true k",
+      "dependencies": ["COQ-001"],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "coq",
+      "gap_type": "modular_inverse",
+      "estimated_hours": 3
+    },
+    {
+      "id": "COQ-004",
+      "label": "KElimination.v - k_elimination_complete",
+      "type": "theorem",
+      "file": "/home/acid/Projects/NINE65/verified-innovations/proofs/coq/KElimination.v",
+      "line": 315,
+      "statement": "K-Elimination completeness: reconstruction recovers correct k",
+      "dependencies": ["COQ-001"],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "coq",
+      "gap_type": "division_algorithm",
+      "estimated_hours": 1
+    },
+    {
+      "id": "COQ-005",
+      "label": "GSOFHE.v - depth_50_achievable",
+      "type": "theorem",
+      "file": "/home/acid/Projects/NINE65/verified-innovations/proofs/coq/GSOFHE.v",
+      "line": 175,
+      "statement": "Depth-50 achievable with bounded noise via GSO collapse",
+      "dependencies": [],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "coq",
+      "gap_type": "induction",
+      "estimated_hours": 2
+    },
+    {
+      "id": "COQ-006",
+      "label": "GSOFHE.v - collapse_count_bounded",
+      "type": "theorem",
+      "file": "/home/acid/Projects/NINE65/verified-innovations/proofs/coq/GSOFHE.v",
+      "line": 203,
+      "statement": "Collapse count bounded by depth (worst case)",
+      "dependencies": ["COQ-005"],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "coq",
+      "gap_type": "induction",
+      "estimated_hours": 2
+    },
+    {
+      "id": "LEAN-001",
+      "label": "06_CRTBigInt.lean - fibonacci_coprime",
+      "type": "lemma",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/06_CRTBigInt.lean",
+      "line": 332,
+      "statement": "Fibonacci numbers F_n and F_{n+1} are coprime",
+      "dependencies": [],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "mathlib_import",
+      "estimated_hours": 2
+    },
+    {
+      "id": "LEAN-002",
+      "label": "10_PersistentMontgomery.lean - asymptotic_savings",
+      "type": "lemma",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/10_PersistentMontgomery.lean",
+      "line": 197,
+      "statement": "Asymptotic savings from persistent Montgomery form",
+      "dependencies": [],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "rational_arithmetic",
+      "estimated_hours": 2
+    },
+    {
+      "id": "LEAN-003",
+      "label": "10_PersistentMontgomery.lean - equality_in_montgomery",
+      "type": "lemma",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/10_PersistentMontgomery.lean",
+      "line": 295,
+      "statement": "Equality in Montgomery form via unit cancellation",
+      "dependencies": [],
+      "difficulty": "easy",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "unit_cancellation",
+      "estimated_hours": 1
+    },
+    {
+      "id": "LEAN-004",
+      "label": "13_MQReLU.lean - euler_criterion_values",
+      "type": "lemma",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/13_MQReLU.lean",
+      "line": 70,
+      "statement": "Euler criterion: a^((p-1)/2) = ±1 mod p",
+      "dependencies": [],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "quadratic_residue",
+      "estimated_hours": 2
+    },
+    {
+      "id": "LEAN-005",
+      "label": "14_BinaryGCD.lean - binaryGCD_correct",
+      "type": "theorem",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/14_BinaryGCD.lean",
+      "line": 160,
+      "statement": "Binary GCD algorithm correctness (Stein's algorithm)",
+      "dependencies": [],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "termination_loop_invariant",
+      "estimated_hours": 4
+    },
+    {
+      "id": "LEAN-006",
+      "label": "15_PLMGRails.lean - plmg_uniqueness",
+      "type": "lemma",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/15_PLMGRails.lean",
+      "line": 162,
+      "statement": "PLMG uniqueness via CRT",
+      "dependencies": [],
+      "difficulty": "medium",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "crt_uniqueness",
+      "estimated_hours": 2
+    },
+    {
+      "id": "LEAN-007",
+      "label": "16_DCBigIntHelix.lean - helix_div_correct",
+      "type": "theorem",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/16_DCBigIntHelix.lean",
+      "line": 119,
+      "statement": "Helical division correctness via K-Elimination",
+      "dependencies": ["LEAN-KELIM"],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "k_elimination_application",
+      "estimated_hours": 3
+    },
+    {
+      "id": "LEAN-008",
+      "label": "23_ClockworkPrime.lean - crt_reconstruct_correct",
+      "type": "theorem",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/23_ClockworkPrime.lean",
+      "line": 234,
+      "statement": "CRT reconstruction correctness for clockwork primes",
+      "dependencies": [],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "lean4",
+      "gap_type": "crt_reconstruction",
+      "estimated_hours": 3
+    },
+    {
+      "id": "LEAN-KELIM",
+      "label": "05_KElimination.lean - verification",
+      "type": "verification",
+      "file": "/home/acid/Projects/qmnf-formalization-swarm/05_KElimination.lean",
+      "statement": "K-Elimination theorem fully verified (0 sorry)",
+      "dependencies": [],
+      "difficulty": "trivial",
+      "status": "verified",
+      "prover": "lean4",
+      "confidence": 1.0,
+      "evidence": {"lean_compiled": true, "sorry_count": 0}
+    },
+    {
+      "id": "NIST-D001",
+      "label": "Ring R_q Definition",
+      "type": "definition",
+      "statement": "R = Z[X]/(X^N + 1) where N is power of 2. R_q = R/qR",
+      "dependencies": [],
+      "difficulty": "trivial",
+      "status": "pending",
+      "prover": "lean4",
+      "estimated_hours": 1
+    },
+    {
+      "id": "NIST-L005",
+      "label": "Encryption Hides Message",
+      "type": "lemma",
+      "statement": "Enc(pk, m0) and Enc(pk, m1) are computationally indistinguishable",
+      "dependencies": ["NIST-D001", "NIST-L004"],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "lean4",
+      "estimated_hours": 4
+    },
+    {
+      "id": "NIST-T003",
+      "label": "Homomorphic Security Preservation",
+      "type": "theorem",
+      "statement": "Homomorphic operations preserve IND-CPA security",
+      "dependencies": ["NIST-T002", "NIST-L007"],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "lean4",
+      "estimated_hours": 6
+    },
+    {
+      "id": "NIST-V001",
+      "label": "Security Verification - Lean4",
+      "type": "verification",
+      "statement": "Formalize T002 in Lean 4 with full proof",
+      "dependencies": ["NIST-T002"],
+      "difficulty": "hard",
+      "status": "pending",
+      "prover": "lean4",
+      "estimated_hours": 8
+    }
+  ],
+
+  "grail_status": {
+    "GRAIL-001": {"name": "K-Elimination", "status": "95%", "lean": "verified", "coq": "4 admitted"},
+    "GRAIL-003": {"name": "Real-Time FHE", "status": "missing", "lean": "not started", "coq": "N/A"},
+    "GRAIL-005": {"name": "Shadow Entropy", "status": "100%", "lean": "verified", "coq": "3 admitted"},
+    "GRAIL-006": {"name": "DCBigInt", "status": "70%", "lean": "2 sorry", "coq": "N/A"},
+    "GRAIL-007": {"name": "Integer NN", "status": "90%", "lean": "0 sorry", "coq": "N/A"},
+    "GRAIL-008": {"name": "Persistent Montgomery", "status": "90%", "lean": "2 sorry", "coq": "3 admitted"},
+    "GRAIL-009": {"name": "Bootstrap-Free FHE", "status": "70%", "lean": "partial", "coq": "2 admitted"},
+    "GRAIL-010": {"name": "Pade Engine", "status": "85%", "lean": "0 sorry", "coq": "formalized"},
+    "GRAIL-011": {"name": "Cyclotomic Phase", "status": "100%", "lean": "verified", "coq": "3 admitted"},
+    "GRAIL-012": {"name": "Toric Geometry", "status": "missing", "lean": "not started", "coq": "N/A"}
+  },
+
+  "execution_phases": [
+    {
+      "phase": 1,
+      "name": "Critical Coq Proofs",
+      "nodes": ["COQ-001", "COQ-002", "COQ-003", "COQ-004"],
+      "estimated_hours": 5.5
+    },
+    {
+      "phase": 2,
+      "name": "Bootstrap-Free FHE",
+      "nodes": ["COQ-005", "COQ-006"],
+      "estimated_hours": 4
+    },
+    {
+      "phase": 3,
+      "name": "Lean4 Foundation",
+      "nodes": ["LEAN-001", "LEAN-002", "LEAN-003", "LEAN-004"],
+      "estimated_hours": 7
+    },
+    {
+      "phase": 4,
+      "name": "Lean4 Algorithms",
+      "nodes": ["LEAN-005", "LEAN-006", "LEAN-007", "LEAN-008"],
+      "estimated_hours": 12
+    },
+    {
+      "phase": 5,
+      "name": "NIST Security",
+      "nodes": ["NIST-D001", "NIST-L005", "NIST-T003", "NIST-V001"],
+      "estimated_hours": 19
+    }
+  ]
+}

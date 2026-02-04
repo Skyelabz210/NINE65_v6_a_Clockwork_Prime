@@ -1,0 +1,72 @@
+[package]
+name = "cleargate"
+version = "0.1.0"
+edition = "2021"
+authors = ["HackFate Research <research@hackfate.us>"]
+description = "Zero-friction Fully Homomorphic Encryption"
+license = "Proprietary"
+repository = "https://github.com/hackfate/cleargate"
+keywords = ["fhe", "encryption", "homomorphic", "privacy"]
+categories = ["cryptography"]
+
+[lib]
+name = "cleargate"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]  # cdylib for Python bindings
+
+[[bin]]
+name = "cleargate"
+path = "src/bin/cleargate.rs"
+
+[dependencies]
+# Core dependencies (add as needed)
+# thiserror = "1.0"
+# serde = { version = "1.0", features = ["derive"] }
+# serde_json = "1.0"
+
+# Python bindings (optional feature)
+# pyo3 = { version = "0.20", features = ["extension-module"], optional = true }
+
+[dev-dependencies]
+# criterion = "0.5"
+
+[features]
+default = []
+python = []  # Enable Python bindings
+
+# Performance optimizations
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+# ============================================================================
+# WORKSPACE STRUCTURE (for production)
+# ============================================================================
+# 
+# cleargate/               <- PUBLIC crate (this one)
+# ├── Cargo.toml
+# ├── src/
+# │   ├── lib.rs          <- Public API
+# │   ├── python.rs       <- Python bindings
+# │   └── bin/
+# │       └── cleargate.rs <- CLI
+# 
+# cleargate-engine/        <- PRIVATE crate (not published)
+# ├── Cargo.toml           <- [lib] crate-type = ["staticlib"]
+# ├── src/
+# │   ├── lib.rs           <- Engine entry
+# │   ├── dual_rns.rs      <- THE SECRET SAUCE
+# │   ├── k_elim.rs
+# │   ├── shadow.rs
+# │   ├── montgomery.rs
+# │   ├── crt.rs
+# │   └── ...
+# 
+# The public crate links to a pre-compiled engine binary.
+# The engine source is never published or distributed.
+# ============================================================================

@@ -1,0 +1,9 @@
+{
+  "node_id": "SECURITY_PROOFS",
+  "severity": "CRITICAL",
+  "verdict": "FAILED", 
+  "issues_found": 7,
+  "counterexamples_found": 1,
+  "hidden_assumptions": 4,
+  "confidence": "19/20"
+}

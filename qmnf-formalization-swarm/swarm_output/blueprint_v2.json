@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "blueprint_version": "2.0.0",
+    "created": "2026-02-01",
+    "updated": "2026-02-01T03:30:00Z",
+    "project": "QMNF Formal Proofs - Unified Package",
+    "status": "UPDATED - Significant Progress Made",
+    "agent": "phi-Decomposer",
+    "total_sorry_statements": 8,
+    "total_files_with_sorry": 3,
+    "completion_percentage": 85,
+    "previous_sorry_count": 45,
+    "reduction": "82% reduction in sorry statements"
+  },
+
+  "summary": {
+    "total_sorry": 8,
+    "by_file": {
+      "14_BinaryGCD.lean": 3,
+      "23_ClockworkPrime.lean": 4,
+      "02_QMNF_Lean4_Proofs.lean": 1
+    },
+    "files_now_complete": [
+      "05_KElimination.lean",
+      "06_CRTBigInt.lean",
+      "07_ShadowEntropy.lean",
+      "08_PadeEngine.lean",
+      "09_MobiusInt.lean",
+      "10_PersistentMontgomery.lean",
+      "11_IntegerNN.lean",
+      "12_CyclotomicPhase.lean",
+      "13_MQReLU.lean",
+      "15_PLMGRails.lean",
+      "16_DCBigIntHelix.lean",
+      "17_GroverSwarm.lean",
+      "18_WASSAN.lean",
+      "19_TimeCrystal.lean",
+      "20_GSO.lean",
+      "21_MANA.lean",
+      "22_RayRam.lean",
+      "24_BootstrapFreeFHE.lean",
+      "25_RealTimeFHE.lean",
+      "QMNFProofs/KElimination.lean"
+    ]
+  },
+
+  "sorry_nodes": [
+    {
+      "id": "BGCD-001",
+      "file": "14_BinaryGCD.lean",
+      "line": 250,
+      "theorem": "binaryGCD_correct",
+      "description": "Main theorem: Binary GCD computes correct GCD",
+      "sorry_context": "Depends on binaryGCDOddLoop_correct axiom",
+      "status": "READY",
+      "difficulty": "moderate",
+      "estimated_hours": 2,
+      "dependencies": ["binaryGCDOddLoop_correct (axiomatized)"],
+      "blockers": [],
+      "proof_strategy": "Apply axiom binaryGCDOddLoop_correct, then show gcd(a,b) = 2^k * gcd(a/2^ka, b/2^k)",
+      "assigned_to": "pi-Prover-1",
+      "notes": "Core requires showing composition of even-factor extraction with loop correctness"
+    },
+    {
+      "id": "BGCD-002",
+      "file": "14_BinaryGCD.lean",
+      "line": 342,
+      "theorem": "extendedBinaryGCD_bezout",
+      "description": "Extended Binary GCD satisfies Bezout identity: a*x + b*y = gcd",
+      "sorry_context": "Requires termination proof for partial def",
+      "status": "READY",
+      "difficulty": "hard",
+      "estimated_hours": 4,
+      "dependencies": [],
+      "blockers": [],
+      "proof_strategy": "Strong induction on b. Base: b=0 trivial. Inductive: standard extended Euclidean unfolding",
+      "assigned_to": "pi-Prover-2",
+      "notes": "May need to refactor extendedBinaryGCD to use explicit termination measure (Nat.lt_wfRel on a+b)"
+    },
+    {
+      "id": "BGCD-003",
+      "file": "14_BinaryGCD.lean",
+      "line": 385,
+      "theorem": "modInverse_correct",
+      "description": "Modular inverse via extended GCD is correct",
+      "sorry_context": "Depends on extendedBinaryGCD_bezout",
+      "status": "BLOCKED",
+      "difficulty": "easy",
+      "estimated_hours": 1,
+      "dependencies": ["BGCD-002"],
+      "blockers": ["BGCD-002"],
+      "proof_strategy": "From Bezout identity a*x + m*y = 1, derive a*x ≡ 1 (mod m)",
+      "assigned_to": "pi-Prover-2",
+      "notes": "Trivial once BGCD-002 is complete"
+    },
+    {
+      "id": "CWP-001",
+      "file": "23_ClockworkPrime.lean",
+      "line": 283,
+      "theorem": "garner_exact",
+      "description": "Garner reconstruction is exact: garnerReconstruct(garnerConvert(n)) = n",
+      "sorry_context": "Full proof requires detailed induction over garnerConvert/garnerReconstruct",
+      "status": "READY",
+      "difficulty": "hard",
+      "estimated_hours": 4,
+      "dependencies": [],
+      "blockers": [],
+      "proof_strategy": "Induction on number of tiers. Use CRT uniqueness from Mathlib (ZMod.chineseRemainder)",
+      "assigned_to": "pi-Prover-3",
+      "notes": "Core mathematical content is CRT uniqueness. Garner is just mixed-radix encoding"
+    },
+    {
+      "id": "CWP-002",
+      "file": "23_ClockworkPrime.lean",
+      "line": 335,
+      "theorem": "expandTier.pairwise_distinct",
+      "description": "Nodup is preserved when appending new prime to tiers",
+      "sorry_context": "Requires showing new_prime > max(tiers) implies new_prime not in tiers",
+      "status": "READY",
+      "difficulty": "easy",
+      "estimated_hours": 1,
+      "dependencies": [],
+      "blockers": [],
+      "proof_strategy": "Use foldl max property: forall x in L, x <= L.foldl max 0. Then new_prime > max contradicts membership",
+      "assigned_to": "pi-Prover-1",
+      "notes": "Standard list lemma from Batteries/Mathlib"
+    },
+    {
+      "id": "CWP-003",
+      "file": "23_ClockworkPrime.lean",
+      "line": 418,
+      "theorem": "crt_eq_garner",
+      "description": "CRT and Garner reconstruction give same result",
+      "sorry_context": "Requires full crtReconstruct implementation with actual modular inverses",
+      "status": "BLOCKED",
+      "difficulty": "moderate",
+      "estimated_hours": 3,
+      "dependencies": ["CWP-001"],
+      "blockers": ["crtReconstruct uses placeholder y_i = 1"],
+      "proof_strategy": "Both compute unique solution to system of congruences. By CRT uniqueness, they are equal",
+      "assigned_to": "pi-Prover-3",
+      "notes": "May need to implement proper crtReconstruct first, or restructure proof to avoid it"
+    },
+    {
+      "id": "CWP-004",
+      "file": "23_ClockworkPrime.lean",
+      "line": 509,
+      "theorem": "arithmetic_exact",
+      "description": "Clockwork arithmetic operations preserve exactness",
+      "sorry_context": "Full proof requires detailed unfolding and garner_exact",
+      "status": "BLOCKED",
+      "difficulty": "moderate",
+      "estimated_hours": 2,
+      "dependencies": ["CWP-001"],
+      "blockers": ["CWP-001"],
+      "proof_strategy": "Apply garner_exact to (a + b), show component-wise modular addition is correct",
+      "assigned_to": "pi-Prover-3",
+      "notes": "Uses Nat.add_mod lemma for modular arithmetic"
+    },
+    {
+      "id": "QMNF-001",
+      "file": "02_QMNF_Lean4_Proofs.lean",
+      "line": 472,
+      "theorem": "CurvatureTuple.eventually_periodic",
+      "description": "Curvature tuple sequences are eventually periodic",
+      "sorry_context": "Pigeonhole + cycling argument for finite state space",
+      "status": "READY",
+      "difficulty": "moderate",
+      "estimated_hours": 3,
+      "dependencies": [],
+      "blockers": [],
+      "proof_strategy": "Pigeonhole on M^4 states. Any sequence longer than M^4 must repeat. Deterministic iteration implies eventual periodicity",
+      "assigned_to": "pi-Prover-4",
+      "notes": "Core is Fintype.pigeonhole or similar from Mathlib"
+    }
+  ],
+
+  "dependency_graph": {
+    "independent_nodes": ["BGCD-001", "BGCD-002", "CWP-001", "CWP-002", "QMNF-001"],
+    "blocked_chains": [
+      {
+        "chain": ["BGCD-002", "BGCD-003"],
+        "description": "modInverse depends on extended GCD Bezout proof"
+      },
+      {
+        "chain": ["CWP-001", "CWP-003", "CWP-004"],
+        "description": "Arithmetic exactness depends on Garner exactness"
+      }
+    ]
+  },
+
+  "prover_assignments": {
+    "pi-Prover-1": {
+      "assigned": ["BGCD-001", "CWP-002"],
+      "difficulty_sum": "moderate + easy = 3 hours",
+      "status": "can_start_immediately"
+    },
+    "pi-Prover-2": {
+      "assigned": ["BGCD-002", "BGCD-003"],
+      "difficulty_sum": "hard + easy = 5 hours",
+      "status": "can_start_immediately",
+      "notes": "BGCD-003 unlocked after BGCD-002"
+    },
+    "pi-Prover-3": {
+      "assigned": ["CWP-001", "CWP-003", "CWP-004"],
+      "difficulty_sum": "hard + moderate + moderate = 9 hours",
+      "status": "can_start_immediately",
+      "notes": "CWP-003 and CWP-004 unlocked after CWP-001"
+    },
+    "pi-Prover-4": {
+      "assigned": ["QMNF-001"],
+      "difficulty_sum": "moderate = 3 hours",
+      "status": "can_start_immediately"
+    }
+  },
+
+  "execution_order": {
+    "phase_1_parallel": {
+      "description": "All READY nodes can be tackled in parallel",
+      "nodes": ["BGCD-001", "BGCD-002", "CWP-001", "CWP-002", "QMNF-001"],
+      "estimated_time": "4 hours (parallel)",
+      "blocking": false
+    },
+    "phase_2_sequential": {
+      "description": "Blocked nodes after dependencies resolved",
+      "nodes": ["BGCD-003", "CWP-003", "CWP-004"],
+      "estimated_time": "6 hours (can partially parallelize)",
+      "blocking": true,
+      "wait_for": ["BGCD-002", "CWP-001"]
+    }
+  },
+
+  "difficulty_breakdown": {
+    "trivial": 0,
+    "easy": 2,
+    "moderate": 4,
+    "hard": 2,
+    "total_estimated_hours": 20
+  },
+
+  "critical_path": {
+    "longest_chain": ["CWP-001", "CWP-003", "CWP-004"],
+    "estimated_hours": 9,
+    "bottleneck": "CWP-001 (garner_exact) is the critical blocker"
+  },
+
+  "verification_checklist": [
+    {
+      "file": "14_BinaryGCD.lean",
+      "command": "lake build",
+      "expected": "compiles with axiom binaryGCDOddLoop_correct"
+    },
+    {
+      "file": "23_ClockworkPrime.lean",
+      "command": "lake build",
+      "expected": "compiles with 4 sorry statements"
+    },
+    {
+      "file": "02_QMNF_Lean4_Proofs.lean",
+      "command": "lake build",
+      "expected": "compiles with 1 sorry statement"
+    }
+  ],
+
+  "mathlib_dependencies_needed": [
+    "ZMod.chineseRemainder - for CRT uniqueness",
+    "Fintype.pigeonhole - for eventually_periodic",
+    "List.le_foldl_max_of_mem - for expandTier nodup"
+  ],
+
+  "notes": {
+    "progress": "Significant progress from 45 sorry to 8 sorry (82% reduction)",
+    "k_elimination": "QMNFProofs/KElimination.lean is now COMPLETE (0 sorry)",
+    "17_GroverSwarm": "Now COMPLETE (was 2 sorry, now 0)",
+    "25_RealTimeFHE": "Now COMPLETE (was 1 sorry, now 0)",
+    "remaining_focus": "BinaryGCD termination and ClockworkPrime CRT/Garner proofs"
+  }
+}

@@ -1,0 +1,23 @@
+[package]
+name = "qmnf_fhe"
+version = "0.1.0"
+edition = "2021"
+description = "QMNF-Accelerated BFV FHE with AHOP Quantum Simulation"
+authors = ["Acidlabz210 <acid@hackfate.us>"]
+
+[dependencies]
+
+[[bin]]
+name = "noise_bench"
+path = "benches/noise_bench.rs"
+
+[[bin]]
+name = "grover_noise_search"
+path = "benches/grover_noise_search.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+
+[profile.dev]
+opt-level = 1

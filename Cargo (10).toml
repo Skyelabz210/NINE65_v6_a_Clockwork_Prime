@@ -1,0 +1,36 @@
+[package]
+name = "fpd"
+version = "1.0.0"
+edition = "2021"
+authors = ["QMNF Team"]
+description = "Coprime-Piggyback Modular Division - Production Implementation"
+license = "Proprietary"
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+num-integer = "0.1"
+sha2 = "0.10"
+hmac = "0.12"
+hex = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+
+[dev-dependencies]
+proptest = "1.4"
+criterion = "0.5"
+
+[[bench]]
+name = "division_benchmarks"
+harness = false
+
+[features]
+default = []
+dudect = []
+simd = []
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

@@ -1,0 +1,513 @@
+{
+  "runs": 5,
+  "mean_ns_summary": {
+    "Montgomery Multiply                     \u2502": [
+      22.05,
+      22.37,
+      22.87
+    ],
+    "Persistent Montgomery Multiply                \u2502": [
+      25.242,
+      23.06,
+      31.12
+    ],
+    "NTT Forward (N=1024)                     \u2502": [
+      29557.466000000004,
+      29636.81,
+      29964.89
+    ],
+    "NTT Polynomial Multiply (N=1024)               \u2502": [
+      447244.448,
+      427993.41,
+      531980.58
+    ],
+    "K-Elimination Exact Division                 \u2502": [
+      24.256,
+      23.39,
+      27.79
+    ],
+    "ExactDivider Reconstruct                   \u2502": [
+      22.95,
+      22.98,
+      23.44
+    ],
+    "Shadow Entropy Sample (u64)                 \u2502": [
+      22.884,
+      22.69,
+      25.04
+    ],
+    "CBD Noise Vector (N=1024, \u03b7=2)                \u2502": [
+      15519.664,
+      15276.03,
+      16873.39
+    ],
+    "KeyGen (Light)                        \u2502": [
+      2113964.364,
+      2017436.42,
+      2528337.1
+    ],
+    "Encrypt (Light)                       \u2502": [
+      993002.1,
+      988948.48,
+      1030747.54
+    ],
+    "Decrypt (Light)                       \u2502": [
+      436554.958,
+      434120.17,
+      450118.04
+    ],
+    "Homo Add (Light)                       \u2502": [
+      1968.062,
+      1979.45,
+      2016.08
+    ],
+    "Homo Mul Plain (Light)                    \u2502": [
+      13173.470000000001,
+      13126.71,
+      13521.54
+    ],
+    "Tensor Product (Light)                    \u2502": [
+      1795225.44,
+      1804315.71,
+      1880743.31
+    ],
+    "Homo Mul Full (Light)                    \u2502": [
+      2556810.038,
+      2554403.52,
+      2638082.35
+    ],
+    "ExactCoeff Add                        \u2502": [
+      78.13199999999999,
+      77.97,
+      80.1
+    ],
+    "ExactCoeff Mul                        \u2502": [
+      77.23400000000001,
+      76.48,
+      80.52
+    ],
+    "ExactCoeff Exact Div                     \u2502": [
+      148.106,
+      148.41,
+      149.64
+    ],
+    "Exact Tensor Product (N=8)                  \u2502": [
+      35982.146,
+      35906.72,
+      36912.47
+    ],
+    "Exact Rescale (N=8)                     \u2502": [
+      4155.41,
+      4110.32,
+      4387.37
+    ]
+  },
+  "p50_ns_summary": {
+    "Montgomery Multiply                     \u2502": [
+      21.2,
+      22.0,
+      22.0
+    ],
+    "Persistent Montgomery Multiply                \u2502": [
+      23.2,
+      22.0,
+      30.0
+    ],
+    "NTT Forward (N=1024)                     \u2502": [
+      28564.0,
+      28655.0,
+      30218.0
+    ],
+    "NTT Polynomial Multiply (N=1024)               \u2502": [
+      412683.4,
+      410894.0,
+      419752.0
+    ],
+    "K-Elimination Exact Division                 \u2502": [
+      22.8,
+      23.0,
+      23.0
+    ],
+    "ExactDivider Reconstruct                   \u2502": [
+      22.0,
+      22.0,
+      22.0
+    ],
+    "Shadow Entropy Sample (u64)                 \u2502": [
+      21.6,
+      22.0,
+      22.0
+    ],
+    "CBD Noise Vector (N=1024, \u03b7=2)                \u2502": [
+      14594.4,
+      14289.0,
+      15281.0
+    ],
+    "KeyGen (Light)                        \u2502": [
+      2046758.8,
+      1975878.0,
+      2386521.0
+    ],
+    "Encrypt (Light)                       \u2502": [
+      958244.2,
+      952780.0,
+      979973.0
+    ],
+    "Decrypt (Light)                       \u2502": [
+      412574.2,
+      411772.0,
+      415530.0
+    ],
+    "Homo Add (Light)                       \u2502": [
+      1961.8,
+      2012.0,
+      2017.0
+    ],
+    "Homo Mul Plain (Light)                    \u2502": [
+      13121.6,
+      13124.0,
+      13148.0
+    ],
+    "Tensor Product (Light)                    \u2502": [
+      1690373.4,
+      1692038.0,
+      1735057.0
+    ],
+    "Homo Mul Full (Light)                    \u2502": [
+      2474145.8,
+      2459685.0,
+      2538898.0
+    ],
+    "ExactCoeff Add                        \u2502": [
+      76.8,
+      77.0,
+      78.0
+    ],
+    "ExactCoeff Mul                        \u2502": [
+      75.4,
+      76.0,
+      77.0
+    ],
+    "ExactCoeff Exact Div                     \u2502": [
+      145.8,
+      146.0,
+      148.0
+    ],
+    "Exact Tensor Product (N=8)                  \u2502": [
+      35201.6,
+      35091.0,
+      37265.0
+    ],
+    "Exact Rescale (N=8)                     \u2502": [
+      3933.4,
+      3897.0,
+      4182.0
+    ]
+  },
+  "p95_ns_summary": {
+    "Montgomery Multiply                     \u2502": [
+      25.2,
+      24.0,
+      28.0
+    ],
+    "Persistent Montgomery Multiply                \u2502": [
+      27.8,
+      26.0,
+      36.0
+    ],
+    "NTT Forward (N=1024)                     \u2502": [
+      39137.6,
+      38829.0,
+      47670.0
+    ],
+    "NTT Polynomial Multiply (N=1024)               \u2502": [
+      563275.0,
+      503570.0,
+      829941.0
+    ],
+    "K-Elimination Exact Division                 \u2502": [
+      27.2,
+      26.0,
+      29.0
+    ],
+    "ExactDivider Reconstruct                   \u2502": [
+      27.4,
+      27.0,
+      32.0
+    ],
+    "Shadow Entropy Sample (u64)                 \u2502": [
+      27.0,
+      27.0,
+      30.0
+    ],
+    "CBD Noise Vector (N=1024, \u03b7=2)                \u2502": [
+      20934.0,
+      21678.0,
+      23442.0
+    ],
+    "KeyGen (Light)                        \u2502": [
+      2655114.2,
+      2334696.0,
+      3260888.0
+    ],
+    "Encrypt (Light)                       \u2502": [
+      1177855.2,
+      1146518.0,
+      1324892.0
+    ],
+    "Decrypt (Light)                       \u2502": [
+      527902.4,
+      526769.0,
+      565450.0
+    ],
+    "Homo Add (Light)                       \u2502": [
+      2036.6,
+      2039.0,
+      2049.0
+    ],
+    "Homo Mul Plain (Light)                    \u2502": [
+      15345.4,
+      13310.0,
+      19657.0
+    ],
+    "Tensor Product (Light)                    \u2502": [
+      2246637.0,
+      2135217.0,
+      2646231.0
+    ],
+    "Homo Mul Full (Light)                    \u2502": [
+      3020137.8,
+      2862187.0,
+      3527500.0
+    ],
+    "ExactCoeff Add                        \u2502": [
+      84.2,
+      78.0,
+      108.0
+    ],
+    "ExactCoeff Mul                        \u2502": [
+      83.6,
+      78.0,
+      108.0
+    ],
+    "ExactCoeff Exact Div                     \u2502": [
+      148.2,
+      147.0,
+      150.0
+    ],
+    "Exact Tensor Product (N=8)                  \u2502": [
+      44901.6,
+      44027.0,
+      47891.0
+    ],
+    "Exact Rescale (N=8)                     \u2502": [
+      4933.4,
+      4660.0,
+      6163.0
+    ]
+  },
+  "p99_ns_summary": {
+    "Montgomery Multiply                     \u2502": [
+      32.8,
+      33.0,
+      34.0
+    ],
+    "Persistent Montgomery Multiply                \u2502": [
+      34.2,
+      33.0,
+      39.0
+    ],
+    "NTT Forward (N=1024)                     \u2502": [
+      48187.6,
+      47441.0,
+      59473.0
+    ],
+    "NTT Polynomial Multiply (N=1024)               \u2502": [
+      1323815.8,
+      805113.0,
+      3410353.0
+    ],
+    "K-Elimination Exact Division                 \u2502": [
+      35.0,
+      35.0,
+      36.0
+    ],
+    "ExactDivider Reconstruct                   \u2502": [
+      33.4,
+      34.0,
+      36.0
+    ],
+    "Shadow Entropy Sample (u64)                 \u2502": [
+      33.6,
+      35.0,
+      35.0
+    ],
+    "CBD Noise Vector (N=1024, \u03b7=2)                \u2502": [
+      27836.8,
+      31047.0,
+      35192.0
+    ],
+    "KeyGen (Light)                        \u2502": [
+      4310266.6,
+      3370775.0,
+      8177391.0
+    ],
+    "Encrypt (Light)                       \u2502": [
+      1993669.6,
+      1913517.0,
+      2441501.0
+    ],
+    "Decrypt (Light)                       \u2502": [
+      986047.2,
+      918204.0,
+      1304371.0
+    ],
+    "Homo Add (Light)                       \u2502": [
+      2324.4,
+      2053.0,
+      3419.0
+    ],
+    "Homo Mul Plain (Light)                    \u2502": [
+      22775.2,
+      22103.0,
+      24750.0
+    ],
+    "Tensor Product (Light)                    \u2502": [
+      4848564.8,
+      4098786.0,
+      6959142.0
+    ],
+    "Homo Mul Full (Light)                    \u2502": [
+      4966128.0,
+      4751897.0,
+      6848427.0
+    ],
+    "ExactCoeff Add                        \u2502": [
+      99.8,
+      100.0,
+      126.0
+    ],
+    "ExactCoeff Mul                        \u2502": [
+      93.4,
+      81.0,
+      127.0
+    ],
+    "ExactCoeff Exact Div                     \u2502": [
+      162.4,
+      151.0,
+      211.0
+    ],
+    "Exact Tensor Product (N=8)                  \u2502": [
+      51971.6,
+      53022.0,
+      55150.0
+    ],
+    "Exact Rescale (N=8)                     \u2502": [
+      7447.6,
+      5978.0,
+      10206.0
+    ]
+  },
+  "throughput_summary": {
+    "Montgomery Multiply                     \u2502": [
+      45406940.6,
+      44696932.0,
+      48263247.0
+    ],
+    "Persistent Montgomery Multiply                \u2502": [
+      40214762.0,
+      43369836.0,
+      44109214.0
+    ],
+    "NTT Forward (N=1024)                     \u2502": [
+      33837.0,
+      33742.0,
+      34497.0
+    ],
+    "NTT Polynomial Multiply (N=1024)               \u2502": [
+      2253.8,
+      2336.0,
+      2374.0
+    ],
+    "K-Elimination Exact Division                 \u2502": [
+      41423563.2,
+      42748013.0,
+      43151249.0
+    ],
+    "ExactDivider Reconstruct                   \u2502": [
+      43579052.4,
+      43513829.0,
+      44514481.0
+    ],
+    "Shadow Entropy Sample (u64)                 \u2502": [
+      43833430.2,
+      44077329.0,
+      47463999.0
+    ],
+    "CBD Noise Vector (N=1024, \u03b7=2)                \u2502": [
+      64571.6,
+      65462.0,
+      67478.0
+    ],
+    "KeyGen (Light)                        \u2502": [
+      477.4,
+      496.0,
+      508.0
+    ],
+    "Encrypt (Light)                       \u2502": [
+      1007.4,
+      1011.0,
+      1030.0
+    ],
+    "Decrypt (Light)                       \u2502": [
+      2291.6,
+      2304.0,
+      2349.0
+    ],
+    "Homo Add (Light)                       \u2502": [
+      508291.6,
+      505190.0,
+      524278.0
+    ],
+    "Homo Mul Plain (Light)                    \u2502": [
+      75928.4,
+      76181.0,
+      77064.0
+    ],
+    "Tensor Product (Light)                    \u2502": [
+      558.0,
+      554.0,
+      587.0
+    ],
+    "Homo Mul Full (Light)                    \u2502": [
+      391.2,
+      391.0,
+      398.0
+    ],
+    "ExactCoeff Add                        \u2502": [
+      12801118.6,
+      12824854.0,
+      12972928.0
+    ],
+    "ExactCoeff Mul                        \u2502": [
+      12953946.6,
+      13075314.0,
+      13186176.0
+    ],
+    "ExactCoeff Exact Div                     \u2502": [
+      6752450.6,
+      6738299.0,
+      6847763.0
+    ],
+    "Exact Tensor Product (N=8)                  \u2502": [
+      27798.8,
+      27850.0,
+      28464.0
+    ],
+    "Exact Rescale (N=8)                     \u2502": [
+      241046.4,
+      243290.0,
+      252943.0
+    ]
+  }
+}

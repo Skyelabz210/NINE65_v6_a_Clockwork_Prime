@@ -1,0 +1,48 @@
+{
+  "checkpoint_time": "2026-02-02T01:00:00Z",
+  "round": 1,
+  "status": "IN_PROGRESS",
+
+  "agents_launched": [
+    {
+      "agent": "pi-Prover",
+      "target": "Coq proofs",
+      "files": ["MontgomeryPersistent.v", "CRTShadowEntropy.v", "CyclotomicPhase.v", "IntegerSoftmax.v", "OrderFinding.v", "StateCompression.v", "ExactCoefficient.v", "MobiusInt.v"],
+      "initial_admitted": 23,
+      "status": "running"
+    },
+    {
+      "agent": "sigma-Verifier",
+      "target": "Lean4 proofs",
+      "files": ["06_CRTBigInt.lean", "10_PersistentMontgomery.lean", "13_MQReLU.lean", "14_BinaryGCD.lean", "15_PLMGRails.lean", "16_DCBigIntHelix.lean", "23_ClockworkPrime.lean"],
+      "initial_sorry": 27,
+      "status": "running"
+    },
+    {
+      "agent": "lambda-Librarian",
+      "target": "NIST security proofs",
+      "nodes": ["D001", "D002", "D003", "D006", "D007", "L004", "L005", "L006", "L007", "T003", "V001"],
+      "initial_pending": 11,
+      "status": "running"
+    }
+  ],
+
+  "completed_before_swarm": {
+    "coq": {
+      "KElimination.v": {"before": 4, "after": 1, "proven": ["add_mul_mod", "division_exact", "k_elimination_complete"]},
+      "GSOFHE.v": {"before": 2, "after": 1, "proven": ["depth_50_achievable"]},
+      "MQReLU.v": {"before": 2, "after": 1, "proven": ["sign_detection_correct"]}
+    },
+    "lean4_verified": ["05_KElimination.lean", "07_ShadowEntropy.lean", "09_MobiusInt.lean", "12_CyclotomicPhase.lean", "21_MANA.lean"],
+    "nist_verified": ["A001", "D004", "D005", "L001", "L002", "L003", "L008", "T001", "T002"]
+  },
+
+  "grail_status": {
+    "GRAIL-001": "95% (K-Elimination)",
+    "GRAIL-005": "100% (Shadow Entropy)",
+    "GRAIL-008": "90% (Persistent Montgomery)",
+    "GRAIL-009": "70% (Bootstrap-Free FHE)",
+    "GRAIL-010": "85% (Pade Engine)",
+    "GRAIL-011": "100% (Cyclotomic Phase)"
+  }
+}

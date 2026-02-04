@@ -1,0 +1,195 @@
+{
+  "_comment": "QMNF_TOPS Module Registry - Add new modules here",
+  "modules": {
+    "01_montgomery_persistent": {
+      "name": "Persistent Montgomery Multiplication",
+      "description": "Zero-conversion Montgomery arithmetic - values stay in Montgomery form permanently",
+      "problem_solved": "Montgomery Domain Switching Overhead (40 years old)",
+      "file": "01_montgomery_persistent.rs",
+      "domain": "RNS"
+    },
+    "02_ntt_fft_cooley_tukey": {
+      "name": "NTT FFT Cooley-Tukey",
+      "description": "O(N log N) polynomial multiplication with precomputed twiddles in Montgomery form",
+      "problem_solved": "Polynomial multiplication bottleneck in FHE",
+      "file": "02_ntt_fft_cooley_tukey.rs",
+      "domain": "FHE"
+    },
+    "03_rns_crt": {
+      "name": "RNS/CRT Multi-Prime",
+      "description": "Residue Number System with Chinese Remainder Theorem for parallel arithmetic",
+      "problem_solved": "Magnitude comparison without reconstruction (60 years old)",
+      "file": "03_rns_crt.rs",
+      "domain": "RNS"
+    },
+    "04_fp2_field": {
+      "name": "F_p² Exact Complex Field",
+      "description": "Algebraic quantum substrate - exact complex field where p ≡ 3 (mod 4)",
+      "problem_solved": "Quantum decoherence (zero drift in exact arithmetic)",
+      "file": "04_fp2_field.rs",
+      "domain": "QUANTUM"
+    },
+    "05_zphi_ring_qphi": {
+      "name": "Z[φ] Golden Ratio Ring",
+      "description": "QPhi ring where φ² = φ + 1, φⁿ = Fₙ·φ + Fₙ₋₁ (Fibonacci decomposition)",
+      "problem_solved": "Fractal dimension measurement limits",
+      "file": "05_zphi_ring_qphi.rs",
+      "domain": "CHAOS"
+    },
+    "06_k_elimination": {
+      "name": "K-Elimination Exact Division",
+      "description": "60-year breakthrough - exact division in RNS without CRT reconstruction",
+      "problem_solved": "Exact Division in RNS (60 years old - THE breakthrough)",
+      "file": "06_k_elimination.rs",
+      "domain": "RNS"
+    },
+    "07_exact_divider": {
+      "name": "ExactDivider Wrapper",
+      "description": "High-level exact division interface using K-Elimination",
+      "problem_solved": "Homomorphic division impossibility",
+      "file": "07_exact_divider.rs",
+      "domain": "RNS"
+    },
+    "08_wassan_holographic_noise": {
+      "name": "WASSAN 144-Band Holographic",
+      "description": "Phase-locked resonance retrieval at O(1) with 144 frequency bands",
+      "problem_solved": "Cryptographic noise generation bottleneck",
+      "file": "08_wassan_holographic_noise.rs",
+      "domain": "WASSAN"
+    },
+    "09_shadow_entropy": {
+      "name": "Shadow Entropy",
+      "description": "Harvest cryptographic-quality noise from computational byproducts",
+      "problem_solved": "CSPRNG bottleneck (5-10× faster than OS CSPRNG)",
+      "file": "09_shadow_entropy.rs",
+      "domain": "ENTROPY"
+    },
+    "10_sparse_grover_fp2": {
+      "name": "SparseGroverFp2",
+      "description": "O(1) storage for Grover states via symmetry exploitation",
+      "problem_solved": "Exponential memory in quantum simulation",
+      "file": "10_sparse_grover_fp2.rs",
+      "domain": "QUANTUM"
+    },
+    "11_wassan_grover_holographic": {
+      "name": "WASSAN Grover Holographic",
+      "description": "Marriage of Grover search with WASSAN holographic storage",
+      "problem_solved": "Quantum search memory explosion",
+      "file": "11_wassan_grover_holographic.rs",
+      "domain": "QUANTUM"
+    },
+    "12_biometric_phase_key": {
+      "name": "Biometric Phase Key [INTERNAL]",
+      "description": "φ-harmonic decomposition of biometrics → phase key for WASSAN",
+      "problem_solved": "Novel key derivation (KEEP INTERNAL)",
+      "file": "12_biometric_phase_key.rs",
+      "domain": "CRYPTO",
+      "internal": true
+    },
+    "13_ring_polynomial": {
+      "name": "RingPolynomial",
+      "description": "Z_q[X]/(X^N+1) polynomial ring for lattice cryptography",
+      "problem_solved": "Polynomial approximation bottleneck",
+      "file": "13_ring_polynomial.rs",
+      "domain": "FHE"
+    },
+    "14_exact_coeff": {
+      "name": "Exact Coefficients",
+      "description": "Dual-track numerator/denominator arithmetic for exact scaling",
+      "problem_solved": "CT×CT scaling non-commutativity",
+      "file": "14_exact_coeff.rs",
+      "domain": "FHE"
+    },
+    "15_bfv_encrypt_decrypt": {
+      "name": "BFV Encrypt/Decrypt",
+      "description": "Bootstrap-free BFV encryption with noise budget tracking",
+      "problem_solved": "Bootstrapping requirement (Gentry's 15-year-old problem)",
+      "file": "15_bfv_encrypt_decrypt.rs",
+      "domain": "FHE"
+    },
+    "16_homomorphic_ops": {
+      "name": "Homomorphic Operations",
+      "description": "FHE add/multiply with exact noise tracking",
+      "problem_solved": "FHE real-time impossibility",
+      "file": "16_homomorphic_ops.rs",
+      "domain": "FHE"
+    },
+    "17_keygen_bfv": {
+      "name": "BFV Key Generation",
+      "description": "Secure key generation for BFV scheme",
+      "problem_solved": "Key distribution in FHE",
+      "file": "17_keygen_bfv.rs",
+      "domain": "FHE"
+    },
+    "18_crt_bigint": {
+      "name": "CRTBigInt",
+      "description": "Two-prime CRT at ~120ns - weaponized wraparound for auto-promotion",
+      "problem_solved": "Integer overflow limits (extends to ±2^126)",
+      "file": "18_crt_bigint.rs",
+      "domain": "ARITHMETIC"
+    },
+    "19_adaptive_crt_bigint": {
+      "name": "Adaptive CRTBigInt",
+      "description": "Auto-promotion tiers between CRTBigInt and HCVLangBigInt",
+      "problem_solved": "Scale-dependent arithmetic selection",
+      "file": "19_adaptive_crt_bigint.rs",
+      "domain": "ARITHMETIC"
+    },
+    "20_bigint_hcv_unlimited": {
+      "name": "HCVLangBigInt Unlimited",
+      "description": "Arbitrary-precision arithmetic - no limits (memory-bound only)",
+      "problem_solved": "Fixed-width integer limits",
+      "file": "20_bigint_hcv_unlimited.rs",
+      "domain": "ARITHMETIC"
+    },
+    "21_rational_exact": {
+      "name": "Exact Rational Arithmetic",
+      "description": "p/q exact arithmetic - 1/3 + 1/7 = 10/21 exactly",
+      "problem_solved": "Floating-point representation error",
+      "file": "21_rational_exact.rs",
+      "domain": "ARITHMETIC"
+    },
+    "22_piggyback_division": {
+      "name": "Piggyback Division",
+      "description": "Anchor-first division - 40× faster than traditional CRT reconstruction",
+      "problem_solved": "RNS division serialization (70 years old)",
+      "file": "22_piggyback_division.rs",
+      "domain": "RNS"
+    },
+    "23_polypoly_optimization": {
+      "name": "PolyPoly Optimization",
+      "description": "Superior polynomial implementation with persistent coefficient forms",
+      "problem_solved": "Polynomial conversion thrashing",
+      "file": "23_polypoly_optimization.rs",
+      "domain": "FHE"
+    },
+    "24_shadow_entropy_full": {
+      "name": "Shadow Entropy Full",
+      "description": "Complete shadow entropy system with NIST SP 800-22 compliance",
+      "problem_solved": "Deterministic chaos contradiction (60 years old)",
+      "file": "24_shadow_entropy_full.rs",
+      "domain": "ENTROPY"
+    },
+    "25_grover_fp2": {
+      "name": "Grover F_p²",
+      "description": "Grover's algorithm in exact F_p² field - zero decoherence",
+      "problem_solved": "Quantum decoherence in simulation",
+      "file": "25_grover_fp2.rs",
+      "domain": "QUANTUM"
+    },
+    "26_shor_immune_system": {
+      "name": "Shor Immune System",
+      "description": "Cryptographic immunity to Shor's algorithm",
+      "problem_solved": "Post-quantum cryptography requirements",
+      "file": "26_shor_immune_system.rs",
+      "domain": "CRYPTO"
+    },
+    "27_crypto_immune_system": {
+      "name": "Crypto Immune System",
+      "description": "Complete cryptographic immune system with Grover+Shor protections",
+      "problem_solved": "Full quantum attack resistance",
+      "file": "27_crypto_immune_system.rs",
+      "domain": "CRYPTO"
+    }
+  }
+}

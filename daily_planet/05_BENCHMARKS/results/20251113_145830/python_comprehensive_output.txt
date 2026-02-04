@@ -1,0 +1,19 @@
+   Agent system import error: cannot import name 'ComprehensiveErrorHandler' from 'qmnf_boundary_fixed' (/home/acid/Projects/QMNF_System/QMNF_System/qmnf_boundary_fixed.py)
+🚀 Starting QMNF Comprehensive Benchmark Suite
+======================================================================
+🧮 Benchmarking QMNFRational Operations...
+📐 Benchmarking Geometric Primitives...
+🔍 Benchmarking Theorem Proving...
+
+Traceback (most recent call last):
+  File "/home/acid/Projects/QMNF_System/QMNF_System/tools/qmnf_benchmark_suite.py", line 835, in <module>
+    report = benchmark.run_comprehensive_benchmark()
+  File "/home/acid/Projects/QMNF_System/QMNF_System/tools/qmnf_benchmark_suite.py", line 482, in run_comprehensive_benchmark
+    self.benchmark_theorem_proving()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/acid/Projects/QMNF_System/QMNF_System/tools/qmnf_benchmark_suite.py", line 277, in benchmark_theorem_proving
+    prover = CompleteGeometricTheoremProver()
+  File "/home/acid/Projects/QMNF_System/QMNF_System/qmnf_boundary_fixed.py", line 231, in __init__
+    self.tolerance = QMNFRational(0)  # Exact arithmetic - no tolerance needed
+                     ~~~~~~~~~~~~^^^
+TypeError: Rational.__new__() missing 1 required positional argument: 'den'

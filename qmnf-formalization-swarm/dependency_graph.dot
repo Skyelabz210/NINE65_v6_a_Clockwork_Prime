@@ -1,0 +1,359 @@
+digraph G {
+  rankdir=TB;
+  node [shape=box, style=rounded];
+  
+  // Definitions
+  D001 [label="D001\nPrime Modulus Definition", fillcolor=lightblue, style=filled];
+  D002 [label="D002\nModular Integer Type Definition", fillcolor=lightblue, style=filled];
+  D003 [label="D003\nModular Operations Definition", fillcolor=lightblue, style=filled];
+  D004 [label="D004\nQPhi Element Definition", fillcolor=lightblue, style=filled];
+  D005 [label="D005\nCurvature Tuple Definition", fillcolor=lightblue, style=filled];
+  D006 [label="D006\nQMNF Rational Definition", fillcolor=lightblue, style=filled];
+  D007 [label="D007\nExtended GCD Definition", fillcolor=lightblue, style=filled];
+  D008 [label="D008\nQMNF Rational Type Definition", fillcolor=lightblue, style=filled];
+  D009 [label="D009\nQPhi Operations Definition", fillcolor=lightblue, style=filled];
+  D010 [label="D010\nQPhi Norm Definition", fillcolor=lightblue, style=filled];
+  D011 [label="D011\nQPhi Conjugate Definition", fillcolor=lightblue, style=filled];
+  D012 [label="D012\nDescartes Circle Theorem Definition", fillcolor=lightblue, style=filled];
+  D013 [label="D013\nReflection Operation Definition", fillcolor=lightblue, style=filled];
+  D014 [label="D014\nRing-LWE Distribution Definition", fillcolor=lightblue, style=filled];
+  D015 [label="D015\nBFV-style Encryption Definition", fillcolor=lightblue, style=filled];
+  D016 [label="D016\nK-Elimination Configuration", fillcolor=lightblue, style=filled];
+  D017 [label="D017\nDual-Codex Value Definition", fillcolor=lightblue, style=filled];
+  D018 [label="D018\nOverflow Quotient Definition", fillcolor=lightblue, style=filled];
+  D019 [label="D019\nCRT Configuration Definition", fillcolor=lightblue, style=filled];
+  D020 [label="D020\nCRTBigInt Representation", fillcolor=lightblue, style=filled];
+  
+  // Assumptions
+  A001 [label="A001\nInteger Purity Axiom", fillcolor=orange, style=filled];
+  A002 [label="A002\nModular Closure Axiom", fillcolor=orange, style=filled];
+  A003 [label="A003\nDeterministic Reproducibility Axiom", fillcolor=orange, style=filled];
+  A004 [label="A004\nExtended Euclidean Algorithm", fillcolor=orange, style=filled];
+  A005 [label="A005\nFast Fibonacci Algorithm via QPhi", fillcolor=orange, style=filled];
+  A006 [label="A006\nRing-LWE Hardness Assumption", fillcolor=orange, style=filled];
+  
+  // Lemmas
+  L001 [label="L001\nModular Closure Under Addition", fillcolor=lightgreen, style=filled];
+  L002 [label="L002\nModular Closure Under Multiplication", fillcolor=lightgreen, style=filled];
+  L003 [label="L003\nAdditive Commutativity", fillcolor=lightgreen, style=filled];
+  L004 [label="L004\nMultiplicative Commutativity", fillcolor=lightgreen, style=filled];
+  L005 [label="L005\nAdditive Associativity", fillcolor=lightgreen, style=filled];
+  L006 [label="L006\nMultiplicative Associativity", fillcolor=lightgreen, style=filled];
+  L007 [label="L007\nAdditive Identity", fillcolor=lightgreen, style=filled];
+  L008 [label="L008\nMultiplicative Identity", fillcolor=lightgreen, style=filled];
+  L009 [label="L009\nAdditive Inverse Existence", fillcolor=lightgreen, style=filled];
+  L010 [label="L010\nMultiplicative Inverse Existence - Fermat", fillcolor=lightgreen, style=filled];
+  L011 [label="L011\nDistributivity", fillcolor=lightgreen, style=filled];
+  L012 [label="L012\nExtended GCD Correctness", fillcolor=lightgreen, style=filled];
+  L013 [label="L013\nModular Inverse via Extended GCD", fillcolor=lightgreen, style=filled];
+  L014 [label="L014\nExtended GCD Complexity", fillcolor=lightgreen, style=filled];
+  L015 [label="L015\nCanonical Form Existence", fillcolor=lightgreen, style=filled];
+  L016 [label="L016\nRational Addition Correctness", fillcolor=lightgreen, style=filled];
+  L017 [label="L017\nRational Multiplication Correctness", fillcolor=lightgreen, style=filled];
+  L018 [label="L018\nRational Division Correctness", fillcolor=lightgreen, style=filled];
+  L019 [label="L019\nSequence Boundedness", fillcolor=lightgreen, style=filled];
+  L020 [label="L020\nEventual Periodicity", fillcolor=lightgreen, style=filled];
+  L021 [label="L021\nResource Bound", fillcolor=lightgreen, style=filled];
+  L022 [label="L022\nQPhi Multiplication Derivation", fillcolor=lightgreen, style=filled];
+  L023 [label="L023\nQPhi Identity Preservation", fillcolor=lightgreen, style=filled];
+  L024 [label="L024\nNorm Multiplicativity", fillcolor=lightgreen, style=filled];
+  L025 [label="L025\nConjugate Identity", fillcolor=lightgreen, style=filled];
+  L026 [label="L026\nQPhi Inverse Existence", fillcolor=lightgreen, style=filled];
+  L027 [label="L027\nFibonacci Representation", fillcolor=lightgreen, style=filled];
+  L028 [label="L028\nModular Preservation of Descartes Relation", fillcolor=lightgreen, style=filled];
+  L029 [label="L029\nReflection Preserves Descartes", fillcolor=lightgreen, style=filled];
+  L030 [label="L030\nOrbit Finiteness", fillcolor=lightgreen, style=filled];
+  L031 [label="L031\nOrbit Cycle", fillcolor=lightgreen, style=filled];
+  L032 [label="L032\nApollonian-Fibonacci Correspondence", fillcolor=lightgreen, style=filled];
+  L033 [label="L033\nℤ[φ] Embedding of Apollonian Sequences", fillcolor=lightgreen, style=filled];
+  L034 [label="L034\nCRT Addition Correctness", fillcolor=lightgreen, style=filled];
+  L035 [label="L035\nCRT Multiplication Correctness", fillcolor=lightgreen, style=filled];
+  L036 [label="L036\nFibonacci Coprimality", fillcolor=lightgreen, style=filled];
+  
+  // Theorems
+  T001 [label="T001\nComplete Field Structure", fillcolor=yellow, style=filled];
+  T002 [label="T002\nRational Field Structure", fillcolor=yellow, style=filled];
+  T003 [label="T003\nQPhi Ring Structure", fillcolor=yellow, style=filled];
+  T004 [label="T004\nFast Fibonacci Algorithm Correctness", fillcolor=yellow, style=filled];
+  T005 [label="T005\nFast Fibonacci Algorithm Complexity", fillcolor=yellow, style=filled];
+  T006 [label="T006\nRing-LWE Security Reduction", fillcolor=yellow, style=filled];
+  T007 [label="T007\nDecryption Correctness", fillcolor=yellow, style=filled];
+  T008 [label="T008\nK-Elimination Theorem", fillcolor=yellow, style=filled];
+  T009 [label="T009\nExact Value Reconstruction", fillcolor=yellow, style=filled];
+  T010 [label="T010\nPerfect Accuracy of K-Elimination", fillcolor=yellow, style=filled];
+  T011 [label="T011\nCRT Addition Homomorphism", fillcolor=yellow, style=filled];
+  T012 [label="T012\nCRT Multiplication Homomorphism", fillcolor=yellow, style=filled];
+  T013 [label="T013\nCRT Unique Representation", fillcolor=yellow, style=filled];
+  T014 [label="T014\nCRT Operation Correspondence", fillcolor=yellow, style=filled];
+  
+  // Computations
+  C001 [label="C001\nModular Inverse Correctness", fillcolor=lightcoral, style=filled];
+  C002 [label="C002\nQPhi Additive Commutativity", fillcolor=lightcoral, style=filled];
+  C003 [label="C003\nQPhi Multiplicative Commutativity", fillcolor=lightcoral, style=filled];
+  C004 [label="C004\nQPhi Additive Associativity", fillcolor=lightcoral, style=filled];
+  C005 [label="C005\nQPhi Multiplicative Associativity", fillcolor=lightcoral, style=filled];
+  C006 [label="C006\nQPhi Left Distributivity", fillcolor=lightcoral, style=filled];
+  C007 [label="C007\nQPhi Right Distributivity", fillcolor=lightcoral, style=filled];
+  C008 [label="C008\nBinary GCD Correctness", fillcolor=lightcoral, style=filled];
+  C009 [label="C009\nExtended Binary GCD Bézout Identity", fillcolor=lightcoral, style=filled];
+  C010 [label="C010\nNTT Primitive Root Existence", fillcolor=lightcoral, style=filled];
+  
+  // Verifications
+  V001 [label="V001\nLean Compilation Validation", fillcolor=purple, style=filled];
+  V002 [label="V002\nCoq Compilation Validation", fillcolor=purple, style=filled];
+  V003 [label="V003\nSecurity Property Validation", fillcolor=purple, style=filled];
+  V004 [label="V004\nPerformance Claim Validation", fillcolor=purple, style=filled];
+  V005 [label="V005\nInteger-Only Validation", fillcolor=purple, style=filled];
+  
+  // Dependencies
+  D001 -> L001;
+  D001 -> L002;
+  D001 -> L003;
+  D001 -> L004;
+  D001 -> L005;
+  D001 -> L006;
+  D001 -> L007;
+  D001 -> L008;
+  D001 -> L009;
+  D001 -> L010;
+  D001 -> L011;
+  D001 -> T001;
+  
+  D002 -> L001;
+  D002 -> L002;
+  D002 -> L003;
+  D002 -> L004;
+  D002 -> L005;
+  D002 -> L006;
+  D002 -> L007;
+  D002 -> L008;
+  D002 -> L009;
+  D002 -> L010;
+  D002 -> L011;
+  D002 -> T001;
+  D002 -> L019;
+  D002 -> L021;
+  D002 -> D005;
+  D002 -> D006;
+  D002 -> D008;
+  D002 -> D012;
+  
+  D003 -> L001;
+  D003 -> L002;
+  D003 -> L003;
+  D003 -> L004;
+  D003 -> L005;
+  D003 -> L006;
+  D003 -> L007;
+  D003 -> L008;
+  D003 -> L009;
+  D003 -> L010;
+  D003 -> L011;
+  D003 -> T001;
+  
+  D004 -> D009;
+  D004 -> L022;
+  D004 -> L023;
+  D004 -> D010;
+  D004 -> D011;
+  D004 -> L024;
+  D004 -> L025;
+  D004 -> L026;
+  D004 -> T003;
+  D004 -> L027;
+  D004 -> A005;
+  D004 -> T004;
+  
+  D005 -> D012;
+  D005 -> D013;
+  D005 -> L028;
+  D005 -> L029;
+  D005 -> L030;
+  D005 -> L031;
+  D005 -> L032;
+  D005 -> L033;
+  
+  D006 -> L015;
+  D006 -> L016;
+  D006 -> L017;
+  D006 -> L018;
+  D006 -> T002;
+  
+  D007 -> L012;
+  D007 -> L013;
+  D007 -> L014;
+  D007 -> A004;
+  
+  D008 -> L015;
+  D008 -> L016;
+  D008 -> L017;
+  D008 -> L018;
+  D008 -> T002;
+  
+  D009 -> L022;
+  D009 -> L023;
+  D009 -> L024;
+  D009 -> L025;
+  D009 -> L026;
+  D009 -> T003;
+  D009 -> L027;
+  D009 -> A005;
+  D009 -> T004;
+  D009 -> C002;
+  D009 -> C003;
+  D009 -> C004;
+  D009 -> C005;
+  D009 -> C006;
+  D009 -> C007;
+  
+  D010 -> L024;
+  D010 -> L025;
+  D010 -> L026;
+  D011 -> L025;
+  D011 -> L026;
+  
+  D012 -> L028;
+  D012 -> L029;
+  
+  D013 -> L029;
+  D013 -> L032;
+  D013 -> L033;
+  
+  D014 -> A006;
+  D014 -> T006;
+  D014 -> D015;
+  
+  D015 -> T007;
+  
+  D016 -> T008;
+  D016 -> T009;
+  D016 -> T010;
+  D016 -> D017;
+  D016 -> D018;
+  
+  D017 -> T008;
+  D017 -> T009;
+  D017 -> T010;
+  
+  D018 -> T008;
+  D018 -> T009;
+  D018 -> T010;
+  
+  D019 -> D020;
+  D019 -> T013;
+  D019 -> T014;
+  
+  D020 -> L034;
+  D020 -> L035;
+  D020 -> T011;
+  D020 -> T012;
+  D020 -> T013;
+  D020 -> T014;
+  
+  A004 -> L012;
+  A004 -> L013;
+  A004 -> L014;
+  A004 -> C008;
+  A004 -> C009;
+  
+  A005 -> T004;
+  A005 -> T005;
+  
+  A006 -> T006;
+  A006 -> T007;
+  
+  L001 -> T001;
+  L002 -> T001;
+  L003 -> T001;
+  L004 -> T001;
+  L005 -> T001;
+  L006 -> T001;
+  L007 -> T001;
+  L008 -> T001;
+  L009 -> T001;
+  L010 -> T001;
+  L011 -> T001;
+  
+  L012 -> L013;
+  L012 -> C009;
+  
+  L015 -> T002;
+  L016 -> T002;
+  L017 -> T002;
+  L018 -> T002;
+  
+  L019 -> L020;
+  L019 -> D020;
+  L019 -> L034;
+  L019 -> L035;
+  
+  L022 -> T003;
+  L023 -> T003;
+  L024 -> T003;
+  L025 -> T003;
+  L026 -> T003;
+  
+  L027 -> T004;
+  
+  L029 -> L031;
+  L029 -> L032;
+  L029 -> L033;
+  
+  L030 -> L031;
+  L030 -> L032;
+  L030 -> L033;
+  
+  L032 -> L033;
+  
+  T003 -> L033;
+  
+  L034 -> T011;
+  L034 -> T014;
+  
+  L035 -> T012;
+  L035 -> T014;
+  
+  T011 -> T014;
+  T012 -> T014;
+  
+  L036 -> T014;
+  
+  L010 -> C001;
+  
+  D009 -> C002;
+  D009 -> C003;
+  D009 -> C004;
+  D009 -> C005;
+  D009 -> C006;
+  D009 -> C007;
+  
+  A004 -> C008;
+  C008 -> C009;
+  
+  D001 -> C010;
+  
+  C001 -> V001;
+  C002 -> V001;
+  C003 -> V001;
+  C004 -> V001;
+  C005 -> V001;
+  C006 -> V001;
+  C007 -> V001;
+  C008 -> V001;
+  C009 -> V001;
+  C010 -> V001;
+  
+  L029 -> V002;
+  L032 -> V002;
+  L033 -> V002;
+  T007 -> V002;
+  
+  A006 -> V003;
+  T006 -> V003;
+  T007 -> V003;
+  
+  T014 -> V004;
+  L036 -> V004;
+  
+  A001 -> V005;
+}

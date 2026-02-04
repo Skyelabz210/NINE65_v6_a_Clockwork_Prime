@@ -1,0 +1,27 @@
+Copyright (c) 2023-2025 Anthony Diaz
+All Rights Reserved.
+
+NINE65 - Fully Homomorphic Encryption Library
+
+This software and associated documentation files (the "Software") are the
+proprietary and confidential property of Anthony Diaz.
+
+All rights reserved. No part of this Software may be reproduced, distributed,
+or transmitted in any form or by any means, including photocopying, recording,
+or other electronic or mechanical methods, without the prior written permission
+of the copyright holder, except in the case of brief quotations embodied in
+critical reviews and certain other noncommercial uses permitted by copyright law.
+
+For permission requests, contact:
+Anthony Diaz
+Email: acid@hackfate.us
+Organization: HackFate.us Research Division
+Location: San Antonio, Texas, USA
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

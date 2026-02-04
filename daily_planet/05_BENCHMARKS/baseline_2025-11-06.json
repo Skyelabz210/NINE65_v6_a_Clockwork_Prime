@@ -1,0 +1,12 @@
+{
+  "date": "2025-11-06",
+  "benchmarks": {
+    "Rational Creation": 367654,
+    "Rational Addition": 79287,
+    "Rational Multiplication": 74460,
+    "Rational Division": 85699
+  },
+  "average": 151775,
+  "target": 30000,
+  "status": "PASS"
+}

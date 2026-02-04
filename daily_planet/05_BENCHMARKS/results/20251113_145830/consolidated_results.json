@@ -1,0 +1,28 @@
+{
+  "timestamp": "20251113_145830",
+  "quick_mode": false,
+  "python_benchmarks": {},
+  "rust_benchmarks": {
+    "comprehensive_example": {
+      "status": "success",
+      "output_file": "benchmarks/results/20251113_145830/rust_comprehensive_example_output.txt",
+      "result_dir": "hcvlang/benchmark_results_1763067543"
+    }
+  },
+  "errors": [
+    {
+      "component": "python_comprehensive",
+      "error": "()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/home/acid/Projects/QMNF_System/QMNF_System/tools/qmnf_benchmark_suite.py\", line 277, in benchmark_theorem_proving\n    prover = CompleteGeometricTheoremProver()\n  File \"/home/acid/Projects/QMNF_System/QMNF_System/qmnf_boundary_fixed.py\", line 231, in __init__\n    self.tolerance = QMNFRational(0)  # Exact arithmetic - no tolerance needed\n                     ~~~~~~~~~~~~^^^\nTypeError: Rational.__new__() missing 1 required positional argument: 'den'\n"
+    },
+    {
+      "component": "rust_criterion",
+      "error": "No benchmark output produced"
+    }
+  ],
+  "summary": {
+    "total_attempted": 1,
+    "total_success": 1,
+    "total_errors": 2,
+    "success_rate": "100.0%"
+  }
+}

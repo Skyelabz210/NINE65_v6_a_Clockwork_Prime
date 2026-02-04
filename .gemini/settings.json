@@ -1,0 +1,55 @@
+{
+  "general": {
+    "debugKeystrokeLogging": false,
+    "enablePromptCompletion": true
+  },
+  "output": {
+    "format": "json"
+  },
+  "ui": {
+    "hideTips": true,
+    "hideBanner": true,
+    "hideContextSummary": true,
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "hideFooter": true,
+    "showLineNumbers": true,
+    "showCitations": true,
+    "useFullWidth": false,
+    "hideWindowTitle": true,
+    "incrementalRendering": false,
+    "accessibility": {
+      "disableLoadingPhrases": true
+    }
+  },
+  "model": {
+    "maxSessionTurns": 10
+  },
+  "context": {
+    "loadMemoryFromIncludeDirectories": true,
+    "fileFiltering": {
+      "respectGitIgnore": false,
+      "respectGeminiIgnore": false,
+      "disableFuzzySearch": true
+    }
+  },
+  "tools": {
+    "autoAccept": true,
+    "enableToolOutputTruncation": false,
+    "truncateToolOutputThreshold": 999999,
+    "truncateToolOutputLines": 99999,
+    "enableMessageBusIntegration": true
+  },
+  "security": {
+    "folderTrust": {
+      "enabled": true
+    },
+    "blockGitExtensions": true
+  },
+  "experimental": {
+    "codebaseInvestigatorSettings": {
+      "maxNumTurns": 9999
+    }
+  }
+}

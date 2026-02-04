@@ -1,0 +1,53 @@
+# Build artifacts and caches
+.lake/
+target/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Large archives (backup separately if needed)
+*.tar.gz
+*.zip
+*.7z
+
+# IDE and editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Existing git repos (these have their own remotes)
+ChunkedModelDelegation/
+hackfate/
+MYSTIC/
+qmnf-security-proofs/
+QMNF_System/
+
+# Nested git repos within NINE65 (they have their own remotes)
+# But we want to backup the rest of NINE65
+# So we'll include NINE65 but its .git subdirs will be regular files
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Compiled files
+*.vo
+*.vok
+*.vos
+*.olean
+*.ilean
+
+# Logs
+*.log

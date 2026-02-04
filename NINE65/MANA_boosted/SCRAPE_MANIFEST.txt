@@ -1,0 +1,1018 @@
+# SCRAPE_MANIFEST.txt
+Date: 2026-01-19T05:15:57Z
+
+## File Counts (~/Projects)
+Total files: 12473
+MD files: 1464
+Rust files: 1637
+Python files: 704
+
+## High-Signal Docs (sample)
+/home/acid/Projects/EPRAM_QPEF_MERGER_PLAN.md:1:# EXECUTION PLAN: EPRAM + QPEF Merger
+/home/acid/Projects/EXECUTION_CHECKLIST_NEW.md:9:| EXECUTION_PLAN_COMPREHENSIVE.md | Master execution plan | ✓ Generated |
+/home/acid/Projects/EXECUTION_CHECKLIST_NEW.md:94:| 2025-12-28T22:30:00Z | Claude Opus 4.5 | PLAN | Execution plan generated |
+/home/acid/Projects/GRANDMASTER_GAP_ANALYSIS (copy 1).md:9:## EXECUTIVE SUMMARY
+/home/acid/Projects/GRANDMASTER_GAP_ANALYSIS (copy 1).md:394:## 9. SUMMARY
+/home/acid/Projects/CRTBIGINT_GAP_ANALYSIS.md:11:## EXECUTIVE SUMMARY
+/home/acid/Projects/README (5).md:41:The skill provides phase-based workflow selection covering planning (PLANNER), execution (BIT SURGEON), verification (AUDITOR), debugging (RESOLVER), bottleneck analysis (HUNTER), lineage tracing (GENEALOGY), history search (MINING), frontier exploration (FRONTIER PURSUIT, GROVER SWARM), and democratization design (DESIGNER).
+/home/acid/Projects/GSO_SWARM_INTEGRATION (1) (copy 1).md:385:## IMPLEMENTATION ROADMAP
+/home/acid/Projects/AHOP_FORMAL_SPECIFICATION.md:387:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QUANTUM_SUBSTRATE_RESEARCH_SYNTHESIS.md:706:# SUMMARY
+/home/acid/Projects/SKILL (1).md:73:"plan", "analyze", "design"           → PHASE 1: PLANNER
+/home/acid/Projects/SKILL (1).md:86:## PHASE 1: PLANNER (qmnf-planner)
+/home/acid/Projects/SKILL (1).md:188:DOCUMENT: Record in VALIDATION_SUMMARY.md
+/home/acid/Projects/SKILL (1).md:263:UPGRADE PLAN: [System]
+/home/acid/Projects/FPD_EXECUTION_PLAN (1).md:1:# FPD EXECUTION PLAN
+/home/acid/Projects/FPD_EXECUTION_PLAN (1).md:27:- `fpd_complete/EXECUTION_SUMMARY.md` - Detailed results
+/home/acid/Projects/grover-swarm-discovery-report (2).md:1:# GROVER SWARM DISCOVERY REPORT
+/home/acid/Projects/grover-swarm-discovery-report (2).md:7:## EXECUTIVE SUMMARY
+/home/acid/Projects/grover-swarm-discovery-report (2).md:232:## PERFORMANCE SUMMARY
+/home/acid/Projects/division_approaches (1) (copy 1).rs:645:    println!("                         SUMMARY");
+/home/acid/Projects/fhe_communications_fork_plan.md:1:# FORK PLAN: FHE Communications (iOS/Android)
+/home/acid/Projects/QMNF_TOPS/test_edge_cases.rs:749:    // SUMMARY
+/home/acid/Projects/QMNF_TOPS/test_edge_cases.rs:752:    println!("║                         SUMMARY                                   ║");
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:122:### SCALE 5: PLANETARY (Celestial Mechanics)
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:393:1. **MYSTIC_DATA_INTEGRATION_REPORT.md** - Weather data integration
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:395:3. **MYSTIC_VALIDATION_REPORT.md** - Flood test validation
+/home/acid/Projects/exact_transcendentals/Cargo.toml:12:readme = "README.md"
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:9:## EXECUTIVE SUMMARY
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:118:## EXECUTION PLAN
+/home/acid/Projects/QMNF_TOPS/QMNF_INNOVATIONS_VALIDATION_REPORT.md:1:# QMNF INNOVATIONS VALIDATION REPORT
+/home/acid/Projects/README.md:33:The skill provides phase-based workflow selection covering planning (PLANNER), execution (BIT SURGEON), verification (AUDITOR), debugging (RESOLVER), bottleneck analysis (HUNTER), lineage tracing (GENEALOGY), history search (MINING), and frontier exploration (FRONTIER PURSUIT, GROVER SWARM).
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/qclassic_fhe_bench_full.txt:247:BENCHMARK SUMMARY
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/PRODUCTION_REPORT.md:156:│   └── PRODUCTION_REPORT.md     # This file
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/PRODUCTION_REPORT.md:170:- PRODUCTION_REPORT.md (this file)
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:295:#### GATE 5: SESSION END REPORT
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:433:│   ├── BENCHMARK_REPORT.md          # Statistical benchmarks
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/qclassic_fhe_bench_run1.txt:247:BENCHMARK SUMMARY
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/qclassic_fhe_bench_run4.txt:247:BENCHMARK SUMMARY
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/qclassic_fhe_bench_run5.txt:247:BENCHMARK SUMMARY
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/qclassic_fhe_bench_run3.txt:247:BENCHMARK SUMMARY
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/BENCHMARK_RESULTS.txt:265:BENCHMARK SUMMARY
+/home/acid/Projects/epramstuff (copy 1).md:232:- ✅ Comprehensive README.md
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/qclassic_fhe_bench_run2.txt:247:BENCHMARK SUMMARY
+/home/acid/Projects/GRAIL_REGISTRY (1) (copy 1).md:6:## SCORECARD SUMMARY
+/home/acid/Projects/QMNF_TOPS/benchmarks_audit/benchmark_results.txt:264:BENCHMARK SUMMARY
+/home/acid/Projects/QMNF_TOPS/choaoswins:2659:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QMNF_TOPS/choaoswins:3310:SESSION AXIOMS ←→ UGS REPORT AXIOMS
+/home/acid/Projects/QMNF_TOPS/choaoswins:3330:NEW FROM UGS REPORT (not in our Section 12):
+/home/acid/Projects/QMNF_TOPS/choaoswins:3340:SESSION THEOREMS ←→ UGS REPORT THEOREMS
+/home/acid/Projects/QMNF_TOPS/choaoswins:3811:QMNF PLANNER: QUANTUM SOLVER
+/home/acid/Projects/QMNF_TOPS/choaoswins:3813:│  PHASE 1: PLANNING                                                          │
+/home/acid/Projects/QMNF_TOPS/choaoswins:3917:EXECUTION PLAN: QMNF QUANTUM SOLVER
+/home/acid/Projects/fhe-revolution-bundle/MANIFEST.md:34:| templates/BENCHMARK_REPORT.md | Stats template | ~6KB |
+/home/acid/Projects/fhe-revolution-bundle/DEVELOPMENT_PROTOCOL.md:146:### GATE 5: SESSION END REPORT
+/home/acid/Projects/fhe-revolution-bundle/DEVELOPMENT_PROTOCOL.md:320:7. REPORT at session end
+/home/acid/Projects/NINE65_OPTIMIZATION_ANALYSIS (1).md:274:## PRIORITIZED IMPLEMENTATION ROADMAP
+/home/acid/Projects/QMNF_TOPS/weatherwins:92:QEDDE QUANTUM WEATHER SIMULATOR - UNIFIED PLANNING SYNTHESIS
+/home/acid/Projects/fhe-revolution-bundle/GAP_ANALYSIS.md:225:REPORT FORMAT:
+/home/acid/Projects/fhe-revolution-bundle/GAP_ANALYSIS.md:464:│   ├── SESSION_REPORT.md            # End-of-session template (NEW)
+/home/acid/Projects/fhe-revolution-bundle/GAP_ANALYSIS.md:465:│   ├── BENCHMARK_REPORT.md          # Statistical benchmark template (NEW)
+/home/acid/Projects/fhe-revolution-bundle/NEXT_REVOLUTION_PRIMER.md:372:    ├── BENCHMARK_REPORT.md          # Statistical benchmarks
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:22:| FPD_EXECUTION_PLAN.md | "6-8 weeks target" | ✅ COMPLETE | Update header |
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:24:| TECHNICAL_PAPERS_EXECUTION_PLAN.md | Paper 1 pending | FPD validates K-Elim | Add implementation note |
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:27:| COMPREHENSIVE_EXECUTION_PLAN.md | FPD pending | FPD complete | Update status |
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:78:## EXECUTION PLAN UPDATES
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:80:### FPD_EXECUTION_PLAN.md
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:94:### TECHNICAL_PAPERS_EXECUTION_PLAN.md
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:141:- [x] Create EXECUTION_SUMMARY.md  
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:146:- [ ] Update FPD_EXECUTION_PLAN.md header
+/home/acid/Projects/STATUS_UPDATE_20251229 (1).md:147:- [ ] Update TECHNICAL_PAPERS_EXECUTION_PLAN.md
+/home/acid/Projects/QMNF_MATHEMATICAL_FOUNDATIONS_V2.md:457:# SUMMARY
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:576:### GATE 5: SESSION END REPORT
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:648:│   ├── BENCHMARK_REPORT.md          # Statistical benchmark template
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:92:- `Desktop/MYSTIC_VALIDATION_CYCLE_REPORT.md` (comprehensive 31KB report)
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:280:1. **MYSTIC_DATA_INTEGRATION_REPORT.md** - Weather data integration (11KB)
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:282:3. **MYSTIC_VALIDATION_REPORT.md** - Initial flood test (12KB)
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:284:5. **MYSTIC_VALIDATION_CYCLE_REPORT.md** - Comprehensive validation (31KB)
+/home/acid/Projects/grover-swarm-discovery-report (2) (copy 1).md:1:# GROVER SWARM DISCOVERY REPORT
+/home/acid/Projects/grover-swarm-discovery-report (2) (copy 1).md:7:## EXECUTIVE SUMMARY
+/home/acid/Projects/grover-swarm-discovery-report (2) (copy 1).md:232:## PERFORMANCE SUMMARY
+/home/acid/Projects/EXECUTION_SUMMARY.md:50:├── README.md                           # 7,694 bytes
+/home/acid/Projects/division_exploration.py:646:    print("                         SUMMARY")
+/home/acid/Projects/ci_cd (copy 1).yml:286:# WORKFLOW SUMMARY
+/home/acid/Projects/MANIFEST (15).md:26:README.md
+/home/acid/Projects/MANIFEST (15).md:49:docs/analysis/BENCHMARK_REPORT.md
+/home/acid/Projects/MANIFEST (15).md:53:docs/analysis/GAP_ANALYSIS_SUMMARY.md
+/home/acid/Projects/MANIFEST (15).md:59:docs/analysis/VALIDATION_REPORT.md
+/home/acid/Projects/MANIFEST (15).md:66:docs/execution/COMPLETE_EXECUTION_PLAN.md
+/home/acid/Projects/MANIFEST (15).md:67:docs/execution/COMPREHENSIVE_EXECUTION_PLAN.md
+/home/acid/Projects/MANIFEST (15).md:68:docs/execution/CRTBIGINT_EXECUTION_PLAN.md
+/home/acid/Projects/MANIFEST (15).md:70:docs/execution/EXECUTION_PLAN_PHASE_2.md
+/home/acid/Projects/MANIFEST (15).md:71:docs/execution/FPD_EXECUTION_PLAN.md
+/home/acid/Projects/MANIFEST (15).md:72:docs/execution/TECHNICAL_PAPERS_EXECUTION_PLAN.md
+/home/acid/Projects/MANIFEST (15).md:94:implementations/fpd/EXECUTION_SUMMARY.md
+/home/acid/Projects/MANIFEST (15).md:95:implementations/fpd/README.md
+/home/acid/Projects/VALIDATION_SUMMARY.md:205:└── VALIDATION_SUMMARY.md   (this file)
+/home/acid/Projects/QMNF_TOPS/exact transindentals/exact_transcendentals/Cargo.toml:12:readme = "README.md"
+/home/acid/Projects/QMNF_TOPS/MYSTIC_QMNF_Comprehensive_Technical_Dossier.md:3:## EXECUTIVE SUMMARY
+/home/acid/Projects/QMNF_TOPS/MYSTIC_QMNF_Comprehensive_Technical_Dossier.md:803:## 7. COMPETITIVE ADVANTAGE SUMMARY
+/home/acid/Projects/QMNF_TOPS/MYSTIC_QMNF_Comprehensive_Technical_Dossier.md:828:## 8. IMPLEMENTATION ROADMAP
+/home/acid/Projects/GSO_INTEGRATION_GUIDE (1).md:348:## THE PHYSICS SUMMARY
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:6:## 🎯 EXECUTIVE SUMMARY
+/home/acid/Projects/ChunkedModelDelegation/tests/delegation_test.py:136:        print("DELEGATION ANALYSIS REPORT")
+/home/acid/Projects/ChunkedModelDelegation/tests/quick_delegation_test.py:85:    print("SUMMARY")
+/home/acid/Projects/VALIDATION_REPORT (2).md:6:## 🎯 EXECUTIVE SUMMARY
+/home/acid/Projects/ChunkedModelDelegation/README.md:397:│   ├── CHUNKED_INFERENCE_README.md # Technical deep-dive
+/home/acid/Projects/ChunkedModelDelegation/README.md:406:└── README.md                       # This file
+/home/acid/Projects/CONSOLIDATED_FINAL_STATUS.md:1:# CONSOLIDATED STATUS REPORT: QMNF/EPRAM Architecture
+/home/acid/Projects/ChunkedModelDelegation/examples/test_delegation.py:118:        print("See README.md for instructions.")
+/home/acid/Projects/CHECKLIST_FINAL.md:22:| FPD_EXECUTION_PLAN.md | Main plan document | /outputs/ | ✓ |
+/home/acid/Projects/CHECKLIST_FINAL.md:76:## COMPLETION SUMMARY
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:17:    CODE_EXPLANATION = "code_explanation"
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:40:        TaskType.CODE_EXPLANATION: ModelPreference.GEMINI,
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:1:# QMNF TECHNICAL PAPERS EXECUTION PLAN
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:1041:## AGGREGATE EXECUTION SUMMARY
+/home/acid/Projects/benchmarks (copy 1).rs:143:        report.push_str(&format!("  SUMMARY: {}/{} benchmarks passed\n", passed, total));
+/home/acid/Projects/benchmarks (copy 1).rs:718:    report.push_str("║                    QMNF/EPRAM PERFORMANCE BENCHMARK REPORT                    ║\n");
+/home/acid/Projects/DIVISION_IN_REMAINDER_FORM_DEEP_DIVE (copy 1).md:634:# SUMMARY
+/home/acid/Projects/RESEARCH_SORTIE_SYNTHESIS (3).md:7:## EXECUTION SUMMARY
+/home/acid/Projects/e2e_tests (copy 1).rs:708:    report.push_str("║                    QMNF/EPRAM END-TO-END TEST REPORT                          ║\n");
+/home/acid/Projects/COMPREHENSIVE_EXECUTION_PLAN.md:1:# COMPREHENSIVE EXECUTION PLAN: NINE65 MANA AVX-512 Completion
+/home/acid/Projects/COMPREHENSIVE_EXECUTION_PLAN.md:169:## PHASE 3: EXECUTION PLAN (Executioner Format)
+/home/acid/Projects/COMPREHENSIVE_EXECUTION_PLAN.md:483:| COMPREHENSIVE_EXECUTION_PLAN.md | This plan | ✓ Generated |
+/home/acid/Projects/COMPREHENSIVE_EXECUTION_PLAN.md:534:## SUMMARY
+/home/acid/Projects/RESEARCH_SORTIE_PERIOD_DETECTION.md:11:## EXECUTIVE SUMMARY
+/home/acid/Projects/EXOTIC_ACQUISITION_EXECUTION_PLAN.md:1:# EXOTIC ACQUISITION RADAR — EXECUTION PLAN
+/home/acid/Projects/EXOTIC_ACQUISITION_EXECUTION_PLAN.md:11:## EXECUTIVE SUMMARY
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS.md:6:## PROGRESS SUMMARY
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS.md:30:| `CRTBIGINT_EXECUTION_PLAN.md` | Closure plan | ✅ Complete |
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS.md:166:├── CRTBIGINT_EXECUTION_PLAN.md         # Sprint plan
+/home/acid/Projects/QMNF_FORMAL_SPECIFICATION (1).md:298:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QMNF_FORMAL_SPECIFICATION (1).md:599:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QMNF_FORMAL_SPECIFICATION (1).md:916:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QMNF_FORMAL_SPECIFICATION (1).md:1273:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QMNF_FORMAL_SPECIFICATION (1).md:1597:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/QMNF_FORMAL_SPECIFICATION (1).md:1942:PHYSICS COMPLIANCE REPORT
+/home/acid/Projects/GAP_ANALYSIS_SUMMARY.md:145:## 📋 EXECUTION PLAN SUMMARY
+/home/acid/Projects/GAP_ANALYSIS_SUMMARY.md:194:| `EXECUTION_PLAN_COMPREHENSIVE.md` | Full execution plan with task breakdown |
+/home/acid/Projects/GAP_ANALYSIS_SUMMARY.md:196:| `GAP_ANALYSIS_SUMMARY.md` | This summary document |
+/home/acid/Projects/TROPHY_CARD.md:83:├── README.md
+/home/acid/Projects/TROPHY_CARD.md:85:├── EXECUTION_SUMMARY.md
+/home/acid/Projects/gap_analysis_expansion.rs:10:// GAP ANALYSIS SUMMARY
+/home/acid/Projects/CHECKLIST (4).md:22:| FPD_EXECUTION_PLAN.md | Main plan document | /outputs/ | ✓ |
+/home/acid/Projects/README (5) (copy 1).md:118:├── README.md                    # This file
+/home/acid/Projects/README (5) (copy 1).md:311:| `COMPLETE_EXECUTION_PLAN.md` | 32-task, 6-gate execution plan |
+/home/acid/Projects/README (5) (copy 1).md:313:| `FPD_EXECUTION_PLAN.md` | Division implementation plan |
+/home/acid/Projects/README (5) (copy 1).md:314:| `TECHNICAL_PAPERS_EXECUTION_PLAN.md` | Paper writing plan |
+/home/acid/Projects/README (5) (copy 1).md:322:| `BENCHMARK_REPORT.md` | Performance benchmarks |
+/home/acid/Projects/epramstuff.md:232:- ✅ Comprehensive README.md
+/home/acid/Projects/GAP_HUNTER_AUDIT.md:1:# 🔍 GAP HUNTER AUDIT REPORT
+/home/acid/Projects/GAP_HUNTER_AUDIT.md:10:## EXECUTIVE SUMMARY
+/home/acid/Projects/README (4).md:112:├── README.md                    # This file
+/home/acid/Projects/division_exploration (copy 1).py:646:    print("                         SUMMARY")
+/home/acid/Projects/GSO_SWARM_INTEGRATION (1).md:385:## IMPLEMENTATION ROADMAP
+/home/acid/Projects/EXECUTION_PLAN_PHASE_2.md:1:# EXECUTION PLAN: PHASE 2 - BARRETT ACCELERATION
+/home/acid/Projects/EXECUTION_PLAN_PHASE_2.md:10:## EXECUTIVE SUMMARY
+/home/acid/Projects/EXECUTION_PLAN_PHASE_2.md:382:| EXECUTION_PLAN_PHASE_2.md | This plan | ✓ Generated |
+/home/acid/Projects/QUANTUM_EMULATION_COMPREHENSIVE_SORTIE.md:11:# EXECUTIVE SUMMARY
+/home/acid/Projects/QUANTUM_EMULATION_COMPREHENSIVE_SORTIE.md:361:# PART II: EXECUTION PLAN (Executioner Protocol)
+/home/acid/Projects/division_approaches.rs:645:    println!("                         SUMMARY");
+/home/acid/Projects/GRAIL_REGISTRY (1).md:6:## SCORECARD SUMMARY
+/home/acid/Projects/validate.sh:14:    "README.md"
+/home/acid/Projects/SKILL (2).md:73:"plan", "analyze", "design"           → PHASE 1: PLANNER
+/home/acid/Projects/SKILL (2).md:86:## PHASE 1: PLANNER (qmnf-planner)
+/home/acid/Projects/SKILL (2).md:188:DOCUMENT: Record in VALIDATION_SUMMARY.md
+/home/acid/Projects/SKILL (2).md:263:UPGRADE PLAN: [System]
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_MODULE_FUNCTION_FIX_REPORT.md:383:- ✅ FFI_MODULE_FUNCTION_FIX_REPORT.md (this document)
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_DEVELOPMENT_GUIDE.md:1081:- **Parallel Plan**: `/home/user/QMNF_System/PARALLEL_EXECUTION_PLAN.md`
+/home/acid/Projects/GSO_SWARM_INTEGRATION.md:385:## IMPLEMENTATION ROADMAP
+/home/acid/Projects/scan (2) (copy 1).sh:120:# SUMMARY
+/home/acid/Projects/qmnf_validation_sprint7.py:1045:    report.append("QMNF/PLMG EXECUTION PLAN - SPRINT 7 VALIDATION REPORT")
+/home/acid/Projects/qmnf_validation_sprint7.py:1109:    print("QMNF/PLMG EXECUTION PLAN - SPRINT 7")
+/home/acid/Projects/DEEP_STRUCTURES_SYNTHESIS (1).md:6:## EXECUTIVE SUMMARY
+/home/acid/Projects/DIVISION_IN_REMAINDER_FORM_DEEP_DIVE.md:634:# SUMMARY
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:263:⚠️ **Constructor signature needs verification** - see FFI_API_DISCOVERY_SUMMARY.md
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:343:**Constructor:** (Needs verification - see FFI_API_DISCOVERY_SUMMARY.md)
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:669:See FFI_API_DISCOVERY_SUMMARY.md for complete list
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:714:**Solution:** See FFI_API_DISCOVERY_SUMMARY.md or run discovery script
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:726:- `FFI_API_DISCOVERY_SUMMARY.md` - Discovery report (133 classes cataloged)
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:727:- `WORK_REQUESTS_COMPLETION_REPORT.md` - Testing & benchmarking summary
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_QUICK_REFERENCE.md:728:- `RUST_BENCHMARKING_COMPLETION_REPORT.md` - Performance baseline data
+/home/acid/Projects/SKILL (5).md:42:"plan", "analyze", "design"           → PHASE 1: PLANNER
+/home/acid/Projects/SKILL (5).md:56:## PHASE 1: PLANNER
+/home/acid/Projects/SKILL (5).md:88:- NO discovery phase. If discovery needed → return to PLANNER
+/home/acid/Projects/CRITICAL_MATHEMATICAL_CORRECTIONS.md:9:## EXECUTIVE SUMMARY
+/home/acid/Projects/CRITICAL_MATHEMATICAL_CORRECTIONS.md:303:## 7. LEAN 4 MECHANIZATION PLAN
+/home/acid/Projects/CRITICAL_MATHEMATICAL_CORRECTIONS.md:354:## 8. SUMMARY
+/home/acid/Projects/scan (2).sh:120:# SUMMARY
+/home/acid/Projects/daily_planet/05_BENCHMARKS/rust_vs_python_crt_benchmark.py:440:    print("PERFORMANCE SUMMARY")
+/home/acid/Projects/GAP_ANALYSIS (5).md:232:- ✅ Comprehensive README.md
+/home/acid/Projects/scan (1).sh:89:# SUMMARY
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_INTEGRATION_COMPLETE.md:257:| **Residue Neural Networks** | ✅ Complete | ✅ Available | `NEURAL_NETWORK_COMPLETE_REPORT.md` |
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_INTEGRATION_COMPLETE.md:258:| **FHE Cryptography** | ✅ Complete | ✅ Available | `FHE_DELIVERABLES_INDEX.md` |
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS (copy 1).md:6:## PROGRESS SUMMARY
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS (copy 1).md:30:| `CRTBIGINT_EXECUTION_PLAN.md` | Closure plan | ✅ Complete |
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS (copy 1).md:166:├── CRTBIGINT_EXECUTION_PLAN.md         # Sprint plan
+/home/acid/Projects/regression (1).rs:301:        report.push_str("  QMNF REGRESSION SCAN REPORT\n");
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_FIX_VERIFICATION.md:125:✅ **FFI_MODULE_FUNCTION_FIX_REPORT.md** (12KB, detailed analysis)
+/home/acid/Projects/regression_scan.sh:93:echo "                         SUMMARY                               "
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_API_DISCOVERY_SUMMARY.md:54:2. `/home/user/QMNF_System/FFI_API_DISCOVERY_SUMMARY.md` (this file)
+
+## TODO/Assumptions (sample)
+/home/acid/Projects/constant_time.rs:107:        const MAX_ATTEMPTS: usize = 100;
+/home/acid/Projects/constant_time.rs:109:        for _ in 0..MAX_ATTEMPTS {
+/home/acid/Projects/ntt_avx512.rs:80:    /// NOTE: AVX-512 acceleration is experimental. Currently falls back to 
+/home/acid/Projects/ntt_avx512.rs:113:    /// NOTE: The AVX-512 SIMD path is currently disabled pending correctness validation.
+/home/acid/Projects/ntt_avx512.rs:120:        // TODO: Debug and fix the SIMD NTT implementation
+/home/acid/Projects/bounded (1).rs:253:    /// NOTE: Requires |p| >= 1 (non-zero) and gcd(p, M) = 1
+/home/acid/Projects/epramstuff (copy 1).md:105:// TODO: Implement cycle detection via hash history
+/home/acid/Projects/epramstuff.md:105:// TODO: Implement cycle detection via hash history
+/home/acid/Projects/mod (15) (copy 1).rs:205:// T-302: ACTION TEMPLATE SYSTEM
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:224:| **Missing Wiring** | Innovation existed but not connected | False WIP status |
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:270:Before marking anything WIP:
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:278:If innovation exists → Wire it in, don't mark WIP
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:332:The ct×ct multiplication marked "WIP" is solved by connecting existing innovations:
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:434:│   └── KAT_TEMPLATE.rs              # Known Answer Tests
+/home/acid/Projects/CHECKLIST (4).md:225:## NOTES
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:25:## MASTER TODO LIST
+/home/acid/Projects/constant_time (copy 1).rs:107:        const MAX_ATTEMPTS: usize = 100;
+/home/acid/Projects/constant_time (copy 1).rs:109:        for _ in 0..MAX_ATTEMPTS {
+/home/acid/Projects/division_exploration.py:834:    6. 60 YEARS OF WRONG ASSUMPTIONS
+/home/acid/Projects/EXECUTION_CHECKLIST_NEW.md:169:## NOTES
+/home/acid/Projects/ntt_avx512 (copy 1).rs:80:    /// NOTE: AVX-512 acceleration is experimental. Currently falls back to 
+/home/acid/Projects/ntt_avx512 (copy 1).rs:113:    /// NOTE: The AVX-512 SIMD path is currently disabled pending correctness validation.
+/home/acid/Projects/ntt_avx512 (copy 1).rs:120:        // TODO: Debug and fix the SIMD NTT implementation
+/home/acid/Projects/fhe-revolution-bundle/MANIFEST.md:35:| templates/KAT_TEMPLATE.rs | Known Answer Tests | ~13KB |
+/home/acid/Projects/fhe-revolution-bundle/DEVELOPMENT_PROTOCOL.md:28:**Impact:** Marked as "WIP" when solution was already designed
+/home/acid/Projects/fhe-revolution-bundle/DEVELOPMENT_PROTOCOL.md:98:Before marking anything "WIP" or "TODO":
+/home/acid/Projects/fhe-revolution-bundle/DEVELOPMENT_PROTOCOL.md:102:│                     BEFORE MARKING WIP                                       │
+/home/acid/Projects/fhe-revolution-bundle/DEVELOPMENT_PROTOCOL.md:119:│  If innovation exists → Wire it in, don't mark WIP                          │
+/home/acid/Projects/fhe-revolution-bundle/GAP_ANALYSIS.md:466:│   └── KAT_TEMPLATE.rs              # Known Answer Test patterns (NEW)
+/home/acid/Projects/fhe-revolution-bundle/NEXT_REVOLUTION_PRIMER.md:373:    └── KAT_TEMPLATE.rs              # Known Answer Tests
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:394:The ct×ct multiplication that was marked "WIP" is SOLVED by wiring in existing innovations:
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:557:SEARCH HISTORY → CHECK INNOVATIONS → ABSTRACT ANALYSIS → NOTE & MOVE ON
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:561:Before marking anything WIP:
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:649:│   └── KAT_TEMPLATE.rs              # Known Answer Test patterns
+/home/acid/Projects/PERMANENT_RESIDENCE_ARCHITECTURE (copy 1).md:204:│  │                    ACTION TEMPLATE LIBRARY                            │ │
+/home/acid/Projects/PERMANENT_RESIDENCE_ARCHITECTURE (copy 1).md:213:│  │  ALL TEMPLATES ARE POSITIONS - matching is resonance, not search     │ │
+/home/acid/Projects/division_exploration (copy 1).py:834:    6. 60 YEARS OF WRONG ASSUMPTIONS
+/home/acid/Projects/QMNF_TOPS/01_montgomery_persistent.rs:440:        // NOTE: In this small test, the compiler may optimize away some overhead.
+/home/acid/Projects/montgomery_cell (1).rs:79:    /// NOTE: In Persistent Montgomery, this should NEVER be called
+/home/acid/Projects/test_ntt_fix.rs:132:// TEMPLATE: Drop-in replacement for your test
+/home/acid/Projects/bounded (1) (copy 1).rs:253:    /// NOTE: Requires |p| >= 1 (non-zero) and gcd(p, M) = 1
+/home/acid/Projects/QMNF_TOPS/19_adaptive_crt_bigint.rs:687:    // TODO: Use your existing prime generation
+/home/acid/Projects/QMNF_TOPS/19_adaptive_crt_bigint.rs:736:    // TODO: Use your existing CRT reconstruction
+/home/acid/Projects/QMNF_TOPS/19_adaptive_crt_bigint.rs:812:    // TODO: Property tests
+/home/acid/Projects/QMNF_TOPS/19_adaptive_crt_bigint.rs:813:    // TODO: Adversarial hovering tests
+/home/acid/Projects/QMNF_TOPS/19_adaptive_crt_bigint.rs:814:    // TODO: Monotone growth tests
+/home/acid/Projects/QMNF_TOPS/19_adaptive_crt_bigint.rs:815:    // TODO: Microbenchmarks
+/home/acid/Projects/MANIFEST (16).md:62:3. Implement TODO sections (innovations pre-wired)
+/home/acid/Projects/QMNF_TOPS/27_crypto_immune_system.rs:213:            validated_at: 0,  // TODO: Add timestamp
+/home/acid/Projects/QMNF_TOPS/27_crypto_immune_system.rs:235:        // TODO: Implement full Miller-Rabin
+/home/acid/Projects/QMNF_TOPS/27_crypto_immune_system.rs:247:        // TODO: Implement primitive root finding
+/home/acid/Projects/QMNF_TOPS/27_crypto_immune_system.rs:594:            validated_at: 0,  // TODO: Timestamp
+/home/acid/Projects/GAP_ANALYSIS (5).md:105:// TODO: Implement cycle detection via hash history
+/home/acid/Projects/mod (15).rs:205:// T-302: ACTION TEMPLATE SYSTEM
+/home/acid/Projects/QMNF_TOPS/16_homomorphic_ops.rs:9://! PARALLELISM NOTE: Coefficient-level parallelism is handled inside NTTEngineFFT.multiply()
+/home/acid/Projects/QMNF_TOPS/16_homomorphic_ops.rs:129:    /// NOTE: For single-modulus BFV, we DON'T scale the tensor product.
+/home/acid/Projects/QMNF_TOPS/16_homomorphic_ops.rs:134:    /// NOTE: We use "one low, one high" parallelism:
+/home/acid/Projects/QMNF_TOPS/23_polypoly_optimization.rs:412:        // TODO: Implement proper primitive root test
+/home/acid/Projects/AHOP_FORMAL_SPECIFICATION.md:224:  NOTE: The hypothesis u·(w·seed) = w·(u·seed) does NOT hold in general
+/home/acid/Projects/state (1).rs:83:// ACTION TEMPLATE
+/home/acid/Projects/state (1).rs:389:// TEMPLATE STORE
+/home/acid/Projects/montgomery_cell (copy 1).rs:79:    /// NOTE: In Persistent Montgomery, this should NEVER be called
+/home/acid/Projects/state (1) (copy 1).rs:83:// ACTION TEMPLATE
+/home/acid/Projects/state (1) (copy 1).rs:389:// TEMPLATE STORE
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/TODO_LIST.md:1:# TODO LIST: QMNF System - Architectural and Linter Resolution
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/TODO_LIST.md:10:- [x] Create DESIGN_NOTE.md documenting the architectural intent
+/home/acid/Projects/FUNDAMENTAL_INVERSION_COMPLETE (copy 1).md:418:│    │  ACTION TEMPLATES           (DualCodex positions)                 │   │
+/home/acid/Projects/daily_planet/05_BENCHMARKS/results/README.md:133:- `QMNF_TODO_LIST.md` - Task tracking (includes benchmark TODOs)
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/FINAL_COMPLETION_REPORT.md:246:TRADITIONAL ASSUMPTION ELIMINATED:
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/NEUROMORPHIC_HAL_VALIDATION_REPORT.md:326:All stubs are clearly marked with `// TODO: Integrate Agent 1's implementation`
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/RECOMMENDED_TOOLS.md:94:Create `.github/ISSUE_TEMPLATE/bug_report.md`:
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/RECOMMENDED_TOOLS.md:125:Create `.github/ISSUE_TEMPLATE/feature_request.md`:
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/MANUS_TASK_UNHAL_PARTY.md:385:## NOTES
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IP_NOVELTY_VERIFICATION_REPORT.md:281:   - USPTO, EPO, WIPO databases
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:73:| PERFORMANCE_BENCHMARKS_COMPLETE.md | Benchmark | TODO | Complete performance benchmarking |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:74:| SCALABILITY_ANALYSIS.md | Analysis | TODO | Scaling performance across architectures |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:75:| MEMORY_EFFICIENCY_STUDY.md | Analysis | TODO | Memory usage optimization analysis |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:81:| SIDE_CHANNEL_RESISTANCE_VALIDATION.md | Security | TODO | Timing attack prevention validation |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:82:| CRYPTOGRAPHIC_INTEGRITY_VERIFICATION.md | Security | TODO | Security property maintenance |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:83:| POST_QUANTUM_SECURITY_VERIFICATION.md | Security | TODO | 128-bit security validation |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:99:| RESIDUE_SPACE_TRAINING_ARCHITECTURE.md | Architecture | TODO | Training system architecture |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:100:| ANCHOR_FIRST_OPTIMIZATION_PAPER.md | Optimization | TODO | 10-100× performance improvement theory |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:107:| MODULAR_ACTIVATION_FUNCTIONS.md | Theory | TODO | ReLU and other activations in Z/mZ |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:108:| RESIDUE_SPACE_OPTIMIZERS.md | Implementation | TODO | SGD/Adam in modular space |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:114:| MONTGOMERY_ARITHMETIC_RESEARCH.md | Math | TODO | Constant-time modular operations |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:115:| CRT_OPTIMIZATION_RESEARCH.md | Math | TODO | Chinese Remainder Theorem optimizations |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:116:| MODULAR_LINEAR_ALGEBRA.md | Math | TODO | Matrix operations in residue space |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:126:| CONSCIOUSNESS_GRADE_AI_APPLICATIONS.md | Application | TODO | φ³ threshold detection research |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:127:| QUANTUM_CLASSICAL_INTEGRATION.md | Application | TODO | Quantum-classical computing bridge |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:128:| UNIVERSAL_LEARNING_RESEARCH.md | Application | TODO | Structure-independent learning theory |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:134:| ENCRYPTED_LEARNING_CAPABILITY.md | Application | TODO | Training on encrypted data research |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:135:| PRIVACY_PRESERVING_ML.md | Application | TODO | Privacy-preserving machine learning |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:136:| FHE_NEURAL_INTEGRATION.md | Application | TODO | FHE integration for neural networks |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:142:| LARGE_SCALE_DEPLOYMENT_RESEARCH.md | Application | TODO | Production deployment research |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:143:| DISTRIBUTED_RESIDUE_COMPUTING.md | Application | TODO | Distributed residue-space computing |
+/home/acid/Projects/daily_planet/00_NAVIGATION/RESEARCH_DOCUMENTATION_INDEX.md:144:| GPU_ACCELERATION_RESEARCH.md | Application | TODO | GPU optimization for modular arithmetic |
+/home/acid/Projects/CHECKLIST (5).md:262:## NOTES
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_INTEGRATION_TODO.md:1:# FFI Integration TODO - Python-Rust Bindings Completion
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_TESTING_SUMMARY_PHASES_9_14.md:407:2. **TODO:** Build FFI module with Python bindings
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_TESTING_SUMMARY_PHASES_9_14.md:412:3. **TODO:** Execute test suite and collect results
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_TESTING_SUMMARY_PHASES_9_14.md:413:4. **TODO:** Generate coverage report (target: ≥80%)
+/home/acid/Projects/daily_planet/03_API_REFERENCE/ffi_reference/FFI_TESTING_SUMMARY_PHASES_9_14.md:414:5. **TODO:** Address any test failures discovered
+/home/acid/Projects/bounded (copy 1).rs:253:    /// NOTE: Requires |p| >= 1 (non-zero) and gcd(p, M) = 1
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/USER_EXPERIENCE_JOURNEY_REPORT.md:986:# TODO: pip install qmnf (when published)
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/PRIMARY_AGENT_TASK_TRACKER.md:619:4. **NOTE**: Per user directive, create test but don't run yet ("build first, test later")
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/STACK_REVIEW_COMPONENT_01_BOUNDARY.md:144:    NOTE: Returns SQUARED distance to maintain integer-only arithmetic.
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/params/mod.rs:44:    /// NOTE: Single-modulus, limited to add/mul_plain only
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/AGI_SYSTEM_COMPENDIUM.md:657:        EMOTIONAL = 4, SPATIAL = 5, TEMPORAL = 6, SOCIAL = 7
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/AGI_SYSTEM_COMPENDIUM.md:787:    mode_scores[static_cast<int>(CognitiveMode::TEMPORAL)] = temporal_patterns * 0.9;
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/AGENT_PROMPT_TEMPLATE.md:1:# AI AGENT PROMPT TEMPLATE - QMNF System Architecture Awareness
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/AGENT_PROMPT_TEMPLATE.md:35:## STANDARD PROMPT TEMPLATE
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:17:- ✅ **Documented 35 TODOs** (22 adaptive CRT + 12 diagnostics + 1 design)
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:26:Analyzed and resolved 25 TODOs across 4 adaptive CRT variant files.
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:35:| **Total TODOs** | 25 | **RESOLVED** | - |
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:78:1. **Tier table extension** (TODOs line 332, 330)
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:87:**Test Coverage Plan** (16 TODOs):
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:251:Documented 12 diagnostic integration TODOs as deferred future work.
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:256:  - Integration point documentation (12 TODOs)
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:263:| Subsystem | TODOs | Priority | Effort | Status |
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:384:### ✅ All 23 Adaptive CRT TODOs Resolved
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:411:- ✅ 12 TODOs documented with integration roadmap
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:436:   - Complete TODO analysis and resolution
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/IMPLEMENTATION_COMPLETION_REPORT.md:442:   - All 12 TODOs documented
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/HIDDEN_OPTIMIZATIONS_DISCOVERY.md:105:**Status**: ❌ **TODO** (infrastructure exists, implementation missing)
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/HIDDEN_OPTIMIZATIONS_DISCOVERY.md:113:/// This will be optimized with rayon in Section 5.D  // <-- TODO!
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:29:    pub const WATER_TEMP_C: &str = "00010";
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:87:            param_codes::WATER_TEMP_C,
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:116:            param_codes::WATER_TEMP_C,
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:312:            param_codes::WATER_TEMP_C,
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/FILE_INVENTORY.md:7:⚠️ **NOTE**: See `NESTED_DIRECTORY_AUDIT.md` for information about directory structure issues.
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/CLEANUP_VERIFICATION_REPORT.md:83:- ✅ FFI_INTEGRATION_TODO.md (marked complete)
+/home/acid/Projects/daily_planet/06_ANALYSIS/performance_analysis/CRT_CONVERSION_FIX_REPORT.md:21:        // TODO: Implement proper conversion for large values
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/QMNF_FHE_TECHNICAL_CODE_REVIEW.md:263:        // TODO: Implement binary GCD simplification
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/QMNF_FHE_TECHNICAL_CODE_REVIEW.md:264:        // TODO: Implement CRT-based scaling
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/QMNF_FHE_TECHNICAL_CODE_REVIEW.md:346:        ModInt::new_u64(0, self.modulus) // Placeholder - TODO: implement reconstruction
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/QMNF_FHE_TECHNICAL_CODE_REVIEW.md:350:        // TODO: Implement proper CRT reconstruction
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/QMNF_FHE_TECHNICAL_CODE_REVIEW.md:482:            // TODO: Implement actual AVX2 intrinsics
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/STACK_REVIEW_COMPONENT_04_MATH_OPS.md:73:│  └─ NOTE: Use Rational instead                       │
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/STACK_REVIEW_COMPONENT_04_MATH_OPS.md:140:    // NOTE: Square root requires QPhi extension
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/STACK_REVIEW_COMPONENT_04_MATH_OPS.md:182:    // TODO: Recursive generation for depth > 1
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/STACK_REVIEW_COMPONENT_04_MATH_OPS.md:192:// TODO: Implement exact square root for ModRational
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/STACK_REVIEW_COMPONENT_04_MATH_OPS.md:212:// TODO: Recursive generation for depth > 1
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/FUNCTIONALITY_AUDIT_REPORT.md:220:### 4.2 TODO/FIXME Comments
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/FUNCTIONALITY_AUDIT_REPORT.md:223:- `qmnf_guards.py`: "TODO: Review float(x) conversion"
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/FUNCTIONALITY_AUDIT_REPORT.md:224:- `qmnf_core_optimized.py`: TODO comments indicating incomplete work
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/FFI_STRUCT_FIELD_AUDIT_REPORT.md:135:- 📋 **NOTE**: Commit 44ff0f4 acknowledged "155 FFI structural errors" as separate issue
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/arithmetic/ntt.rs:179:        // TODO: FFT implementation exists but needs SIMD/assembly to outperform DFT
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/DESIGN_NOTE.md:1:# DESIGN NOTE: QMNF System - Exclusive Residue-Space Architecture
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/arithmetic/persistent_montgomery.rs:440:        // NOTE: In this small test, the compiler may optimize away some overhead.
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ITERATIVE_AUDIT_DESKTOP_COPY.md:10:Batch 0001: ACHIEVEMENT_COMPLETION_SUMMARY.md, ACTUAL_PERFORMANCE_BENCHMARKS.md, ADMIN_ENABLE_RAPTOR.md, advanced_ai_capabilities_system.py, AGENT3_ADVANCED_TRAINING_REPORT.md, agent3_implementations/adversarial.rs, AGENT4_IMPLEMENTATION_REPORT.md, AGENT4_SERIALIZATION_BACKUP.rs, AGENT_PROMPT_TEMPLATE.md, AGENT_VALIDATION_CRITERIA.md
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ITERATIVE_AUDIT_DESKTOP_COPY.md:32:| `AGENT4_SERIALIZATION_BACKUP.rs` | Rust backup serialization/deserialization for ResNet with checksums. | No benchmark logic. | Contains accuracy Option<f64> and with_accuracy using f64, conflicting with float ban; placeholder template/labels indicate unfinished implementation; lint otherwise standard; no FFI. | Mark for follow-up to replace floats, complete TODOs, and add tests. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ITERATIVE_AUDIT_DESKTOP_COPY.md:33:| `AGENT_PROMPT_TEMPLATE.md` | Prompt template instructing agents on residue-space architectural mandates. | No benchmarks. | Doc only; no code; no FFI. | None detected. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ITERATIVE_AUDIT_DESKTOP_COPY.md:88:| `cryptographic_systems/01_BFV_Core_FHE/essential_mathematics/adaptive_crt_bigint.rs` | Adaptive CRT bigint with tier management and integration points. | No benchmarks inside. | Integer-only logic; relies on integration TODOs; no explicit floats; no FFI. | Integration points/TODOs remain—needs completion/testing; otherwise compliant. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ITERATIVE_AUDIT_DESKTOP_COPY.md:90:| `cryptographic_systems/02_BFV_Realtime_FHE/essential_mathematics/adaptive_crt_bigint.rs` | Duplicate adaptive CRT bigint module (Realtime FHE path). | No benchmarks inside. | Same as core version: integer-only; integration points TODOs; no floats/FFI. | Integration TODOs remain; ensure single canonical copy to avoid divergence. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ITERATIVE_AUDIT_DESKTOP_COPY.md:154:| `hcvlang/src/adaptive_crt_bigint.rs` | Adaptive CRT bigint core. | No benchmarks. | Integer-only; integration points TODOs; no floats. | Complete integration points/tests; ensure single canonical copy. |
+/home/acid/Projects/daily_planet/07_PROGRESS/milestones/MERGE_RESOLUTION_EXECUTIVE_SUMMARY.md:224:- **FFI_INTEGRATION_TODO.md** - FFI resolution documentation
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/CRITICAL_NEXT_STEPS_TODO.md:1:# QMNF SYSTEM: CRITICAL NEXT STEPS TODO LIST
+/home/acid/Projects/Spanky/src/mystic/arithmetic/persistent_montgomery.rs:383:        // NOTE: In this small test, the compiler may optimize away some overhead.
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:24:| dcbigint.rs | 1,640 | PARTIAL | Primary implementation, but has stub Montgomery/Barrett contexts. MontgomeryContext (188 lines) and BarrettContext (58 lines) defined but never used. 5 TODO comments. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:26:| adaptive_crt_bigint.rs | 1,190 | PARTIAL | Multiple TODOs (8): "Replace with your CRT encoding logic", "Add comprehensive property tests", etc. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:27:| adaptive_crt_bigint_v1.rs | 816 | STUB | Marked "⚠️ INTEGRATION REQUIRED". 6 TODOs explicitly marking stub implementations. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:28:| adaptive_crt_bigint_v2.rs | 945 | STUB | Same issues as v1. 8 TODOs, placeholder implementations throughout. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:136:### Explicit TODOs (Sampled from 50+ found):
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:138:adaptive_crt_bigint.rs:   // TODO: Extend table or return error based on use case
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:139:adaptive_crt_bigint.rs:   /// **TODO**: Replace with your CRT encoding logic
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:140:adaptive_crt_bigint_v1.rs: // TODO: Use your existing prime generation
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:142:adaptive_crt_bigint_v2.rs: /// **TODO**: Replace with your CRT reconstruction algorithm
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:145:division_optimizer.rs:     // TODO: Implement divide method once ModRational is defined
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:147:geom_point2d_v2.rs:        // TODO: Implement CORDIC atan2 in PadéApproximant
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:148:mana_orchestration.rs:     // TODO: Implement contamination check for CodexManifold
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:149:quantum_classical_bridge.rs: // TODO: Implement proper modular reduction for num and den
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:150:simd.rs:                    // Sequential multiplication - TODO: Add AVX2 when API is available
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:172:// TODO: Implement divide method once ModRational is defined
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:173:// TODO: Uncomment once ModRational is implemented
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:324:- division_optimizer.rs: "TODO: Support custom gear configuration"
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:325:- quantum_classical_bridge.rs: "TODO: Implement proper modular reduction"
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:326:- mana_orchestration.rs: "TODO: Implement contamination check for CodexManifold"
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:369:  - adaptive_crt_bigint_v1.rs (6 explicit TODOs)
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:370:  - adaptive_crt_bigint_v2.rs (8 explicit TODOs)
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/COMPREHENSIVE_AUDIT_REPORT.md:374:  - quantum_classical_bridge.rs (3 TODOs)
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/lib.rs:263:    /// NOTE: This test demonstrates the noise challenge at production parameters.
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/FORENSIC_AUDIT_MATHEMATICAL_FRAMEWORKS.md:165:- ⚠️ Position computation requires Complex Descartes (TODO)
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/AUDIT_README.md:79:   - Issues: Placeholder implementations, multiple TODOs, stub GCD
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/AUDIT_README.md:86:- **50+ TODO/FIXME comments** in core modules
+/home/acid/Projects/daily_planet/07_PROGRESS/milestones/QMNF_FHE_COMPLETE_STATE_REVIEW.md:936:    // TODO: Implement full bootstrapping
+/home/acid/Projects/daily_planet/07_PROGRESS/milestones/QMNF_FHE_COMPLETE_STATE_REVIEW.md:977:    // TODO: Implement proper CRT reconstruction
+/home/acid/Projects/daily_planet/07_PROGRESS/milestones/QMNF_FHE_COMPLETE_STATE_REVIEW.md:982:    // TODO: Implement proper CRT reconstruction
+/home/acid/Projects/daily_planet/06_ANALYSIS/code_audits/ZERO_CRT_COMMUNICATION_VALIDATION.md:160:    // NOTE: No CRT reconstruction of integer x occurs anywhere in this pathway!
+/home/acid/Projects/daily_planet/10_ARCHIVE/deprecated_docs/TASK_COMPLETION_MERGE_CONFLICTS.md:437:- `FFI_INTEGRATION_TODO.md`
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/ops/homomorphic.rs:9://! PARALLELISM NOTE: Coefficient-level parallelism is handled inside NTTEngineFFT.multiply()
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/ops/homomorphic.rs:174:    /// NOTE: For single-modulus BFV, we DON'T scale the tensor product.
+/home/acid/Projects/side_by_side_trackb/nine65_extracted/nine65_v2_complete/src/ops/homomorphic.rs:179:    /// NOTE: We use "one low, one high" parallelism:
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:8:Batch 0001: ACHIEVEMENT_COMPLETION_SUMMARY.md, ACTUAL_PERFORMANCE_BENCHMARKS.md, ADMIN_ENABLE_RAPTOR.md, advanced_ai_capabilities_system.py, AGENT3_ADVANCED_TRAINING_REPORT.md, agent3_implementations/adversarial.rs, AGENT4_IMPLEMENTATION_REPORT.md, AGENT4_SERIALIZATION_BACKUP.rs, AGENT_PROMPT_TEMPLATE.md, AGENT_VALIDATION_CRITERIA.md
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:82:| `hcvlang/src/adaptive_crt_bigint.rs` | Adaptive CRT bigint core. | No benchmarks. | Integer-only; integration points TODOs; no floats. | Complete integration points/tests; ensure single canonical copy. |
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:223:Batch 0131: crates/qmnf-optimization/Cargo.toml, crates/qmnf-orchestration/Cargo.toml, crates/qmnf-polynomial/Cargo.toml, crates/qmnf-primitives/Cargo.toml, CRITICAL_BOOTSTRAP_ACTIVATION_TASK.md, CRITICAL_NEXT_STEPS_TODO.md, CRITICAL_STABILIZATION_PLAN.md, CRT_CONVERSION_FIX_REPORT.md, CRTBIGINT_ANALYSIS_AND_EXTREME_TESTS.md, CRTBIGINT_TEST_INVESTIGATION_2025-12-01.md
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:259:Batch 0167: DEEP_SYSTEM_AUDIT.md, DEFENSIVE_PUBLICATION_PLAN.md, demo_escape_learning.py, demo_hive.py, DEMO_SUMMARY_REPORT.md, dependency_analysis.json, DEPENDENCY_ANALYSIS_INDEX.md, dependency_graph.json, DEPENDENCY_GRAPH.txt, DESIGN_NOTE.md
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:433:Batch 0341: FFI_INTEGRATION_COMPLETE.md, FFI_INTEGRATION_TODO.md, FFI_LAYER_COMPLETENESS_REPORT.md, FFI_MODULE_FIX_SUMMARY.txt, FFI_MODULE_FUNCTION_FIX_REPORT.md, FFI_REFERENCE.md, FFI_RESNET_IMPLEMENTATION_SUMMARY.md, FFI_STRUCT_AUDIT_BEFORE_AFTER.md, FFI_STRUCT_AUDIT_SPREADSHEET.csv, FFI_STRUCT_AUDIT_SUMMARY.md
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:1121:Batch 1029: .claude/agents/qmnf-code-guardian.md, __pycache__/qmnf_boundary_fixed.cpython-313.pyc, archive/2025-11-pre-benchmarking/old_benchmarks/qmnf_benchmark_launcher.py, archive/2025-11-pre-benchmarking/old_benchmarks/qmnf_fast_benchmark.py, archive/2025-11-pre-benchmarking/old_benchmarks/qmnf_lightweight_benchmark.py, archive/2025-11-pre-benchmarking/old_benchmarks/quick_bench.py, archive/2025-11-pre-benchmarking/old_benchmarks/quick_integration_benchmark.py, archive/2025-11-pre-benchmarking/old_docs/QMNF_INTEGRATION_STATUS.md, archive/2025-11-pre-benchmarking/old_work_requests/QMNF_TODO_LIST.md, complete_integration_validation/qmfn_complete_integration_validation_20251117_171442.json
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:1308:Batch 1216: target/release/deps/syn-e730c6acb84cdd24.d, target/release/deps/syn-e84fa038a0a16ffb.d, target/release/deps/syn-fb42925921641e85.d, target/release/deps/sync_wrapper-eecb917fc58b8073.d, target/release/deps/synstructure-44d2402cf4dc2424.d, tools/session_capture.py, tools/session_restore.py, tools/sort_docs.py, archive/2025-11-pre-benchmarking/old_summaries/TODO_STATUS_UPDATE.md, archive/2025-11-pre-benchmarking/old_tests/test_adaptive_v1_ffi.py
+/home/acid/Projects/daily_planet/06_ANALYSIS/gap_analysis/team_b/audit_package/ITERATIVE_AUDIT.md:1349:Batch 1257: tests/python/test_tensor_chunk_cache.py, tests/python/test_time_crystal_ffi.py, tests/test_arithmetic_integration.py, tests/test_harmonic_fractal_integration.py, TODO_LIST.md, tools/test_basic_operations.py, tools/test_tensor_cache_with_llm.py, TOOLS_README.md, TROUBLESHOOTING_PLAYBOOK.md, cryptographic_systems/03_BFV_Montgomery_FHE/fhe_implementation/ultra_optimized_bfv_montgomery.py
+
+## Ops/Perf (sample)
+/home/acid/Projects/cleargate (copy 1).rs:76:    compute     Perform computation on encrypted data
+/home/acid/Projects/VALUATION_INTEGRATION_GUIDE (1) (copy 1).md:58:### 1. `ops/rns_fhe.rs` - Rescale checks
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:45:| **Zero Latency** | No CPU round-trip - compute where data lives |
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:55:- Basic arithmetic ops (add/sub/mul)
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:111:Zero latency (compute in RAM) →    von Neumann (data to CPU)
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:131:**Benchmarks proved it**: SIMD added overhead because we're forcing the wrong paradigm.
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:302:3. Benchmark O(1) resonance vs O(N) scan
+/home/acid/Projects/EPRAM_RESIDUE_ORCHESTRATOR_SYNTHESIS.md:389:### Performance Summary
+/home/acid/Projects/EPRAM_RESIDUE_ORCHESTRATOR_SYNTHESIS.md:425:- [ ] Deploy trained model that lives permanently in residue space
+/home/acid/Projects/ntt_avx512.rs:18://! # Performance
+/home/acid/Projects/ntt_avx512.rs:501:    fn test_avx512_benchmark_comparison() {
+/home/acid/Projects/shadow_entropy_cell (1).rs:520:    // Performance test
+/home/acid/Projects/shadow_entropy_cell (1).rs:523:    fn test_shadow_entropy_performance() {
+/home/acid/Projects/AHOP_SECURITY_AUDIT (1).md:362:The AHOP module provides mathematically correct finite-field quantum simulation with zero decoherence. The implementation is secure for its intended purpose with minor timing side-channel considerations for deployment in adversarial environments.
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:117:### Task P5-G03: Comprehensive Benchmarks
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:121:**Output:** Expanded Section 5 with benchmark tables
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:124:1. Create benchmark harness using criterion
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:130:// Benchmark harness (add to fpd_complete/benches/)
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:132:    let mut group = c.benchmark_group("crt_scaling");
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:136:        // Benchmark add, mul, reconstruct
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:214:1. **Parallel Performance:** CRTBigInt is the only library with 
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:394:| Phase 2 | Benchmarks, security, comparisons | docx sections + data |
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:406:- [ ] Benchmark data from actual runs
+/home/acid/Projects/CRTBIGINT_EXECUTION_PLAN.md:423:| Benchmark tables | 2 | 6 |
+/home/acid/Projects/EXECUTION_SUMMARY.md:25:| T-011 | Constant-Time Ops | ✅ Complete | constant_time.rs | 496 | 15 |
+/home/acid/Projects/EXECUTION_SUMMARY.md:28:| T-014 | Benchmarks | ✅ Complete | division_benchmarks.rs | 300 | N/A |
+/home/acid/Projects/EXECUTION_SUMMARY.md:53:│   └── division_benchmarks.rs          # Criterion benchmarks
+/home/acid/Projects/EXECUTION_SUMMARY.md:95:## Performance Targets
+/home/acid/Projects/EXECUTION_SUMMARY.md:116:- [x] Benchmark suite ready
+/home/acid/Projects/EXECUTION_SUMMARY.md:137:4. **Benchmarking**: Run full criterion suite once Rust available
+/home/acid/Projects/QMNF_SCORECARD.md:8:| Innovation | Status | Verification | Performance | Priority |
+/home/acid/Projects/QMNF_SCORECARD.md:13:| Binary GCD | ✅ IMPLEMENTED | Comparison benchmarks | 2.16× faster | — |
+/home/acid/Projects/QMNF_SCORECARD.md:22:| AHOP Reflection Ops | ✅ VERIFIED | Proptest 1000+ | Quadric preservation | — |
+/home/acid/Projects/QMNF_SCORECARD.md:84:5. **FHE Variant Benchmarks**
+/home/acid/Projects/QMNF_SCORECARD.md:107:## Performance Benchmarks (Validated)
+/home/acid/Projects/QMNF_SCORECARD.md:111:| CRT full cycle | 419ns | 2.4M ops/sec | Competitive with GMP |
+/home/acid/Projects/QMNF_SCORECARD.md:114:| Montgomery chain (1000 ops) | — | — | 1.5× from conversion elimination |
+/home/acid/Projects/QMNF_SCORECARD.md:124:| FRST Neural Networks | ⚠️ NEAR | NeurIPS | Comprehensive benchmarks |
+/home/acid/Projects/evolution.rs:4://! - Self-analyze performance bottlenecks
+/home/acid/Projects/evolution.rs:255:            // Pattern 3: High latency → try parallelization
+/home/acid/Projects/evolution.rs:257:                name: "high_latency".to_string(),
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:31:1  | ops/encrypt.rs:59           | DIVISION       | N per decrypt| YES     | ❌ NONE (GAP)
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:32:2  | ops/encrypt.rs:83-86        | DIVISION x2    | N per decode | YES     | ❌ NONE (GAP)
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:33:3  | ops/encrypt.rs:108-110      | DIVISION       | N per decode | YES     | ❌ NONE (GAP)
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:34:4  | ops/homomorphic.rs:844      | DIVISION       | N per test   | NO      | ❌ NONE
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:35:5  | ops/homomorphic.rs:863      | DIVISION       | N per test   | NO      | ❌ NONE
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:36:6  | ops/rns_mul.rs:112          | DIVISION       | N per mul    | YES     | ❌ NONE (GAP)
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:37:7  | ops/homomorphic.rs:~380     | DIVISION       | N per mul    | YES     | ✅ K-Elimination
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:38:8  | ops/neural.rs:122           | DIVISION       | N per layer  | MEDIUM  | ✅ Padé-integrated
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:40:10 | ops/encrypt.rs:45           | MODULAR MUL    | N per encode | YES     | ⚠️ Partial
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:41:11 | ops/encrypt.rs:98           | MODULAR MUL    | N per encode | YES     | ⚠️ Partial
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:42:12 | ops/homomorphic.rs:422      | MODULAR POW    | K levels     | YES     | ⚠️ Partial
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:51:**Location:** `ops/encrypt.rs` line 59
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:62:**Location:** `ops/encrypt.rs` lines 83-86
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:74:**Location:** `ops/encrypt.rs` lines 108-110
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:85:**Location:** `ops/rns_mul.rs` line 112
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:142:| T-009 | All | Performance regression tests | 1 hr |
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:190:fn test_decode_ke_performance() {
+/home/acid/Projects/GAP_ANALYSIS_EXECUTION.md:254:5. **Run benchmarks:** Quantify speedup
+/home/acid/Projects/T-001_harvey_butterfly.rs:19://!   - Butterfly benchmark < 25ns (currently ~45ns)
+/home/acid/Projects/T-001_harvey_butterfly.rs:163:    fn test_harvey_butterfly_benchmark() {
+/home/acid/Projects/CHECKLIST (4).md:49:| T-002 | Binary GCD | Binary GCD (Stein) | — | [ ] | 0/5 | PERF |
+/home/acid/Projects/CHECKLIST (4).md:56:| T-005 | Extended Binary GCD | Binary GCD | — | [ ] | 0/4 | PERF |
+/home/acid/Projects/CHECKLIST (4).md:57:| T-006 | Fast Path Division | Montgomery + Barrett | — | [ ] | 0/3 | PERF |
+/home/acid/Projects/CHECKLIST (4).md:73:| T-014 | Benchmarks & Docs | — | — | [ ] | 0/N | DOC |
+/home/acid/Projects/CHECKLIST (4).md:138:- T-014: Benchmarks (needs all)
+/home/acid/Projects/CHECKLIST (4).md:202:   - Tests: 5 unit tests + 2 benchmarks
+/home/acid/Projects/CHECKLIST (4).md:203:   - Gate: PERFORMANCE (2× faster than Euclidean)
+/home/acid/Projects/CHECKLIST (4).md:213:## PERFORMANCE TARGETS
+/home/acid/Projects/CHECKLIST (4).md:217:| T-002 | GCD latency | <100ns | ~200ns (Euclidean) |
+/home/acid/Projects/CHECKLIST (4).md:218:| T-005 | Inverse latency | <100ns | ~200ns |
+/home/acid/Projects/CHECKLIST (4).md:242:- [ ] All benchmarks meet targets
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:3:This report details the analysis of the Full Homomorphic Encryption (FHE) implementation within the `nine65_v2_complete` project. The analysis covers the level of completion, authenticity, and a thorough benchmarking of its core cryptographic operations.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:9:The project utilizes the `Criterion.rs` benchmarking framework to measure the performance of its cryptographic operations, providing statistical insights into execution times and variability.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:13:Based on the code structure and the successful execution of benchmarks (implying correctness), the FHE implementation in `nine65_v2_complete` demonstrates a **high level of authenticity and completion**.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:16:*   **Completion:** The successful completion of a wide range of benchmarks for these operations, across different parameter sets (e.g., `light_N1024`, `he_standard_N2048`), suggests that the core FHE functionalities are implemented and appear to be working correctly. This is a significant improvement over the `QMNF_System`'s previous FHE module, which failed basic correctness tests.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:18:## 3. Benchmark Setup
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:20:The benchmarks were conducted using `Criterion.rs`, a statistics-driven benchmarking library for Rust. The following FHE-related operations were benchmarked:
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:27:*   **Number Theoretic Transform (`ntt`):** Benchmarks the forward and inverse NTT operations, which are fundamental to polynomial multiplication in lattice-based FHE.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:28:*   **Entropy (`entropy`):** Benchmarks the `ShadowHarvester` for generating secure random numbers (noise).
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:30:Each operation was benchmarked for different polynomial degrees (N) and security levels (e.g., `light_N1024` for N=1024, `he_standard_N2048` for N=2048).
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:32:## 4. Detailed Benchmark Results
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:34:Below is a summary of the key performance metrics extracted from the `Criterion.rs` HTML reports. All times are mean execution times.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:38:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:47:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:56:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:65:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:73:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:81:NTT is a critical component for efficient polynomial multiplication in FHE. Benchmarks were run for various polynomial degrees (N).
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:85:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:92:*   **Observation:** The NTT forward transform shows a clear scaling with `N`. The performance appears to be efficient, with times in microseconds.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:96:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:107:| Benchmark | Estimate (Mean) |
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:111:*   **Observation:** The `ShadowHarvester` for secure ternary noise generation is extremely fast, operating in microseconds. This is crucial for efficient FHE operations, as noise sampling is performed frequently.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:115:The `nine65_v2_complete` project presents a **functional and well-benchmarked FHE implementation**. The previous issues related to noise management and correctness, observed in the `QMNF_System`'s `hcvlang` crate, appear to be resolved in this version.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:117:*   **Correctness:** The successful execution of benchmarks implies that the FHE operations (keygen, encrypt, decrypt, add, mul) are working as intended, producing correct results within acceptable noise bounds.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:118:*   **Performance:** The benchmarks demonstrate reasonable performance for a lattice-based FHE scheme, with operations scaling as expected with the polynomial degree `N`. The core arithmetic (NTT) and entropy generation are highly optimized.
+/home/acid/Projects/Comprehensive FHE Analysis Report_ NINE65 v2 Complete(1).md:121:This `nine65_v2_complete` project represents a significant advancement in the FHE capabilities within the NINE65 ecosystem, providing a solid foundation for building privacy-preserving applications. The detailed `Criterion.rs` reports offer valuable insights into the performance characteristics of each component, which can guide further optimization efforts. The availability of these benchmarks confirms a robust and mature FHE implementation. 
+/home/acid/Projects/paper5-crtbigint.md:101:## Performance Benchmarks
+/home/acid/Projects/epramstuff (copy 1).md:224:| benchmarks.rs | 3 |
+/home/acid/Projects/binary_gcd (copy 1).rs:13://! Performance:
+/home/acid/Projects/binary_gcd (copy 1).rs:29:/// # Performance
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:100:| Parallel Ops | `mana/parallel.rs` | ✅ WIRED | All pass |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:108:| BFV Encoder | `ops/encode.rs` | ✅ WIRED | All pass |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:109:| BFV Encryptor | `ops/encrypt.rs` | ✅ WIRED | All pass |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:110:| BFV Decryptor | `ops/decrypt.rs` | ✅ WIRED | All pass |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:111:| Homomorphic Ops | `ops/homomorphic.rs` | ✅ WIRED | All pass |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:112:| Neural Evaluator | `ops/neural.rs` | ✅ WIRED | All pass |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:125:| persistent_montgomery.rs | 1 | Benchmark only | ✅ SAFE |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:126:| binary_gcd.rs | 1 | Benchmark only | ✅ SAFE |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:140:- Benchmark timing calculations (acceptable)
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:156:**VERDICT: All fallbacks are performance-only, not correctness-affecting.**
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:166:| 3 | Bootstrap-Free FHE | Static parameters | `ops/homomorphic.rs` | ✅ |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:169:| 6 | Real-Time FHE | Sub-5ms ops | `ntt_fft.rs` + stack | ✅ |
+/home/acid/Projects/WIRING_AUDIT_COMPLETE.md:232:| Gen 9 (FHE Ops) | 6 | 6 | ✅ MATCH |
+/home/acid/Projects/GRAIL_REGISTRY (1) (copy 1).md:73:║  ├─ Performance gain: 2.3× aggregate speedup over baseline                  ║
+/home/acid/Projects/GRAIL_REGISTRY (1) (copy 1).md:112:| 17 | RAMA Memory | 2025 | Neural | Perfect-recall |
+/home/acid/Projects/novel_paradigms_exploration.py:190:- But perfect for magnitude-dominated operations
+/home/acid/Projects/novel_paradigms_exploration.py:552:# Perform division
+/home/acid/Projects/novel_paradigms_exploration.py:780:- Perfect for FHE rescaling by small constants
+/home/acid/Projects/montgomery_cell (copy 1).rs:15:use std::ops::{Add, Mul, Sub};
+/home/acid/Projects/montgomery_cell (copy 1).rs:550:    // Performance test (run with --release)
+/home/acid/Projects/montgomery_cell (copy 1).rs:553:    fn test_montgomery_performance() {
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:11:The QMNF FHE Hat is a scheme-agnostic innovation layer that drops onto any lattice-based FHE implementation (BFV, BGV, CKKS, TFHE) to provide:
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:15:3. **Complete Documentation Templates** - Session reports, trouble logs, benchmarks
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:75:**Benchmark:** 4ns/mul, 250M ops/sec
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:126:**Benchmark:** 5-10× faster than CSPRNG
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:169:**Benchmark:** 419ns for operations taking microseconds sequentially
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:197:**Benchmark:** 42× speedup over schoolbook multiplication
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:210:| Big int ops | Sequential | CRTBigInt parallel | k× speedup |
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:291:✓ Run benchmarks → What are actual numbers?
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:404:| [B] Benchmark | ⚠️ | Add methodology, hardware recording |
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:416:| MEDIUM | 5 | Benchmark, UNHAL, properties, coverage |
+/home/acid/Projects/fhe-revolution-bundle/FHE_HAT_COMPLETE.md:433:│   ├── BENCHMARK_REPORT.md          # Statistical benchmarks
+/home/acid/Projects/gso_swarm (1) (copy 1).rs:20:use std::ops::{Add, Mul};
+/home/acid/Projects/gso_swarm (1) (copy 1).rs:261:    /// Perform basin collapse - reconverge swarm to bound noise.
+/home/acid/Projects/validation_quick_reference.md:285:- [ ] Modular arithmetic working (test with QMNF benchmarks)
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:131:**Test performed:**
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:149:**Test performed:**
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:167:**Test performed:**
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:393:| | | | [link to benchmark] |
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:453:## Benchmark Results
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:497:| benchmark_raw.csv | Raw timing data | |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:153:   ├── 6.3 High-Performance Computing
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:167:D. Benchmark Data
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:371:**Validation:** Production benchmarks (4ns/mul, 250M ops/sec)
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:419:6. Performance Analysis
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:421:   ├── 6.2 FHE Operation Benchmarks
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:437:B. Benchmark Data
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:482:| P2-T06 | Write Performance Analysis | perf.md | 2h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:485:| P2-T09 | Generate benchmarks | benchmarks.md | 2h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:544:6. Performance
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:545:   ├── 6.1 Latency Comparison
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:613:| P3-T06 | Write Performance | perf.md | 2h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:642:├── Result: Bootstrap-free FHE with real-time performance
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:682:7. Performance Evaluation
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:683:   ├── 7.1 Benchmark Methodology
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:700:B. Benchmark Data
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:746:| P4-T07 | Write Performance Evaluation | perf.md | 3h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:756:### High-Performance Parallel Integer Arithmetic
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:759:**Validation:** 2.4M ops/sec, 8.4× faster than GMP
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:760:**Focus:** Implementation and performance paper
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:773:├── Results: 419ns operations, 2.4M ops/sec
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:808:6. Performance Evaluation
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:809:   ├── 6.1 Benchmark Methodology
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:827:B. Benchmark Data
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:836:PERFORMANCE METRICS:
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:838:| Operation        | Latency | Throughput   | Parallel Speedup |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:840:| Addition         | 419 ns  | 2.4M ops/sec | 2.65× (4 cores)  |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:841:| Multiplication   | 419 ns  | 2.4M ops/sec | 2.62× (4 cores)  |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:842:| From Integer     | 156 ns  | 6.4M ops/sec | N/A              |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:843:| Reconstruction   | 850 ns  | 1.2M ops/sec | O(k²)            |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:870:| P5-T04 | Write Operations section | ops.md | 3h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:872:| P5-T06 | Write Performance Evaluation | perf.md | 3h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:875:| P5-T09 | Generate benchmark appendix | benchmarks.md | 2h |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:933:   └── 5.4 Performance
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:954:   └── 9.4 Performance Benchmarks
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:979:D. Performance Data
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:991:| Primitive | Construction | Security | Performance |
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:1079:└── Gate: Benchmarks reproduced
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:1118:□ Benchmarks documented
+/home/acid/Projects/TECHNICAL_PAPERS_EXECUTION_PLAN (2).md:1132:□ Performance numbers aligned
+/home/acid/Projects/cleargate_design.md:325:│   ├── ops.rs              # Operator overloads
+/home/acid/Projects/cleargate_design.md:357:       You've performed ~47 multiplications, but your context
+/home/acid/Projects/cleargate_design.md:364:       3. Use .refresh() to reset noise (adds latency)
+/home/acid/Projects/cleargate_design.md:369:## PERFORMANCE PROMISES
+/home/acid/Projects/cleargate_design.md:372:// User-visible benchmarks (what we advertise)
+/home/acid/Projects/cleargate_design.md:375:/// Performance characteristics for SecureInt operations
+/home/acid/Projects/cleargate_design.md:377:/// | Operation      | Latency    | Notes                    |
+/home/acid/Projects/cleargate_design.md:393:1. **Phase 1**: Core API in Rust (SecureInt, basic ops)
+/home/acid/Projects/formal_proofs.tex:275:    \item Perfect coherence: $C_{\text{int}} = 1 \iff x_i = \mu$ for all $i$
+/home/acid/Projects/impl (5).rs:449:    fn test_benchmark_fused_1024() {
+/home/acid/Projects/GRANDMASTER_GAP_ANALYSIS (copy 1).md:297:18. [ ] Deploy and validate
+/home/acid/Projects/GRANDMASTER_GAP_ANALYSIS (copy 1).md:358:Layer 1 (MANA/UNHAL):            ██████████████████░░  90%  (All ops, no EPRAM wrapper)
+/home/acid/Projects/GRANDMASTER_GAP_ANALYSIS (copy 1).md:360:Layer 3 (Cyclotomic Ops):        ████████████████████ 100%  (All ops working)
+/home/acid/Projects/GRANDMASTER_GAP_ANALYSIS (copy 1).md:378:4. **Wrap Persistent Montgomery as EPRAMCell** - 27ns ops need EPRAM semantics
+/home/acid/Projects/scaling.rs:19:/// Guard state for monitoring bound safety
+/home/acid/Projects/scaling.rs:28:    /// Number of scale operations performed
+/home/acid/Projects/scaling.rs:129:    /// Guard for monitoring
+/home/acid/Projects/crates_nine65_arithmetic_valuation (1).rs:484:        /// Current level (number of rescales performed)
+
+## Tests/Validation (sample)
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:125:#[cfg(test)]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:126:mod tests {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:129:    #[test]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:130:    fn test_binary_gcd_basic() {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:136:    #[test]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:137:    fn test_binary_gcd_edge_cases() {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:145:    #[test]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:146:    fn test_binary_gcd_coprime() {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:152:    #[test]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:153:    fn test_binary_gcd_power_of_two() {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:159:    #[test]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:160:    fn test_binary_gcd_matches_euclidean() {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:172:    #[test]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:173:    fn test_binary_gcd_bigint() {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:183:    // Benchmarks (run with: cargo bench)
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:184:    // #[bench]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:185:    // fn bench_binary_gcd(bencher: &mut Bencher) {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:188:    //     bencher.iter(|| binary_gcd(a, b));
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:192:    // #[bench]
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:193:    // fn bench_euclidean_gcd(bencher: &mut Bencher) {
+/home/acid/Projects/T-002_binary_gcd (copy 1).rs:196:    //     bencher.iter(|| euclidean_gcd(a, b));
+/home/acid/Projects/BENCHMARK_REPORT (5).md:1:# NINE65 MANA Benchmark Report
+/home/acid/Projects/BENCHMARK_REPORT (5).md:52:## Innovation-Specific Benchmarks
+/home/acid/Projects/BENCHMARK_REPORT (5).md:110:## Test Coverage Summary
+/home/acid/Projects/BENCHMARK_REPORT (5).md:112:| Crate | Tests Passed | Tests Ignored |
+/home/acid/Projects/BENCHMARK_REPORT (5).md:119:All 8 ignored tests are in experimental Grover simulation (grover_full.rs).
+/home/acid/Projects/BENCHMARK_REPORT (5).md:127:| All core tests pass | ✅ |
+/home/acid/Projects/BENCHMARK_REPORT (5).md:155:*Benchmark methodology: Each timing averaged over 100+ iterations with warmup.*
+/home/acid/Projects/constant_time.rs:120:    /// Get entropy counter (for auditing)
+/home/acid/Projects/constant_time.rs:321:#[cfg(test)]
+/home/acid/Projects/constant_time.rs:322:mod tests {
+/home/acid/Projects/constant_time.rs:325:    #[test]
+/home/acid/Projects/constant_time.rs:326:    fn test_shadow_entropy_basic() {
+/home/acid/Projects/constant_time.rs:337:    #[test]
+/home/acid/Projects/constant_time.rs:338:    fn test_shadow_entropy_deterministic() {
+/home/acid/Projects/constant_time.rs:347:    #[test]
+/home/acid/Projects/constant_time.rs:348:    fn test_shadow_entropy_sample_nonzero() {
+/home/acid/Projects/constant_time.rs:359:    #[test]
+/home/acid/Projects/constant_time.rs:360:    fn test_shadow_entropy_sample_coprime() {
+/home/acid/Projects/constant_time.rs:376:    #[test]
+/home/acid/Projects/constant_time.rs:377:    fn test_find_coprime_anchor_ct() {
+/home/acid/Projects/constant_time.rs:388:    #[test]
+/home/acid/Projects/constant_time.rs:389:    fn test_find_coprime_anchor_ct_matches_normal() {
+/home/acid/Projects/constant_time.rs:406:    #[test]
+/home/acid/Projects/constant_time.rs:407:    fn test_ct_eq() {
+/home/acid/Projects/constant_time.rs:413:    #[test]
+/home/acid/Projects/constant_time.rs:414:    fn test_mod_div_blinded() {
+/home/acid/Projects/constant_time.rs:439:    #[test]
+/home/acid/Projects/constant_time.rs:440:    fn test_mod_inverse_blinded() {
+/home/acid/Projects/constant_time.rs:453:    #[test]
+/home/acid/Projects/constant_time.rs:454:    fn test_ct_mod_u64() {
+/home/acid/Projects/constant_time.rs:461:    #[test]
+/home/acid/Projects/constant_time.rs:462:    fn test_mod_div_timing_safe() {
+/home/acid/Projects/constant_time.rs:487:    #[test]
+/home/acid/Projects/constant_time.rs:488:    fn test_ct_select() {
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:5:**Test Environment**: 7GB RAM, CPU-only inference
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:23:## Test Results
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:25:### Test Case: Code Generation
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:73:- ✅ Input validation (negative number check)
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:175:    └─ Simple queries → llama3.2 (fastest)
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:184:Based on the factorial test and system design:
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:316:| Generate 100 test responses | $0.50-$5.00 | $0.00 |
+/home/acid/Projects/ChunkedModelDelegation/DELEGATION_ANALYSIS.md:423:3. **Test Slash Commands**:
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:1:# MANA Architecture Audit: Vision vs Implementation
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:49:## Current Implementation Audit
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:131:**Benchmarks proved it**: SIMD added overhead because we're forcing the wrong paradigm.
+/home/acid/Projects/MANA_ARCHITECTURE_AUDIT (copy 1).md:302:3. Benchmark O(1) resonance vs O(N) scan
+/home/acid/Projects/ntt_avx512.rs:52:/// Uses the fastest available path based on CPU features:
+/home/acid/Projects/ntt_avx512.rs:82:    /// for testing the SIMD path.
+/home/acid/Projects/ntt_avx512.rs:113:    /// NOTE: The AVX-512 SIMD path is currently disabled pending correctness validation.
+/home/acid/Projects/ntt_avx512.rs:115:    /// Enable with `avx512_experimental` cfg flag for testing.
+/home/acid/Projects/ntt_avx512.rs:119:        // AVX-512 path disabled pending correctness validation
+/home/acid/Projects/ntt_avx512.rs:139:        // AVX-512 path disabled pending correctness validation
+/home/acid/Projects/ntt_avx512.rs:427:// Tests
+/home/acid/Projects/ntt_avx512.rs:430:#[cfg(test)]
+/home/acid/Projects/ntt_avx512.rs:431:mod tests {
+/home/acid/Projects/ntt_avx512.rs:434:    const TEST_Q: u64 = 998244353;
+/home/acid/Projects/ntt_avx512.rs:435:    const TEST_N: usize = 1024;
+/home/acid/Projects/ntt_avx512.rs:437:    #[test]
+/home/acid/Projects/ntt_avx512.rs:438:    fn test_avx512_ntt_correctness() {
+/home/acid/Projects/ntt_avx512.rs:439:        let engine = NTTEngineAVX512::new(TEST_Q, TEST_N);
+/home/acid/Projects/ntt_avx512.rs:443:        // Create test data
+/home/acid/Projects/ntt_avx512.rs:444:        let mut data: Vec<u64> = (0..TEST_N as u64).collect();
+/home/acid/Projects/ntt_avx512.rs:460:    #[test]
+/home/acid/Projects/ntt_avx512.rs:461:    fn test_avx512_vs_scalar_consistency() {
+/home/acid/Projects/ntt_avx512.rs:462:        let avx512_engine = NTTEngineAVX512::new(TEST_Q, TEST_N);
+/home/acid/Projects/ntt_avx512.rs:463:        let scalar_engine = super::super::ntt_fft::NTTEngineFFT::new(TEST_Q, TEST_N);
+/home/acid/Projects/ntt_avx512.rs:465:        let mut data_avx: Vec<u64> = (0..TEST_N as u64).map(|x| x % TEST_Q).collect();
+/home/acid/Projects/ntt_avx512.rs:482:    #[test]
+/home/acid/Projects/ntt_avx512.rs:483:    fn test_avx512_multiply() {
+/home/acid/Projects/ntt_avx512.rs:484:        let engine = NTTEngineAVX512::new(TEST_Q, TEST_N);
+/home/acid/Projects/ntt_avx512.rs:486:        let a: Vec<u64> = (0..TEST_N as u64).map(|x| x % 1000).collect();
+/home/acid/Projects/ntt_avx512.rs:487:        let b: Vec<u64> = (0..TEST_N as u64).map(|x| (x * 2) % 1000).collect();
+/home/acid/Projects/ntt_avx512.rs:492:        assert_eq!(result.len(), TEST_N);
+/home/acid/Projects/ntt_avx512.rs:496:            assert!(x < TEST_Q, "Result should be reduced mod q");
+/home/acid/Projects/ntt_avx512.rs:500:    #[test]
+/home/acid/Projects/ntt_avx512.rs:501:    fn test_avx512_benchmark_comparison() {
+/home/acid/Projects/ntt_avx512.rs:504:        let avx512_engine = NTTEngineAVX512::new(TEST_Q, TEST_N);
+/home/acid/Projects/ntt_avx512.rs:506:        let mut data: Vec<u64> = (0..TEST_N as u64).collect();
+/home/acid/Projects/division_approaches (1) (copy 1).rs:490:// BENCHMARKS AND COMPARISONS
+/home/acid/Projects/division_approaches (1) (copy 1).rs:493:fn benchmark_division_approaches() {
+/home/acid/Projects/division_approaches (1) (copy 1).rs:495:    println!("     DIVISION IN REMAINDER FORM: COMPARATIVE BENCHMARKS");
+/home/acid/Projects/division_approaches (1) (copy 1).rs:498:    // Test parameters
+/home/acid/Projects/division_approaches (1) (copy 1).rs:516:    println!("Test Value: {}", value);
+/home/acid/Projects/division_approaches (1) (copy 1).rs:665:    benchmark_division_approaches();
+/home/acid/Projects/division_approaches (1) (copy 1).rs:687:#[cfg(test)]
+/home/acid/Projects/division_approaches (1) (copy 1).rs:688:mod tests {
+/home/acid/Projects/division_approaches (1) (copy 1).rs:691:    #[test]
+/home/acid/Projects/division_approaches (1) (copy 1).rs:692:    fn test_coprime_division() {
+/home/acid/Projects/division_approaches (1) (copy 1).rs:711:    #[test]
+/home/acid/Projects/division_approaches (1) (copy 1).rs:712:    fn test_mrc_division() {
+/home/acid/Projects/division_approaches (1) (copy 1).rs:727:    #[test]
+/home/acid/Projects/division_approaches (1) (copy 1).rs:728:    fn test_k_elimination() {
+/home/acid/Projects/division_approaches (1) (copy 1).rs:739:        // Test division
+/home/acid/Projects/division_approaches (1) (copy 1).rs:746:    #[test]
+/home/acid/Projects/division_approaches (1) (copy 1).rs:747:    fn test_quotient_signature_comparison() {
+/home/acid/Projects/piggyback.rs:43:    // Input validation
+/home/acid/Projects/piggyback.rs:99:    // Input validation
+/home/acid/Projects/piggyback.rs:149:    // Input validation
+/home/acid/Projects/piggyback.rs:211:#[cfg(test)]
+/home/acid/Projects/piggyback.rs:212:mod tests {
+/home/acid/Projects/piggyback.rs:215:    #[test]
+/home/acid/Projects/piggyback.rs:216:    fn test_piggyback_uses_fast_path_when_possible() {
+/home/acid/Projects/piggyback.rs:231:    #[test]
+/home/acid/Projects/piggyback.rs:232:    fn test_piggyback_composite_modulus() {
+/home/acid/Projects/piggyback.rs:250:    #[test]
+/home/acid/Projects/piggyback.rs:251:    fn test_piggyback_provenance_preserved() {
+/home/acid/Projects/piggyback.rs:268:    #[test]
+/home/acid/Projects/piggyback.rs:269:    fn test_piggyback_verifies_in_anchor_ring() {
+/home/acid/Projects/piggyback.rs:286:    #[test]
+/home/acid/Projects/piggyback.rs:287:    fn test_piggyback_division_by_zero() {
+/home/acid/Projects/piggyback.rs:300:    #[test]
+/home/acid/Projects/piggyback.rs:301:    fn test_piggyback_invalid_modulus() {
+/home/acid/Projects/piggyback.rs:314:    #[test]
+/home/acid/Projects/piggyback.rs:315:    fn test_piggyback_multi() {
+/home/acid/Projects/piggyback.rs:345:    #[test]
+/home/acid/Projects/piggyback.rs:346:    fn test_piggyback_bi() {
+/home/acid/Projects/piggyback.rs:365:    #[test]
+/home/acid/Projects/piggyback.rs:366:    fn test_try_piggyback() {
+/home/acid/Projects/epramstuff.md:20:**Overall Assessment**: Bundle is now **ready to compile** after fixing import path errors. Code is well-structured with good test coverage (139 tests).
+/home/acid/Projects/epramstuff.md:137:**Locations**: Mostly in tests, but some in production code:
+/home/acid/Projects/epramstuff.md:148:### GAP-008: Test Assertions with `println!`
+/home/acid/Projects/epramstuff.md:150:**Count**: 15+ occurrences in test code
+/home/acid/Projects/epramstuff.md:160:**Severity**: 🟢 **LOW** - Only affects test output
+/home/acid/Projects/epramstuff.md:164:### GAP-009: Missing Integration Tests Between Modules
+/home/acid/Projects/epramstuff.md:166:**Problem**: No tests verify that permanent_residents work with orchestrator.
+/home/acid/Projects/epramstuff.md:168:**Missing test scenario**:
+/home/acid/Projects/epramstuff.md:170:#[test]
+/home/acid/Projects/epramstuff.md:171:fn test_orchestrator_with_montgomery_field() {
+/home/acid/Projects/epramstuff.md:177:**Severity**: 🟢 **LOW** - Individual modules tested, integration implicit
+/home/acid/Projects/epramstuff.md:205:### Test Coverage
+/home/acid/Projects/epramstuff.md:207:| File | Tests |
+/home/acid/Projects/epramstuff.md:221:| e2e_tests.rs | 5 |
+/home/acid/Projects/epramstuff.md:224:| benchmarks.rs | 3 |
+/home/acid/Projects/epramstuff.md:252:7. Remove test println!s
+/home/acid/Projects/epramstuff.md:253:8. Add cross-module integration tests
+/home/acid/Projects/epramstuff.md:281:- ✅ 139 tests
+/home/acid/Projects/evolution.rs:6://! - Test and validate improvements
+/home/acid/Projects/evolution.rs:12://! - Proposes and tests modifications
+/home/acid/Projects/evolution.rs:228:            // Pattern 2: High failure rate → add validation
+/home/acid/Projects/evolution.rs:239:                            param: "validation_level".to_string(),
+/home/acid/Projects/evolution.rs:247:                            current_code: "// no validation".to_string(),
+/home/acid/Projects/evolution.rs:316:// HYPOTHESIS TESTING
+/home/acid/Projects/evolution.rs:319:/// Result of testing a hypothesis
+/home/acid/Projects/evolution.rs:321:pub struct HypothesisTestResult {
+/home/acid/Projects/evolution.rs:331:/// Hypothesis tester using A/B comparison
+/home/acid/Projects/evolution.rs:332:pub struct HypothesisTester {
+/home/acid/Projects/evolution.rs:338:impl HypothesisTester {
+/home/acid/Projects/evolution.rs:347:    /// Test a hypothesis by comparing baseline vs optimized
+/home/acid/Projects/evolution.rs:348:    pub fn test<F, G>(
+/home/acid/Projects/evolution.rs:353:    ) -> HypothesisTestResult
+/home/acid/Projects/evolution.rs:381:        // t-test (simplified)
+/home/acid/Projects/evolution.rs:401:        HypothesisTestResult {
+/home/acid/Projects/evolution.rs:413:impl Default for HypothesisTester {
+/home/acid/Projects/evolution.rs:427:    tester: HypothesisTester,
+/home/acid/Projects/evolution.rs:446:            tester: HypothesisTester::new(),
+/home/acid/Projects/evolution.rs:464:        // Step 2: Test top hypotheses
+/home/acid/Projects/evolution.rs:465:        let mut test_results = Vec::new();
+/home/acid/Projects/evolution.rs:469:            let result = self.tester.test(
+/home/acid/Projects/evolution.rs:474:            test_results.push((hyp.clone(), result));
+/home/acid/Projects/evolution.rs:479:        for (hyp, result) in &test_results {
+/home/acid/Projects/evolution.rs:496:            hypotheses_tested: test_results.len(),
+/home/acid/Projects/evolution.rs:527:    pub hypotheses_tested: usize,
+/home/acid/Projects/evolution.rs:532:// Simulated random for testing
+/home/acid/Projects/evolution.rs:630:// TESTS
+/home/acid/Projects/evolution.rs:633:#[cfg(test)]
+/home/acid/Projects/evolution.rs:634:mod tests {
+/home/acid/Projects/evolution.rs:637:    #[test]
+/home/acid/Projects/evolution.rs:638:    fn test_self_observer() {
+/home/acid/Projects/evolution.rs:642:            operation: "test_op".to_string(),
+/home/acid/Projects/evolution.rs:658:        assert_eq!(observer.operation_stats["test_op"].count, 1);
+/home/acid/Projects/evolution.rs:661:    #[test]
+/home/acid/Projects/evolution.rs:662:    fn test_hypothesis_generation() {
+/home/acid/Projects/evolution.rs:690:    #[test]
+/home/acid/Projects/evolution.rs:691:    fn test_evolution_engine() {
+/home/acid/Projects/evolution.rs:720:    #[test]
+/home/acid/Projects/evolution.rs:721:    fn test_code_generation() {
+/home/acid/Projects/benchmarks.md:1:# QMNF Performance Benchmarks
+/home/acid/Projects/benchmarks.md:3:Validated performance metrics for all QMNF innovations. All benchmarks measured on AMD Ryzen 9 5950X unless otherwise noted.
+/home/acid/Projects/benchmarks.md:77:| Descartes quadric check | ~30ns | 33M ops/s | Validation |
+
+## Data Artifacts (sample)
+/home/acid/Projects/cleargate_design.md:181:cleargate encrypt-file data.csv --key keys.cgk --output data.cge
+/home/acid/Projects/cleargate_design.md:280:│  │  [Drag CSV/JSON here or click to upload]                           │   │
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:173:### Extended MYSTIC CSV Schema
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:175:```csv
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:337:unified_dataset = merge_multiscale_data(
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:342:# Output unified CSV
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:343:save_to_csv(unified_dataset, "unified_multiscale_training.csv")
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:377:| NOAA Buoys | `www.ndbc.noaa.gov/data/realtime2/` | 10-60 min | Oceans/Great Lakes |
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:379:| NOAA Geomagnetic | `services.swpc.noaa.gov/products/noaa-planetary-k-index.json` | 3 hours | Global |
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:408:- `data/texas_hill_country_usgs.csv` - 26,589 stream gauge readings
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:409:- `data/camp_mystic_2007_synthetic.csv` - 312-step flood event simulation
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:410:- **`data/unified_multiscale_training.csv`** - ⭐ 24-hour multi-scale dataset (21 fields)
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:411:- **`data/omniscient_data_summary.json`** - ⭐ Live data fetch summary
+/home/acid/Projects/QMNF_TOPS/MYSTIC_OMNISCIENT_INTEGRATION.md:455:- [x] Create unified CSV format
+/home/acid/Projects/QMNF_TOPS/mathematical_gap_analysis.md:36:**Gap**: Current JSON contains pre-computed lyapunov values but no algorithmic computation
+/home/acid/Projects/validation_quick_reference.md:171:data = pd.read_csv('battery01_depth_emergence.dat', sep=' ', comment='#')
+/home/acid/Projects/validation_quick_reference.md:185:    results[i] = pd.read_csv(f'battery{i:02d}_*.dat', 
+/home/acid/Projects/cleargate.rs:96:    cleargate encrypt-csv data.csv --key keys.cgk -o data.cge
+/home/acid/Projects/Cargo (10).toml:17:serde_json = "1.0"
+/home/acid/Projects/QMNF_TOPS/qmnf_system_summary.md:13:- Created JSON database with 5 distinct weather attractor basins
+/home/acid/Projects/fhe_communications_fork_plan.md:794:║  ├─ Key insight: FHE enables server features without seeing data/metadata   ║
+/home/acid/Projects/SKILL (1).md:472:| Dataset gravity | Following conventional patterns | Check QMNF paradigm |
+/home/acid/Projects/QMNF_TOPS/choaoswins:3730:mcp-examples.md	6 practical examples with JSON
+/home/acid/Projects/QMNF_TOPS/choaoswins:5904:The crate is in /mnt/user-data/outputs/impossible_solved/ with full source and the summary document. Ready to push toward the next target when you are.
+/home/acid/Projects/QMNF_TOPS/choaoswins:6080:The crate is validated with 6 passing tests and the demo runs correctly. All files are in /mnt/user-data/outputs/attractor_taxonomy/.
+/home/acid/Projects/fhe-revolution-bundle/RESOLUTION_PROTOCOL.md:497:| benchmark_raw.csv | Raw timing data | |
+/home/acid/Projects/fhe-revolution-bundle/templates/BENCHMARK_REPORT.md:229:├── benchmark_raw.csv      # All timing measurements
+/home/acid/Projects/fhe-revolution-bundle/templates/BENCHMARK_REPORT.md:230:├── benchmark_summary.json # Statistical summary
+/home/acid/Projects/fhe-revolution-bundle/templates/BENCHMARK_REPORT.md:231:├── histogram_data.csv     # Distribution data
+/home/acid/Projects/EXOTIC_ACQUISITION_EXECUTION_PLAN.md:174:```json
+/home/acid/Projects/EXOTIC_ACQUISITION_EXECUTION_PLAN.md:355:             ├─► Store as JSON lines (raw/)
+/home/acid/Projects/ChunkedModelDelegation/src/reference/codex_server.py:8:import json
+/home/acid/Projects/ChunkedModelDelegation/src/reference/codex_server.py:137:            request = json.loads(line.strip())
+/home/acid/Projects/ChunkedModelDelegation/src/reference/codex_server.py:139:            print(json.dumps(response))
+/home/acid/Projects/ChunkedModelDelegation/src/reference/codex_server.py:143:            print(json.dumps(error_response))
+/home/acid/Projects/fhe-revolution-bundle/GAP_ANALYSIS.md:436:- [ ] benchmark_raw.csv
+/home/acid/Projects/fhe-revolution-bundle/GAP_ANALYSIS.md:475:        ├── benchmark_raw.csv
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:8:import json
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:35:            "Content-Type": "application/json"
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:68:                json=payload,
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:73:                data = response.json()
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:177:            request = json.loads(line.strip())
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:179:            print(json.dumps(response))
+/home/acid/Projects/ChunkedModelDelegation/src/reference/qwen_server.py:183:            print(json.dumps(error_response))
+/home/acid/Projects/ChunkedModelDelegation/src/reference/gemini_server.py:8:import json
+/home/acid/Projects/ChunkedModelDelegation/src/reference/gemini_server.py:117:            benchmark_data: Benchmark results (text or JSON)
+/home/acid/Projects/ChunkedModelDelegation/src/reference/gemini_server.py:209:            request = json.loads(line.strip())
+/home/acid/Projects/ChunkedModelDelegation/src/reference/gemini_server.py:211:            print(json.dumps(response))
+/home/acid/Projects/ChunkedModelDelegation/src/reference/gemini_server.py:215:            print(json.dumps(error_response))
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:614:   - benchmark_raw.csv
+/home/acid/Projects/fhe-revolution-bundle/SKILL.md:653:        ├── benchmark_raw.csv
+/home/acid/Projects/QMNF_TOPS/QMNF_INNOVATIONS_VALIDATION_REPORT.md:49:- **Component**: `weather_attractor_basins.json`
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:7:import json
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:106:            request_json = json.dumps(request) + "\n"
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:107:            stdout, stderr = process.communicate(input=request_json, timeout=300)
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:111:                response = json.loads(stdout.strip())
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:209:        print(json.dumps(result, indent=2))
+/home/acid/Projects/ChunkedModelDelegation/src/reference/delegation_router.py:215:        print(json.dumps(result, indent=2))
+/home/acid/Projects/qmnf_validation_sprint7.py:20:import json
+/home/acid/Projects/qmnf_validation_sprint7.py:156:        with open('/mnt/user-data/outputs/bezout_lemmas.lean', 'w') as f:
+/home/acid/Projects/qmnf_validation_sprint7.py:291:        with open('/mnt/user-data/outputs/descartes_algebra.lean', 'w') as f:
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:8:- Add new modules: Edit modules.json
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:9:- Add new problems: Edit problems.json
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:10:- Add new files: Just drop .rs files, add entry to modules.json
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:28:import json
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:36:MODULES_JSON = QMNF_TOPS_PATH / "modules.json"
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:37:PROBLEMS_JSON = QMNF_TOPS_PATH / "problems.json"
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:41:    """Load modules from JSON file."""
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:42:    if MODULES_JSON.exists():
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:43:        with open(MODULES_JSON) as f:
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:44:            data = json.load(f)
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:50:    """Load problems from JSON file."""
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:51:    if PROBLEMS_JSON.exists():
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:52:        with open(PROBLEMS_JSON) as f:
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:53:            data = json.load(f)
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:59:    """Save modules to JSON file."""
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:61:    with open(MODULES_JSON, 'w') as f:
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:62:        json.dump(data, f, indent=2)
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:66:    """Save problems to JSON file."""
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:68:    with open(PROBLEMS_JSON, 'w') as f:
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:69:        json.dump(data, f, indent=2)
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:102:    """Read a JSON-RPC request from stdin."""
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:106:    return json.loads(line)
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:110:    """Write a JSON-RPC response to stdout."""
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:111:    sys.stdout.write(json.dumps(response) + "\n")
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:118:        "jsonrpc": "2.0",
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:318:        "jsonrpc": "2.0",
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:610:            "jsonrpc": "2.0",
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:618:            "jsonrpc": "2.0",
+/home/acid/Projects/QMNF_TOPS/mcp_server.py:645:                "jsonrpc": "2.0",
+/home/acid/Projects/ChunkedModelDelegation/tests/delegation_test.py:9:import json
+/home/acid/Projects/ChunkedModelDelegation/tests/delegation_test.py:240:        output_file = Path(__file__).parent / "delegation_results.json"
+/home/acid/Projects/ChunkedModelDelegation/tests/delegation_test.py:242:            json.dump(self.results, f, indent=2)
+/home/acid/Projects/ChunkedModelDelegation/tests/quick_delegation_test.py:9:import json
+/home/acid/Projects/ChunkedModelDelegation/tests/quick_delegation_test.py:106:    with open("quick_delegation_results.json", "w") as f:
+/home/acid/Projects/ChunkedModelDelegation/tests/quick_delegation_test.py:107:        json.dump(results, f, indent=2)
+/home/acid/Projects/ChunkedModelDelegation/tests/quick_delegation_test.py:109:    print(f"\n\nResults saved to: quick_delegation_results.json")
+/home/acid/Projects/ChunkedModelDelegation/README.md:222:/delegate-chunked write a function to parse JSON
+/home/acid/Projects/RESEARCH_SORTIE_PERIOD_DETECTION.md:575:/mnt/user-data/outputs/
+/home/acid/Projects/ChunkedModelDelegation/docs/CHUNKED_INFERENCE_README.md:153:/delegate-chunked write a function to parse JSON
+/home/acid/Projects/QMNF_TOPS/MYSTIC_QMNF_Comprehensive_Technical_Dossier.md:185:import json
+/home/acid/Projects/QMNF_TOPS/MYSTIC_QMNF_Comprehensive_Technical_Dossier.md:188:with open('weather_attractor_basins.json', 'r') as f:
+/home/acid/Projects/QMNF_TOPS/MYSTIC_QMNF_Comprehensive_Technical_Dossier.md:189:    ATTRACTOR_BASES = json.load(f)
+/home/acid/Projects/cleargate (copy 1).rs:96:    cleargate encrypt-csv data.csv --key keys.cgk -o data.cge
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:24:- `data/historical_disaster_database.json`
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:42:- `data/validation_results.json`
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:104:- Integration with MYSTIC CSV format
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:138:- `data/nexrad_camp_mystic_simulated.json`
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:298:1. `data/texas_hill_country_usgs.csv` - 26,589 stream gauge readings
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:299:2. `data/camp_mystic_2007_synthetic.csv` - 312-timestep flood simulation
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:300:3. `data/unified_multiscale_training.csv` - 24h multi-scale dataset (21 fields)
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:301:4. `data/historical_disaster_database.json` - 17 disasters, 13 testable
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:302:5. `data/validation_results.json` - Detailed test results for all 13 events
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:303:6. `data/nexrad_camp_mystic_simulated.json` - NEXRAD flood simulation
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:326:   - Use existing nexrad_camp_mystic_simulated.json
+/home/acid/Projects/QMNF_TOPS/MYSTIC_IMPROVEMENT_PROGRESS.md:358:**Total Work Products**: 14 files (6 desktop reports, 8 scripts, 6 datasets)
+/home/acid/Projects/EXOTIC_ACQUISITION_EXECUTION_PLAN (1).md:174:```json
+/home/acid/Projects/EXOTIC_ACQUISITION_EXECUTION_PLAN (1).md:355:             ├─► Store as JSON lines (raw/)
+/home/acid/Projects/AGENTS.md:90:   - Dependencies: Standard datasets
+/home/acid/Projects/QMNF_SCORECARD.md:90:   - Dependencies: Standard datasets
+/home/acid/Projects/audit (copy 1).rs:137:    /// Get entry as JSON
+/home/acid/Projects/audit (copy 1).rs:138:    pub fn to_json(&self) -> String {
+/home/acid/Projects/audit (copy 1).rs:139:        serde_json::to_string(self).unwrap_or_default()
+/home/acid/Projects/audit (copy 1).rs:142:    /// Parse entry from JSON
+/home/acid/Projects/audit (copy 1).rs:143:    pub fn from_json(json: &str) -> Option<Self> {
+/home/acid/Projects/audit (copy 1).rs:144:        serde_json::from_str(json).ok()
+/home/acid/Projects/audit (copy 1).rs:295:    /// Export log as JSON
+/home/acid/Projects/audit (copy 1).rs:296:    pub fn export_json(&self) -> String {
+/home/acid/Projects/audit (copy 1).rs:297:        let json_entries: Vec<String> = self.entries.iter().map(|e| e.to_json()).collect();
+/home/acid/Projects/audit (copy 1).rs:298:        format!("[{}]", json_entries.join(","))
+/home/acid/Projects/audit (copy 1).rs:425:    fn test_audit_entry_json() {
+/home/acid/Projects/audit (copy 1).rs:437:        let json = entry.to_json();
+/home/acid/Projects/audit (copy 1).rs:438:        let parsed = DivisionAuditEntry::from_json(&json).unwrap();
+/home/acid/Projects/Cargo (11) (copy 1).toml:25:# serde_json = "1.0"
+/home/acid/Projects/CRTBIGINT_GAP_CLOSURE_PROGRESS.md:161:/mnt/user-data/outputs/
+/home/acid/Projects/Spanky/Cargo.lock:203: "serde_json",
+/home/acid/Projects/Spanky/Cargo.lock:884:name = "serde_json"
+/home/acid/Projects/Spanky/Cargo.lock:923: "serde_json",
+/home/acid/Projects/Spanky/Cargo.lock:992: "serde_json",
+/home/acid/Projects/Spanky/Cargo.lock:1026: "serde_json",
+/home/acid/Projects/cleargate_design (copy 1).md:181:cleargate encrypt-file data.csv --key keys.cgk --output data.cge
+/home/acid/Projects/cleargate_design (copy 1).md:280:│  │  [Drag CSV/JSON here or click to upload]                           │   │
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:145:        let json: GloFasResponse = response
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:146:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:149:        self.parse_forecast_response(location, json)
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:184:        let json: Vec<GloFasResponse> = response
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:185:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:189:        for (response, location) in json.into_iter().zip(locations.iter()) {
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:213:        let json: GloFasEnsembleResponse = response
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:214:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:217:        self.parse_ensemble_response(location, json)
+/home/acid/Projects/Spanky/src/data_sources/glofas.rs:438:// GloFAS JSON Response Structures
+/home/acid/Projects/Spanky/src/data_sources/mod.rs:435:        let json = serde_json::to_string(&source).unwrap();
+/home/acid/Projects/Spanky/src/data_sources/mod.rs:436:        assert_eq!(json, "\"UsgsIv\"");
+/home/acid/Projects/Spanky/src/data_sources/aggregator.rs:3://! Combines data from multiple sources into a coherent flood prediction dataset:
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:52:            .set("Accept", "application/json")
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:56:        let json: NwpsGaugeResponse = response
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:57:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:61:            location_id: json.lid,
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:62:            name: json.name,
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:64:                lat_micro: (json.latitude * 1_000_000.0) as i32,
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:65:                lon_micro: (json.longitude * 1_000_000.0) as i32,
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:67:            usgs_id: json.usgs_id,
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:68:            action_stage_mm: json.action.map(|v| (v * 304.8) as i32),
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:69:            flood_stage_mm: json.flood.map(|v| (v * 304.8) as i32),
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:70:            moderate_flood_mm: json.moderate.map(|v| (v * 304.8) as i32),
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:71:            major_flood_mm: json.major.map(|v| (v * 304.8) as i32),
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:82:            .set("Accept", "application/json")
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:86:        let json: NwpsStageflowResponse = response
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:87:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:90:        self.parse_stageflow_response(location_id, json, false)
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:100:            .set("Accept", "application/json")
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:104:        let json: NwpsStageflowResponse = response
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:105:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:108:        self.parse_stageflow_response(location_id, json, true)
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:126:            .set("Accept", "application/json")
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:130:        let json: NwpsGaugeListResponse = response
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:131:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:134:        Ok(json.gauges.into_iter().map(|g| NwpsGaugeMetadata {
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:156:            .set("Accept", "application/json")
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:160:        let json: NwpsGaugeListResponse = response
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:161:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:164:        Ok(json.gauges.into_iter().map(|g| NwpsGaugeMetadata {
+/home/acid/Projects/Spanky/src/data_sources/noaa_nwps.rs:292:// NWPS JSON Response Structures
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:82:            "{}?format=json&sites={}&parameterCd={},{},{}&siteStatus=active",
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:95:        let json: UsgsJsonResponse = response
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:96:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:99:        self.parse_iv_response(json)
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:111:            "{}?format=json&sites={}&parameterCd={},{},{}&siteStatus=active",
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:124:        let json: UsgsJsonResponse = response
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:125:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:128:        self.parse_iv_response(json)
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:135:            "{}?format=json&stateCd={}&parameterCd={}&siteStatus=active&siteType=ST",
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:146:        let json: UsgsJsonResponse = response
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:147:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:150:        self.parse_sites_response(json)
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:172:            "{}?format=json&bBox={}&parameterCd={}&siteStatus=active&siteType=ST",
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:183:        let json: UsgsJsonResponse = response
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:184:            .into_json()
+/home/acid/Projects/Spanky/src/data_sources/usgs.rs:187:        self.parse_sites_response(json)

@@ -1,0 +1,36 @@
+[package]
+name = "qmnf-security-analysis"
+version = "0.1.0"
+edition = "2021"
+description = "Cryptanalysis toolkit for QMNF/MANA FHE - breaking our own encryption"
+
+[dependencies]
+# No external dependencies - we implement everything ourselves for verifiability
+
+[[bin]]
+name = "attack-estimator"
+path = "src/main.rs"
+
+[[bin]]
+name = "k-elimination-attack"
+path = "src/k_elimination_attack.rs"
+
+[[bin]]
+name = "lattice-attack"
+path = "src/lattice_attack.rs"
+
+[[bin]]
+name = "calibrated-estimator"
+path = "src/calibrated_estimator.rs"
+
+[[bin]]
+name = "self-cryptanalysis"
+path = "src/self_cryptanalysis.rs"
+
+[[bin]]
+name = "redshirt-testbed"
+path = "testbed/redshirt_testbed.rs"
+
+[[bin]]
+name = "break-attempt"
+path = "src/break_attempt.rs"

@@ -1,0 +1,48 @@
+[package]
+name = "qmnf_fhe"
+version = "0.1.0"
+edition = "2021"
+description = "QMNF-Accelerated BFV FHE with AHOP Quantum Simulation"
+authors = ["Acidlabz210 <acid@hackfate.us>"]
+
+[features]
+default = []
+secure-keygen = []  # Enable OS CSPRNG key generation
+
+[dependencies]
+# Cryptographic security dependencies (December 2024 audit)
+zeroize = { version = "1.7", features = ["derive"] }  # Secure memory clearing
+getrandom = "0.2"                                      # OS CSPRNG
+subtle = "2.5"                                         # Constant-time operations
+sha2 = "0.10"                                          # For KAT hashing
+
+[dev-dependencies]
+proptest = "1.4"                                       # Property-based testing
+criterion = "0.5"                                      # Benchmarking
+
+[[bin]]
+name = "noise_bench"
+path = "benches/noise_bench.rs"
+
+[[bin]]
+name = "grover_noise_search"
+path = "benches/grover_noise_search.rs"
+
+[[bench]]
+name = "fhe_benchmarks"
+harness = false
+
+[[bench]]
+name = "criterion_fhe"
+harness = false
+
+[profile.release]
+opt-level = 3
+lto = true
+
+[profile.dev]
+opt-level = 1
+
+[profile.bench]
+opt-level = 3
+lto = true

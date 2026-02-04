@@ -1,0 +1,51 @@
+# REQUIRED PATTERNS
+# Patterns that MUST appear after full implementation
+# Used by scan.sh to verify innovations are wired correctly
+
+# ═══════════════════════════════════════════════════════════════════
+# CORE TYPES (Phase 1)
+# ═══════════════════════════════════════════════════════════════════
+
+ModResidue                    # T-001: Provenance-preserving residue type
+DivStatus                     # T-001: Division status enum
+DivisionError                 # T-004: Comprehensive error type
+AnchorSet                     # T-003: Coprime anchor set type
+
+# ═══════════════════════════════════════════════════════════════════
+# INNOVATIONS (Phase 2)
+# ═══════════════════════════════════════════════════════════════════
+
+binary_gcd                    # T-002: 2.16× faster GCD
+mod_inverse                   # T-005: Extended binary GCD
+mod_div_fast                  # T-006: Fast path division
+
+# ═══════════════════════════════════════════════════════════════════
+# DIVISION PATHS (Phase 2)
+# ═══════════════════════════════════════════════════════════════════
+
+mod_div_piggyback             # T-007: Anchor-based division
+mod_div_gcd_reduction         # T-008: GCD quotient reduction
+crt_reconstruct               # T-009: CRT tower reconstruction
+bi_anchor_reconstruct         # T-009: Optimized 2-anchor CRT
+
+# ═══════════════════════════════════════════════════════════════════
+# UNIFIED API (Phase 3)
+# ═══════════════════════════════════════════════════════════════════
+
+mod_div                       # T-010: Unified entry point
+DivisionConfig                # T-010: Configuration struct
+
+# ═══════════════════════════════════════════════════════════════════
+# SECURITY (Phase 4)
+# ═══════════════════════════════════════════════════════════════════
+
+find_coprime_anchor_ct        # T-011: Constant-time anchor selection
+mod_div_blinded               # T-011: Blinded division
+DivisionAuditEntry            # T-012: Audit log entry
+
+# ═══════════════════════════════════════════════════════════════════
+# TEST INFRASTRUCTURE (Phase 4)
+# ═══════════════════════════════════════════════════════════════════
+
+proptest                      # T-013: Property-based testing
+reconstruction_identity       # T-013: Key property test

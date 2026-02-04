@@ -1,0 +1,13 @@
+{
+  "total_nodes": 20,
+  "verified_nodes": 0,
+  "failed_nodes": 1,
+  "gaps_remaining": 20,
+  "verification_rate": 0,
+  "total_theorems": 0,
+  "total_lemmas": 0,
+  "total_definitions": 0,
+  "average_confidence": 82,
+  "successful_compilations": 0,
+  "lean_sorries_total": 45
+}

@@ -1,0 +1,954 @@
+DIGEST 116e8a46d596aa1eb7af336b7a8c6156
+FPeriodGrover
+R336:340 Coq.Arith.Arith <> <> lib
+R358:360 Coq.micromega.Lia <> <> lib
+R378:383 Coq.ZArith.ZArith <> <> lib
+R401:410 Coq.ZArith.Znumtheory <> <> lib
+R428:431 Coq.ZArith.Zdiv <> <> lib
+R449:452 Coq.Lists.List <> <> lib
+R462:474 Coq.Lists.List ListNotations <> mod
+def 1070:1074 <> isqrt
+R1081:1081 Coq.Numbers.BinNums <> Z ind
+binder 1077:1077 <> n:1
+R1086:1086 Coq.Numbers.BinNums <> Z ind
+R1091:1096 Coq.ZArith.BinInt Z sqrt def
+R1098:1098 PeriodGrover <> n:1 var
+prf 1160:1173 <> isqrt_is_floor
+R1188:1188 Coq.Numbers.BinNums <> Z ind
+binder 1184:1184 <> n:2
+R1199:1204 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1194:1197 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R1198:1198 PeriodGrover <> n:2 var
+R1231:1234 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R1226:1229 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R1205:1205 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1213:1217 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1225:1225 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1206:1210 PeriodGrover <> isqrt def
+R1212:1212 PeriodGrover <> n:2 var
+R1218:1222 PeriodGrover <> isqrt def
+R1224:1224 PeriodGrover <> n:2 var
+R1230:1230 PeriodGrover <> n:2 var
+R1236:1238 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R1235:1235 PeriodGrover <> n:2 var
+R1239:1239 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1251:1255 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1267:1267 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1247:1249 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1240:1244 PeriodGrover <> isqrt def
+R1246:1246 PeriodGrover <> n:2 var
+R1263:1265 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1256:1260 PeriodGrover <> isqrt def
+R1262:1262 PeriodGrover <> n:2 var
+R1301:1305 PeriodGrover <> isqrt def
+R1327:1337 Coq.ZArith.BinInt Z sqrt_spec thm
+R1327:1337 Coq.ZArith.BinInt Z sqrt_spec thm
+R1362:1372 Coq.ZArith.BinInt Z sqrt_spec thm
+R1362:1372 Coq.ZArith.BinInt Z sqrt_spec thm
+prf 1424:1435 <> isqrt_unique
+R1452:1452 Coq.Numbers.BinNums <> Z ind
+binder 1446:1446 <> n:3
+binder 1448:1448 <> x:4
+R1463:1466 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1458:1461 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R1462:1462 PeriodGrover <> n:3 var
+R1473:1478 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1468:1471 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R1472:1472 PeriodGrover <> x:4 var
+R1489:1494 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1484:1487 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R1480:1482 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1479:1479 PeriodGrover <> x:4 var
+R1483:1483 PeriodGrover <> x:4 var
+R1488:1488 PeriodGrover <> n:3 var
+R1516:1521 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1496:1498 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R1495:1495 PeriodGrover <> n:3 var
+R1499:1499 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1505:1509 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1515:1515 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1501:1503 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1500:1500 PeriodGrover <> x:4 var
+R1511:1513 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1510:1510 PeriodGrover <> x:4 var
+R1523:1525 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1522:1522 PeriodGrover <> x:4 var
+R1526:1530 PeriodGrover <> isqrt def
+R1532:1532 PeriodGrover <> n:3 var
+R1577:1581 PeriodGrover <> isqrt def
+R1604:1616 Coq.ZArith.BinInt Z sqrt_unique thm
+R1604:1616 Coq.ZArith.BinInt Z sqrt_unique thm
+R1653:1658 Coq.ZArith.BinInt Z succ def
+prf 1708:1714 <> isqrt_0
+R1725:1727 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1718:1722 PeriodGrover <> isqrt def
+R1747:1751 PeriodGrover <> isqrt def
+prf 1804:1810 <> isqrt_1
+R1821:1823 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1814:1818 PeriodGrover <> isqrt def
+R1843:1847 PeriodGrover <> isqrt def
+prf 1908:1927 <> isqrt_perfect_square
+R1942:1942 Coq.Numbers.BinNums <> Z ind
+binder 1938:1938 <> n:5
+R1953:1958 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1948:1951 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R1952:1952 PeriodGrover <> n:5 var
+R1972:1974 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1959:1963 PeriodGrover <> isqrt def
+R1967:1969 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R1966:1966 PeriodGrover <> n:5 var
+R1970:1970 PeriodGrover <> n:5 var
+R1975:1975 PeriodGrover <> n:5 var
+R2009:2013 PeriodGrover <> isqrt def
+R2024:2036 Coq.ZArith.BinInt Z sqrt_square thm
+R2024:2036 Coq.ZArith.BinInt Z sqrt_square thm
+def 2627:2633 <> mod_pow
+R2649:2649 Coq.Numbers.BinNums <> Z ind
+binder 2636:2639 <> base:6
+binder 2641:2643 <> exp:7
+binder 2645:2645 <> m:8
+R2660:2662 Coq.Init.Datatypes <> nat ind
+binder 2653:2656 <> fuel:9
+R2667:2667 Coq.Numbers.BinNums <> Z ind
+R2680:2683 PeriodGrover <> fuel:9 var
+R2694:2694 Coq.Init.Datatypes <> O constr
+R2721:2721 Coq.Init.Datatypes <> S constr
+R2739:2743 Coq.ZArith.BinInt Z eqb def
+R2745:2745 PeriodGrover <> m:8 var
+R2768:2772 Coq.ZArith.BinInt Z eqb def
+R2774:2774 PeriodGrover <> m:8 var
+R2797:2801 Coq.ZArith.BinInt Z eqb def
+R2803:2805 PeriodGrover <> exp:7 var
+R2843:2849 PeriodGrover <> mod_pow:10 def
+R2883:2883 PeriodGrover <> m:8 var
+R2877:2879 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R2874:2876 PeriodGrover <> exp:7 var
+R2852:2852 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R2864:2869 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R2857:2859 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R2853:2856 PeriodGrover <> base:6 var
+R2860:2863 PeriodGrover <> base:6 var
+R2870:2870 PeriodGrover <> m:8 var
+binder 2835:2838 <> half:12
+R2903:2907 Coq.ZArith.BinInt Z odd def
+R2909:2911 PeriodGrover <> exp:7 var
+R2943:2946 PeriodGrover <> half:12 var
+R2918:2918 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R2930:2935 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R2923:2925 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R2919:2922 PeriodGrover <> half:12 var
+R2926:2929 PeriodGrover <> base:6 var
+R2936:2936 PeriodGrover <> m:8 var
+prf 3024:3035 <> mod_pow_spec
+R3059:3059 Coq.Numbers.BinNums <> Z ind
+binder 3046:3049 <> base:13
+binder 3051:3053 <> exp:14
+binder 3055:3055 <> m:15
+R3069:3074 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3065:3067 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R3068:3068 PeriodGrover <> m:15 var
+R3083:3088 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3076:3079 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R3080:3082 PeriodGrover <> exp:14 var
+R3089:3095 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3106:3111 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3103:3105 Coq.Init.Datatypes <> nat ind
+binder 3096:3099 <> fuel:16
+R3135:3137 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3112:3118 PeriodGrover <> mod_pow def
+R3120:3123 PeriodGrover <> base:13 var
+R3125:3127 PeriodGrover <> exp:14 var
+R3129:3129 PeriodGrover <> m:15 var
+R3131:3134 PeriodGrover <> fuel:16 var
+R3152:3156 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R3138:3142 Coq.ZArith.BinInt Z pow def
+R3144:3147 PeriodGrover <> base:13 var
+R3149:3151 PeriodGrover <> exp:14 var
+R3157:3157 PeriodGrover <> m:15 var
+R3266:3268 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3254:3261 Coq.ZArith.BinInt Z to_nat def
+R3266:3268 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3254:3261 Coq.ZArith.BinInt Z to_nat def
+prf 3370:3382 <> fermat_little
+R3399:3399 Coq.Numbers.BinNums <> Z ind
+binder 3393:3393 <> a:17
+binder 3395:3395 <> p:18
+R3411:3416 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3404:3408 Coq.ZArith.Znumtheory <> prime ind
+R3410:3410 PeriodGrover <> p:18 var
+R3430:3435 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3426:3428 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3417:3421 Coq.ZArith.BinInt Z gcd def
+R3423:3423 PeriodGrover <> a:17 var
+R3425:3425 PeriodGrover <> p:18 var
+R3436:3442 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3453:3454 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3450:3452 Coq.Init.Datatypes <> nat ind
+binder 3443:3446 <> fuel:19
+R3479:3481 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3455:3461 PeriodGrover <> mod_pow def
+R3463:3463 PeriodGrover <> a:17 var
+R3467:3469 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R3466:3466 PeriodGrover <> p:18 var
+R3473:3473 PeriodGrover <> p:18 var
+R3475:3478 PeriodGrover <> fuel:19 var
+rec 4182:4194 <> MontgomeryCtx
+proj 4220:4225 <> mont_n
+proj 4256:4261 <> mont_r
+proj 4303:4316 <> mont_r_squared
+proj 4341:4352 <> mont_n_prime
+proj 4403:4412 <> mont_n_pos
+proj 4430:4443 <> mont_r_coprime
+R4229:4229 Coq.Numbers.BinNums <> Z ind
+R4265:4265 Coq.Numbers.BinNums <> Z ind
+R4320:4320 Coq.Numbers.BinNums <> Z ind
+R4356:4356 Coq.Numbers.BinNums <> Z ind
+R4417:4419 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R4420:4425 PeriodGrover <> mont_n:21 meth
+R4466:4468 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R4447:4451 Coq.ZArith.BinInt Z gcd def
+R4453:4458 PeriodGrover <> mont_r:22 meth
+R4460:4465 PeriodGrover <> mont_n:21 meth
+def 4537:4540 <> redc
+R4549:4561 PeriodGrover <> MontgomeryCtx rec
+binder 4543:4545 <> ctx:27
+R4569:4569 Coq.Numbers.BinNums <> Z ind
+binder 4565:4565 <> t:28
+R4574:4574 Coq.Numbers.BinNums <> Z ind
+R4590:4590 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R4611:4616 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R4592:4594 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R4591:4591 PeriodGrover <> t:28 var
+R4595:4606 PeriodGrover <> mont_n_prime proj
+R4608:4610 PeriodGrover <> ctx:27 var
+R4617:4622 PeriodGrover <> mont_r proj
+R4624:4626 PeriodGrover <> ctx:27 var
+binder 4585:4585 <> u:29
+R4642:4642 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R4661:4664 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R4644:4646 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R4643:4643 PeriodGrover <> t:28 var
+R4648:4650 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R4647:4647 PeriodGrover <> u:29 var
+R4651:4656 PeriodGrover <> mont_n proj
+R4658:4660 PeriodGrover <> ctx:27 var
+R4665:4670 PeriodGrover <> mont_r proj
+R4672:4674 PeriodGrover <> ctx:27 var
+binder 4637:4637 <> s:30
+R4685:4688 Coq.ZArith.BinInt <> ::Z_scope:x_'<?'_x not
+R4684:4684 PeriodGrover <> s:30 var
+R4689:4694 PeriodGrover <> mont_n proj
+R4696:4698 PeriodGrover <> ctx:27 var
+R4713:4715 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R4712:4712 PeriodGrover <> s:30 var
+R4716:4721 PeriodGrover <> mont_n proj
+R4723:4725 PeriodGrover <> ctx:27 var
+R4705:4705 PeriodGrover <> s:30 var
+prf 4775:4785 <> redc_bounds
+binder 4796:4798 <> ctx:31
+binder 4800:4800 <> t:32
+R4811:4816 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4806:4809 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R4810:4810 PeriodGrover <> t:32 var
+R4844:4849 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4818:4820 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R4817:4817 PeriodGrover <> t:32 var
+R4831:4833 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R4821:4826 PeriodGrover <> mont_r proj
+R4828:4830 PeriodGrover <> ctx:31 var
+R4834:4839 PeriodGrover <> mont_n proj
+R4841:4843 PeriodGrover <> ctx:31 var
+R4851:4854 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x_'<'_x not
+R4865:4867 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x_'<'_x not
+R4855:4858 PeriodGrover <> redc def
+R4860:4862 PeriodGrover <> ctx:31 var
+R4864:4864 PeriodGrover <> t:32 var
+R4855:4858 PeriodGrover <> redc def
+R4860:4862 PeriodGrover <> ctx:31 var
+R4864:4864 PeriodGrover <> t:32 var
+R4868:4873 PeriodGrover <> mont_n proj
+R4875:4877 PeriodGrover <> ctx:31 var
+R4924:4927 PeriodGrover <> redc def
+prf 5050:5061 <> redc_correct
+binder 5072:5074 <> ctx:33
+binder 5076:5076 <> t:34
+R5087:5092 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5082:5085 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R5086:5086 PeriodGrover <> t:34 var
+R5120:5125 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5094:5096 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R5093:5093 PeriodGrover <> t:34 var
+R5107:5109 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5097:5102 PeriodGrover <> mont_r proj
+R5104:5106 PeriodGrover <> ctx:33 var
+R5110:5115 PeriodGrover <> mont_n proj
+R5117:5119 PeriodGrover <> ctx:33 var
+R5126:5132 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R5142:5147 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R5141:5141 Coq.Numbers.BinNums <> Z ind
+binder 5133:5137 <> r_inv:35
+R5187:5194 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R5183:5185 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5148:5148 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5167:5172 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5154:5156 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5149:5153 PeriodGrover <> r_inv:35 var
+R5157:5162 PeriodGrover <> mont_r proj
+R5164:5166 PeriodGrover <> ctx:33 var
+R5173:5178 PeriodGrover <> mont_n proj
+R5180:5182 PeriodGrover <> ctx:33 var
+R5205:5207 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5195:5198 PeriodGrover <> redc def
+R5200:5202 PeriodGrover <> ctx:33 var
+R5204:5204 PeriodGrover <> t:34 var
+R5208:5208 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5218:5223 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5210:5212 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5209:5209 PeriodGrover <> t:34 var
+R5213:5217 PeriodGrover <> r_inv:35 var
+R5224:5229 PeriodGrover <> mont_n proj
+R5231:5233 PeriodGrover <> ctx:33 var
+def 5465:5472 <> mont_mul
+R5481:5493 PeriodGrover <> MontgomeryCtx rec
+binder 5475:5477 <> ctx:36
+R5503:5503 Coq.Numbers.BinNums <> Z ind
+binder 5497:5497 <> x:37
+binder 5499:5499 <> y:38
+R5508:5508 Coq.Numbers.BinNums <> Z ind
+R5515:5518 PeriodGrover <> redc def
+R5520:5522 PeriodGrover <> ctx:36 var
+R5526:5528 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5525:5525 PeriodGrover <> x:37 var
+R5529:5529 PeriodGrover <> y:38 var
+prf 5599:5614 <> mont_mul_correct
+binder 5625:5627 <> ctx:39
+binder 5629:5629 <> x:40
+binder 5631:5631 <> y:41
+binder 5633:5634 <> x':42
+binder 5636:5637 <> y':43
+R5678:5683 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5643:5645 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5642:5642 PeriodGrover <> x:40 var
+R5646:5646 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5662:5667 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5649:5651 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5647:5648 PeriodGrover <> x':42 var
+R5652:5657 PeriodGrover <> mont_r proj
+R5659:5661 PeriodGrover <> ctx:39 var
+R5668:5673 PeriodGrover <> mont_n proj
+R5675:5677 PeriodGrover <> ctx:39 var
+R5720:5725 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5685:5687 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5684:5684 PeriodGrover <> y:41 var
+R5688:5688 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5704:5709 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5691:5693 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5689:5690 PeriodGrover <> y':43 var
+R5694:5699 PeriodGrover <> mont_r proj
+R5701:5703 PeriodGrover <> ctx:39 var
+R5710:5715 PeriodGrover <> mont_n proj
+R5717:5719 PeriodGrover <> ctx:39 var
+R5742:5744 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5726:5733 PeriodGrover <> mont_mul def
+R5735:5737 PeriodGrover <> ctx:39 var
+R5739:5739 PeriodGrover <> x:40 var
+R5741:5741 PeriodGrover <> y:41 var
+R5745:5745 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5768:5773 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R5746:5746 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5754:5757 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5749:5751 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R5747:5748 PeriodGrover <> x':42 var
+R5752:5753 PeriodGrover <> y':43 var
+R5758:5763 PeriodGrover <> mont_r proj
+R5765:5767 PeriodGrover <> ctx:39 var
+R5774:5779 PeriodGrover <> mont_n proj
+R5781:5783 PeriodGrover <> ctx:39 var
+R5832:5839 PeriodGrover <> mont_mul def
+rec 6463:6465 <> Fp2
+proj 6495:6502 <> fp2_real
+proj 6540:6547 <> fp2_imag
+R6472:6472 Coq.Numbers.BinNums <> Z ind
+binder 6468:6468 <> p:44
+R6506:6506 Coq.Numbers.BinNums <> Z ind
+R6551:6551 Coq.Numbers.BinNums <> Z ind
+R6602:6606 PeriodGrover <> mkFp2 constr
+R6602:6606 PeriodGrover <> mkFp2 constr
+R6623:6630 PeriodGrover <> fp2_real proj
+R6623:6630 PeriodGrover <> fp2_real proj
+R6647:6654 PeriodGrover <> fp2_imag proj
+R6647:6654 PeriodGrover <> fp2_imag proj
+def 6695:6701 <> fp2_add
+R6708:6708 Coq.Numbers.BinNums <> Z ind
+binder 6704:6704 <> p:48
+R6718:6720 PeriodGrover <> Fp2 rec
+R6722:6722 PeriodGrover <> p:48 var
+binder 6712:6712 <> x:49
+binder 6714:6714 <> y:50
+R6727:6729 PeriodGrover <> Fp2 rec
+R6731:6731 PeriodGrover <> p:48 var
+R6738:6742 PeriodGrover <> mkFp2 constr
+R6787:6787 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R6811:6816 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R6798:6800 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R6788:6795 PeriodGrover <> fp2_imag proj
+R6797:6797 PeriodGrover <> x:49 var
+R6801:6808 PeriodGrover <> fp2_imag proj
+R6810:6810 PeriodGrover <> y:50 var
+R6817:6817 PeriodGrover <> p:48 var
+R6745:6745 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R6769:6774 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R6756:6758 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R6746:6753 PeriodGrover <> fp2_real proj
+R6755:6755 PeriodGrover <> x:49 var
+R6759:6766 PeriodGrover <> fp2_real proj
+R6768:6768 PeriodGrover <> y:50 var
+R6775:6775 PeriodGrover <> p:48 var
+def 6904:6910 <> fp2_mul
+R6917:6917 Coq.Numbers.BinNums <> Z ind
+binder 6913:6913 <> p:51
+R6927:6929 PeriodGrover <> Fp2 rec
+R6931:6931 PeriodGrover <> p:51 var
+binder 6921:6921 <> x:52
+binder 6923:6923 <> y:53
+R6936:6938 PeriodGrover <> Fp2 rec
+R6940:6940 PeriodGrover <> p:51 var
+R6956:6963 PeriodGrover <> fp2_real proj
+R6965:6965 PeriodGrover <> x:52 var
+binder 6951:6951 <> a:54
+R6981:6988 PeriodGrover <> fp2_imag proj
+R6990:6990 PeriodGrover <> x:52 var
+binder 6976:6976 <> b:55
+R7006:7013 PeriodGrover <> fp2_real proj
+R7015:7015 PeriodGrover <> y:53 var
+binder 7001:7001 <> c:56
+R7031:7038 PeriodGrover <> fp2_imag proj
+R7040:7040 PeriodGrover <> y:53 var
+binder 7026:7026 <> d:57
+R7047:7051 PeriodGrover <> mkFp2 constr
+R7086:7086 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7100:7105 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7092:7094 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R7088:7090 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7087:7087 PeriodGrover <> a:54 var
+R7091:7091 PeriodGrover <> d:57 var
+R7096:7098 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7095:7095 PeriodGrover <> b:55 var
+R7099:7099 PeriodGrover <> c:56 var
+R7106:7106 PeriodGrover <> p:51 var
+R7054:7054 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7068:7073 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7060:7062 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R7056:7058 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7055:7055 PeriodGrover <> a:54 var
+R7059:7059 PeriodGrover <> c:56 var
+R7064:7066 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7063:7063 PeriodGrover <> b:55 var
+R7067:7067 PeriodGrover <> d:57 var
+R7074:7074 PeriodGrover <> p:51 var
+def 7144:7150 <> fp2_neg
+R7157:7157 Coq.Numbers.BinNums <> Z ind
+binder 7153:7153 <> p:58
+R7165:7167 PeriodGrover <> Fp2 rec
+R7169:7169 PeriodGrover <> p:58 var
+binder 7161:7161 <> x:59
+R7174:7176 PeriodGrover <> Fp2 rec
+R7178:7178 PeriodGrover <> p:58 var
+R7185:7189 PeriodGrover <> mkFp2 constr
+R7225:7225 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7240:7245 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7227:7229 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R7226:7226 PeriodGrover <> p:58 var
+R7230:7237 PeriodGrover <> fp2_imag proj
+R7239:7239 PeriodGrover <> x:59 var
+R7246:7246 PeriodGrover <> p:58 var
+R7192:7192 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7207:7212 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7194:7196 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R7193:7193 PeriodGrover <> p:58 var
+R7197:7204 PeriodGrover <> fp2_real proj
+R7206:7206 PeriodGrover <> x:59 var
+R7213:7213 PeriodGrover <> p:58 var
+def 7312:7322 <> fp2_norm_sq
+R7329:7329 Coq.Numbers.BinNums <> Z ind
+binder 7325:7325 <> p:60
+R7337:7339 PeriodGrover <> Fp2 rec
+R7341:7341 PeriodGrover <> p:60 var
+binder 7333:7333 <> x:61
+R7346:7346 Coq.Numbers.BinNums <> Z ind
+R7362:7369 PeriodGrover <> fp2_real proj
+R7371:7371 PeriodGrover <> x:61 var
+binder 7357:7357 <> a:62
+R7387:7394 PeriodGrover <> fp2_imag proj
+R7396:7396 PeriodGrover <> x:61 var
+binder 7382:7382 <> b:63
+R7403:7403 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7417:7422 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7409:7411 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R7405:7407 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7404:7404 PeriodGrover <> a:62 var
+R7408:7408 PeriodGrover <> a:62 var
+R7413:7415 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7412:7412 PeriodGrover <> b:63 var
+R7416:7416 PeriodGrover <> b:63 var
+R7423:7423 PeriodGrover <> p:60 var
+prf 7488:7499 <> fp2_norm_mul
+binder 7510:7510 <> p:64
+binder 7512:7512 <> x:65
+binder 7514:7514 <> y:66
+R7526:7531 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7519:7523 Coq.ZArith.Znumtheory <> prime ind
+R7525:7525 PeriodGrover <> p:64 var
+R7561:7563 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7532:7542 PeriodGrover <> fp2_norm_sq def
+R7544:7544 PeriodGrover <> p:64 var
+R7547:7553 PeriodGrover <> fp2_mul def
+R7555:7555 PeriodGrover <> p:64 var
+R7557:7557 PeriodGrover <> x:65 var
+R7559:7559 PeriodGrover <> y:66 var
+R7564:7564 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7598:7603 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R7580:7582 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R7565:7575 PeriodGrover <> fp2_norm_sq def
+R7577:7577 PeriodGrover <> p:64 var
+R7579:7579 PeriodGrover <> x:65 var
+R7583:7593 PeriodGrover <> fp2_norm_sq def
+R7595:7595 PeriodGrover <> p:64 var
+R7597:7597 PeriodGrover <> y:66 var
+R7604:7604 PeriodGrover <> p:64 var
+R7642:7652 PeriodGrover <> fp2_norm_sq def
+R7655:7661 PeriodGrover <> fp2_mul def
+def 7893:7900 <> fp2_zero
+R7907:7907 Coq.Numbers.BinNums <> Z ind
+binder 7903:7903 <> p:67
+R7912:7914 PeriodGrover <> Fp2 rec
+R7916:7916 PeriodGrover <> p:67 var
+R7921:7925 PeriodGrover <> mkFp2 constr
+def 7961:7967 <> fp2_one
+R7974:7974 Coq.Numbers.BinNums <> Z ind
+binder 7970:7970 <> p:68
+R7979:7981 PeriodGrover <> Fp2 rec
+R7983:7983 PeriodGrover <> p:68 var
+R7988:7992 PeriodGrover <> mkFp2 constr
+prf 8037:8047 <> fp2_mul_one
+binder 8058:8058 <> p:69
+binder 8060:8060 <> x:70
+R8072:8077 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8065:8069 Coq.ZArith.Znumtheory <> prime ind
+R8071:8071 PeriodGrover <> p:69 var
+R8101:8103 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8078:8084 PeriodGrover <> fp2_mul def
+R8086:8086 PeriodGrover <> p:69 var
+R8088:8088 PeriodGrover <> x:70 var
+R8091:8097 PeriodGrover <> fp2_one def
+R8099:8099 PeriodGrover <> p:69 var
+R8104:8104 PeriodGrover <> x:70 var
+R8140:8146 PeriodGrover <> fp2_mul def
+R8149:8155 PeriodGrover <> fp2_one def
+rec 8901:8911 <> GroverState
+proj 8949:8958 <> gs_alpha_0
+proj 9010:9019 <> gs_alpha_1
+proj 9069:9078 <> gs_n_total
+proj 9126:9136 <> gs_n_marked
+R8918:8918 Coq.Numbers.BinNums <> Z ind
+binder 8914:8914 <> p:71
+R8962:8964 PeriodGrover <> Fp2 rec
+R8966:8966 PeriodGrover <> p:71 var
+R9023:9025 PeriodGrover <> Fp2 rec
+R9027:9027 PeriodGrover <> p:71 var
+R9082:9082 Coq.Numbers.BinNums <> Z ind
+R9140:9140 Coq.Numbers.BinNums <> Z ind
+R9263:9275 PeriodGrover <> mkGroverState constr
+R9263:9275 PeriodGrover <> mkGroverState constr
+R9292:9301 PeriodGrover <> gs_alpha_0 proj
+R9292:9301 PeriodGrover <> gs_alpha_0 proj
+R9318:9327 PeriodGrover <> gs_alpha_1 proj
+R9318:9327 PeriodGrover <> gs_alpha_1 proj
+R9344:9353 PeriodGrover <> gs_n_total proj
+R9344:9353 PeriodGrover <> gs_n_total proj
+R9370:9380 PeriodGrover <> gs_n_marked proj
+R9370:9380 PeriodGrover <> gs_n_marked proj
+def 9448:9460 <> grover_oracle
+R9467:9467 Coq.Numbers.BinNums <> Z ind
+binder 9463:9463 <> p:77
+R9475:9485 PeriodGrover <> GroverState rec
+R9487:9487 PeriodGrover <> p:77 var
+binder 9471:9471 <> s:78
+R9492:9502 PeriodGrover <> GroverState rec
+R9504:9504 PeriodGrover <> p:77 var
+R9511:9523 PeriodGrover <> mkGroverState constr
+R9599:9609 PeriodGrover <> gs_n_marked proj
+R9611:9611 PeriodGrover <> s:78 var
+R9580:9589 PeriodGrover <> gs_n_total proj
+R9591:9591 PeriodGrover <> s:78 var
+R9549:9555 PeriodGrover <> fp2_neg def
+R9557:9557 PeriodGrover <> p:77 var
+R9560:9569 PeriodGrover <> gs_alpha_1 proj
+R9571:9571 PeriodGrover <> s:78 var
+R9530:9539 PeriodGrover <> gs_alpha_0 proj
+R9541:9541 PeriodGrover <> s:78 var
+prf 9693:9717 <> oracle_preserves_symmetry
+binder 9728:9728 <> p:79
+binder 9730:9730 <> s:80
+R9735:9741 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R9757:9762 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 9742:9748 <> alpha_0:81
+binder 9750:9756 <> alpha_1:82
+R9803:9810 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R9793:9795 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9763:9772 PeriodGrover <> gs_alpha_0 proj
+R9775:9787 PeriodGrover <> grover_oracle def
+R9789:9789 PeriodGrover <> p:79 var
+R9791:9791 PeriodGrover <> s:80 var
+R9796:9802 PeriodGrover <> alpha_0:81 var
+R9841:9843 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9811:9820 PeriodGrover <> gs_alpha_1 proj
+R9823:9835 PeriodGrover <> grover_oracle def
+R9837:9837 PeriodGrover <> p:79 var
+R9839:9839 PeriodGrover <> s:80 var
+R9844:9850 PeriodGrover <> alpha_1:82 var
+R9884:9893 PeriodGrover <> gs_alpha_0 proj
+R9884:9893 PeriodGrover <> gs_alpha_0 proj
+R9909:9915 PeriodGrover <> fp2_neg def
+R9920:9929 PeriodGrover <> gs_alpha_1 proj
+R9909:9915 PeriodGrover <> fp2_neg def
+R9920:9929 PeriodGrover <> gs_alpha_1 proj
+prf 10031:10047 <> oracle_involutive
+binder 10058:10058 <> p:83
+binder 10060:10060 <> s:84
+R10072:10077 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10065:10069 Coq.ZArith.Znumtheory <> prime ind
+R10071:10071 PeriodGrover <> p:83 var
+R10113:10115 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10078:10090 PeriodGrover <> grover_oracle def
+R10092:10092 PeriodGrover <> p:83 var
+R10095:10107 PeriodGrover <> grover_oracle def
+R10109:10109 PeriodGrover <> p:83 var
+R10111:10111 PeriodGrover <> s:84 var
+R10116:10116 PeriodGrover <> s:84 var
+R10152:10164 PeriodGrover <> grover_oracle def
+ax 10845:10854 <> mult_order
+R10859:10862 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10858:10858 Coq.Numbers.BinNums <> Z ind
+R10864:10867 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10863:10863 Coq.Numbers.BinNums <> Z ind
+R10868:10868 Coq.Numbers.BinNums <> Z ind
+ax 10939:10953 <> mult_order_spec
+binder 10964:10964 <> a:87
+binder 10966:10966 <> n:88
+R10976:10981 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10972:10974 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R10975:10975 PeriodGrover <> n:88 var
+R10995:11000 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10991:10993 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10982:10986 Coq.ZArith.BinInt Z gcd def
+R10988:10988 PeriodGrover <> a:87 var
+R10990:10990 PeriodGrover <> n:88 var
+R11001:11007 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R11012:11013 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 11008:11011 <> fuel:89
+R11047:11049 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11014:11020 PeriodGrover <> mod_pow def
+R11022:11022 PeriodGrover <> a:87 var
+R11025:11034 PeriodGrover <> mult_order defax
+R11036:11036 PeriodGrover <> a:87 var
+R11038:11038 PeriodGrover <> n:88 var
+R11041:11041 PeriodGrover <> n:88 var
+R11043:11046 PeriodGrover <> fuel:89 var
+ax 11084:11101 <> mult_order_minimal
+binder 11112:11112 <> a:92
+binder 11114:11114 <> n:93
+binder 11116:11116 <> k:94
+R11126:11131 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11122:11124 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11125:11125 PeriodGrover <> n:93 var
+R11145:11150 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11141:11143 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11132:11136 Coq.ZArith.BinInt Z gcd def
+R11138:11138 PeriodGrover <> a:92 var
+R11140:11140 PeriodGrover <> n:93 var
+R11156:11161 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11152:11154 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11155:11155 PeriodGrover <> k:94 var
+R11180:11185 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11163:11165 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11162:11162 PeriodGrover <> k:94 var
+R11166:11175 PeriodGrover <> mult_order defax
+R11177:11177 PeriodGrover <> a:92 var
+R11179:11179 PeriodGrover <> n:93 var
+binder 11193:11196 <> fuel:95
+R11217:11220 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R11199:11205 PeriodGrover <> mod_pow def
+R11207:11207 PeriodGrover <> a:92 var
+R11209:11209 PeriodGrover <> k:94 var
+R11211:11211 PeriodGrover <> n:93 var
+R11213:11216 PeriodGrover <> fuel:95 var
+prf 11261:11282 <> period_divides_totient
+binder 11293:11293 <> a:98
+binder 11295:11295 <> n:99
+R11305:11310 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11301:11303 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11304:11304 PeriodGrover <> n:99 var
+R11324:11329 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11320:11322 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11311:11315 Coq.ZArith.BinInt Z gcd def
+R11317:11317 PeriodGrover <> a:98 var
+R11319:11319 PeriodGrover <> n:99 var
+R11330:11330 Coq.ZArith.BinInt <> ::Z_scope:'('_x_'|'_x_')' not
+R11345:11347 Coq.ZArith.BinInt <> ::Z_scope:'('_x_'|'_x_')' not
+R11390:11390 Coq.ZArith.BinInt <> ::Z_scope:'('_x_'|'_x_')' not
+R11331:11340 PeriodGrover <> mult_order defax
+R11342:11342 PeriodGrover <> a:98 var
+R11344:11344 PeriodGrover <> n:99 var
+R11348:11355 Coq.ZArith.BinInt Z of_nat def
+R11358:11365 Coq.Arith.PeanoNat Nat pred def
+R11368:11375 Coq.ZArith.BinInt Z to_nat def
+R11378:11382 Coq.ZArith.BinInt Z gcd def
+R11384:11384 PeriodGrover <> a:98 var
+R11386:11386 PeriodGrover <> n:99 var
+prf 11646:11665 <> period_factorization
+binder 11676:11676 <> a:100
+binder 11678:11678 <> n:101
+binder 11680:11680 <> r:102
+binder 11682:11682 <> h:103
+R11692:11697 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11688:11690 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11691:11691 PeriodGrover <> n:101 var
+R11703:11708 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11699:11701 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11702:11702 PeriodGrover <> r:102 var
+R11720:11742 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11716:11718 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11710:11714 Coq.ZArith.BinInt <> ::Z_scope:x_'mod'_x not
+R11709:11709 PeriodGrover <> r:102 var
+R11743:11743 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11779:11806 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11744:11750 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R11755:11756 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 11751:11754 <> fuel:104
+R11775:11777 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11757:11763 PeriodGrover <> mod_pow def
+R11765:11765 PeriodGrover <> a:100 var
+R11767:11767 PeriodGrover <> r:102 var
+R11769:11769 PeriodGrover <> n:101 var
+R11771:11774 PeriodGrover <> fuel:104 var
+R11807:11807 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11849:11855 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11808:11814 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R11819:11820 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 11815:11818 <> fuel:105
+R11845:11847 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11821:11827 PeriodGrover <> mod_pow def
+R11829:11829 PeriodGrover <> a:100 var
+R11833:11835 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R11832:11832 PeriodGrover <> r:102 var
+R11839:11839 PeriodGrover <> n:101 var
+R11841:11844 PeriodGrover <> fuel:105 var
+R11848:11848 PeriodGrover <> h:103 var
+R11866:11893 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11857:11860 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R11856:11856 PeriodGrover <> h:103 var
+R11862:11864 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R11861:11861 PeriodGrover <> n:101 var
+R11900:11930 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11895:11898 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R11894:11894 PeriodGrover <> h:103 var
+R11931:11931 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R11974:11981 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R12024:12024 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R11951:11954 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R11933:11935 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11936:11940 Coq.ZArith.BinInt Z gcd def
+R11944:11946 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R11943:11943 PeriodGrover <> h:103 var
+R11950:11950 PeriodGrover <> n:101 var
+R11970:11972 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11955:11959 Coq.ZArith.BinInt Z gcd def
+R11963:11965 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R11962:11962 PeriodGrover <> h:103 var
+R11969:11969 PeriodGrover <> n:101 var
+R11973:11973 PeriodGrover <> n:101 var
+R12001:12004 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R11983:11985 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R11986:11990 Coq.ZArith.BinInt Z gcd def
+R11994:11996 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R11993:11993 PeriodGrover <> h:103 var
+R12000:12000 PeriodGrover <> n:101 var
+R12020:12022 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R12005:12009 Coq.ZArith.BinInt Z gcd def
+R12013:12015 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R12012:12012 PeriodGrover <> h:103 var
+R12019:12019 PeriodGrover <> n:101 var
+R12023:12023 PeriodGrover <> n:101 var
+prf 12922:12938 <> wassan_equivalent
+R12954:12954 Coq.Numbers.BinNums <> Z ind
+binder 12950:12950 <> p:106
+R12962:12972 PeriodGrover <> GroverState rec
+R12974:12974 PeriodGrover <> p:106 var
+binder 12958:12958 <> s:107
+R12982:12984 Coq.Init.Datatypes <> nat ind
+binder 12978:12978 <> k:108
+R12997:13077 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12990:12994 Coq.ZArith.Znumtheory <> prime ind
+R12996:12996 PeriodGrover <> p:106 var
+R13078:13084 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R13106:13111 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R13093:13103 PeriodGrover <> GroverState rec
+R13105:13105 PeriodGrover <> p:106 var
+binder 13085:13089 <> final:109
+R13143:13150 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R13128:13130 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13112:13121 PeriodGrover <> gs_n_total proj
+R13123:13127 PeriodGrover <> final:109 var
+R13131:13140 PeriodGrover <> gs_n_total proj
+R13142:13142 PeriodGrover <> s:107 var
+R13168:13170 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13151:13161 PeriodGrover <> gs_n_marked proj
+R13163:13167 PeriodGrover <> final:109 var
+R13171:13181 PeriodGrover <> gs_n_marked proj
+R13183:13183 PeriodGrover <> s:107 var
+R13475:13487 PeriodGrover <> grover_oracle def
+R13475:13487 PeriodGrover <> grover_oracle def
+R13507:13519 PeriodGrover <> grover_oracle def
+prf 13595:13616 <> wassan_memory_constant
+R13632:13632 Coq.Numbers.BinNums <> Z ind
+binder 13628:13628 <> p:110
+R13640:13650 PeriodGrover <> GroverState rec
+R13652:13652 PeriodGrover <> p:110 var
+binder 13636:13636 <> s:111
+R13825:13831 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R13843:13848 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R13840:13842 Coq.Init.Datatypes <> nat ind
+binder 13832:13836 <> bound:112
+R13849:13852 Coq.Init.Logic <> True ind
+prf 14581:14599 <> period_grover_sound
+binder 14610:14610 <> n:113
+binder 14612:14612 <> a:114
+R14622:14627 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14618:14620 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R14621:14621 PeriodGrover <> n:113 var
+R14633:14636 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14629:14631 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R14632:14632 PeriodGrover <> a:114 var
+R14642:14647 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14638:14640 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R14637:14637 PeriodGrover <> a:114 var
+R14641:14641 PeriodGrover <> n:113 var
+R14661:14666 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14657:14659 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14648:14652 Coq.ZArith.BinInt Z gcd def
+R14654:14654 PeriodGrover <> a:114 var
+R14656:14656 PeriodGrover <> n:113 var
+R14675:14736 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14667:14667 Coq.Init.Logic <> ::type_scope:'~'_x not
+R14668:14672 Coq.ZArith.Znumtheory <> prime ind
+R14674:14674 PeriodGrover <> n:113 var
+R14750:14750 Coq.Numbers.BinNums <> Z ind
+binder 14744:14744 <> p:115
+binder 14746:14746 <> q:116
+R14762:14765 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14758:14760 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R14761:14761 PeriodGrover <> p:115 var
+R14771:14774 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14767:14769 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R14770:14770 PeriodGrover <> q:116 var
+R14784:14791 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14780:14782 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14776:14778 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R14775:14775 PeriodGrover <> p:115 var
+R14779:14779 PeriodGrover <> q:116 var
+R14783:14783 PeriodGrover <> n:113 var
+R14792:14795 Coq.Init.Logic <> True ind
+prf 14959:14978 <> factorization_exists
+binder 14989:14989 <> n:117
+R14999:15004 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14995:14997 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R14998:14998 PeriodGrover <> n:117 var
+R15013:15018 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15005:15005 Coq.Init.Logic <> ::type_scope:'~'_x not
+R15006:15010 Coq.ZArith.Znumtheory <> prime ind
+R15012:15012 PeriodGrover <> n:117 var
+R15024:15029 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15020:15022 Coq.ZArith.BinInt <> ::Z_scope:x_'>'_x not
+R15019:15019 PeriodGrover <> n:117 var
+R15030:15036 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R15040:15041 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 15037:15037 <> p:118
+binder 15039:15039 <> q:119
+R15047:15050 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R15043:15045 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R15046:15046 PeriodGrover <> p:118 var
+R15056:15059 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R15052:15054 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R15055:15055 PeriodGrover <> q:119 var
+R15065:15067 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15061:15063 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R15060:15060 PeriodGrover <> p:118 var
+R15064:15064 PeriodGrover <> q:119 var
+R15068:15068 PeriodGrover <> n:117 var
+def 15299:15316 <> optimal_iterations
+R15338:15338 Coq.Numbers.BinNums <> Z ind
+binder 15319:15325 <> n_total:120
+binder 15327:15334 <> n_marked:121
+R15343:15343 Coq.Numbers.BinNums <> Z ind
+R15353:15357 Coq.ZArith.BinInt Z eqb def
+R15359:15366 PeriodGrover <> n_marked:121 var
+R15387:15391 Coq.ZArith.BinInt Z leb def
+R15393:15399 PeriodGrover <> n_total:120 var
+R15401:15408 PeriodGrover <> n_marked:121 var
+R15448:15450 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R15441:15447 PeriodGrover <> n_total:120 var
+R15451:15458 PeriodGrover <> n_marked:121 var
+binder 15432:15436 <> ratio:122
+R15485:15489 PeriodGrover <> isqrt def
+R15491:15495 PeriodGrover <> ratio:122 var
+binder 15471:15480 <> sqrt_ratio:123
+R15531:15531 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R15548:15551 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R15535:15537 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R15538:15547 PeriodGrover <> sqrt_ratio:123 var
+prf 15623:15649 <> optimal_iterations_positive
+binder 15660:15666 <> n_total:124
+binder 15668:15675 <> n_marked:125
+R15692:15697 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15681:15683 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R15684:15691 PeriodGrover <> n_marked:125 var
+R15717:15722 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15706:15709 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R15698:15705 PeriodGrover <> n_marked:125 var
+R15710:15716 PeriodGrover <> n_total:124 var
+R15724:15727 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R15728:15745 PeriodGrover <> optimal_iterations def
+R15747:15753 PeriodGrover <> n_total:124 var
+R15755:15762 PeriodGrover <> n_marked:125 var
+R15821:15838 PeriodGrover <> optimal_iterations def
+def 16700:16710 <> milu_pi_num
+R16714:16714 Coq.Numbers.BinNums <> Z ind
+def 16735:16745 <> milu_pi_den
+R16749:16749 Coq.Numbers.BinNums <> Z ind
+prf 16808:16820 <> milu_accuracy
+R16945:16947 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16939:16941 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R16928:16930 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+prf 17041:17061 <> scaled_division_exact
+binder 17072:17072 <> a:126
+binder 17074:17074 <> b:127
+binder 17076:17080 <> scale:128
+R17090:17095 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17086:17088 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R17089:17089 PeriodGrover <> b:127 var
+R17105:17110 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17097:17099 Coq.ZArith.BinInt <> ::Z_scope:x_'<'_x not
+R17100:17104 PeriodGrover <> scale:128 var
+R17124:17126 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17120:17122 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R17112:17114 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R17111:17111 PeriodGrover <> a:126 var
+R17115:17119 PeriodGrover <> scale:128 var
+R17123:17123 PeriodGrover <> b:127 var
+R17127:17127 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R17137:17140 Coq.ZArith.BinInt <> ::Z_scope:x_'/'_x not
+R17129:17131 Coq.ZArith.BinInt <> ::Z_scope:x_'*'_x not
+R17128:17128 PeriodGrover <> a:126 var
+R17132:17136 PeriodGrover <> scale:128 var
+R17141:17141 PeriodGrover <> b:127 var

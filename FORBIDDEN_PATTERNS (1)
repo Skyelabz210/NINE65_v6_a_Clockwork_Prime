@@ -1,0 +1,90 @@
+# FORBIDDEN PATTERNS
+# Patterns that indicate stdlib regression away from QMNF innovations
+# Used by scan.sh for automated detection
+
+# ═══════════════════════════════════════════════════════════════════
+# FLOATING POINT (Float Policy: FORBIDDEN)
+# ═══════════════════════════════════════════════════════════════════
+
+# Types
+f64
+f32
+Float
+float
+
+# Conversion
+.to_f64()
+.as_f64()
+.to_f32()
+.as_f32()
+as f64
+as f32
+
+# Constants
+std::f64::
+std::f32::
+f64::INFINITY
+f64::NAN
+
+# ═══════════════════════════════════════════════════════════════════
+# STDLIB TRANSCENDENTALS (Use Padé approximants instead)
+# ═══════════════════════════════════════════════════════════════════
+
+.exp()
+.ln()
+.log()
+.log2()
+.log10()
+.sin()
+.cos()
+.tan()
+.asin()
+.acos()
+.atan()
+.sinh()
+.cosh()
+.tanh()
+.sqrt()       # Use integer sqrt or exact rational
+
+# ═══════════════════════════════════════════════════════════════════
+# EXTERNAL BIGINT (Use CRTBigInt instead)
+# ═══════════════════════════════════════════════════════════════════
+
+# Note: num_bigint::BigInt is allowed as underlying type
+# but operations should go through QMNF wrappers
+
+gmp::
+rug::
+ramp::
+
+# ═══════════════════════════════════════════════════════════════════
+# STDLIB RANDOM (Use Shadow Entropy instead)
+# ═══════════════════════════════════════════════════════════════════
+
+rand::
+thread_rng()
+OsRng
+StdRng
+
+# Note: Allowed in tests and for seeding Shadow Entropy
+# Scanner should ignore test code
+
+# ═══════════════════════════════════════════════════════════════════
+# EUCLIDEAN GCD (Use Binary GCD instead)
+# ═══════════════════════════════════════════════════════════════════
+
+num::Integer::gcd
+.gcd(&            # Generic gcd call - review manually
+
+# ═══════════════════════════════════════════════════════════════════
+# PANIC PATHS (Should use Result<T, E> instead)
+# ═══════════════════════════════════════════════════════════════════
+
+panic!
+.expect(
+.unwrap()         # In hot paths - allowed in tests
+
+# Note: Review context - these are allowed in:
+# - Test code
+# - Const assertions
+# - Invariant checks that indicate bugs

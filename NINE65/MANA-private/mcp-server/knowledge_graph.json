@@ -1,0 +1,123 @@
+{
+  "atoms": [
+    {
+      "id": "kelim_core",
+      "content": "K-Elimination Theorem solves RNS division in O(k) time vs traditional O(k\u00b2) MRC",
+      "topic": 1,
+      "weight": 500,
+      "state": "VALIDATED",
+      "source_uri": "https://skyelabz210.github.io/k-elimination-lean4/",
+      "timestamp": 1767745022.3181417
+    },
+    {
+      "id": "crt_uniqueness",
+      "content": "Chinese Remainder Theorem guarantees unique representation in coprime moduli system",
+      "topic": 1,
+      "weight": 400,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.3193176
+    },
+    {
+      "id": "key_congruence",
+      "content": "Key congruence: X % A = (X % M + (X / M) * M) % A enables exact division",
+      "topic": 1,
+      "weight": 450,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.319604
+    },
+    {
+      "id": "modular_inverse",
+      "content": "Modular inverse M\u207b\u00b9 mod A exists when gcd(M, A) = 1 (coprimality requirement)",
+      "topic": 1,
+      "weight": 300,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.319839
+    },
+    {
+      "id": "bootstrap_free",
+      "content": "Bootstrap-free FHE rescaling via exact K-Elimination division",
+      "topic": 2,
+      "weight": 450,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.32008
+    },
+    {
+      "id": "fhe_performance",
+      "content": "Homomorphic operations at <500\u03bcs with K-Elimination vs 100ms+ traditional",
+      "topic": 2,
+      "weight": 400,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.320341
+    },
+    {
+      "id": "lean_verification",
+      "content": "27 Lean 4 theorems prove K-Elimination correctness with 0 sorry statements",
+      "topic": 3,
+      "weight": 300,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.3206482
+    },
+    {
+      "id": "coq_verification",
+      "content": "10 Coq proofs cross-validate K-Elimination with 0 admitted axioms",
+      "topic": 3,
+      "weight": 280,
+      "state": "VALIDATED",
+      "source_uri": null,
+      "timestamp": 1767745022.3209386
+    }
+  ],
+  "edges": [
+    {
+      "from_id": "crt_uniqueness",
+      "to_id": "kelim_core",
+      "relation": "enables",
+      "confidence": 900000
+    },
+    {
+      "from_id": "key_congruence",
+      "to_id": "kelim_core",
+      "relation": "proves",
+      "confidence": 950000
+    },
+    {
+      "from_id": "modular_inverse",
+      "to_id": "kelim_core",
+      "relation": "required_by",
+      "confidence": 850000
+    },
+    {
+      "from_id": "kelim_core",
+      "to_id": "bootstrap_free",
+      "relation": "enables",
+      "confidence": 900000
+    },
+    {
+      "from_id": "bootstrap_free",
+      "to_id": "fhe_performance",
+      "relation": "achieves",
+      "confidence": 800000
+    },
+    {
+      "from_id": "lean_verification",
+      "to_id": "kelim_core",
+      "relation": "validates",
+      "confidence": 950000
+    },
+    {
+      "from_id": "coq_verification",
+      "to_id": "kelim_core",
+      "relation": "validates",
+      "confidence": 920000
+    }
+  ],
+  "discovery_history": [],
+  "wave_count": 1,
+  "last_updated": "2026-01-06T18:17:02.885997"
+}

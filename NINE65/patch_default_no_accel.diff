@@ -1,0 +1,11 @@
+*** Begin Patch
+*** Update File: crates/nine65/Cargo.toml
+@@ [features]
+-default = ["ntt_fft", "accelerated", "parallel"]
++default = ["ntt_fft", "parallel"]
++
++# The default feature set no longer includes "accelerated".  Users who wish
++# to enable acceleration via proprietary crates (mana/unhal) should explicitly
++# enable the "accelerated" feature (e.g., `--features accelerated`).  This
++# change improves buildability for users without access to those crates.
+*** End Patch

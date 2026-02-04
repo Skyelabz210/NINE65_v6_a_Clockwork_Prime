@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "redshirt": {
+      "command": "python3",
+      "args": ["/home/acid/Projects/NINE65/MANA-private/mcp-server/redshirt_server.py"],
+      "env": {
+        "REDSHIRT_LOG_LEVEL": "INFO"
+      }
+    },
+    "grover-swarm": {
+      "command": "python3",
+      "args": ["/home/acid/Projects/NINE65/MANA-private/mcp-server/grover_swarm_server.py"],
+      "env": {
+        "GROVER_LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}
