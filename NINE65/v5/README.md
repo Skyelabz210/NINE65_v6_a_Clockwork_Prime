@@ -325,6 +325,59 @@ assert_eq!(result, 6);
 
 ---
 
+## Formal Verification
+
+NINE65 innovations are backed by machine-checked proofs in Coq and Lean4.
+
+### Coq Proofs (`proofs/coq/`)
+
+| File | Innovation | Status |
+|------|------------|--------|
+| `KElimination.v` | K-Elimination exact division | Verified |
+| `K_Elimination.v` | Core k-value theorems | Verified |
+| `GSOFHE.v` | GSO-FHE noise bounding | Verified |
+| `CRTShadowEntropy.v` | Shadow entropy harvesting | Verified |
+| `OrderFinding.v` | Non-circular order finding | Verified |
+| `MQReLU.v` | MQ-ReLU activation | Verified |
+| `IntegerSoftmax.v` | Integer softmax | Verified |
+| `MontgomeryPersistent.v` | Montgomery arithmetic | Verified |
+| `MobiusInt.v` | Mobius integer transforms | Verified |
+| `CyclotomicPhase.v` | Cyclotomic phase tracking | Verified |
+| `PadeEngine.v` | Pade approximation engine | Verified |
+| `ExactCoefficient.v` | Exact coefficient arithmetic | Verified |
+| `StateCompression.v` | FHE state compression | Verified |
+| `SideChannelResistance.v` | Side-channel mitigations | Verified |
+| `EncryptedQuantum.v` | Encrypted quantum simulation | Verified |
+
+### Lean4 Proofs (`lean4/KElimination/`)
+
+| File | Content | Status |
+|------|---------|--------|
+| `KElimination.lean` | Main K-Elimination formalization | Verified |
+| `Basic.lean` | Core definitions | Verified |
+| `ShadowEntropy.lean` | Shadow/quotient reconstruction | Verified |
+| `ZMod.lean` | Modular arithmetic lemmas | Verified |
+
+### Verification Commands
+
+```bash
+# Coq verification (requires Coq 8.18+)
+cd proofs/coq && coqc *.v
+
+# Lean4 verification (requires Lean 4.x + Mathlib)
+cd lean4/KElimination && lake build
+```
+
+### Proof Archive
+
+A standalone archive of all proofs is available:
+```bash
+# Location: ~/v5_proofs.tar.gz (52KB)
+tar -xzvf ~/v5_proofs.tar.gz
+```
+
+---
+
 ## Technical Foundation
 
 NINE65 is built on the QMNF (Quantized Modular Number Field) architecture:
@@ -342,5 +395,5 @@ Proprietary. See `LICENSE`.
 
 ---
 
-*Last updated: 2026-01-27*
+*Last updated: 2026-02-04*
 *NINE65 - Bootstrap-Free FHE with K-Elimination*
