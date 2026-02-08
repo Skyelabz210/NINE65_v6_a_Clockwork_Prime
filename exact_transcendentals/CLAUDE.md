@@ -11,7 +11,7 @@ A Rust library (`no_std`-compatible) providing exact integer-only implementation
 ```bash
 cargo build                    # Debug build
 cargo build --release          # Optimized build (LTO enabled)
-cargo test                     # Run all 47 tests
+cargo test                     # Run all 82 tests
 cargo test -- --nocapture      # With println! output visible
 cargo test cordic              # Tests for a specific module
 cargo test test_sincos_zero    # Run a single test by name
@@ -19,7 +19,25 @@ cargo test --features simd     # Build with SIMD feature
 cargo test --no-default-features  # Build in no_std mode
 ```
 
-No linter or formatter is configured. No CI pipeline exists.
+No linter or formatter is configured. No CI pipeline exists yet.
+
+### Quality Gates
+
+```bash
+scripts/quality-gate.sh        # Run all 6 gates (see below)
+scripts/check_no_floats.py     # Float scanner only (fast)
+```
+
+A **git pre-commit hook** automatically runs the quality gate when `src/` or `Cargo.toml` files are staged. The 6 gates are:
+
+| Gate | What it checks |
+|------|----------------|
+| Float scan | Zero f32/f64 in production code (skips `#[cfg(test)]` blocks) |
+| Debug build | `cargo build` succeeds |
+| Release build | `cargo build --release` succeeds (LTO) |
+| no_std build | `cargo build --no-default-features` succeeds |
+| Tests (debug) | `cargo test` — all 82 tests pass |
+| Tests (release) | `cargo test --release` — identical results under optimization |
 
 ## Architecture
 
