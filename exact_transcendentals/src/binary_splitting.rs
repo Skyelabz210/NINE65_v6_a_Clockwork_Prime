@@ -293,14 +293,19 @@ pub fn e_constant(scale_bits: u32, num_terms: u32) -> i128 {
 }
 
 /// Euler's constant γ approximation (harder - needs different approach)
-/// γ ≈ 0.5772156649...
+/// γ ≈ 0.5772156649015329...
+///
+/// Uses exact rational approximation: γ ≈ 5772156649015329 / 10000000000000000
+/// This gives 16 digits of accuracy, sufficient for any scale_bits ≤ 53.
 pub fn euler_gamma_approx(scale_bits: u32) -> i128 {
     // Euler's constant is not hypergeometric, requires special series
     // γ = lim_{n→∞} (Σ_{k=1}^n 1/k - ln(n))
-    
-    // For now, return precomputed value
+
+    // Exact integer computation using rational approximation
     let scale = 1i128 << scale_bits;
-    (scale as f64 * 0.5772156649015329) as i128
+    const GAMMA_NUM: i128 = 5_772_156_649_015_329;
+    const GAMMA_DEN: i128 = 10_000_000_000_000_000;
+    scale * GAMMA_NUM / GAMMA_DEN
 }
 
 #[cfg(test)]
