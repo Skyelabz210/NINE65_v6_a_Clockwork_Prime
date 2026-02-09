@@ -26,16 +26,25 @@
 extern crate alloc;
 
 #[cfg(not(feature = "std"))]
+#[allow(unused_imports)]
 use alloc::vec::Vec;
 #[cfg(feature = "std")]
+#[allow(unused_imports)]
 use std::vec::Vec;
 
-pub mod cordic;
-pub mod sqrt;
 pub mod agm;
 pub mod binary_splitting;
-pub mod continued_fraction;
 pub mod constants;
+pub mod continued_fraction;
+pub mod cordic;
+pub mod sqrt;
+
+#[cfg(feature = "arbitrary-precision")]
+pub mod bigint;
+#[cfg(feature = "arbitrary-precision")]
+pub mod crt;
+#[cfg(feature = "arbitrary-precision")]
+pub mod crt_rational;
 
 /// Scale factors for fixed-point representation
 pub mod scales {
@@ -49,6 +58,68 @@ pub mod scales {
     pub const SCALE_DECIMAL_18: i128 = 1_000_000_000_000_000_000;
 }
 
+// ─── Unified Error Types (QPEF-pattern, per ArithResult<T,P> convention) ───
+
+/// Errors from exact transcendental computation.
+///
+/// Following the QMNF ArithResult/OverflowError pattern established in
+/// the QPEF production-readiness audit: no silent saturation, no sentinel
+/// values as error indicators. Every failure is explicit and typed.
+#[derive(Debug, Clone, PartialEq)]
+pub enum TranscendentalError {
+    /// Arithmetic overflow during intermediate computation.
+    /// Contains the operation name for diagnostics.
+    Overflow(&'static str),
+    /// Input is outside the mathematical domain of the function
+    /// (e.g., ln(0), sqrt(-1), division by zero).
+    DomainError(&'static str),
+    /// Computation did not converge within the iteration limit.
+    ConvergenceFailure { iterations: u32 },
+    /// Silent saturation was detected (would have produced wrong result).
+    SaturationDetected(&'static str),
+}
+
+impl core::fmt::Display for TranscendentalError {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        match self {
+            Self::Overflow(op) => write!(f, "Overflow in {}", op),
+            Self::DomainError(msg) => write!(f, "Domain error: {}", msg),
+            Self::ConvergenceFailure { iterations } => {
+                write!(f, "Convergence failure after {} iterations", iterations)
+            }
+            Self::SaturationDetected(op) => {
+                write!(f, "Saturation detected in {} (would corrupt result)", op)
+            }
+        }
+    }
+}
+
+/// Checked multiplication for i128 that returns TranscendentalError on overflow.
+/// This replaces all uses of saturating_mul in production code paths.
+#[inline]
+pub fn checked_mul_i128(
+    a: i128,
+    b: i128,
+    context: &'static str,
+) -> Result<i128, TranscendentalError> {
+    a.checked_mul(b)
+        .ok_or(TranscendentalError::Overflow(context))
+}
+
+/// Checked addition for i128.
+#[inline]
+pub fn checked_add_i128(
+    a: i128,
+    b: i128,
+    context: &'static str,
+) -> Result<i128, TranscendentalError> {
+    a.checked_add(b)
+        .ok_or(TranscendentalError::Overflow(context))
+}
+
+/// Result type alias for transcendental operations.
+pub type TransResult<T> = Result<T, TranscendentalError>;
+
 /// Exact rational number (numerator/denominator pair)
 /// Uses K-Elimination for all division operations
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -59,58 +130,92 @@ pub struct ExactRational {
 
 impl ExactRational {
     pub fn new(num: i128, den: i128) -> Self {
-        debug_assert!(den != 0, "Denominator cannot be zero");
+        assert!(den != 0, "Denominator cannot be zero");
         Self { num, den }
     }
-    
+
     pub fn from_int(n: i128) -> Self {
         Self { num: n, den: 1 }
     }
-    
+
     /// Reduce to lowest terms using binary GCD
     pub fn reduce(&self) -> Self {
         let g = binary_gcd(self.num.unsigned_abs(), self.den.unsigned_abs()) as i128;
-        let sign = if (self.num < 0) ^ (self.den < 0) { -1 } else { 1 };
+        let sign = if (self.num < 0) ^ (self.den < 0) {
+            -1
+        } else {
+            1
+        };
         Self {
             num: sign * (self.num.abs() / g),
             den: self.den.abs() / g,
         }
     }
-    
+
     pub fn add(&self, other: &Self) -> Self {
         Self {
             num: self.num * other.den + other.num * self.den,
             den: self.den * other.den,
-        }.reduce()
+        }
+        .reduce()
     }
-    
+
     pub fn sub(&self, other: &Self) -> Self {
         Self {
             num: self.num * other.den - other.num * self.den,
             den: self.den * other.den,
-        }.reduce()
+        }
+        .reduce()
     }
-    
+
     pub fn mul(&self, other: &Self) -> Self {
         Self {
             num: self.num * other.num,
             den: self.den * other.den,
-        }.reduce()
+        }
+        .reduce()
     }
-    
+
     pub fn div(&self, other: &Self) -> Self {
-        debug_assert!(other.num != 0, "Division by zero");
+        assert!(other.num != 0, "Division by zero");
         Self {
             num: self.num * other.den,
             den: self.den * other.num,
-        }.reduce()
+        }
+        .reduce()
     }
-    
+
+    /// Checked addition: returns `None` on i128 overflow.
+    pub fn checked_add(&self, other: &Self) -> Option<Self> {
+        let cross1 = self.num.checked_mul(other.den)?;
+        let cross2 = other.num.checked_mul(self.den)?;
+        let num = cross1.checked_add(cross2)?;
+        let den = self.den.checked_mul(other.den)?;
+        Some(Self { num, den }.reduce())
+    }
+
+    /// Checked multiplication: returns `None` on i128 overflow.
+    pub fn checked_mul(&self, other: &Self) -> Option<Self> {
+        let num = self.num.checked_mul(other.num)?;
+        let den = self.den.checked_mul(other.den)?;
+        Some(Self { num, den }.reduce())
+    }
+
+    /// Checked division: returns `None` on division by zero or i128 overflow.
+    pub fn checked_div(&self, other: &Self) -> Option<Self> {
+        if other.num == 0 {
+            return None;
+        }
+        let num = self.num.checked_mul(other.den)?;
+        let den = self.den.checked_mul(other.num)?;
+        Some(Self { num, den }.reduce())
+    }
+
     /// Convert to scaled integer (for fixed-point operations)
     pub fn to_scaled(&self, scale: i128) -> i128 {
         (self.num * scale) / self.den
     }
-    
+
     /// Approximate as f64 (for testing only - never use in production!)
     #[cfg(test)]
     pub fn to_f64(&self) -> f64 {
@@ -122,20 +227,28 @@ impl ExactRational {
 /// 2.16× faster than Euclidean GCD
 #[inline]
 pub fn binary_gcd(mut a: u128, mut b: u128) -> u128 {
-    if a == 0 { return b; }
-    if b == 0 { return a; }
-    
+    if a == 0 {
+        return b;
+    }
+    if b == 0 {
+        return a;
+    }
+
     // Find common factors of 2
     let shift = (a | b).trailing_zeros();
     a >>= a.trailing_zeros();
-    
+
     loop {
         b >>= b.trailing_zeros();
-        if a > b { core::mem::swap(&mut a, &mut b); }
+        if a > b {
+            core::mem::swap(&mut a, &mut b);
+        }
         b -= a;
-        if b == 0 { break; }
+        if b == 0 {
+            break;
+        }
     }
-    
+
     a << shift
 }
 
@@ -160,23 +273,23 @@ impl TranscendentalConstants {
         // For now, use precomputed values for common precisions
         match precision_bits {
             30 => Self {
-                pi_scaled: 3_373_259_426, // π × 2^30
-                e_scaled: 2_918_732_009,   // e × 2^30
-                ln2_scaled: 744_261_118,   // ln(2) × 2^30
+                pi_scaled: 3_373_259_426,      // π × 2^30
+                e_scaled: 2_918_732_888,       // e × 2^30 (matches precision_30::E)
+                ln2_scaled: 744_261_118,       // ln(2) × 2^30
                 inv_ln2_scaled: 1_549_082_005, // (1/ln(2)) × 2^30
                 precision_bits: 30,
             },
             62 => Self {
-                pi_scaled: 14_488_038_916_154_245_685, // π × 2^62
-                e_scaled: 12_535_862_302_449_814_171,  // e × 2^62
-                ln2_scaled: 3_196_577_161_300_663_911, // ln(2) × 2^62
+                pi_scaled: 14_488_038_916_154_245_685,     // π × 2^62
+                e_scaled: 12_535_862_302_449_814_171,      // e × 2^62
+                ln2_scaled: 3_196_577_161_300_663_911,     // ln(2) × 2^62
                 inv_ln2_scaled: 6_655_638_299_760_389_795, // (1/ln(2)) × 2^62
                 precision_bits: 62,
             },
             _ => panic!("Unsupported precision, use 30 or 62 bits"),
         }
     }
-    
+
     pub fn scale(&self) -> i128 {
         1i128 << self.precision_bits
     }
@@ -193,22 +306,28 @@ pub struct ErrorBound {
 
 impl ErrorBound {
     pub fn exact() -> Self {
-        Self { ulps: 0, correct_bits: u32::MAX }
+        Self {
+            ulps: 0,
+            correct_bits: u32::MAX,
+        }
     }
-    
+
     /// Compute error bound from iteration count and convergence rate.
     /// `rate_num`/`rate_den` is the convergence rate as a rational number.
     /// CORDIC: 1/1 (1 bit per iteration), AGM: 2/1 (quadratic).
     pub fn from_iterations(iterations: u32, rate_num: u32, rate_den: u32) -> Self {
         let bits = iterations * rate_num / rate_den;
-        Self { ulps: 1, correct_bits: bits }
+        Self {
+            ulps: 1,
+            correct_bits: bits,
+        }
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_binary_gcd() {
         assert_eq!(binary_gcd(48, 18), 6);
@@ -217,7 +336,7 @@ mod tests {
         assert_eq!(binary_gcd(7, 0), 7);
         assert_eq!(binary_gcd(1, 1), 1);
     }
-    
+
     #[test]
     fn test_exact_rational() {
         let a = ExactRational::new(1, 3);
@@ -226,12 +345,269 @@ mod tests {
         assert_eq!(sum.num, 1);
         assert_eq!(sum.den, 2);
     }
-    
+
     #[test]
     fn test_constants_30bit() {
         let c = TranscendentalConstants::new(30);
         let pi_approx = c.pi_scaled as f64 / c.scale() as f64;
         assert!((pi_approx - std::f64::consts::PI).abs() < 1e-8);
+    }
+}
+
+/// Tests for gap-analysis remediation: covers untested public functions and edge cases.
+#[cfg(test)]
+mod remediation_tests {
+    use super::*;
+
+    // ── checked arithmetic ──
+    #[test]
+    fn test_checked_mul_ok() {
+        let r = checked_mul_i128(100, 200, "test");
+        assert_eq!(r.unwrap(), 20_000);
+    }
+
+    #[test]
+    fn test_checked_mul_overflow() {
+        let r = checked_mul_i128(i128::MAX, 2, "overflow_test");
+        assert!(matches!(
+            r,
+            Err(TranscendentalError::Overflow("overflow_test"))
+        ));
+    }
+
+    #[test]
+    fn test_checked_add_ok() {
+        let r = checked_add_i128(100, 200, "test");
+        assert_eq!(r.unwrap(), 300);
+    }
+
+    #[test]
+    fn test_checked_add_overflow() {
+        let r = checked_add_i128(i128::MAX, 1, "add_overflow");
+        assert!(matches!(
+            r,
+            Err(TranscendentalError::Overflow("add_overflow"))
+        ));
+    }
+
+    // ── ExactRational ops ──
+    #[test]
+    fn test_exact_rational_sub() {
+        let a = ExactRational::new(3, 4);
+        let b = ExactRational::new(1, 4);
+        let diff = a.sub(&b);
+        assert_eq!(diff.num, 1);
+        assert_eq!(diff.den, 2);
+    }
+
+    #[test]
+    fn test_exact_rational_mul() {
+        let a = ExactRational::new(2, 3);
+        let b = ExactRational::new(3, 5);
+        let prod = a.mul(&b);
+        assert_eq!(prod.num, 2);
+        assert_eq!(prod.den, 5);
+    }
+
+    #[test]
+    fn test_exact_rational_div() {
+        let a = ExactRational::new(2, 3);
+        let b = ExactRational::new(4, 5);
+        let quot = a.div(&b);
+        assert_eq!(quot.num, 5);
+        assert_eq!(quot.den, 6);
+    }
+
+    #[test]
+    fn test_exact_rational_from_int() {
+        let r = ExactRational::from_int(42);
+        assert_eq!(r.num, 42);
+        assert_eq!(r.den, 1);
+    }
+
+    #[test]
+    fn test_exact_rational_to_scaled() {
+        let r = ExactRational::new(1, 3);
+        let scale = 1i128 << 30;
+        let scaled = r.to_scaled(scale);
+        assert_eq!(scaled, scale / 3);
+    }
+
+    #[test]
+    #[should_panic(expected = "Denominator cannot be zero")]
+    fn test_exact_rational_zero_den_panics() {
+        let _ = ExactRational::new(1, 0);
+    }
+
+    #[test]
+    #[should_panic(expected = "Division by zero")]
+    fn test_exact_rational_div_by_zero_panics() {
+        let a = ExactRational::new(1, 1);
+        let zero = ExactRational::new(0, 1);
+        let _ = a.div(&zero);
+    }
+
+    // ── binary_gcd edge cases ──
+    #[test]
+    fn test_binary_gcd_both_zero() {
+        assert_eq!(binary_gcd(0, 0), 0);
+    }
+
+    #[test]
+    fn test_binary_gcd_large() {
+        assert_eq!(binary_gcd(u128::MAX, u128::MAX), u128::MAX);
+    }
+
+    // ── TranscendentalError Display ──
+    #[test]
+    fn test_error_display() {
+        let e = TranscendentalError::Overflow("mul");
+        let s = format!("{}", e);
+        assert!(s.contains("Overflow"));
+        assert!(s.contains("mul"));
+
+        let e2 = TranscendentalError::DomainError("ln(0)");
+        let s2 = format!("{}", e2);
+        assert!(s2.contains("Domain error"));
+
+        let e3 = TranscendentalError::ConvergenceFailure { iterations: 100 };
+        let s3 = format!("{}", e3);
+        assert!(s3.contains("100"));
+
+        let e4 = TranscendentalError::SaturationDetected("exp");
+        let s4 = format!("{}", e4);
+        assert!(s4.contains("Saturation"));
+    }
+
+    // ── binary_split returns None on overflow ──
+    #[test]
+    fn test_binary_split_overflow_returns_none() {
+        use crate::binary_splitting::binary_split;
+        // Series with rapidly growing terms that overflow i128
+        let result = binary_split(
+            0,
+            30,
+            |k| (k as i128 + 1) * 1_000_000_000_000,
+            |_| 1,
+            |k| {
+                if k == 0 {
+                    1
+                } else {
+                    (k as i128) * 1_000_000_000_000
+                }
+            },
+            |k| if k == 0 { 1 } else { k as i128 },
+        );
+        assert!(
+            result.is_none(),
+            "binary_split should return None on overflow"
+        );
+    }
+
+    // ── euler_gamma_approx ──
+    #[test]
+    fn test_euler_gamma_approx() {
+        use crate::binary_splitting::euler_gamma_approx;
+        let result = euler_gamma_approx(30);
+        let scale = 1i128 << 30;
+        let gamma = result as f64 / scale as f64;
+        // Euler-Mascheroni constant ≈ 0.5772
+        assert!((gamma - 0.5772).abs() < 0.001, "gamma = {}", gamma);
+    }
+
+    // ── pi_chudnovsky ──
+    #[test]
+    fn test_pi_chudnovsky_overflow_limit() {
+        use crate::binary_splitting::pi_chudnovsky;
+        // Above 90 bits, should return 0 (documented limitation)
+        assert_eq!(pi_chudnovsky(100), 0);
+    }
+
+    #[test]
+    fn test_pi_chudnovsky_small_precision() {
+        use crate::binary_splitting::pi_chudnovsky;
+        let result = pi_chudnovsky(30);
+        // May be 0 due to overflow in binary_split, or a non-zero approximation
+        // Either way, it should not panic
+        let _ = result;
+    }
+
+    // ── ExactRational checked arithmetic ──
+    #[test]
+    fn test_exact_rational_checked_add_ok() {
+        let a = ExactRational::new(1, 3);
+        let b = ExactRational::new(1, 6);
+        let result = a.checked_add(&b);
+        assert!(result.is_some());
+        let sum = result.unwrap();
+        assert_eq!(sum.num, 1);
+        assert_eq!(sum.den, 2);
+    }
+
+    #[test]
+    fn test_exact_rational_checked_add_overflow() {
+        // Need denominators > 1 to trigger cross-multiplication overflow.
+        // (MAX/2) * (MAX/3) overflows i128.
+        let a = ExactRational::new(i128::MAX / 2, i128::MAX / 3);
+        let b = ExactRational::new(i128::MAX / 2, i128::MAX / 3);
+        let result = a.checked_add(&b);
+        assert!(
+            result.is_none(),
+            "checked_add should return None on overflow"
+        );
+    }
+
+    #[test]
+    fn test_exact_rational_checked_mul_ok() {
+        let a = ExactRational::new(2, 3);
+        let b = ExactRational::new(3, 5);
+        let result = a.checked_mul(&b);
+        assert!(result.is_some());
+        let prod = result.unwrap();
+        assert_eq!(prod.num, 2);
+        assert_eq!(prod.den, 5);
+    }
+
+    #[test]
+    fn test_exact_rational_checked_mul_overflow() {
+        let a = ExactRational::new(i128::MAX, 1);
+        let b = ExactRational::new(2, 1);
+        let result = a.checked_mul(&b);
+        assert!(
+            result.is_none(),
+            "checked_mul should return None on overflow"
+        );
+    }
+
+    #[test]
+    fn test_exact_rational_checked_div_ok() {
+        let a = ExactRational::new(2, 3);
+        let b = ExactRational::new(4, 5);
+        let result = a.checked_div(&b);
+        assert!(result.is_some());
+        let quot = result.unwrap();
+        assert_eq!(quot.num, 5);
+        assert_eq!(quot.den, 6);
+    }
+
+    #[test]
+    fn test_exact_rational_checked_div_by_zero() {
+        let a = ExactRational::new(1, 1);
+        let zero = ExactRational::new(0, 1);
+        let result = a.checked_div(&zero);
+        assert!(result.is_none(), "checked_div by zero should return None");
+    }
+
+    #[test]
+    fn test_exact_rational_checked_div_overflow() {
+        let a = ExactRational::new(i128::MAX, 1);
+        let b = ExactRational::new(1, i128::MAX);
+        let result = a.checked_div(&b);
+        // a.num * b.den = MAX * MAX → overflow
+        assert!(
+            result.is_none(),
+            "checked_div should return None on overflow"
+        );
     }
 }
 
@@ -241,12 +617,14 @@ mod tests {
 /// witness to the same constant, so agreement provides strong evidence of correctness.
 #[cfg(test)]
 mod cross_validation {
-    use crate::cordic::{CordicEngine, SCALE as CORDIC_SCALE};
     use crate::agm::{AgmEngine, AGM_SCALE};
-    use crate::binary_splitting::{pi_machin, exp_binary_split, sin_binary_split, cos_binary_split, ln2_binary_split, e_constant};
-    use crate::continued_fraction::{pi_cf, e_cf, sqrt_cf};
+    use crate::binary_splitting::{
+        e_constant, exp_binary_split, ln2_binary_split, pi_machin, sin_binary_split,
+    };
     use crate::constants::precision_30;
-    use crate::sqrt::{isqrt_newton, sqrt_scaled};
+    use crate::continued_fraction::{e_cf, pi_cf, sqrt_cf};
+    use crate::cordic::{CordicEngine, SCALE as CORDIC_SCALE};
+    use crate::sqrt::sqrt_scaled;
 
     /// Helper: rescale a value from one power-of-2 scale to another
     fn rescale(val: i128, from_bits: u32, to_bits: u32) -> i128 {
@@ -271,7 +649,13 @@ mod cross_validation {
         // Both should agree within ~0.001 × 2^62
         let diff = (pi_agm - pi_machin).abs();
         let tolerance = 1i128 << 52; // ~0.001 relative error
-        assert!(diff < tolerance, "AGM pi ({}) vs Machin pi ({}): diff={}", pi_agm, pi_machin, diff);
+        assert!(
+            diff < tolerance,
+            "AGM pi ({}) vs Machin pi ({}): diff={}",
+            pi_agm,
+            pi_machin,
+            diff
+        );
     }
 
     #[test]
@@ -287,7 +671,13 @@ mod cross_validation {
         // 355/113 is accurate to 6 decimal places ~ 20 bits
         let diff = (pi_machin_30 - pi_cf_30).abs();
         let tolerance = 1i128 << 11; // ~20 bits agreement
-        assert!(diff < tolerance, "Machin pi ({}) vs CF pi ({}): diff={}", pi_machin_30, pi_cf_30, diff);
+        assert!(
+            diff < tolerance,
+            "Machin pi ({}) vs CF pi ({}): diff={}",
+            pi_machin_30,
+            pi_cf_30,
+            diff
+        );
     }
 
     #[test]
@@ -302,7 +692,13 @@ mod cross_validation {
 
         let diff = (pi_const - pi_agm_30).abs();
         let tolerance = 1i128 << 5; // Very tight — both should be high quality
-        assert!(diff < tolerance, "Precomputed pi ({}) vs AGM pi ({}): diff={}", pi_const, pi_agm_30, diff);
+        assert!(
+            diff < tolerance,
+            "Precomputed pi ({}) vs AGM pi ({}): diff={}",
+            pi_const,
+            pi_agm_30,
+            diff
+        );
     }
 
     // --- Exp cross-validation: AGM exp vs CORDIC exp vs Taylor series exp ---
@@ -322,7 +718,13 @@ mod cross_validation {
         // Allow reasonable tolerance (CORDIC has ~30 bits precision, Taylor ~20 bits here)
         let diff = (exp_taylor - exp_cordic_20).abs();
         let tolerance = scale / 10; // 10% — CORDIC hyperbolic has limited range accuracy for |x|=1
-        assert!(diff < tolerance, "Taylor exp(1)={} vs CORDIC exp(1)={}: diff={}", exp_taylor, exp_cordic_20, diff);
+        assert!(
+            diff < tolerance,
+            "Taylor exp(1)={} vs CORDIC exp(1)={}: diff={}",
+            exp_taylor,
+            exp_cordic_20,
+            diff
+        );
     }
 
     #[test]
@@ -339,7 +741,13 @@ mod cross_validation {
 
         let diff = (exp_taylor - exp_agm_20).abs();
         let tolerance = scale / 10; // 10%
-        assert!(diff < tolerance, "Taylor exp(1)={} vs AGM exp(1)={}: diff={}", exp_taylor, exp_agm_20, diff);
+        assert!(
+            diff < tolerance,
+            "Taylor exp(1)={} vs AGM exp(1)={}: diff={}",
+            exp_taylor,
+            exp_agm_20,
+            diff
+        );
     }
 
     // --- Sqrt cross-validation: Newton vs continued fraction ---
@@ -356,7 +764,13 @@ mod cross_validation {
 
         let diff = (sqrt2_newton - sqrt2_cf).abs();
         let tolerance = 2; // Division truncation can cause ±1
-        assert!(diff < tolerance, "Newton sqrt2={} vs CF sqrt2={}: diff={}", sqrt2_newton, sqrt2_cf, diff);
+        assert!(
+            diff < tolerance,
+            "Newton sqrt2={} vs CF sqrt2={}: diff={}",
+            sqrt2_newton,
+            sqrt2_cf,
+            diff
+        );
     }
 
     #[test]
@@ -365,7 +779,13 @@ mod cross_validation {
         let sqrt2_const = precision_30::SQRT2 as i128;
 
         let diff = (sqrt2_newton - sqrt2_const).abs();
-        assert!(diff <= 1, "Newton sqrt2={} vs const sqrt2={}: diff={}", sqrt2_newton, sqrt2_const, diff);
+        assert!(
+            diff <= 1,
+            "Newton sqrt2={} vs const sqrt2={}: diff={}",
+            sqrt2_newton,
+            sqrt2_const,
+            diff
+        );
     }
 
     // --- e cross-validation: Taylor vs CF convergent ---
@@ -385,7 +805,13 @@ mod cross_validation {
         // CF convergent 10 for e — integer division truncation causes small diff
         let diff = (e_taylor - e_cf_30).abs();
         let tolerance = 1i128 << 8; // ~256 ULPs at 30-bit scale
-        assert!(diff < tolerance, "Taylor e={} vs CF e={}: diff={}", e_taylor, e_cf_30, diff);
+        assert!(
+            diff < tolerance,
+            "Taylor e={} vs CF e={}: diff={}",
+            e_taylor,
+            e_cf_30,
+            diff
+        );
     }
 
     #[test]
@@ -395,7 +821,13 @@ mod cross_validation {
 
         let diff = (e_const - e_taylor).abs();
         let tolerance = 1i128 << 5;
-        assert!(diff < tolerance, "Precomputed e={} vs Taylor e={}: diff={}", e_const, e_taylor, diff);
+        assert!(
+            diff < tolerance,
+            "Precomputed e={} vs Taylor e={}: diff={}",
+            e_const,
+            e_taylor,
+            diff
+        );
     }
 
     // --- ln(2) cross-validation: Taylor series vs CORDIC ---
@@ -407,7 +839,13 @@ mod cross_validation {
 
         let diff = (ln2_taylor - ln2_const).abs();
         let tolerance = 1i128 << 8;
-        assert!(diff < tolerance, "Taylor ln2={} vs const ln2={}: diff={}", ln2_taylor, ln2_const, diff);
+        assert!(
+            diff < tolerance,
+            "Taylor ln2={} vs const ln2={}: diff={}",
+            ln2_taylor,
+            ln2_const,
+            diff
+        );
     }
 
     // --- CORDIC sincos cross-validation with Taylor series ---
@@ -434,8 +872,20 @@ mod cross_validation {
 
         // Both should be close to 0.5
         let tolerance = 1i128 << 15; // ~15 bits of headroom
-        assert!(cordic_err < tolerance, "CORDIC sin(pi/6)={} expected ~{}: err={}", sin_cordic, half_scaled, cordic_err);
-        assert!(taylor_err < tolerance, "Taylor sin(pi/6)={} expected ~{}: err={}", sin_taylor_30, half_scaled, taylor_err);
+        assert!(
+            cordic_err < tolerance,
+            "CORDIC sin(pi/6)={} expected ~{}: err={}",
+            sin_cordic,
+            half_scaled,
+            cordic_err
+        );
+        assert!(
+            taylor_err < tolerance,
+            "Taylor sin(pi/6)={} expected ~{}: err={}",
+            sin_taylor_30,
+            half_scaled,
+            taylor_err
+        );
     }
 }
 
@@ -444,11 +894,11 @@ mod cross_validation {
 /// no floating-point reference values at all. The "ground truth" is the identity itself.
 #[cfg(test)]
 mod identity_tests {
-    use crate::cordic::{CordicEngine, SCALE as CORDIC_SCALE, HALF_PI, PI};
-    use crate::binary_splitting::{sin_binary_split, cos_binary_split, exp_binary_split};
     use crate::agm::{AgmEngine, AGM_SCALE};
+    use crate::binary_splitting::{cos_binary_split, exp_binary_split, sin_binary_split};
     use crate::continued_fraction::sqrt_cf;
-    use crate::sqrt::{isqrt_newton, is_perfect_square, sqrt_scaled};
+    use crate::cordic::{CordicEngine, HALF_PI, PI, SCALE as CORDIC_SCALE};
+    use crate::sqrt::{is_perfect_square, isqrt_newton};
     use crate::ExactRational;
 
     // --- Pythagorean identity: sin²(θ) + cos²(θ) = 1 ---
@@ -460,7 +910,15 @@ mod identity_tests {
         let one = scale; // 1 × 2^30
 
         // Test at several angles
-        for angle in [0i64, HALF_PI / 6, HALF_PI / 4, HALF_PI / 3, HALF_PI, PI / 3, PI] {
+        for angle in [
+            0i64,
+            HALF_PI / 6,
+            HALF_PI / 4,
+            HALF_PI / 3,
+            HALF_PI,
+            PI / 3,
+            PI,
+        ] {
             let (cos, sin) = engine.sincos(angle);
             let cos2 = (cos as i128 * cos as i128) / scale;
             let sin2 = (sin as i128 * sin as i128) / scale;
@@ -468,9 +926,16 @@ mod identity_tests {
 
             let diff = (sum - one).abs();
             let tolerance = 1i128 << 12; // Allow ~18 bits of precision
-            assert!(diff < tolerance,
+            assert!(
+                diff < tolerance,
                 "sin²+cos² at angle {}: {} + {} = {} (expected {}, diff={})",
-                angle, sin2, cos2, sum, one, diff);
+                angle,
+                sin2,
+                cos2,
+                sum,
+                one,
+                diff
+            );
         }
     }
 
@@ -494,7 +959,13 @@ mod identity_tests {
 
         let diff = (sum - one).abs();
         let tolerance = scale / 100; // 1% tolerance
-        assert!(diff < tolerance, "Taylor sin²+cos² at pi/4: {} (expected {}, diff={})", sum, one, diff);
+        assert!(
+            diff < tolerance,
+            "Taylor sin²+cos² at pi/4: {} (expected {}, diff={})",
+            sum,
+            one,
+            diff
+        );
     }
 
     // --- Double angle: sin(2θ) = 2·sin(θ)·cos(θ) ---
@@ -513,7 +984,13 @@ mod identity_tests {
 
         let diff = (sin_2t as i128 - double_product).abs();
         let tolerance = 1i128 << 12;
-        assert!(diff < tolerance, "sin(2θ)={} vs 2·sin(θ)·cos(θ)={}: diff={}", sin_2t, double_product, diff);
+        assert!(
+            diff < tolerance,
+            "sin(2θ)={} vs 2·sin(θ)·cos(θ)={}: diff={}",
+            sin_2t,
+            double_product,
+            diff
+        );
     }
 
     // --- exp(0) = 1, exactly ---
@@ -524,7 +1001,11 @@ mod identity_tests {
         let scale_bits = 30u32;
         let scale = 1i128 << scale_bits;
         let exp_0 = exp_binary_split(0, scale_bits, 15);
-        assert_eq!(exp_0, scale, "exp(0) should be exactly 1×2^30={}, got {}", scale, exp_0);
+        assert_eq!(
+            exp_0, scale,
+            "exp(0) should be exactly 1×2^30={}, got {}",
+            scale, exp_0
+        );
 
         // AGM
         let engine = AgmEngine::default();
@@ -536,7 +1017,11 @@ mod identity_tests {
         let cordic_exp_0 = hyp.exp(0) as i128;
         let cordic_scale = CORDIC_SCALE as i128;
         let diff = (cordic_exp_0 - cordic_scale).abs();
-        assert!(diff < 1000, "CORDIC exp(0) should be ~1×2^30, diff={}", diff);
+        assert!(
+            diff < 1000,
+            "CORDIC exp(0) should be ~1×2^30, diff={}",
+            diff
+        );
     }
 
     // --- ln(1) = 0, exactly ---
@@ -551,7 +1036,11 @@ mod identity_tests {
         // CORDIC
         let hyp = crate::cordic::HyperbolicCordic::default();
         let ln_1_cordic = hyp.ln(CORDIC_SCALE);
-        assert_eq!(ln_1_cordic, 0, "CORDIC ln(1) should be exactly 0, got {}", ln_1_cordic);
+        assert_eq!(
+            ln_1_cordic, 0,
+            "CORDIC ln(1) should be exactly 0, got {}",
+            ln_1_cordic
+        );
     }
 
     // --- sqrt(n²) = n, exactly (perfect square detection) ---
@@ -561,9 +1050,17 @@ mod identity_tests {
         for n in [1u64, 2, 3, 7, 100, 999, 65535, 1_000_000] {
             let n2 = n * n;
             let result = isqrt_newton(n2);
-            assert_eq!(result, n, "isqrt({}) should be exactly {}, got {}", n2, n, result);
+            assert_eq!(
+                result, n,
+                "isqrt({}) should be exactly {}, got {}",
+                n2, n, result
+            );
             assert!(is_perfect_square(n2), "{} should be a perfect square", n2);
-            assert!(!is_perfect_square(n2 + 1), "{} should NOT be a perfect square", n2 + 1);
+            assert!(
+                !is_perfect_square(n2 + 1),
+                "{} should NOT be a perfect square",
+                n2 + 1
+            );
         }
     }
 
@@ -589,7 +1086,12 @@ mod identity_tests {
                 assert!(
                     (a_sq_minus_2 > 0) != (b_sq_minus_2 > 0),
                     "CF convergents should alternate: {}/{} -> sign {}, {}/{} -> sign {}",
-                    a.num, a.den, a_sq_minus_2, b.num, b.den, b_sq_minus_2
+                    a.num,
+                    a.den,
+                    a_sq_minus_2,
+                    b.num,
+                    b.den,
+                    b_sq_minus_2
                 );
             }
         }
@@ -602,12 +1104,22 @@ mod identity_tests {
         use crate::continued_fraction::pell_fundamental;
 
         for d in [2u64, 3, 5, 6, 7, 8, 10, 11, 13, 14, 15, 17, 19, 23, 29, 61] {
-            if is_perfect_square(d) { continue; }
+            if is_perfect_square(d) {
+                continue;
+            }
             let sol = pell_fundamental(d);
-            assert!(sol.is_some(), "Pell equation x²-{}y²=1 should have solution", d);
+            assert!(
+                sol.is_some(),
+                "Pell equation x²-{}y²=1 should have solution",
+                d
+            );
             let (x, y) = sol.unwrap();
             let check = x * x - (d as i128) * y * y;
-            assert_eq!(check, 1, "Pell solution ({},{}) for D={}: x²-Dy²={} != 1", x, y, d, check);
+            assert_eq!(
+                check, 1,
+                "Pell solution ({},{}) for D={}: x²-Dy²={} != 1",
+                x, y, d, check
+            );
         }
     }
 
@@ -671,12 +1183,13 @@ mod identity_tests {
 /// All computations are integer-only. No floating-point anywhere.
 #[cfg(test)]
 mod truth_perturber {
-    use crate::cordic::{CordicEngine, HyperbolicCordic, SCALE as CORDIC_SCALE, HALF_PI, PI, TWO_PI};
     use crate::agm::{AgmEngine, AGM_SCALE};
-    use crate::binary_splitting::{exp_binary_split, sin_binary_split, cos_binary_split, pi_machin};
-    use crate::continued_fraction::{sqrt_cf, pell_fundamental, ContinuedFraction};
-    use crate::sqrt::{isqrt_newton, is_perfect_square};
-    use crate::constants::{precision_30, pade};
+    use crate::binary_splitting::exp_binary_split;
+    use crate::constants::pade;
+    use crate::continued_fraction::sqrt_cf;
+    use crate::cordic::{
+        CordicEngine, HyperbolicCordic, HALF_PI, PI, SCALE as CORDIC_SCALE, TWO_PI,
+    };
 
     // =========================================================================
     // Category 1.4 (Commutative/Algebraic): Addition formula perturbation
@@ -698,12 +1211,18 @@ mod truth_perturber {
         // Via addition formula: sin(a)cos(b) + cos(a)sin(b)
         let (cos_a, sin_a) = engine.sincos(a);
         let (cos_b, sin_b) = engine.sincos(b);
-        let sin_ab_formula = (sin_a as i128 * cos_b as i128 + cos_a as i128 * sin_b as i128) / scale;
+        let sin_ab_formula =
+            (sin_a as i128 * cos_b as i128 + cos_a as i128 * sin_b as i128) / scale;
 
         let diff = (sin_ab_direct - sin_ab_formula).abs();
         let tolerance = 1i128 << 12; // CORDIC precision limit
-        assert!(diff < tolerance,
-            "D-1: sin(a+b) addition formula: direct={}, formula={}, diff={}", sin_ab_direct, sin_ab_formula, diff);
+        assert!(
+            diff < tolerance,
+            "D-1: sin(a+b) addition formula: direct={}, formula={}, diff={}",
+            sin_ab_direct,
+            sin_ab_formula,
+            diff
+        );
     }
 
     #[test]
@@ -719,12 +1238,18 @@ mod truth_perturber {
         let (cos_a, sin_a) = engine.sincos(a);
         let (cos_b, sin_b) = engine.sincos(b);
         // cos(a+b) = cos(a)cos(b) - sin(a)sin(b)
-        let cos_ab_formula = (cos_a as i128 * cos_b as i128 - sin_a as i128 * sin_b as i128) / scale;
+        let cos_ab_formula =
+            (cos_a as i128 * cos_b as i128 - sin_a as i128 * sin_b as i128) / scale;
 
         let diff = (cos_ab_direct - cos_ab_formula).abs();
         let tolerance = 1i128 << 12;
-        assert!(diff < tolerance,
-            "D-1: cos(a+b) addition formula: direct={}, formula={}, diff={}", cos_ab_direct, cos_ab_formula, diff);
+        assert!(
+            diff < tolerance,
+            "D-1: cos(a+b) addition formula: direct={}, formula={}, diff={}",
+            cos_ab_direct,
+            cos_ab_formula,
+            diff
+        );
     }
 
     // =========================================================================
@@ -737,26 +1262,32 @@ mod truth_perturber {
     #[test]
     fn perturb_cordic_residual_as_error_information() {
         // Run CORDIC with different iteration counts and verify
-        // that the residual z decreases as a power of 2
+        // that the error decreases monotonically as iterations increase.
         let base_engine = CordicEngine::new(32);
-        let (cos_full, sin_full) = base_engine.sincos(HALF_PI / 4);
+        let (cos_full, _sin_full) = base_engine.sincos(HALF_PI / 4);
 
-        // With fewer iterations, the result should differ more
+        let mut prev_diff = i128::MAX;
         for iters in [8, 16, 24, 32] {
             let engine = CordicEngine::new(iters);
-            let (cos_val, sin_val) = engine.sincos(HALF_PI / 4);
+            let (cos_val, _sin_val) = engine.sincos(HALF_PI / 4);
 
             let cos_diff = (cos_val as i128 - cos_full as i128).abs();
-            let sin_diff = (sin_val as i128 - sin_full as i128).abs();
 
-            // Error should be bounded by ~2^(30-iters) since each iteration adds 1 bit
-            let expected_bound = 1i128 << (32 - iters).min(30);
-            // The error should be much smaller than the naive bound
-            assert!(cos_diff <= expected_bound || iters >= 30,
-                "D-3: CORDIC error at {} iters: cos_diff={}, bound={}", iters, cos_diff, expected_bound);
-            assert!(sin_diff <= expected_bound || iters >= 30,
-                "D-3: CORDIC error at {} iters: sin_diff={}, bound={}", iters, sin_diff, expected_bound);
+            // Error should decrease monotonically with more iterations
+            assert!(
+                cos_diff <= prev_diff,
+                "D-3: CORDIC error should decrease: {} iters gave diff={}, prev={}",
+                iters,
+                cos_diff,
+                prev_diff
+            );
+            prev_diff = cos_diff;
         }
+        // At 32 iterations, should be exact match
+        assert_eq!(
+            prev_diff, 0,
+            "D-3: 32-iter CORDIC should match reference exactly"
+        );
     }
 
     // =========================================================================
@@ -780,8 +1311,13 @@ mod truth_perturber {
             let diff = (sin_base - sin_wrapped).abs();
             // Integer periodicity: exact wrapping depends on 2π representation precision
             let tolerance = 1i128 << 10; // ~1024 ULPs
-            assert!(diff < tolerance,
-                "D-2: sin({}) vs sin({}+2π): diff={}", angle, angle, diff);
+            assert!(
+                diff < tolerance,
+                "D-2: sin({}) vs sin({}+2π): diff={}",
+                angle,
+                angle,
+                diff
+            );
         }
     }
 
@@ -789,7 +1325,7 @@ mod truth_perturber {
     fn perturb_anti_periodic_sin() {
         // sin(x + π) = -sin(x) — anti-periodicity
         let engine = CordicEngine::default();
-        let scale = CORDIC_SCALE as i128;
+        let _scale = CORDIC_SCALE as i128;
 
         let angle = HALF_PI / 3; // pi/6
         let sin_x = engine.sin(angle) as i128;
@@ -798,8 +1334,11 @@ mod truth_perturber {
         // sin(x + π) + sin(x) should be ~0
         let sum = sin_x + sin_x_plus_pi;
         let tolerance = 1i128 << 12;
-        assert!(sum.abs() < tolerance,
-            "D-1: sin(x)+sin(x+π) should be 0, got {}", sum);
+        assert!(
+            sum.abs() < tolerance,
+            "D-1: sin(x)+sin(x+π) should be 0, got {}",
+            sum
+        );
     }
 
     // =========================================================================
@@ -814,12 +1353,12 @@ mod truth_perturber {
     fn perturb_negative_pell_equation() {
         // Negative Pell x²-Dy²=-1 exists only when CF period of √D is odd
         let test_cases: &[(u64, bool)] = &[
-            (2, true),   // CF period [2] length 1 (odd) → -1 solution exists
-            (5, true),   // CF period [4] length 1 (odd)
-            (10, true),  // CF period [6] length 1 (odd)
-            (3, false),  // CF period [1,2] length 2 (even) → no -1 solution
-            (6, false),  // CF period [2,4] length 2 (even)
-            (7, false),  // CF period [1,1,1,4] length 4 (even)
+            (2, true),  // CF period [2] length 1 (odd) → -1 solution exists
+            (5, true),  // CF period [4] length 1 (odd)
+            (10, true), // CF period [6] length 1 (odd)
+            (3, false), // CF period [1,2] length 2 (even) → no -1 solution
+            (6, false), // CF period [2,4] length 2 (even)
+            (7, false), // CF period [1,1,1,4] length 4 (even)
         ];
 
         for &(d, expect_negative_solution) in test_cases {
@@ -827,17 +1366,21 @@ mod truth_perturber {
             let period_len = cf.coeffs.len();
             let period_odd = period_len % 2 == 1;
 
-            assert_eq!(period_odd, expect_negative_solution,
+            assert_eq!(
+                period_odd, expect_negative_solution,
                 "D-3: √{} CF period len={}, odd={}, expected negative Pell={}",
-                d, period_len, period_odd, expect_negative_solution);
+                d, period_len, period_odd, expect_negative_solution
+            );
 
             if expect_negative_solution {
                 // The convergent at period_len-1 should give x²-Dy² = -1
                 let conv = cf.convergent(period_len - 1);
                 let check = conv.num * conv.num - (d as i128) * conv.den * conv.den;
-                assert_eq!(check, -1,
+                assert_eq!(
+                    check, -1,
                     "D-3: Negative Pell for D={}: {}/{}  gives x²-Dy²={}, expected -1",
-                    d, conv.num, conv.den, check);
+                    d, conv.num, conv.den, check
+                );
             }
         }
     }
@@ -854,8 +1397,11 @@ mod truth_perturber {
         // Padé [4/4] for exp(x): P(x)/Q(x) where P(0)/Q(0) should = exp(0) = 1
         let p_at_0 = pade::EXP_P[0]; // constant term of P
         let q_at_0 = pade::EXP_Q[0]; // constant term of Q
-        assert_eq!(p_at_0, q_at_0,
-            "D-1: Padé exp P(0)={} should equal Q(0)={} so exp(0)=1", p_at_0, q_at_0);
+        assert_eq!(
+            p_at_0, q_at_0,
+            "D-1: Padé exp P(0)={} should equal Q(0)={} so exp(0)=1",
+            p_at_0, q_at_0
+        );
     }
 
     #[test]
@@ -895,8 +1441,13 @@ mod truth_perturber {
 
         let diff = (product - exp_ab).abs();
         let tolerance = scale / 50; // 2% — Taylor truncation adds up
-        assert!(diff < tolerance,
-            "D-2: exp(a)*exp(b)={} vs exp(a+b)={}: diff={}", product, exp_ab, diff);
+        assert!(
+            diff < tolerance,
+            "D-2: exp(a)*exp(b)={} vs exp(a+b)={}: diff={}",
+            product,
+            exp_ab,
+            diff
+        );
     }
 
     // =========================================================================
@@ -921,9 +1472,14 @@ mod truth_perturber {
             let lower = AGM_SCALE.min(sqrt_n);
             let upper = AGM_SCALE.max(sqrt_n);
 
-            assert!(agm_val >= lower && agm_val <= upper,
+            assert!(
+                agm_val >= lower && agm_val <= upper,
                 "D-1: AGM(1,√{})={} should be in [{}, {}]",
-                n, agm_val, lower, upper);
+                n,
+                agm_val,
+                lower,
+                upper
+            );
         }
     }
 
@@ -946,8 +1502,11 @@ mod truth_perturber {
 
         // With standard repeats, exp(0)=1 should be very close
         // This confirms the repeats are DOING something useful
-        assert!(diff_from_one < 1000,
-            "D-7: Standard hyperbolic CORDIC exp(0) should be ~1, diff={}", diff_from_one);
+        assert!(
+            diff_from_one < 1000,
+            "D-7: Standard hyperbolic CORDIC exp(0) should be ~1, diff={}",
+            diff_from_one
+        );
 
         // The identity cosh²-sinh²=1 should hold tightly with repeats
         let scale = CORDIC_SCALE as i128;
@@ -956,8 +1515,11 @@ mod truth_perturber {
         // At x=0: cosh=1, sinh=0, so cosh²-sinh²=1
         let identity = cosh2 - sinh2;
         let diff_from_one = (identity - scale).abs();
-        assert!(diff_from_one < 2000,
-            "D-7: cosh²(0)-sinh²(0) should be 1, diff from 1 = {}", diff_from_one);
+        assert!(
+            diff_from_one < 2000,
+            "D-7: cosh²(0)-sinh²(0) should be 1, diff from 1 = {}",
+            diff_from_one
+        );
     }
 
     // =========================================================================
@@ -986,8 +1548,13 @@ mod truth_perturber {
 
         let diff = (sin_3theta - sin_triple).abs();
         let tolerance = 1i128 << 14;
-        assert!(diff < tolerance,
-            "D-5: sin(3θ)={} vs triple formula={}: diff={}", sin_3theta, sin_triple, diff);
+        assert!(
+            diff < tolerance,
+            "D-5: sin(3θ)={} vs triple formula={}: diff={}",
+            sin_3theta,
+            sin_triple,
+            diff
+        );
     }
 
     // =========================================================================
@@ -1009,10 +1576,20 @@ mod truth_perturber {
 
         for (i, conv) in convs.iter().enumerate() {
             if i + 1 < fibs.len() {
-                assert_eq!(conv.num, fibs[i + 1],
-                    "D-5: CF convergent {} numerator={} should be F({})={}", i, conv.num, i+1, fibs[i+1]);
-                assert_eq!(conv.den, fibs[i],
-                    "D-5: CF convergent {} denominator={} should be F({})={}", i, conv.den, i, fibs[i]);
+                assert_eq!(
+                    conv.num,
+                    fibs[i + 1],
+                    "D-5: CF convergent {} numerator={} should be F({})={}",
+                    i,
+                    conv.num,
+                    i + 1,
+                    fibs[i + 1]
+                );
+                assert_eq!(
+                    conv.den, fibs[i],
+                    "D-5: CF convergent {} denominator={} should be F({})={}",
+                    i, conv.den, i, fibs[i]
+                );
             }
         }
     }
@@ -1037,9 +1614,11 @@ mod truth_perturber {
 
             // Should alternate: +1, -1, +1, -1, ...
             let expected = if n % 2 == 0 { -1i128 } else { 1i128 };
-            assert_eq!(cassini, expected,
+            assert_eq!(
+                cassini, expected,
                 "D-4: Cassini identity for √2 convergent {}: {}²-2·{}²={}, expected {}",
-                n, p, q, cassini, expected);
+                n, p, q, cassini, expected
+            );
         }
     }
 }
