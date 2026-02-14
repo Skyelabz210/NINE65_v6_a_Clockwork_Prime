@@ -181,14 +181,11 @@ audits/
 
 ### Audit Status
 
-Completed: 23/25 builds successfully audited
-Pending: 2 builds awaiting completion due to resource constraints
+Completed: 25/25 builds successfully audited
 
 | ID | Build | Status | Notes |
 |----|-------|--------|-------|
-| 08d | `08_FHE_v04_QClassic` | Pending | Rate limit constraints prevented completion |
-| 17 | `17_MANA_definitive` | Pending | Rate limit constraints prevented completion |
-| All others | Various | Complete | 23 builds fully audited |
+| All | Various | Complete | All 25 builds fully audited |
 
 ### Audit Methodology
 
