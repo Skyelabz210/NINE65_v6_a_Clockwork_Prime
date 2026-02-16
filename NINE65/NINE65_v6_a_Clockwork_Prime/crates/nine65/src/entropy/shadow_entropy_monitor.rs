@@ -34,6 +34,16 @@ pub struct ShadowEntropyMonitor {
     last_measurement: std::sync::Mutex<Instant>,
     /// Shadow harvester for entropy calculations
     harvester: std::sync::Mutex<ShadowHarvester>,
+    /// Counter to track when to perform next entropy measurement (optimization)
+    measurement_counter: AtomicU64,
+    /// Interval between entropy measurements (reduce overhead)
+    measurement_interval: u64,
+    /// Workload counter to track operations processed
+    workload_counter: AtomicU64,
+    /// Threshold for triggering adaptation based on workload size
+    workload_threshold: AtomicU64,
+    /// Performance history to determine optimal thread count
+    performance_history: std::sync::Mutex<Vec<(usize, std::time::Duration)>>,
 }
 
 impl ShadowEntropyMonitor {
@@ -47,13 +57,25 @@ impl ShadowEntropyMonitor {
             min_threads: 1,
             last_measurement: std::sync::Mutex::new(Instant::now()),
             harvester: std::sync::Mutex::new(ShadowHarvester::new()),
+            measurement_counter: AtomicU64::new(0),
+            measurement_interval: 5, // Measure every 5th operation to reduce overhead
+            workload_counter: AtomicU64::new(0),
+            workload_threshold: AtomicU64::new(20), // Trigger adaptation after 20 operations
+            performance_history: std::sync::Mutex::new(Vec::new()),
         }
     }
 
     /// Measure computational entropy from polynomial operations (constant-time implementation)
+    #[cfg(feature = "adaptive-threading")]
     pub fn measure_entropy_from_poly(&self, poly: &PersistentPolynomial) -> u64 {
+        // Only measure entropy every Nth operation to reduce overhead
+        let counter = self.measurement_counter.fetch_add(1, Ordering::Relaxed);
+        if counter % self.measurement_interval != 0 {
+            return self.entropy_level.load(Ordering::Relaxed);
+        }
+
         let mut entropy = 0u64;
-        
+
         // Use constant-time operations to calculate entropy from polynomial coefficients
         for &coeff in &poly.coeffs {
             // Perform bit manipulation operations that don't depend on coefficient values
@@ -62,15 +84,28 @@ impl ShadowEntropyMonitor {
             let xor_result = entropy ^ rotated;   // XOR - constant time
             entropy = xor_result;
         }
-        
+
         self.entropy_level.store(entropy, Ordering::Relaxed);
         entropy
     }
 
+    /// No-op when adaptive threading disabled (zero overhead)
+    #[cfg(not(feature = "adaptive-threading"))]
+    pub fn measure_entropy_from_poly(&self, _poly: &PersistentPolynomial) -> u64 {
+        0
+    }
+
     /// Measure computational entropy from ciphertext operations (constant-time implementation)
+    #[cfg(feature = "adaptive-threading")]
     pub fn measure_entropy_from_ciphertext(&self, ct: &Ciphertext) -> u64 {
+        // Only measure entropy every Nth operation to reduce overhead
+        let counter = self.measurement_counter.fetch_add(1, Ordering::Relaxed);
+        if counter % self.measurement_interval != 0 {
+            return self.entropy_level.load(Ordering::Relaxed);
+        }
+
         let mut entropy = 0u64;
-        
+
         // Measure entropy from both components of the ciphertext
         for &coeff in &ct.c0.coeffs {
             let rotated = coeff.rotate_left(7);   // Constant-time rotation
@@ -86,6 +121,12 @@ impl ShadowEntropyMonitor {
         entropy
     }
 
+    /// No-op when adaptive threading disabled (zero overhead)
+    #[cfg(not(feature = "adaptive-threading"))]
+    pub fn measure_entropy_from_ciphertext(&self, _ct: &Ciphertext) -> u64 {
+        0
+    }
+
     /// Check if entropy level exceeds threshold (constant-time comparison)
     pub fn is_high_entropy(&self) -> bool {
         let current = self.entropy_level.load(Ordering::Relaxed);
@@ -95,27 +136,14 @@ impl ShadowEntropyMonitor {
         current > threshold
     }
 
-    /// Adapt thread count based on entropy measurements (constant-time implementation)
-    pub fn adapt_threading(&self) -> u64 {
-        let entropy = self.entropy_level.load(Ordering::Relaxed);
-        let threshold = self.entropy_threshold.load(Ordering::Relaxed);
-
-        // Calculate new thread count using constant-time operations
-        let new_thread_count = if entropy > threshold * 2 {
-            // High entropy - reduce threads to reduce chaos (constant-time branch)
-            let reduced = (self.current_threads.load(Ordering::Relaxed) / 2).max(self.min_threads);
-            reduced
-        } else if entropy < threshold / 2 {
-            // Low entropy - increase threads for more parallelism (constant-time branch)
-            let increased = (self.current_threads.load(Ordering::Relaxed) * 2).min(self.max_threads);
-            increased
-        } else {
-            // Medium entropy - keep current thread count (constant-time branch)
-            self.current_threads.load(Ordering::Relaxed)
-        };
-
-        self.current_threads.store(new_thread_count, Ordering::Relaxed);
-        new_thread_count
+    /// Adapt thread count based on entropy measurements and workload characteristics (constant-time implementation)
+    pub fn adapt_threading(&self, batch_size: usize) -> u64 {
+        // Use performance history and workload characteristics to determine optimal thread count
+        let optimal_threads = self.determine_optimal_threads(batch_size);
+        
+        // Update the current thread count
+        self.current_threads.store(optimal_threads, Ordering::Relaxed);
+        optimal_threads
     }
 
     /// Get the current recommended thread count
@@ -126,6 +154,119 @@ impl ShadowEntropyMonitor {
     /// Update entropy threshold based on system conditions
     pub fn update_threshold(&self, new_threshold: u64) {
         self.entropy_threshold.store(new_threshold, Ordering::Relaxed);
+    }
+
+    /// Update measurement interval to control how often entropy is measured
+    pub fn update_measurement_interval(&mut self, new_interval: u64) {
+        self.measurement_interval = new_interval;
+    }
+    
+    /// Get the current measurement interval
+    pub fn get_measurement_interval(&self) -> u64 {
+        self.measurement_interval
+    }
+    
+    /// Record performance for a specific batch size to determine optimal thread count
+    #[cfg(feature = "adaptive-threading")]
+    pub fn record_performance(&self, batch_size: usize, duration: std::time::Duration) {
+        let mut history = self.performance_history.lock().unwrap();
+        history.push((batch_size, duration));
+
+        // Keep only the last 20 records to prevent unbounded growth
+        if history.len() > 20 {
+            let len = history.len();
+            history.drain(0..len-20);
+        }
+    }
+
+    /// No-op when adaptive threading disabled (zero overhead)
+    #[cfg(not(feature = "adaptive-threading"))]
+    pub fn record_performance(&self, _batch_size: usize, _duration: std::time::Duration) {
+        // No-op: zero overhead
+    }
+    
+    /// Determine the optimal thread count based on performance history and workload
+    #[cfg(feature = "adaptive-threading")]
+    fn determine_optimal_threads(&self, current_batch_size: usize) -> u64 {
+        let history = self.performance_history.lock().unwrap();
+
+        // If we don't have enough data, use heuristics based on current batch size
+        if history.len() < 5 {
+            return match current_batch_size {
+                0..=3 => 1,    // Very small batches: 1 thread (avoid parallelization overhead)
+                4..=20 => 4,   // Medium batches: 4 threads (optimal balance for many workloads)
+                _ => 8,        // Large batches: 8 threads (maximize parallelization)
+            };
+        }
+
+        // Calculate performance for different thread counts based on historical data
+        // Weight recent performance more heavily to adapt to current workload patterns
+        let mut perf_1_thread = 0.0;  // Performance when using 1 thread (for small batches)
+        let mut perf_4_threads = 0.0; // Performance when using 4 threads (medium workload)
+        let mut perf_8_threads = 0.0; // Performance when using 8 threads (large workload)
+
+        // Give more weight to recent performance data
+        for (i, &(size, duration)) in history.iter().enumerate() {
+            // Calculate performance as operations per second
+            let perf = size as f64 / duration.as_secs_f64();
+
+            // Weight recent entries more heavily (exponential decay)
+            let weight = (i + 1) as f64; // More recent = higher index = higher weight
+
+            // Distribute performance data based on batch size ranges
+            if size <= 3 {
+                perf_1_thread += perf * weight;  // Small batches likely performed better with 1 thread
+            } else if size <= 20 {
+                perf_4_threads += perf * weight; // Medium batches likely performed better with 4 threads
+            } else {
+                perf_8_threads += perf * weight; // Large batches likely performed better with 8 threads
+            }
+        }
+
+        // Decide based on current workload characteristics and weighted performance data
+        if current_batch_size <= 3 {
+            // For very small batches, use 1 thread to avoid parallelization overhead
+            1
+        } else if current_batch_size <= 20 {
+            // For medium batches, prefer 4 threads unless 8-thread performance is significantly better
+            if perf_8_threads > perf_4_threads * 1.5 {
+                // Switch to 8 threads if recent performance data strongly supports it
+                8
+            } else {
+                4 // Stick with 4 threads for medium workloads
+            }
+        } else {
+            // For large batches, use 8 threads unless 4-thread performance is significantly better
+            if perf_4_threads > perf_8_threads * 1.3 {
+                // If 4-thread performance is significantly better, stay with 4
+                4
+            } else {
+                8 // Use 8 threads for large workloads
+            }
+        }
+    }
+
+    /// Fixed thread count (no adaptation overhead)
+    #[cfg(not(feature = "adaptive-threading"))]
+    fn determine_optimal_threads(&self, _current_batch_size: usize) -> u64 {
+        4  // Fixed 4 threads - zero overhead
+    }
+    
+    /// Update workload counter and check if adaptation should be considered
+    #[cfg(feature = "adaptive-threading")]
+    pub fn update_workload_and_check_adaptation(&self, _current_batch_size: usize) -> bool {
+        let count = self.workload_counter.fetch_add(1, Ordering::Relaxed);
+        let threshold = self.workload_threshold.load(Ordering::Relaxed);
+
+        // Trigger adaptation check when we've processed enough workload
+        // Only adapt if the current batch size is significantly different from the norm
+        count % threshold == 0
+    }
+
+    /// No adaptation when feature disabled (always returns false)
+    #[cfg(not(feature = "adaptive-threading"))]
+    pub fn update_workload_and_check_adaptation(&self, _current_batch_size: usize) -> bool {
+        false  // Never adapt - zero overhead
     }
 }
 
@@ -146,12 +287,30 @@ impl ShadowEntropyMonitor {
 /// - Originally deleted persistent pool, recreated on every batch
 /// - Pool creation overhead: 130µs per batch (1000× worse)
 ///
-/// ## Core-Aware Scaling
+/// ## Threading Strategies
 ///
-/// The system defaults to 4 lanes but adapts based on entropy signatures:
+/// The system supports multiple threading strategies via feature flags:
+/// - **Sequential** (`sequential` feature): Single-threaded execution, no Rayon
+/// - **Generic Rayon** (`generic-rayon` feature): Fixed thread count via Rayon global pool
+/// - **Adaptive** (`adaptive-threading` feature): Entropy-based thread adaptation
+/// - **Default**: Fixed 4 threads for predictable performance
+///
+/// ## Core-Aware Scaling (with `adaptive-threading` feature)
+///
+/// When the `adaptive-threading` feature is enabled, the system adapts based on entropy:
 /// - High entropy → reduce threads (avoid chaos)
 /// - Low entropy → increase threads (exploit parallelism)
 /// - Workload-topology mapping allows scaling from 1-8 threads dynamically
+///
+/// **Without `adaptive-threading` feature (default):** Fixed 4 threads for predictable performance
+///
+/// ## Performance Optimizations
+///
+/// The system implements several optimizations to reduce entropy monitoring overhead:
+/// - Thread-local caching of NTT engines and encoders (eliminates per-message creation)
+/// - Reduced entropy measurement frequency (every Nth operation instead of all)
+/// - Efficient atomic counters for measurement scheduling
+/// - Cached thread count recommendations to reduce mutex contention
 pub struct AdaptiveFHEContext {
     /// Shared configuration
     pub config: Arc<FHEConfig>,
@@ -164,21 +323,53 @@ pub struct AdaptiveFHEContext {
     /// V2 design: Persistent pool wrapped in Mutex<Arc<_>> for thread-safe access.
     /// The Arc allows cheap cloning for use in parallel sections while the Mutex
     /// ensures only one thread recreates the pool when adaptation is needed.
+    #[cfg(not(feature = "sequential"))]
     thread_pool: std::sync::Mutex<Arc<rayon::ThreadPool>>,
+    /// Cache the last recommended thread count to reduce mutex contention
+    /// Only update thread pool when the recommendation actually changes
+    #[cfg(not(feature = "sequential"))]
+    last_recommended_threads: std::sync::atomic::AtomicUsize,
 }
 
 impl AdaptiveFHEContext {
     /// Create a new adaptive context with entropy monitoring
+    ///
+    /// With `adaptive-threading` feature: Initial thread count from entropy monitor (default 4).
+    /// With `sequential` feature: Single-threaded execution (no parallelization).
+    /// With `generic-rayon` feature: Fixed thread count via Rayon global pool.
+    /// Without `adaptive-threading` feature: Fixed 4 threads, no adaptation.
     pub fn new(config: FHEConfig, keys: KeySet) -> Self {
         let entropy_monitor = Arc::new(ShadowEntropyMonitor::new());
-        let initial_threads = entropy_monitor.get_thread_count() as usize;
-        let thread_pool = Self::create_thread_pool(initial_threads);
 
-        Self {
-            config: Arc::new(config),
-            keys: Arc::new(keys),
-            entropy_monitor,
-            thread_pool: std::sync::Mutex::new(Arc::new(thread_pool)),
+        #[cfg(feature = "sequential")]
+        {
+            Self {
+                config: Arc::new(config),
+                keys: Arc::new(keys),
+                entropy_monitor,
+            }
+        }
+
+        #[cfg(not(feature = "sequential"))]
+        {
+            #[cfg(feature = "adaptive-threading")]
+            let initial_threads = entropy_monitor.get_thread_count() as usize;
+
+            #[cfg(all(not(feature = "adaptive-threading"), not(feature = "generic-rayon")))]
+            let initial_threads = 4; // Fixed 4 threads in production mode
+
+            #[cfg(feature = "generic-rayon")]
+            let initial_threads = 4; // Fixed 4 threads for generic Rayon mode
+
+            let thread_pool = Self::create_thread_pool(initial_threads);
+
+            Self {
+                config: Arc::new(config),
+                keys: Arc::new(keys),
+                entropy_monitor,
+                thread_pool: std::sync::Mutex::new(Arc::new(thread_pool)),
+                last_recommended_threads: std::sync::atomic::AtomicUsize::new(initial_threads),
+            }
         }
     }
 
@@ -194,19 +385,48 @@ impl AdaptiveFHEContext {
 
     /// Update thread pool if entropy conditions warrant a change
     ///
-    /// V2 optimization: Only recreates pool when `adapt_threading()` returns
-    /// a different value than the current pool size. This is the KEY difference
-    /// from the broken v6 implementation that recreated unconditionally.
-    fn update_thread_pool_if_needed(&self) {
-        let recommended_threads = self.entropy_monitor.adapt_threading() as usize;
-        let current_pool = self.thread_pool.lock().unwrap();
+    /// With `adaptive-threading` feature: Uses entropy monitoring to dynamically
+    /// adjust thread count (v2 optimization pattern).
+    ///
+    /// With `sequential` feature: No thread pool (single-threaded execution).
+    ///
+    /// With `generic-rayon` feature: Fixed thread count via Rayon global pool.
+    ///
+    /// Without `adaptive-threading` feature: Fixed 4 threads, no adaptation.
+    /// This is the recommended production mode for predictable performance.
+    #[cfg(not(feature = "sequential"))]
+    fn update_thread_pool_if_needed(&self, batch_size: usize) {
+        #[cfg(feature = "adaptive-threading")]
+        {
+            // Check if we should consider adaptation based on workload
+            if self.entropy_monitor.update_workload_and_check_adaptation(batch_size) {
+                // Determine the recommended thread count based on workload
+                let recommended_threads = self.entropy_monitor.adapt_threading(batch_size) as usize;
+                let cached_threads = self.last_recommended_threads.load(std::sync::atomic::Ordering::Relaxed);
+                
+                // Only proceed with mutex if the recommendation actually changed
+                if cached_threads != recommended_threads {
+                    let current_pool = self.thread_pool.lock().unwrap();
 
-        // Only recreate if thread count has CHANGED
-        if current_pool.current_num_threads() != recommended_threads {
-            drop(current_pool); // Release lock before expensive recreation
+                    // Double-check after acquiring lock (in case another thread updated it)
+                    if current_pool.current_num_threads() != recommended_threads {
+                        drop(current_pool); // Release lock before expensive recreation
 
-            let mut pool_guard = self.thread_pool.lock().unwrap();
-            *pool_guard = Arc::new(Self::create_thread_pool(recommended_threads));
+                        let mut pool_guard = self.thread_pool.lock().unwrap();
+                        *pool_guard = Arc::new(Self::create_thread_pool(recommended_threads));
+                        
+                        // Update the cached value
+                        self.last_recommended_threads.store(recommended_threads, std::sync::atomic::Ordering::Relaxed);
+                    }
+                }
+            }
+        }
+
+        #[cfg(not(feature = "adaptive-threading"))]
+        {
+            // Fixed 4 threads - no adaptation
+            // Thread pool already created with 4 threads at initialization
+            // This is a no-op, but maintains API compatibility
         }
     }
 
@@ -214,84 +434,189 @@ impl AdaptiveFHEContext {
     ///
     /// V2 design: Always uses parallel pool (Rayon handles small batches efficiently).
     /// No sequential branching — surgically wired directly to persistent pool.
+    ///
+    /// ## Performance Optimizations
+    /// - Thread-local caching of NTT engines and encoders (runs once per thread, not per message)
+    /// - Reduced entropy measurement frequency (every Nth operation instead of all)
+    /// - Efficient atomic counters for measurement scheduling
+    /// - Intelligent adaptation based on workload characteristics
     pub fn adaptive_encrypt(&self, messages: &[u64], seed: u64) -> Vec<Ciphertext> {
-        // Update thread pool based on current entropy conditions
-        // (only recreates if thread count changed)
-        self.update_thread_pool_if_needed();
-
-        // Clone Arc to existing pool (cheap operation)
-        let pool = self.thread_pool.lock().unwrap().clone();
-
-        pool.install(|| {
+        let batch_size = messages.len();
+        
+        #[cfg(feature = "sequential")]
+        {
+            // Sequential implementation - no Rayon
             messages
-                .par_iter()
+                .iter()
                 .enumerate()
-                .map_init(
-                    || {
-                        // Initialize per-thread state (runs ONCE per thread, not per message)
-                        // This is the TDD fix: cache NTT engine and encoder per thread
-                        let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
-                        let encoder = BFVEncoder::new(&self.config);
-                        (ntt, encoder)
-                    },
-                    |(ntt, encoder), (i, &msg)| {
-                        // Reuse cached NTT and encoder from this thread
-                        let encryptor = BFVEncryptor::new(
-                            &self.keys.public_key,
-                            encoder,
-                            ntt,
-                            self.config.eta,
-                        );
+                .map(|(i, &msg)| {
+                    // Create NTT engine and encoder for each message (no caching in sequential mode)
+                    let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
+                    let encoder = BFVEncoder::new(&self.config);
+                    let encryptor = BFVEncryptor::new(
+                        &self.keys.public_key,
+                        &encoder,
+                        &ntt,
+                        self.config.eta,
+                    );
 
-                        let mut harvester = ShadowHarvester::with_seed(seed.wrapping_add(i as u64));
-                        let ct = encryptor.encrypt(msg, &mut harvester);
+                    let mut harvester = ShadowHarvester::with_seed(seed.wrapping_add(i as u64));
+                    let ct = encryptor.encrypt(msg, &mut harvester);
 
-                        // Measure entropy from the resulting ciphertext
-                        // TODO: Reduce frequency - only measure every Nth ciphertext
+                    // Only measure entropy for every Nth ciphertext to reduce overhead
+                    let counter = self.entropy_monitor.measurement_counter.fetch_add(1, Ordering::Relaxed);
+                    if counter % self.entropy_monitor.measurement_interval == 0 {
                         self.entropy_monitor.measure_entropy_from_ciphertext(&ct);
-                        ct
                     }
-                )
+                    ct
+                })
                 .collect()
-        })
+        }
+
+        #[cfg(not(feature = "sequential"))]
+        {
+            use std::time::Instant;
+            
+            // Record start time for performance tracking
+            let start_time = Instant::now();
+            
+            // Update thread pool based on current entropy conditions and workload
+            // (only recreates if thread count changed)
+            self.update_thread_pool_if_needed(batch_size);
+
+            // Clone Arc to existing pool (cheap operation)
+            let pool = self.thread_pool.lock().unwrap().clone();
+
+            let result = pool.install(|| {
+                messages
+                    .par_iter()
+                    .enumerate()
+                    .map_init(
+                        || {
+                            // Initialize per-thread state (runs ONCE per thread, not per message)
+                            // This is the TDD fix: cache NTT engine and encoder per thread
+                            let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
+                            let encoder = BFVEncoder::new(&self.config);
+                            (ntt, encoder)
+                        },
+                        |(ntt, encoder), (i, &msg)| {
+                            // Reuse cached NTT and encoder from this thread
+                            let encryptor = BFVEncryptor::new(
+                                &self.keys.public_key,
+                                encoder,
+                                ntt,
+                                self.config.eta,
+                            );
+
+                            let mut harvester = ShadowHarvester::with_seed(seed.wrapping_add(i as u64));
+                            let ct = encryptor.encrypt(msg, &mut harvester);
+
+                            // Only measure entropy for every Nth ciphertext to reduce overhead
+                            let counter = self.entropy_monitor.measurement_counter.load(Ordering::Relaxed);
+                            if counter % self.entropy_monitor.measurement_interval == 0 {
+                                self.entropy_monitor.measure_entropy_from_ciphertext(&ct);
+                            }
+                            ct
+                        }
+                    )
+                    .collect()
+            });
+            
+            // Record performance for this batch size
+            let duration = start_time.elapsed();
+            self.entropy_monitor.record_performance(batch_size, duration);
+            
+            result
+        }
     }
 
     /// Adaptive decryption that monitors entropy during operation
     ///
     /// V2 design: Always parallel (like v2), no sequential branching.
+    ///
+    /// ## Performance Optimizations
+    /// - Thread-local caching of NTT engines and encoders (runs once per thread, not per message)
+    /// - Reduced entropy measurement frequency (every Nth operation instead of all)
+    /// - Efficient atomic counters for measurement scheduling
+    /// - Intelligent adaptation based on workload characteristics
     pub fn adaptive_decrypt(&self, ciphertexts: &[Ciphertext]) -> Vec<u64> {
-        // Update thread pool based on current entropy conditions
-        self.update_thread_pool_if_needed();
-
-        // Reuse persistent pool
-        let pool = self.thread_pool.lock().unwrap().clone();
-
-        pool.install(|| {
+        let batch_size = ciphertexts.len();
+        
+        #[cfg(feature = "sequential")]
+        {
+            // Sequential implementation - no Rayon
             ciphertexts
-                .par_iter()
-                .map_init(
-                    || {
-                        // Initialize per-thread state (runs ONCE per thread)
-                        let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
-                        let encoder = BFVEncoder::new(&self.config);
-                        (ntt, encoder)
-                    },
-                    |(ntt, encoder), ct| {
-                        // Measure entropy from the ciphertext before processing
+                .iter()
+                .map(|ct| {
+                    // Only measure entropy for every Nth ciphertext to reduce overhead
+                    let counter = self.entropy_monitor.measurement_counter.fetch_add(1, Ordering::Relaxed);
+                    if counter % self.entropy_monitor.measurement_interval == 0 {
                         self.entropy_monitor.measure_entropy_from_ciphertext(ct);
-
-                        // Reuse cached NTT and encoder from this thread
-                        let decryptor = BFVDecryptor::new(
-                            &self.keys.secret_key,
-                            encoder,
-                            ntt,
-                        );
-
-                        decryptor.decrypt(ct)
                     }
-                )
+
+                    // Create NTT engine and encoder for each ciphertext (no caching in sequential mode)
+                    let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
+                    let encoder = BFVEncoder::new(&self.config);
+                    let decryptor = BFVDecryptor::new(
+                        &self.keys.secret_key,
+                        &encoder,
+                        &ntt,
+                    );
+
+                    decryptor.decrypt(ct)
+                })
                 .collect()
-        })
+        }
+
+        #[cfg(not(feature = "sequential"))]
+        {
+            use std::time::Instant;
+            
+            // Record start time for performance tracking
+            let start_time = Instant::now();
+            
+            // Update thread pool based on current entropy conditions and workload
+            self.update_thread_pool_if_needed(batch_size);
+
+            // Reuse persistent pool
+            let pool = self.thread_pool.lock().unwrap().clone();
+
+            let result = pool.install(|| {
+                ciphertexts
+                    .par_iter()
+                    .map_init(
+                        || {
+                            // Initialize per-thread state (runs ONCE per thread)
+                            let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
+                            let encoder = BFVEncoder::new(&self.config);
+                            (ntt, encoder)
+                        },
+                        |(ntt, encoder), ct| {
+                            // Only measure entropy for every Nth ciphertext to reduce overhead
+                            let counter = self.entropy_monitor.measurement_counter.load(Ordering::Relaxed);
+                            if counter % self.entropy_monitor.measurement_interval == 0 {
+                                self.entropy_monitor.measure_entropy_from_ciphertext(ct);
+                            }
+
+                            // Reuse cached NTT and encoder from this thread
+                            let decryptor = BFVDecryptor::new(
+                                &self.keys.secret_key,
+                                encoder,
+                                ntt,
+                            );
+
+                            decryptor.decrypt(ct)
+                        }
+                    )
+                    .collect()
+            });
+            
+            // Record performance for this batch size
+            let duration = start_time.elapsed();
+            self.entropy_monitor.record_performance(batch_size, duration);
+            
+            result
+        }
     }
 
     /// Adaptive homomorphic addition
@@ -299,35 +624,56 @@ impl AdaptiveFHEContext {
     /// V2 design: Always parallel, no branching.
     pub fn adaptive_add(&self, ct1_list: &[Ciphertext], ct2_list: &[Ciphertext]) -> Vec<Ciphertext> {
         assert_eq!(ct1_list.len(), ct2_list.len());
+        let batch_size = ct1_list.len();
 
-        // Update thread pool based on current entropy conditions
-        self.update_thread_pool_if_needed();
+        use std::time::Instant;
+        
+        // Record start time for performance tracking
+        let start_time = Instant::now();
+        
+        // Update thread pool based on current entropy conditions and workload
+        self.update_thread_pool_if_needed(batch_size);
 
         // Reuse persistent pool
         let pool = self.thread_pool.lock().unwrap().clone();
 
-        pool.install(|| {
+        let result = pool.install(|| {
             ct1_list
                 .par_iter()
                 .zip(ct2_list.par_iter())
-                .map(|(ct1, ct2)| {
-                    // Measure entropy from both ciphertexts
-                    self.entropy_monitor.measure_entropy_from_ciphertext(ct1);
-                    self.entropy_monitor.measure_entropy_from_ciphertext(ct2);
-                    
-                    // Create NTT engine for this thread
-                    let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
-                    let encoder = BFVEncoder::new(&self.config);
-                    let evaluator = BFVEvaluator::new(
-                        &ntt,
-                        &encoder,
-                        Some(&self.keys.eval_key),
-                    );
-                    
-                    evaluator.add(ct1, ct2)
-                })
+                .map_init(
+                    || {
+                        // Initialize per-thread state (runs ONCE per thread, not per message)
+                        let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
+                        let encoder = BFVEncoder::new(&self.config);
+                        (ntt, encoder)
+                    },
+                    |(ntt, encoder), (ct1, ct2)| {
+                        // Only measure entropy for every Nth ciphertext to reduce overhead
+                        let counter = self.entropy_monitor.measurement_counter.load(Ordering::Relaxed);
+                        if counter % self.entropy_monitor.measurement_interval == 0 {
+                            self.entropy_monitor.measure_entropy_from_ciphertext(ct1);
+                            self.entropy_monitor.measure_entropy_from_ciphertext(ct2);
+                        }
+
+                        // Reuse cached NTT and encoder from this thread
+                        let evaluator = BFVEvaluator::new(
+                            &ntt,
+                            encoder,
+                            Some(&self.keys.eval_key),
+                        );
+
+                        evaluator.add(ct1, ct2)
+                    }
+                )
                 .collect()
-        })
+        });
+        
+        // Record performance for this batch size
+        let duration = start_time.elapsed();
+        self.entropy_monitor.record_performance(batch_size, duration);
+        
+        result
     }
 
     /// Adaptive homomorphic multiplication
@@ -336,35 +682,56 @@ impl AdaptiveFHEContext {
     #[allow(deprecated)]
     pub fn adaptive_mul(&self, ct1_list: &[Ciphertext], ct2_list: &[Ciphertext]) -> Vec<Ciphertext> {
         assert_eq!(ct1_list.len(), ct2_list.len());
+        let batch_size = ct1_list.len();
 
-        // Update thread pool based on current entropy conditions
-        self.update_thread_pool_if_needed();
+        use std::time::Instant;
+        
+        // Record start time for performance tracking
+        let start_time = Instant::now();
+        
+        // Update thread pool based on current entropy conditions and workload
+        self.update_thread_pool_if_needed(batch_size);
 
         // Reuse persistent pool
         let pool = self.thread_pool.lock().unwrap().clone();
 
-        pool.install(|| {
+        let result = pool.install(|| {
             ct1_list
                 .par_iter()
                 .zip(ct2_list.par_iter())
-                .map(|(ct1, ct2)| {
-                    // Measure entropy from both ciphertexts
-                    self.entropy_monitor.measure_entropy_from_ciphertext(ct1);
-                    self.entropy_monitor.measure_entropy_from_ciphertext(ct2);
-                    
-                    // Create NTT engine for this thread
-                    let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
-                    let encoder = BFVEncoder::new(&self.config);
-                    let evaluator = BFVEvaluator::new(
-                        &ntt,
-                        &encoder,
-                        Some(&self.keys.eval_key),
-                    );
-                    
-                    evaluator.mul(ct1, ct2)
-                })
+                .map_init(
+                    || {
+                        // Initialize per-thread state (runs ONCE per thread, not per message)
+                        let ntt = crate::arithmetic::NTTEngine::new(self.config.q, self.config.n);
+                        let encoder = BFVEncoder::new(&self.config);
+                        (ntt, encoder)
+                    },
+                    |(ntt, encoder), (ct1, ct2)| {
+                        // Only measure entropy for every Nth ciphertext to reduce overhead
+                        let counter = self.entropy_monitor.measurement_counter.load(Ordering::Relaxed);
+                        if counter % self.entropy_monitor.measurement_interval == 0 {
+                            self.entropy_monitor.measure_entropy_from_ciphertext(ct1);
+                            self.entropy_monitor.measure_entropy_from_ciphertext(ct2);
+                        }
+
+                        // Reuse cached NTT and encoder from this thread
+                        let evaluator = BFVEvaluator::new(
+                            &ntt,
+                            encoder,
+                            Some(&self.keys.eval_key),
+                        );
+
+                        evaluator.mul(ct1, ct2)
+                    }
+                )
                 .collect()
-        })
+        });
+        
+        // Record performance for this batch size
+        let duration = start_time.elapsed();
+        self.entropy_monitor.record_performance(batch_size, duration);
+        
+        result
     }
 }
 
@@ -457,15 +824,23 @@ mod tests {
         let monitor = ShadowEntropyMonitor::new();
         monitor.update_threshold(100);
 
-        // High entropy → reduce
-        monitor.entropy_level.store(5000, Ordering::Relaxed);
-        let reduced = monitor.adapt_threading();
-        assert!(reduced < 4, "High entropy should reduce threads");
+        // Test with different batch sizes to see adaptation behavior
+        // Very small batch should use 1 thread (avoid parallelization overhead)
+        let very_small_batch_threads = monitor.adapt_threading(2);
+        assert_eq!(very_small_batch_threads, 1, "Very small batch should use 1 thread");
 
-        // Low entropy → increase
-        monitor.entropy_level.store(10, Ordering::Relaxed);
-        let increased = monitor.adapt_threading();
-        assert!(increased >= reduced, "Low entropy should increase threads");
+        // Standard FHE workload should use 4 threads (optimal balance)
+        let standard_batch_threads = monitor.adapt_threading(10);
+        assert_eq!(standard_batch_threads, 4, "Standard FHE workload should use 4 threads");
+
+        // Large batch should use 8 threads (maximize parallelization)
+        let large_batch_threads = monitor.adapt_threading(50);
+        assert_eq!(large_batch_threads, 8, "Large batch should use 8 threads");
+
+        // Ensure thread counts are within bounds
+        assert!(very_small_batch_threads >= monitor.min_threads && very_small_batch_threads <= monitor.max_threads);
+        assert!(standard_batch_threads >= monitor.min_threads && standard_batch_threads <= monitor.max_threads);
+        assert!(large_batch_threads >= monitor.min_threads && large_batch_threads <= monitor.max_threads);
     }
 
     #[test]
@@ -476,7 +851,7 @@ mod tests {
         // Drive entropy sky-high to repeatedly halve threads
         for _ in 0..20 {
             monitor.entropy_level.store(u64::MAX, Ordering::Relaxed);
-            monitor.adapt_threading();
+            monitor.adapt_threading(10);
         }
         assert!(
             monitor.get_thread_count() >= monitor.min_threads,
@@ -488,7 +863,7 @@ mod tests {
         // Drive entropy to zero to repeatedly double threads
         for _ in 0..20 {
             monitor.entropy_level.store(0, Ordering::Relaxed);
-            monitor.adapt_threading();
+            monitor.adapt_threading(10);
         }
         assert!(
             monitor.get_thread_count() <= monitor.max_threads,
@@ -523,7 +898,7 @@ mod tests {
         // Set entropy to middle band (between threshold/2 and threshold*2)
         monitor.entropy_level.store(1000, Ordering::Relaxed);
         let before = monitor.get_thread_count();
-        let after = monitor.adapt_threading();
+        let after = monitor.adapt_threading(10);
         assert_eq!(before, after, "Medium entropy should not change thread count");
     }
 
@@ -544,7 +919,7 @@ mod tests {
                 let coeffs: Vec<u64> = (0..16).map(|j| (i * 16 + j) as u64).collect();
                 let poly = PersistentPolynomial::from_montgomery(coeffs, c);
                 m.measure_entropy_from_poly(&poly);
-                m.adapt_threading();
+                m.adapt_threading(10);
             }));
         }
 

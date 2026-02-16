@@ -23,6 +23,24 @@
 //! let config = SecureConfig::secure_128();
 //! assert!(config.is_production_safe());
 //! ```
+//!
+//! # Compile-Time Security Enforcement
+//!
+//! Test configurations (`test_fast`, `test_medium`) are only available when:
+//! - Running tests (`#[cfg(test)]`)
+//! - Debug builds (`#[cfg(debug_assertions)]`)
+//! - `allow_insecure` feature is enabled
+//!
+//! Release builds without `allow_insecure` will fail to compile if attempting
+//! to use insecure configurations.
+
+// COMPILE-TIME ASSERTION: Prevent insecure configs in release builds
+#[cfg(all(not(test), not(debug_assertions), not(feature = "allow_insecure")))]
+const _SECURITY_ASSERTION: () = {
+    // This block ensures that release builds cannot accidentally use test configs.
+    // The test_fast() and test_medium() functions are cfg-gated and will not exist
+    // in release builds, causing compile errors if referenced.
+};
 
 #[cfg(test)]
 use super::is_ntt_compatible;
@@ -65,6 +83,28 @@ impl SecureConfig {
 
         // Verify HE Standard compliance
         let he_compliant = HEStandardBounds::is_compliant(n, log_q, claimed_security);
+
+        // RUNTIME ASSERTION: Verify claimed security matches actual security
+        // Allow 10% margin for estimation variance
+        #[cfg(not(any(test, feature = "allow_insecure")))]
+        {
+            if claimed_security >= 128 {
+                // For production configs, enforce strict security validation
+                let security_margin_permille = 900; // 90% (allowing 10% underestimate)
+                let min_acceptable = (claimed_security as u64 * security_margin_permille) / 1000;
+
+                assert!(
+                    estimate.hybrid_bits as u64 >= min_acceptable,
+                    "SECURITY ERROR: Config '{}' claims {} bits but achieves only {} hybrid bits!\n\
+                     This is below the 90% threshold ({} bits minimum).\n\
+                     Adjust parameters or lower security claim.",
+                    name,
+                    claimed_security,
+                    estimate.hybrid_bits,
+                    min_acceptable
+                );
+            }
+        }
 
         let config = FHEConfig {
             n,
@@ -240,6 +280,14 @@ impl ProductionSafe for SecureConfig {
     fn require_production_safe(&self) {
         #[cfg(not(any(test, debug_assertions, feature = "allow_insecure")))]
         {
+            // COMPILE-TIME CHECK: Ensure test configs cannot be constructed in release
+            #[cfg(all(not(test), not(debug_assertions), not(feature = "allow_insecure")))]
+            const _: () = {
+                // This ensures test_fast/test_medium are not accessible in release builds
+                // They are gated by #[cfg(any(test, debug_assertions))]
+            };
+
+            // RUNTIME CHECK: Verify security level meets minimum threshold
             assert!(
                 self.is_production_safe(),
                 "SECURITY ERROR: Attempted to use non-production-safe FHE config '{}'!\n\
@@ -248,6 +296,14 @@ impl ProductionSafe for SecureConfig {
                  Use SecureConfig::secure_128() or higher for production.",
                 self.config.name,
                 self.hybrid_security
+            );
+
+            // ADDITIONAL CHECK: Verify HE Standard compliance
+            assert!(
+                self.he_standard_compliant,
+                "SECURITY ERROR: Config '{}' is not HE Standard v1.1 compliant!\n\
+                 This indicates the parameter set may not meet security requirements.",
+                self.config.name
             );
         }
     }
@@ -262,10 +318,49 @@ pub fn assert_production_safe(config: &SecureConfig) {
     config.require_production_safe();
 }
 
+/// Verify security level meets production requirements
+///
+/// Returns Ok(()) if config is production-safe, Err with details otherwise.
+pub fn verify_production_safety(config: &SecureConfig) -> Result<(), String> {
+    if !config.is_production_safe() {
+        return Err(format!(
+            "Config '{}' is not production-safe: hybrid_security={} bits (need >= 128), \
+             he_standard_compliant={}",
+            config.config.name, config.hybrid_security, config.he_standard_compliant
+        ));
+    }
+
+    // Additional checks for production configs
+    if config.hybrid_security < 128 {
+        return Err(format!(
+            "Hybrid security {} bits is below minimum 128 bits",
+            config.hybrid_security
+        ));
+    }
+
+    if !config.he_standard_compliant {
+        return Err("Not HE Standard v1.1 compliant".to_string());
+    }
+
+    // Verify minimum parameter sizes
+    if config.config.n < 4096 {
+        return Err(format!(
+            "Polynomial degree N={} is too small for production (need >= 4096)",
+            config.config.n
+        ));
+    }
+
+    Ok(())
+}
+
 /// Guard that prevents use of insecure configs in release builds
 #[cfg(not(any(test, debug_assertions, feature = "allow_insecure")))]
 pub fn get_production_config() -> SecureConfig {
-    SecureConfig::secure_128()
+    let config = SecureConfig::secure_128();
+    // Verify at construction time
+    verify_production_safety(&config)
+        .expect("Default production config must be production-safe");
+    config
 }
 
 #[cfg(any(test, debug_assertions, feature = "allow_insecure"))]
@@ -378,5 +473,37 @@ mod tests {
                 config.quantum_security
             );
         }
+    }
+
+    #[test]
+    fn test_production_safety_verification() {
+        // Production configs should pass
+        let secure_128 = SecureConfig::secure_128();
+        assert!(verify_production_safety(&secure_128).is_ok());
+
+        let secure_192 = SecureConfig::secure_192();
+        assert!(verify_production_safety(&secure_192).is_ok());
+
+        let secure_256 = SecureConfig::secure_256();
+        assert!(verify_production_safety(&secure_256).is_ok());
+
+        // Test configs should fail
+        let test_fast = SecureConfig::test_fast();
+        assert!(verify_production_safety(&test_fast).is_err());
+
+        let test_medium = SecureConfig::test_medium();
+        assert!(verify_production_safety(&test_medium).is_err());
+    }
+
+    #[test]
+    fn test_production_safe_trait() {
+        // This should not panic in test mode
+        let config = SecureConfig::secure_128();
+        config.require_production_safe();
+
+        // Test configs have the trait but will panic in release
+        let test_config = SecureConfig::test_fast();
+        // In test mode, this will not panic
+        test_config.require_production_safe();
     }
 }

@@ -6,7 +6,7 @@ use nine65::arithmetic::k_elimination::{
 use nine65::arithmetic::{BarrettContext, ExactDivider, KElimination, NTTEngine};
 use nine65::entropy::ShadowHarvester;
 use nine65::ops::RNSFHEContext;
-use nine65::params::FHEConfig;
+use nine65::params::SecureConfig;
 
 #[cfg(feature = "ntt_fft")]
 use nine65::arithmetic::NTTEngineFFT;

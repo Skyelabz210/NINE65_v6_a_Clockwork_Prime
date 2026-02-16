@@ -57,6 +57,9 @@ pub mod crt_shadow;
 #[cfg(feature = "shadow-entropy")]
 pub mod wassan_noise;
 
+// NEW: Shadow Entropy Monitor for adaptive resource management
+pub mod shadow_entropy_monitor;
+
 pub use rng_trait::{require_secure_rng, FheRng};
 pub use shadow::ShadowHarvester;
 
@@ -69,6 +72,9 @@ pub use crt_shadow::{
 };
 #[cfg(feature = "shadow-entropy")]
 pub use wassan_noise::WassanNoiseField;
+
+// Export the shadow entropy monitor
+pub use shadow_entropy_monitor::{ShadowEntropyMonitor, AdaptiveFHEContext};
 
 pub use secure::{
     entropy_health_check, secure_bytes, secure_cbd, secure_cbd_vector, secure_ternary,

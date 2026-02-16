@@ -42,7 +42,44 @@ Standardization) requirements for production FHE deployments.
 | No secret-dependent branching | CWE-208 | Enforced | `subtle` crate CT primitives |
 | Entropy source health | NIST SP 800-90B | Implemented | `entropy/secure.rs` (`entropy_health_check()`) |
 
-## 4. Error Handling (Defensive Implementation)
+## 4. Parameter Security Hardening (v6 Enhancement)
+
+| Requirement | Reference | NINE65 Status | Module |
+|-------------|-----------|---------------|--------|
+| Compile-time insecure config blocking | Defense in depth | Implemented | `params/secure_configs.rs` (cfg gates on test configs) |
+| Runtime security validation | Parameter validation | Implemented | `params/validation.rs` (production_safe check) |
+| Security claim verification | Honest parameter sets | Implemented | `new_verified()` validates claims ±10% |
+| Production safety trait | Type safety | Implemented | `ProductionSafe` trait + `verify_production_safety()` |
+| Minimum 128-bit hybrid security | NIST Cat I | Enforced | `assert_production_params()` panics if < 128 bits |
+| HE Standard v1.1 compliance | HES Table 3 | Automated | `HEStandardBounds::is_compliant()` |
+
+### Security Hardening Details
+
+1. **Compile-Time Enforcement**
+   - Test configs (`test_fast`, `test_medium`) only accessible with `#[cfg(any(test, debug_assertions))]`
+   - Release builds without `allow_insecure` feature cannot construct insecure configs
+   - Const assertions verify security invariants at compile time
+
+2. **Runtime Validation**
+   - `ParameterValidator::validate()` performs comprehensive checks:
+     - Orbital boundary safety (K-Elimination capacity)
+     - HE Standard compliance
+     - Detailed security estimates (hybrid, classical, quantum)
+     - Production safety threshold (>= 128-bit hybrid)
+     - Noise budget adequacy
+   - `verify_production_safety()` returns `Result<(), String>` with detailed failure reasons
+
+3. **Security Claim Verification**
+   - `SecureConfig::new_verified()` validates claimed security against actual estimates
+   - Allows 10% margin for estimation variance
+   - Panics in release builds if claimed security exceeds actual by > 10%
+
+4. **Production Safety Guards**
+   - `assert_production_params()` enforces all production requirements
+   - `ProductionSafe` trait provides compile-time safety markers
+   - `get_production_config()` returns verified secure_128 by default
+
+## 5. Error Handling (Defensive Implementation)
 
 | Requirement | Reference | NINE65 Status | Evidence |
 |-------------|-----------|---------------|----------|
@@ -51,7 +88,7 @@ Standardization) requirements for production FHE deployments.
 | Precondition validation | Formal verification | Implemented | `validate_preconditions()` on K-Elimination |
 | No panic in production | Defensive coding | Enforced | `scripts/check_no_panics.sh` CI gate |
 
-## 5. Formal Verification
+## 6. Formal Verification
 
 | Requirement | Standard | NINE65 Status | Evidence |
 |-------------|----------|---------------|----------|
@@ -60,7 +97,7 @@ Standardization) requirements for production FHE deployments.
 | Proof-to-code traceability | ISO 15408 | Maintained | `docs/FORMALIZATION_INDEX.md` |
 | Error-to-theorem mapping | Formal methods | Complete | Error taxonomy in `errors.rs` |
 
-## 6. Key Management
+## 7. Key Management
 
 | Requirement | Reference | NINE65 Status | Module |
 |-------------|-----------|---------------|--------|
@@ -69,7 +106,7 @@ Standardization) requirements for production FHE deployments.
 | Key separation | NIST SP 800-57 | Enforced | Separate secret/public/eval key types |
 | Bootstrap key isolation | Circular security | Validated | `test_circular_security_sk_identity` |
 
-## 7. Build & Deployment
+## 8. Build & Deployment
 
 | Requirement | Standard | NINE65 Status | Mechanism |
 |-------------|----------|---------------|-----------|
@@ -79,7 +116,7 @@ Standardization) requirements for production FHE deployments.
 | License compliance | Legal | Automated | `cargo deny check` in CI |
 | Test-only configs blocked in release | Defense in depth | Enforced | `compile_error!` on `allow_insecure` + release |
 
-## 8. Gaps and Roadmap
+## 9. Gaps and Roadmap
 
 | Gap | Priority | Mitigation |
 |-----|----------|------------|

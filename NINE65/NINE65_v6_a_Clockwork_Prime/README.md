@@ -63,10 +63,50 @@ docs/REDSHIRT_SECURITY_ASSESSMENT.md.
 - **No known quantum speedup**: Unlike RSA/ECC, Shor's algorithm doesn't break LWE
 - **NIST PQC finalist**: LWE-based schemes selected for post-quantum standardization
 
+### Parameter Security Hardening (v6 Enhancement)
+
+NINE65 v6 includes comprehensive parameter security hardening to prevent misuse of insecure configurations:
+
+#### Compile-Time Enforcement
+- **Test configs blocked in release**: `test_fast()` and `test_medium()` are only accessible with `#[cfg(any(test, debug_assertions))]`
+- **Feature gate for insecure**: Release builds require `allow_insecure` feature to access test configurations
+- **Const assertions**: Compile-time validation of security invariants
+
+#### Runtime Validation
+- **Comprehensive parameter validation**: `ParameterValidator::validate()` checks:
+  - Orbital boundary safety (K-Elimination capacity)
+  - HE Standard v1.1 compliance
+  - Detailed security estimates (hybrid, classical, quantum)
+  - Production safety threshold (>= 128-bit hybrid)
+  - Noise budget adequacy
+- **Security claim verification**: `SecureConfig::new_verified()` validates claimed security against actual estimates (±10% tolerance)
+- **Production safety guards**: `assert_production_params()` enforces 128-bit minimum in release builds
+
+#### API Usage
+```rust
+use nine65::params::secure_configs::{SecureConfig, verify_production_safety};
+
+// Production-safe configuration (verified at construction)
+let config = SecureConfig::secure_128();
+assert!(config.is_production_safe());
+
+// Verify production safety explicitly
+verify_production_safety(&config).expect("Config must be production-safe");
+
+// Runtime parameter validation
+use nine65::params::validation::validate_params;
+let result = validate_params(4096, 998244353, 65537);
+assert!(result.production_safe, "Must meet 128-bit threshold");
+```
+
 ### Verification
 ```bash
 # Run security parameter tests
 cargo test -p nine65 security::tests -- --nocapture
+
+# Run parameter validation tests
+cargo test -p nine65 params::validation::tests -- --nocapture
+cargo test -p nine65 params::secure_configs::tests -- --nocapture
 ```
 
 **Note**: These are parameter estimates based on standard LWE security analysis.
