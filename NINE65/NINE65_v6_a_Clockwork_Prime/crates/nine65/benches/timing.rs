@@ -245,7 +245,7 @@ fn bench_ntt_fft(c: &mut Criterion) {
 
 #[allow(deprecated)]
 fn bench_rns_kelim_rescale(c: &mut Criterion) {
-    let config = FHEConfig::light_rns_exact();
+    let config = SecureConfig::secure_128().into_config();
     let ctx = RNSFHEContext::new(&config);
     let mut rng = ShadowHarvester::with_seed(42);
     let keys = ctx.generate_keys_dual(&mut rng);
