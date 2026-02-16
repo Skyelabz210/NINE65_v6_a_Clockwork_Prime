@@ -1,14 +1,13 @@
 use std::time::Instant;
-use rayon::prelude::*;
-use nine65::entropy::shadow_entropy_monitor::AdaptiveFHEContext;
+use nine65::entropy::shadow_entropy_monitor::{AdaptiveFHEContext, ShadowEntropyMonitor};
 use nine65::keys::KeySet;
 use nine65::params::SecureConfig;
 use nine65::ops::encrypt::{BFVEncoder, BFVEncryptor, BFVDecryptor};
 use nine65::arithmetic::NTTEngine;
 
 fn main() {
-    println!("Comprehensive Threading Strategy Benchmark");
-    println!("========================================");
+    println!("Threading Strategy Performance Comparison");
+    println!("======================================");
 
     // Setup for all systems
     let config = SecureConfig::secure_128().into_config();
@@ -17,7 +16,7 @@ fn main() {
     let keys = KeySet::generate(&config, &ntt, &mut rng);
 
     // Test data of different sizes
-    let batch_sizes = vec![1, 2, 3, 4, 5, 10, 20, 50, 100];
+    let batch_sizes = vec![5, 20, 50, 100];
     
     for batch_size in batch_sizes {
         println!("\nBatch Size: {} messages", batch_size);
@@ -47,7 +46,7 @@ fn main() {
             .collect();
         let sequential_time = start.elapsed();
 
-        // 2. Generic Rayon with thread-local caching
+        // 2. Generic Rayon with thread-local caching (similar to optimized approach)
         let start = Instant::now();
         let cached_results: Vec<_> = messages
             .par_iter()
@@ -71,7 +70,7 @@ fn main() {
                 }
             )
             .collect();
-        let generic_rayon_time = start.elapsed();
+        let cached_rayon_time = start.elapsed();
 
         // 3. Adaptive System (our current implementation)
         let adaptive_ctx = AdaptiveFHEContext::new(config.clone(), keys.clone());
@@ -81,17 +80,15 @@ fn main() {
 
         // Print results
         println!("Sequential (no Rayon):     {:>10?}", sequential_time);
-        println!("Generic Rayon (cached):    {:>10?}", generic_rayon_time);
+        println!("Generic Rayon (cached):    {:>10?}", cached_rayon_time);
         println!("Adaptive System:           {:>10?}", adaptive_time);
         
         // Calculate ratios
-        if generic_rayon_time.as_nanos() > 0 {
-            let seq_vs_generic = sequential_time.as_nanos() as f64 / generic_rayon_time.as_nanos() as f64;
-            let adaptive_vs_generic = adaptive_time.as_nanos() as f64 / generic_rayon_time.as_nanos() as f64;
-            
-            println!("Sequential vs Generic:     {:>8.2}x", seq_vs_generic);
-            println!("Adaptive vs Generic:       {:>8.2}x", adaptive_vs_generic);
-        }
+        let seq_vs_cached = sequential_time.as_micros() as f64 / cached_rayon_time.as_micros() as f64;
+        let adaptive_vs_cached = adaptive_time.as_micros() as f64 / cached_rayon_time.as_micros() as f64;
+        
+        println!("Sequential vs Cached:      {:>8.2}x", seq_vs_cached);
+        println!("Adaptive vs Cached:        {:>8.2}x", adaptive_vs_cached);
     }
     
     println!("\nNote: Lower times are better. Ratios show performance relative to Generic Rayon.");

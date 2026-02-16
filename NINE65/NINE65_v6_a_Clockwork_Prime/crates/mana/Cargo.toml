@@ -19,6 +19,6 @@ zeroize = { workspace = true }
 criterion = { workspace = true }
 proptest = { workspace = true }
 
-[[bench]]
-name = "lane_ops"
-harness = false
+# [[bench]]
+# name = "lane_ops"
+# harness = false

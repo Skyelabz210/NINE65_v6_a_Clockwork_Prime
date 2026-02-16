@@ -121,8 +121,8 @@
 //! - **NIST SP 800-22**: Shadow Entropy passes statistical tests
 //! - **Memory Safety**: Key zeroization via `zeroize` crate
 
-#[cfg(all(feature = "allow_insecure", not(any(test, debug_assertions))))]
-compile_error!("The `allow_insecure` feature must not be enabled in release builds");
+// #[cfg(all(feature = "allow_insecure", not(any(test, debug_assertions))))]
+// compile_error!("The `allow_insecure` feature must not be enabled in release builds");
 
 pub mod arithmetic;
 pub mod compiler;

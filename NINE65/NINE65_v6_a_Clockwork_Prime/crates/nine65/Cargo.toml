@@ -37,6 +37,12 @@ exact_rational = ["nexgen_rational"]
 clockwork = ["clockwork-core", "crc32fast"]
 # Use exact_transcendentals CORDIC/AGM backend for transcendental ops.
 exact_transcendentals_backend = ["dep:exact_transcendentals"]
+# Enable adaptive threading based on entropy monitoring (defaults to fixed 4 threads)
+adaptive-threading = ["shadow-entropy"]
+# Enable sequential execution (no Rayon)
+sequential = []
+# Enable generic Rayon with fixed thread count (no adaptive entropy monitoring)
+generic-rayon = ["rayon"]
 
 [dependencies]
 mana = { path = "../mana", optional = true }
@@ -82,9 +88,18 @@ harness = false
 required-features = ["parallel"]
 
 [[bench]]
+name = "adaptive_rayon"
+harness = false
+required-features = ["parallel"]
+
+[[bench]]
 name = "timing"
 harness = false
 required-features = ["benchmarks"]
+
+[[example]]
+name = "thread_comparison_benchmark"
+path = "../../thread_comparison_benchmark.rs"
 
 [[example]]
 name = "test_mod_switch"
