@@ -1,0 +1,14 @@
+{
+  "type": "consult_launched",
+  "consultants": [
+    {
+      "name": "claude",
+      "model": "opus"
+    }
+  ],
+  "project": "v5",
+  "receipt_time": "2026-02-10T21:21:20.700858",
+  "expected_reports": [
+    "jobs/v5/consult_claude_opus_20260210_212120.md"
+  ]
+}

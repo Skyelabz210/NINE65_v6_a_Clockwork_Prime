@@ -1,0 +1,14 @@
+{
+  "type": "consult_launched",
+  "consultants": [
+    {
+      "name": "gemini",
+      "model": "gemini-2.0-flash"
+    }
+  ],
+  "project": "v5",
+  "receipt_time": "2026-02-10T21:55:27.867563",
+  "expected_reports": [
+    "jobs/v5/consult_gemini_gemini-2.0-flash_20260210_215527.md"
+  ]
+}
