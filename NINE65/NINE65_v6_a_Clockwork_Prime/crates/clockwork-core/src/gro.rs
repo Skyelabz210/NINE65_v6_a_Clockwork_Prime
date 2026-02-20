@@ -42,7 +42,8 @@ pub struct GroGate {
     acc_mask: u64,
     /// Window width parameter W: coincidence when |θ_A - θ_B| < W
     window_width: u64,
-    /// Current time step
+    /// Current time step (reserved for future GRO sequencing)
+    #[allow(dead_code)]
     time_step: u64,
 }
 

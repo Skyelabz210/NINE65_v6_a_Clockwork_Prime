@@ -435,7 +435,7 @@ fn explore_h5_modswitch_distribution_error() {
 
     let config = SecureConfig::secure_128().into_config();
     let ctx = RNSFHEContext::try_new(&config).expect("Context");
-    let boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
+    let _boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
     let mut rng = ShadowHarvester::with_seed(42);
     let keys = ctx.generate_keys_dual_full(&mut rng);
 
@@ -732,7 +732,7 @@ fn explore_noise_floor_estimation() {
     let keys = ctx.generate_keys_dual_full(&mut rng);
     let boot_keys = boot.generate_keys(&keys.secret_key, &mut rng).expect("KeyGen");
 
-    let n = config.n;
+    let _n = config.n;
 
     // Multiple seeds to get noise statistics
     let num_samples = 10;
@@ -1290,4 +1290,68 @@ fn gcd_u64(mut a: u64, mut b: u64) -> u64 {
         a = temp;
     }
     a
+}
+
+// =========================================================================
+// REGRESSION TEST: Bootstrap roundtrip correctness after Δ⁻¹ fix (F-1)
+// =========================================================================
+
+/// Regression test for Finding F-1: verify that bootstrap roundtrip
+/// recovers the original plaintext for a range of messages.
+///
+/// Tests both circular security (`bootstrap()`) and non-circular
+/// (`bootstrap_with_ksk()`) paths.
+#[test]
+fn test_bootstrap_roundtrip_correctness() {
+    use nine65::params::SecureConfig;
+
+    let config = SecureConfig::secure_128().into_config();
+    let ctx = RNSFHEContext::try_new(&config).expect("Context");
+    let boot = ClockworkBootstrap::new(&config).expect("Bootstrap context");
+    let mut rng = ShadowHarvester::with_seed(42);
+    let keys = ctx.generate_keys_dual_full(&mut rng);
+
+    // --- Circular security path ---
+    let boot_keys_circ = boot
+        .generate_keys(&keys.secret_key, &mut rng)
+        .expect("Circular key generation");
+
+    let test_messages = [0u64, 1, 2, 7, 42, 100, 1000];
+
+    for &m in &test_messages {
+        let ct = ctx.encrypt_dual(m, &keys.public_key, &mut rng);
+
+        // Sanity: fresh decrypt must be exact
+        let dec_fresh = ctx.decrypt_dual(&ct, &keys.secret_key);
+        assert_eq!(dec_fresh, m, "Fresh decrypt failed for m={}", m);
+
+        // Bootstrap roundtrip (circular)
+        let ct_boot = boot
+            .bootstrap(&ct, &boot_keys_circ.bsk, &boot_keys_circ.ksk)
+            .expect("Bootstrap failed");
+        let dec_boot = ctx.decrypt_dual(&ct_boot, &keys.secret_key);
+        assert_eq!(
+            dec_boot, m,
+            "Circular bootstrap roundtrip failed: m={}, got={}",
+            m, dec_boot
+        );
+    }
+
+    // --- Non-circular (KSK) path ---
+    let boot_keys_ksk = boot
+        .generate_keys_with_ksk(&keys.secret_key, &mut rng)
+        .expect("KSK key generation");
+
+    for &m in &test_messages {
+        let ct = ctx.encrypt_dual(m, &keys.public_key, &mut rng);
+        let ct_boot = boot
+            .bootstrap_with_ksk(&ct, &boot_keys_ksk.bsk, &boot_keys_ksk.ksk)
+            .expect("Bootstrap with KSK failed");
+        let dec_boot = ctx.decrypt_dual(&ct_boot, &keys.secret_key);
+        assert_eq!(
+            dec_boot, m,
+            "KSK bootstrap roundtrip failed: m={}, got={}",
+            m, dec_boot
+        );
+    }
 }

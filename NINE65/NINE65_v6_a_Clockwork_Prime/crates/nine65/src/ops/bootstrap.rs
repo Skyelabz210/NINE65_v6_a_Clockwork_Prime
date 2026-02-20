@@ -372,11 +372,137 @@ impl ClockworkBootstrap {
         })
     }
 
-    /// Bootstrap a ciphertext to refresh its noise budget.
+    /// Generate bootstrap key material with independent boot key and KSK.
+    ///
+    /// Unlike `generate_keys()` (circular security), this generates an
+    /// independent boot secret key and a proper key-switch key (KSK) to
+    /// convert ciphertexts from boot_sk back to work_sk after Phase 2.
+    ///
+    /// This avoids the circular security assumption (boot_sk ≠ work_sk)
+    /// at the cost of additional noise from the key-switch step.
+    ///
+    /// Use with `bootstrap_with_ksk()` for the non-circular bootstrap path.
+    pub fn generate_keys_with_ksk(
+        &self,
+        work_sk: &DualRNSSecretKey,
+        rng: &mut ShadowHarvester,
+    ) -> Nine65Result<BootstrapKeySet> {
+        // Generate an independent boot secret key (NOT lifted from work_sk)
+        let boot_sk = self.generate_independent_boot_sk(rng);
+
+        // Generate boot public key under boot_sk
+        let boot_pk = self.generate_circular_pk(&boot_sk, rng);
+
+        let boot_keyset = DualRNSFullKeySet {
+            secret_key: boot_sk.clone(),
+            public_key: boot_pk,
+            eval_key: DualRNSEvalKey {
+                rlk: vec![],
+                decomp_base: 1024,
+                num_digits: 0,
+            },
+        };
+
+        // Generate BSK: Enc_{boot_pk}(work_sk) — encrypted under boot key
+        let bsk = BootstrapKey::generate(
+            &self.work_config,
+            &self.boot_ctx,
+            &boot_keyset,
+            work_sk,
+            rng,
+        )?;
+
+        // Generate KSK: converts Enc_{boot_sk} → Enc_{work_sk}
+        // Uses gadget decomposition following the GaloisKey pattern.
+        let ksk = KeySwitchKey::generate(
+            &boot_sk,
+            work_sk,
+            &self.boot_ctx,
+            rng,
+        )?;
+
+        Ok(BootstrapKeySet {
+            bsk,
+            ksk,
+            boot_sk,
+        })
+    }
+
+    /// Generate an independent boot secret key (fresh ternary polynomial).
+    fn generate_independent_boot_sk(
+        &self,
+        rng: &mut ShadowHarvester,
+    ) -> DualRNSSecretKey {
+        let n = self.n;
+
+        // Generate fresh ternary coefficients {-1, 0, 1}
+        let s_signed: Vec<i8> = (0..n)
+            .map(|_| {
+                let r = crate::entropy::FheRng::next_u64(rng) % 3;
+                match r {
+                    0 => -1i8,
+                    1 => 0i8,
+                    _ => 1i8,
+                }
+            })
+            .collect();
+
+        // Encode under boot main primes
+        let s_main: Vec<Vec<u64>> = self
+            .boot_config
+            .primes
+            .iter()
+            .map(|&p| {
+                s_signed
+                    .iter()
+                    .map(|&c| {
+                        if c < 0 {
+                            p - ((-c) as u64)
+                        } else {
+                            c as u64
+                        }
+                    })
+                    .collect()
+            })
+            .collect();
+
+        // Encode under boot anchor primes
+        let s_anchor: Vec<Vec<u64>> = self
+            .boot_ctx
+            .dual_rns
+            .anchor
+            .primes
+            .iter()
+            .map(|&p| {
+                s_signed
+                    .iter()
+                    .map(|&c| {
+                        if c < 0 {
+                            p - ((-c) as u64)
+                        } else {
+                            c as u64
+                        }
+                    })
+                    .collect()
+            })
+            .collect();
+
+        DualRNSSecretKey {
+            s: DualRNSPoly {
+                main: s_main,
+                anchor: s_anchor,
+                n,
+            },
+        }
+    }
+
+    /// Bootstrap a ciphertext to refresh its noise budget (circular security).
     ///
     /// Phase 1: ModSwitch Q_min -> t (exact, in the clear)
     /// Phase 2: Homomorphic inner product (Enc_boot(m))
     /// Phase 3: ModSwitch Q_boot -> Q_work (circular security, no key switch)
+    ///
+    /// Use with keys from `generate_keys()` (circular security mode).
     pub fn bootstrap(
         &self,
         ct: &DualRNSCiphertext,
@@ -392,6 +518,40 @@ impl ClockworkBootstrap {
 
         // Phase 3: ModSwitch Q_boot -> Q_work (drop extra boot prime)
         let ct_work = self.modswitch_boot_to_work(&ct_boot)?;
+
+        Ok(ct_work)
+    }
+
+    /// Bootstrap with key switching (non-circular security).
+    ///
+    /// Phase 1: ModSwitch Q_min -> t (exact, in the clear)
+    /// Phase 2: Homomorphic inner product -> Enc_{boot_sk, Q_boot}(m)
+    /// Phase 3: Key switch from boot_sk to work_sk via gadget decomposition
+    ///
+    /// Use with keys from `generate_keys_with_ksk()` (non-circular mode).
+    /// The KSK converts the Phase 2 output from boot_sk to work_sk,
+    /// avoiding the circular security assumption at the cost of additional
+    /// noise from the key-switch operation.
+    pub fn bootstrap_with_ksk(
+        &self,
+        ct: &DualRNSCiphertext,
+        bsk: &BootstrapKey,
+        ksk: &KeySwitchKey,
+    ) -> Nine65Result<DualRNSCiphertext> {
+        // Phase 1: ModSwitch Q_min -> t (exact integer rounding)
+        let (c0_small, c1_small) = self.modswitch_to_t(ct)?;
+
+        // Phase 2: Homomorphic inner product -> Enc_{boot_sk, Q_boot}(m)
+        let ct_boot = self.homomorphic_inner_product(&c0_small, &c1_small, bsk)?;
+
+        // Phase 3a: Key switch from boot_sk to work_sk (gadget decomposition)
+        // Result is still in boot prime space, now encrypted under work_sk.
+        let ct_switched = self.key_switch(&ct_boot, ksk)?;
+
+        // Phase 3b: ModSwitch Q_boot -> Q_work (drop extra boot prime)
+        // Same scaling step used by the circular path — divides by the extra
+        // boot prime to move from Q_boot to Q_work while preserving Δ·m.
+        let ct_work = self.modswitch_boot_to_work(&ct_switched)?;
 
         Ok(ct_work)
     }
@@ -575,10 +735,6 @@ impl ClockworkBootstrap {
 
             // Compute modswitch: round(c0_val * t / q_level)
             // = floor((c0_val * t + q_level/2) / q_level)
-            //
-            // K-Elimination validates the CRT reconstruction was exact,
-            // but the final division uses standard arithmetic since
-            // we WANT the floor/rounding behavior (not exact division).
             c0_small[i] = ((c0_val * t + q_level_half) / q_level % t) as u64;
 
             // Same for c1
@@ -763,21 +919,59 @@ impl ClockworkBootstrap {
             }
         }
 
-        // Anchor limbs: zero (K-Elimination anchors recomputed on next operation)
-        let num_work_anchors = self.boot_ctx.dual_rns.anchor.primes.len();
-        let zero_anchor: Vec<Vec<u64>> = (0..num_work_anchors)
-            .map(|_| vec![0u64; n])
-            .collect();
+        // Recompute anchor limbs from main limbs via CRT reconstruction.
+        // K-Elimination rescale needs valid anchor residues; zero anchors
+        // produce garbage k values and corrupt subsequent multiplications.
+        let anchor_primes = &self.boot_ctx.dual_rns.anchor.primes;
+        let num_work_anchors = anchor_primes.len();
+
+        // CRT inverses for work primes (Garner's algorithm)
+        let work_primes_u128: Vec<u128> = self.work_config.primes.iter().map(|&p| p as u128).collect();
+        let mut work_crt_inv = Vec::with_capacity(work_num_primes);
+        let mut partial = 1u128;
+        for k in 0..work_num_primes {
+            if k > 0 {
+                let inv = mod_inverse_u128(partial, work_primes_u128[k]).ok_or_else(|| {
+                    Nine65Error::BootstrapOverflow {
+                        operation: format!("CRT inverse for work prime {}", work_primes_u128[k]),
+                    }
+                })?;
+                work_crt_inv.push(inv);
+            } else {
+                work_crt_inv.push(0);
+            }
+            partial *= work_primes_u128[k];
+        }
+
+        let mut c0_anchor = vec![vec![0u64; n]; num_work_anchors];
+        let mut c1_anchor = vec![vec![0u64; n]; num_work_anchors];
+
+        for pos in 0..n {
+            let c0_full = crt_reconstruct_n(
+                work_c0_main.iter().map(|limb| limb[pos] as u128),
+                &work_primes_u128,
+                &work_crt_inv,
+            );
+            let c1_full = crt_reconstruct_n(
+                work_c1_main.iter().map(|limb| limb[pos] as u128),
+                &work_primes_u128,
+                &work_crt_inv,
+            );
+            for (ai, &ap) in anchor_primes.iter().enumerate() {
+                c0_anchor[ai][pos] = (c0_full % ap as u128) as u64;
+                c1_anchor[ai][pos] = (c1_full % ap as u128) as u64;
+            }
+        }
 
         Ok(DualRNSCiphertext {
             c0: DualRNSPoly {
                 main: work_c0_main,
-                anchor: zero_anchor.clone(),
+                anchor: c0_anchor,
                 n,
             },
             c1: DualRNSPoly {
                 main: work_c1_main,
-                anchor: zero_anchor,
+                anchor: c1_anchor,
                 n,
             },
             level: work_num_primes,
@@ -785,14 +979,17 @@ impl ClockworkBootstrap {
     }
 
     // =========================================================================
-    // LEGACY KEY SWITCH (kept for reference, unused with circular security)
+    // PHASE 3 (NON-CIRCULAR): KEY SWITCH boot_sk -> work_sk
     // =========================================================================
 
     /// Convert ciphertext from boot key to working key via gadget decomposition.
-    /// NOTE: With circular security, this is no longer needed. Phase 2 produces
-    /// Enc_{s_work, Q_boot}(m) directly, and modswitch_boot_to_work handles
-    /// the modulus switch.
-    #[allow(dead_code)]
+    ///
+    /// Used by `bootstrap_with_ksk()` when operating in non-circular security
+    /// mode. Decomposes c1 into base-B digits and accumulates against KSK
+    /// components, following the same pattern as `GaloisKey::apply_galois()`.
+    ///
+    /// With circular security (the default `bootstrap()` path), this is
+    /// unnecessary since boot_sk = work_sk.
     fn key_switch(
         &self,
         ct_boot: &DualRNSCiphertext,
@@ -801,7 +998,43 @@ impl ClockworkBootstrap {
         let n = self.n;
         let num_boot_primes = self.boot_config.primes.len();
 
-        let digits = self.decompose_poly_main(&ct_boot.c1, ksk.decomp_base, ksk.num_digits);
+        // CRT-reconstruct c1 coefficients from ALL boot prime limbs before
+        // gadget decomposition. The previous single-limb decomposition only
+        // captured ~30 bits of a ~120-bit coefficient, causing key-switch
+        // corruption for multi-prime boot ciphertexts.
+        let boot_primes: Vec<u128> = self.boot_config.primes.iter().map(|&p| p as u128).collect();
+        let mut crt_inverses = Vec::with_capacity(num_boot_primes);
+        let mut partial_product = 1u128;
+        for k in 0..num_boot_primes {
+            if k > 0 {
+                let inv = mod_inverse_u128(partial_product, boot_primes[k]).ok_or_else(|| {
+                    Nine65Error::BootstrapOverflow {
+                        operation: format!("CRT inverse for boot prime {}", boot_primes[k]),
+                    }
+                })?;
+                crt_inverses.push(inv);
+            } else {
+                crt_inverses.push(0);
+            }
+            partial_product *= boot_primes[k];
+        }
+
+        // Reconstruct full c1 coefficients and decompose into base-B digits
+        let base = ksk.decomp_base;
+        let num_digits = ksk.num_digits;
+        let mut digits = vec![vec![0u64; n]; num_digits];
+        for j in 0..n {
+            let c1_full = crt_reconstruct_n(
+                ct_boot.c1.main.iter().map(|limb| limb[j] as u128),
+                &boot_primes,
+                &crt_inverses,
+            );
+            let mut val = c1_full;
+            for l in 0..num_digits {
+                digits[l][j] = (val % base as u128) as u64;
+                val /= base as u128;
+            }
+        }
 
         let mut new_c0_main: Vec<Vec<u64>> = ct_boot.c0.main.clone();
         let mut new_c1_main: Vec<Vec<u64>> = vec![vec![0u64; n]; num_boot_primes];
@@ -826,87 +1059,32 @@ impl ClockworkBootstrap {
             }
         }
 
-        let work_num_primes = self.work_config.primes.len();
-        let mut work_c0_main = vec![vec![0u64; n]; work_num_primes];
-        let mut work_c1_main = vec![vec![0u64; n]; work_num_primes];
-
-        for (wi, &wp) in self.work_config.primes.iter().enumerate() {
-            if let Some(bi) = self.boot_config.primes.iter().position(|&bp| bp == wp) {
-                work_c0_main[wi] = new_c0_main[bi].clone();
-                work_c1_main[wi] = new_c1_main[bi].clone();
-            } else {
-                let bp0 = self.boot_config.primes[0] as u128;
-                let bp1 = self.boot_config.primes[1] as u128;
-                let bp0_inv = mod_inverse_u128(bp0, bp1).unwrap_or(0);
-
-                for j in 0..n {
-                    let c0_full = crt_reconstruct_2(
-                        new_c0_main[0][j] as u128,
-                        new_c0_main[1][j] as u128,
-                        bp0,
-                        bp1,
-                        bp0_inv,
-                    );
-                    work_c0_main[wi][j] = (c0_full % wp as u128) as u64;
-
-                    let c1_full = crt_reconstruct_2(
-                        new_c1_main[0][j] as u128,
-                        new_c1_main[1][j] as u128,
-                        bp0,
-                        bp1,
-                        bp0_inv,
-                    );
-                    work_c1_main[wi][j] = (c1_full % wp as u128) as u64;
-                }
-            }
-        }
-
-        let anchor_primes = &[2013265921u64, 2281701377, 2483027969];
-        let zero_anchor = anchor_primes.iter().map(|_| vec![0u64; n]).collect();
-        let zero_anchor2 = anchor_primes.iter().map(|_| vec![0u64; n]).collect();
+        // Return ciphertext in boot prime space (now encrypted under s_work).
+        // The caller (bootstrap_with_ksk) will apply modswitch_boot_to_work()
+        // to properly scale Q_boot → Q_work.
+        let num_boot_anchors = self.boot_ctx.dual_rns.anchor.primes.len();
+        let zero_anchor: Vec<Vec<u64>> = (0..num_boot_anchors)
+            .map(|_| vec![0u64; n])
+            .collect();
+        let zero_anchor2: Vec<Vec<u64>> = (0..num_boot_anchors)
+            .map(|_| vec![0u64; n])
+            .collect();
 
         Ok(DualRNSCiphertext {
             c0: DualRNSPoly {
-                main: work_c0_main,
+                main: new_c0_main,
                 anchor: zero_anchor,
                 n,
             },
             c1: DualRNSPoly {
-                main: work_c1_main,
+                main: new_c1_main,
                 anchor: zero_anchor2,
                 n,
             },
-            level: work_num_primes,
+            level: num_boot_primes,
         })
     }
 
-    /// Decompose a polynomial's main[0] coefficients into base-B digits.
-    /// Returns num_digits vectors, each of length n.
-    pub(crate) fn decompose_poly_main(
-        &self,
-        poly: &DualRNSPoly,
-        base: u64,
-        num_digits: usize,
-    ) -> Vec<Vec<u64>> {
-        let n = poly.n;
-
-        // We decompose using the first main limb (mod first boot prime).
-        // For proper multi-prime decomposition, we'd CRT reconstruct first,
-        // but for key-switching the single-limb decomposition is standard.
-        let coeffs = &poly.main[0];
-
-        let mut digits = vec![vec![0u64; n]; num_digits];
-
-        for j in 0..n {
-            let mut val = coeffs[j] as u128;
-            for l in 0..num_digits {
-                digits[l][j] = (val % base as u128) as u64;
-                val /= base as u128;
-            }
-        }
-
-        digits
-    }
 }
 
 // =========================================================================
@@ -1301,7 +1479,6 @@ mod tests {
     #[test]
     fn test_phase2_result_bounded_by_boot_primes() {
         use crate::entropy::ShadowHarvester;
-        use crate::keys::bootstrap::BootstrapKey;
         use crate::ops::rns_fhe::RNSFHEContext;
         use crate::params::SecureConfig;
 
@@ -1340,41 +1517,30 @@ mod tests {
 
     #[test]
     fn test_phase3_decompose_roundtrip() {
-        use crate::ops::rns_fhe::DualRNSPoly;
-        use crate::params::SecureConfig;
-
-        let config = SecureConfig::secure_128().into_config();
-        let boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
         let base: u64 = 1024;
         let num_digits = 3;
 
-        // Create a polynomial with known coefficients
-        let n = config.n;
-        let mut main0 = vec![0u64; n];
-        main0[0] = 12345;
-        main0[1] = 999999;
-        main0[2] = base - 1;
+        // Verify base-B decomposition roundtrips for known values
+        let test_values: [u64; 3] = [12345, 999999, base - 1];
 
-        let poly = DualRNSPoly {
-            main: vec![main0.clone()],
-            anchor: vec![],
-            n,
-        };
+        for &val in &test_values {
+            let mut digits = vec![0u64; num_digits];
+            let mut v = val as u128;
+            for l in 0..num_digits {
+                digits[l] = (v % base as u128) as u64;
+                v /= base as u128;
+            }
 
-        let digits = boot.decompose_poly_main(&poly, base, num_digits);
-
-        // Verify reconstruction: sum(digit[l] * base^l) == original
-        for j in 0..3 {
             let mut reconstructed = 0u128;
             let mut power = 1u128;
             for l in 0..num_digits {
-                reconstructed += digits[l][j] as u128 * power;
+                reconstructed += digits[l] as u128 * power;
                 power *= base as u128;
             }
             assert_eq!(
-                reconstructed, main0[j] as u128,
-                "Decompose roundtrip failed at j={}",
-                j
+                reconstructed, val as u128,
+                "Decompose roundtrip failed for val={}",
+                val
             );
         }
     }
@@ -1768,5 +1934,129 @@ mod tests {
         // Generate circular bootstrap keys
         let bsk_set = boot.generate_keys(&keys.secret_key, &mut rng);
         assert!(bsk_set.is_ok(), "Circular key generation should succeed");
+    }
+
+    // =====================================================================
+    // CATEGORY 10: Bootstrap Roundtrip Regression (3 tests)
+    // =====================================================================
+
+    /// Circular bootstrap roundtrip: encrypt → bootstrap → decrypt must recover m.
+    #[test]
+    fn test_circular_bootstrap_roundtrip() {
+        use crate::params::SecureConfig;
+
+        let config = SecureConfig::secure_128().into_config();
+        let ctx = RNSFHEContext::try_new(&config).expect("Context");
+        let boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
+        let mut rng = ShadowHarvester::with_seed(42);
+        let keys = ctx.generate_keys_dual_full(&mut rng);
+        let boot_keys = boot.generate_keys(&keys.secret_key, &mut rng).expect("KeyGen");
+
+        for m in [0u64, 1, 2, 7, 42, 100, 1000] {
+            let ct = ctx.encrypt_dual(m, &keys.public_key, &mut rng);
+            let ct_boot = boot
+                .bootstrap(&ct, &boot_keys.bsk, &boot_keys.ksk)
+                .expect("Circular bootstrap");
+            let dec = ctx.decrypt_dual(&ct_boot, &keys.secret_key);
+            assert_eq!(dec, m, "Circular bootstrap roundtrip failed: m={}, got={}", m, dec);
+        }
+    }
+
+    /// Non-circular (KSK) bootstrap roundtrip: encrypt → bootstrap_with_ksk → decrypt.
+    #[test]
+    fn test_ksk_bootstrap_roundtrip() {
+        use crate::params::SecureConfig;
+
+        let config = SecureConfig::secure_128().into_config();
+        let ctx = RNSFHEContext::try_new(&config).expect("Context");
+        let boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
+        let mut rng = ShadowHarvester::with_seed(42);
+        let keys = ctx.generate_keys_dual_full(&mut rng);
+        let boot_keys_ksk = boot
+            .generate_keys_with_ksk(&keys.secret_key, &mut rng)
+            .expect("KSK KeyGen");
+
+        for m in [0u64, 1, 2, 7, 42, 100, 1000] {
+            let ct = ctx.encrypt_dual(m, &keys.public_key, &mut rng);
+            let ct_boot = boot
+                .bootstrap_with_ksk(&ct, &boot_keys_ksk.bsk, &boot_keys_ksk.ksk)
+                .expect("KSK bootstrap");
+            let dec = ctx.decrypt_dual(&ct_boot, &keys.secret_key);
+            assert_eq!(dec, m, "KSK bootstrap roundtrip failed: m={}, got={}", m, dec);
+        }
+    }
+
+    /// Mul → bootstrap → mul chain: bootstrap output is valid for subsequent ops.
+    #[test]
+    fn test_mul_then_bootstrap_then_mul() {
+        use crate::params::SecureConfig;
+
+        let config = SecureConfig::secure_128().into_config();
+        let ctx = RNSFHEContext::try_new(&config).expect("Context");
+        let boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
+        let mut rng = ShadowHarvester::with_seed(42);
+        let keys = ctx.generate_keys_dual_full(&mut rng);
+        let boot_keys = boot.generate_keys(&keys.secret_key, &mut rng).expect("KeyGen");
+
+        // encrypt(2) * encrypt(3) = 6
+        let ct_2 = ctx.encrypt_dual(2, &keys.public_key, &mut rng);
+        let ct_3 = ctx.encrypt_dual(3, &keys.public_key, &mut rng);
+        let ct_6 = ctx.mul_dual_public(&ct_2, &ct_3, &keys.eval_key).expect("mul");
+        assert_eq!(ctx.decrypt_dual(&ct_6, &keys.secret_key), 6);
+
+        // Bootstrap refreshes noise while preserving plaintext
+        let ct_fresh = boot.bootstrap(&ct_6, &boot_keys.bsk, &boot_keys.ksk).expect("bootstrap");
+        assert_eq!(ctx.decrypt_dual(&ct_fresh, &keys.secret_key), 6);
+
+        // 6 * 5 = 30 — multiplication after bootstrap must work
+        let ct_5 = ctx.encrypt_dual(5, &keys.public_key, &mut rng);
+        let ct_30 = ctx.mul_dual_public(&ct_fresh, &ct_5, &keys.eval_key).expect("mul after boot");
+        assert_eq!(ctx.decrypt_dual(&ct_30, &keys.secret_key), 30);
+    }
+
+    /// AutoBootstrapEvaluator E2E: chain multiplications with auto-triggered
+    /// bootstrap, verify correct final decryption.
+    #[test]
+    fn test_auto_bootstrap_chained_muls() {
+        use crate::ops::auto_bootstrap::AutoBootstrapEvaluator;
+        use crate::params::SecureConfig;
+
+        let config = SecureConfig::secure_128().into_config();
+        let ctx = RNSFHEContext::try_new(&config).expect("Context");
+        let boot = ClockworkBootstrap::new(&config).expect("Bootstrap");
+        let mut rng = ShadowHarvester::with_seed(42);
+        let keys = ctx.generate_keys_dual_full(&mut rng);
+        let boot_keys = boot.generate_keys(&keys.secret_key, &mut rng).expect("KeyGen");
+
+        let t = config.t;
+        let ct_two = ctx.encrypt_dual(2, &keys.public_key, &mut rng);
+
+        let mut evaluator = AutoBootstrapEvaluator::new(
+            &ctx, &boot, &boot_keys.bsk, &boot_keys.ksk, &keys.eval_key, &config,
+        );
+        // Trigger bootstrap at 50% budget remaining — ensures bootstrap fires
+        // after every multiplication (budget drops ~69% per mul for secure_128).
+        evaluator.set_trigger_threshold(500);
+
+        // Chain: 2 * 2 * 2 * ... (10 multiplications) = 2^11 = 2048 mod t
+        let mut ct = ctx.encrypt_dual(2, &keys.public_key, &mut rng);
+        let mut expected = 2u64;
+        for i in 0..10 {
+            ct = evaluator
+                .mul_auto(&ct, &ct_two)
+                .unwrap_or_else(|e| panic!("mul_auto failed at step {}: {}", i, e));
+            expected = (expected as u128 * 2 % t as u128) as u64;
+        }
+
+        let dec = ctx.decrypt_dual(&ct, &keys.secret_key);
+        assert_eq!(
+            dec, expected,
+            "AutoBootstrap chained muls: expected {}, got {} (bootstraps: {}, muls: {})",
+            expected, dec, evaluator.bootstrap_count, evaluator.total_muls
+        );
+        assert!(
+            evaluator.bootstrap_count > 0,
+            "AutoBootstrap should have triggered at least once during 10 muls"
+        );
     }
 }

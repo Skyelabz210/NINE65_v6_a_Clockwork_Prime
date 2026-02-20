@@ -1,6 +1,5 @@
 use std::time::Instant;
 use rayon::prelude::*;
-use nine65::entropy::shadow_entropy_monitor::AdaptiveFHEContext;
 use nine65::keys::KeySet;
 use nine65::params::SecureConfig;
 use nine65::ops::encrypt::{BFVEncoder, BFVEncryptor};
@@ -29,8 +28,7 @@ fn main() {
         let start = Instant::now();
         let _seq_results: Vec<_> = messages
             .iter()
-            .enumerate()
-            .map(|(i, &msg)| {
+            .map(|&msg| {
                 // Create NTT engine and encoder for each message (no caching in sequential mode)
                 let ntt = NTTEngine::new(config.q, config.n);
                 let encoder = BFVEncoder::new(&config);

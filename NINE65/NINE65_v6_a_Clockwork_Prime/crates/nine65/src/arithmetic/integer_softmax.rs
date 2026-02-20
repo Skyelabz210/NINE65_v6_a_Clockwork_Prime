@@ -86,7 +86,7 @@ impl IntegerSoftmax {
                 
                 // Determine if e is positive using bit manipulation
                 let e_is_positive = (e > 0) as u128;  // This is still branching but on public data
-                let e_is_not_positive = 1u128 - e_is_positive;
+                let _e_is_not_positive = 1u128 - e_is_positive;
                 
                 // Calculate the value assuming it's positive (safe since exp should be positive)
                 let e_val = (e as u128) * self.output_scale / (total as u128);

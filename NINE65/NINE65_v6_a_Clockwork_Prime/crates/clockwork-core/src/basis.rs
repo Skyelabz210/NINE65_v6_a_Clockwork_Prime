@@ -33,6 +33,7 @@ pub fn mod_inverse(a: i128, m: i128) -> Option<u64> {
 }
 
 /// Pairwise coprimality check. Required precondition for all CRT operations.
+#[allow(dead_code)]
 fn are_pairwise_coprime(moduli: &[u64]) -> bool {
     for i in 0..moduli.len() {
         for j in (i + 1)..moduli.len() {

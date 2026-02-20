@@ -88,6 +88,7 @@ impl Session {
 
     /// Create a session using deterministic seed (TESTING ONLY).
     #[cfg(test)]
+    #[allow(dead_code)]
     pub fn new_test(config_name: &str, seed: u64) -> Result<Self, &'static str> {
         let secure_config = match config_name {
             "secure_128" => SecureConfig::secure_128(),
@@ -171,6 +172,7 @@ impl SessionStore {
         }
     }
 
+    #[allow(dead_code)]
     pub fn new_with_ttl(max_sessions: usize, ttl_seconds: u64) -> Self {
         Self {
             sessions: RwLock::new(HashMap::new()),
@@ -259,6 +261,7 @@ impl SessionStore {
     }
 
     /// Get the TTL for sessions
+    #[allow(dead_code)]
     pub fn ttl_seconds(&self) -> u64 {
         self.ttl_seconds
     }

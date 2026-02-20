@@ -58,7 +58,7 @@ fn test_depth(config: &FHEConfig, target_depth: usize) {
     // Depth-1: 2 * 3 = 6
     let ct2 = ctx.encrypt_dual(2, &keys.public_key, &mut rng);
     let ct3 = ctx.encrypt_dual(3, &keys.public_key, &mut rng);
-    let ct6 = ctx.mul_dual_public_deep(&ct2, &ct3, &keys.eval_key).unwrap();
+    let ct6 = ctx.mul_dual_public(&ct2, &ct3, &keys.eval_key).unwrap();
     let dec6 = ctx.decrypt_dual(&ct6, &keys.secret_key);
     let d1_ok = dec6 == 6;
     println!(
@@ -72,9 +72,9 @@ fn test_depth(config: &FHEConfig, target_depth: usize) {
         // Depth-2: 6 * 20 = 120
         let ct4 = ctx.encrypt_dual(4, &keys.public_key, &mut rng);
         let ct5 = ctx.encrypt_dual(5, &keys.public_key, &mut rng);
-        let ct20 = ctx.mul_dual_public_deep(&ct4, &ct5, &keys.eval_key).unwrap();
+        let ct20 = ctx.mul_dual_public(&ct4, &ct5, &keys.eval_key).unwrap();
 
-        let ct120 = ctx.mul_dual_public_deep(&ct6, &ct20, &keys.eval_key).unwrap();
+        let ct120 = ctx.mul_dual_public(&ct6, &ct20, &keys.eval_key).unwrap();
         let dec120 = ctx.decrypt_dual(&ct120, &keys.secret_key);
         let d2_ok = dec120 == 120;
         println!(

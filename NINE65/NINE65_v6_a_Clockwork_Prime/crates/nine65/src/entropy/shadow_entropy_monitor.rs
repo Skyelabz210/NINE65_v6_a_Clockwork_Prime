@@ -11,7 +11,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
 use std::time::Instant;
 use rayon::prelude::*;
-use crate::arithmetic::persistent_montgomery::{PersistentMontgomery, PersistentPolynomial};
+use crate::arithmetic::persistent_montgomery::PersistentPolynomial;
 use crate::entropy::shadow::ShadowHarvester;
 use crate::ops::encrypt::{Ciphertext, BFVEncoder, BFVEncryptor, BFVDecryptor};
 use crate::ops::homomorphic::BFVEvaluator;
@@ -19,6 +19,7 @@ use crate::params::FHEConfig;
 use crate::keys::KeySet;
 
 /// Shadow Entropy Monitor - tracks computational entropy and adapts resources
+#[allow(dead_code)]
 pub struct ShadowEntropyMonitor {
     /// Current entropy level (measured from computational byproducts)
     entropy_level: AtomicU64,
@@ -201,47 +202,42 @@ impl ShadowEntropyMonitor {
 
         // Calculate performance for different thread counts based on historical data
         // Weight recent performance more heavily to adapt to current workload patterns
-        let mut perf_1_thread = 0.0;  // Performance when using 1 thread (for small batches)
-        let mut perf_4_threads = 0.0; // Performance when using 4 threads (medium workload)
-        let mut perf_8_threads = 0.0; // Performance when using 8 threads (large workload)
+        // Performance measured as (size * 1_000_000) / duration_nanos — integer ops/ms scaled
+        let mut perf_1_thread: u128 = 0;
+        let mut perf_4_threads: u128 = 0;
+        let mut perf_8_threads: u128 = 0;
 
-        // Give more weight to recent performance data
         for (i, &(size, duration)) in history.iter().enumerate() {
-            // Calculate performance as operations per second
-            let perf = size as f64 / duration.as_secs_f64();
+            let nanos = duration.as_nanos().max(1);
+            // perf = size * scale / nanos, weighted by recency (i+1)
+            let perf = (size as u128).saturating_mul(1_000_000) / nanos;
+            let weight = (i + 1) as u128;
 
-            // Weight recent entries more heavily (exponential decay)
-            let weight = (i + 1) as f64; // More recent = higher index = higher weight
-
-            // Distribute performance data based on batch size ranges
             if size <= 3 {
-                perf_1_thread += perf * weight;  // Small batches likely performed better with 1 thread
+                perf_1_thread = perf_1_thread.saturating_add(perf.saturating_mul(weight));
             } else if size <= 20 {
-                perf_4_threads += perf * weight; // Medium batches likely performed better with 4 threads
+                perf_4_threads = perf_4_threads.saturating_add(perf.saturating_mul(weight));
             } else {
-                perf_8_threads += perf * weight; // Large batches likely performed better with 8 threads
+                perf_8_threads = perf_8_threads.saturating_add(perf.saturating_mul(weight));
             }
         }
 
         // Decide based on current workload characteristics and weighted performance data
         if current_batch_size <= 3 {
-            // For very small batches, use 1 thread to avoid parallelization overhead
             1
         } else if current_batch_size <= 20 {
-            // For medium batches, prefer 4 threads unless 8-thread performance is significantly better
-            if perf_8_threads > perf_4_threads * 1.5 {
-                // Switch to 8 threads if recent performance data strongly supports it
+            // Switch to 8 threads if 8-thread perf is 1.5× better (compare *2 vs *3 to avoid floats)
+            if perf_8_threads * 2 > perf_4_threads * 3 {
                 8
             } else {
-                4 // Stick with 4 threads for medium workloads
+                4
             }
         } else {
-            // For large batches, use 8 threads unless 4-thread performance is significantly better
-            if perf_4_threads > perf_8_threads * 1.3 {
-                // If 4-thread performance is significantly better, stay with 4
+            // Stay at 4 threads if 4-thread perf is 1.3× better (compare *10 vs *13)
+            if perf_4_threads * 10 > perf_8_threads * 13 {
                 4
             } else {
-                8 // Use 8 threads for large workloads
+                8
             }
         }
     }
@@ -328,6 +324,7 @@ pub struct AdaptiveFHEContext {
     /// Cache the last recommended thread count to reduce mutex contention
     /// Only update thread pool when the recommendation actually changes
     #[cfg(not(feature = "sequential"))]
+    #[allow(dead_code)]
     last_recommended_threads: std::sync::atomic::AtomicUsize,
 }
 
@@ -395,7 +392,7 @@ impl AdaptiveFHEContext {
     /// Without `adaptive-threading` feature: Fixed 4 threads, no adaptation.
     /// This is the recommended production mode for predictable performance.
     #[cfg(not(feature = "sequential"))]
-    fn update_thread_pool_if_needed(&self, batch_size: usize) {
+    fn update_thread_pool_if_needed(&self, _batch_size: usize) {
         #[cfg(feature = "adaptive-threading")]
         {
             // Check if we should consider adaptation based on workload
@@ -764,6 +761,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "adaptive-threading")]
     fn test_entropy_measurement_from_poly() {
         let monitor = ShadowEntropyMonitor::new();
         let ctx = PersistentMontgomery::new(998244353);
@@ -777,6 +775,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "adaptive-threading")]
     fn test_entropy_measurement_from_ciphertext() {
         let ctx = setup_context();
         let ciphertexts = ctx.adaptive_encrypt(&[42], 12345);
@@ -802,6 +801,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "adaptive-threading")]
     fn test_entropy_different_polys_differ() {
         let ctx = PersistentMontgomery::new(998244353);
 
@@ -820,6 +820,7 @@ mod tests {
     // ═══ Thread adaptation ══════════════════════════════════════════════
 
     #[test]
+    #[cfg(feature = "adaptive-threading")]
     fn test_adapt_threading_up_and_down() {
         let monitor = ShadowEntropyMonitor::new();
         monitor.update_threshold(100);
@@ -1042,6 +1043,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "adaptive-threading")]
     fn test_entropy_evolves_during_encrypt() {
         let context = setup_context();
 

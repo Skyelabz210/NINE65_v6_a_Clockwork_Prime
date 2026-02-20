@@ -82,7 +82,7 @@ impl MQReLU {
         
         // Determine the sign based on the conditions
         let is_positive = !is_zero & is_lt_threshold;
-        let is_negative = !is_zero & !is_lt_threshold;
+        let _is_negative = !is_zero & !is_lt_threshold;
         
         // Since we need to return an enum and the subtle crate doesn't directly support
         // constant-time enum selection, we'll use the same approach as in the codebase

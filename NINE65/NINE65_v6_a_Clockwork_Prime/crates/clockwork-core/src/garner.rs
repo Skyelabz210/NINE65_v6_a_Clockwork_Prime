@@ -260,11 +260,11 @@ mod tests {
     #[test]
     fn ct02_k_eliminate_vs_crt() {
         let moduli = vec![7u64, 11, 13];
-        let basis = RnsBasis::new(moduli.clone()).unwrap();
+        let _basis = RnsBasis::new(moduli.clone()).unwrap();
 
         // Precompute inverses
         let inv_7_mod_11 = mod_inverse(7, 11).unwrap();
-        let inv_7_mod_13 = mod_inverse(7, 13).unwrap();
+        let _inv_7_mod_13 = mod_inverse(7, 13).unwrap();
 
         // Test all values in [0, 7*11)
         for x in 0u128..77 {
