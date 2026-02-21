@@ -1,0 +1,39 @@
+[package]
+name = "armada-shim"
+version = "0.1.0"
+edition = "2021"
+description = "Uniform shimming layer across all Homomorphic Armada builds"
+
+[features]
+default = ["v5_live"]
+
+# FHE Lineage builds
+v01_original = ["dep:fhe_v01"]
+v02_stable   = ["dep:fhe_v02"]
+v03_mana     = ["dep:mana_v03"]
+v04_qclassic = ["dep:fhe_v04"]
+
+# Modern builds
+v5_live      = ["dep:nine65_v5"]
+
+# Component-only
+exact_trans  = ["dep:exact_transcendentals"]
+
+[dependencies]
+# v01 Original - zero-dep BFV, package = "qmnf_fhe"
+fhe_v01 = { path = "../../builds/08_FHE_v01_original/qmnf_fhe_production", package = "qmnf_fhe", optional = true }
+
+# v02 Stable - adds secure-keygen, KAT, security module, package = "qmnf_fhe"
+fhe_v02 = { path = "../../builds/08_FHE_v02_stable/qmnf_fhe_production", package = "qmnf_fhe", optional = true }
+
+# v03 MANA - Lane/Stream parallel CRT architecture (INCOMPATIBLE fork)
+mana_v03 = { path = "../../builds/08_FHE_v03_MANA_boosted/crates/mana", package = "mana", optional = true }
+
+# v04 QClassic - BFV + quantum + neural + MobiusInt, package = "qmnf_fhe"
+fhe_v04 = { path = "../../builds/08_FHE_v04_QClassic/nine65_archive/source_code", package = "qmnf_fhe", optional = true }
+
+# v5 Live - latest NINE65, superset of v04 with 9 crates
+nine65_v5 = { path = "../../builds/09_NINE65_v5_live/crates/nine65", package = "nine65", optional = true, default-features = false, features = ["ntt_fft"] }
+
+# Exact transcendentals - standalone CORDIC/AGM/binary-splitting
+exact_transcendentals = { path = "../../builds/12_exact_trans_live", optional = true }

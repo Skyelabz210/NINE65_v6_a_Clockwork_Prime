@@ -1,0 +1,42 @@
+{
+  "type": "compost_assignments",
+  "run_id": "compost_20260216_102340",
+  "timestamp": "20260216_102340",
+  "project": "NINE65_v6_a_Clockwork_Prime",
+  "launch_root": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime",
+  "jobs_dir": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime/jobs",
+  "blueprint_source": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime/jobs/BLUEPRINT_v6_system_audit.md",
+  "blueprint_copied_from": null,
+  "workers": [
+    "codex",
+    "qwen",
+    "claude",
+    "interactive-codex"
+  ],
+  "assignments": {
+    "codex": [
+      "1. K-Elimination Arithmetic Correctness \u2014 Files: crates/nine65/src/arithmetic/k_elimination.rs, proofs/coq/KElimination*.v, lean4/KElimination/ \u2014 Verify runtime implementation matches formal proof preconditions. Check that all Coq theorem guards (M > 0, A > 0, gcd(M,A) = 1, X < M*A) are enforced at call sites. Catalog any panic!/unwrap in non-test code. Assess gap C5 from execution plan.",
+      "5. Security Estimator and Parameter Configs \u2014 Files: crates/nine65/src/params/secure_configs.rs, crates/nine65/src/params/security_estimator.rs \u2014 Verify Core-SVP security estimates for all three config tiers (128/192/256). Check alignment with HE Standard v1.1 tables. Assess whether MATZOV dual attack model is implemented or needed (gap B7). Verify compile-time enforcement blocks test configs in release.",
+      "9. Clockwork-Core Formal Specification Fidelity \u2014 Files: crates/clockwork-core/src/, docs/CLOCKWORK_FORMAL_SPECIFICATION.md \u2014 Verify that clockwork-core implementation (Garner reconstruction, bound tracking, GRO timing, integrity checking) matches the formal specification document. Identify any spec-implementation divergence. Check cross-validation with K-Elimination.",
+      "13. Mana Stream Accelerator and Parallel Safety \u2014 Files: crates/mana/src/ \u2014 Audit the Rayon-based lane-parallel FHE accelerator. Check for thread-safety issues, data races, or non-determinism in parallel execution. Verify integration with the nine65 core crate. Assess the accelerated feature flag pathway."
+    ],
+    "qwen": [
+      "2. NTT Engine Safety and Validation \u2014 Files: crates/nine65/src/arithmetic/ntt.rs, crates/nine65/src/arithmetic/ntt_fft.rs \u2014 Audit NTT construction for panics vs error returns. Check that try_new() validates (N is power of 2, (q-1) mod 2N == 0, primitive root exists). Assess data-dependent branching for CT safety. Covers gaps C3/C7/H1 from execution plan.",
+      "6. GRO Timing Gate and Side-Channel Posture \u2014 Files: crates/nine65/src/security/gro_gate.rs, crates/nine65/src/security/secret_data.rs, crates/clockwork-core/src/timing.rs \u2014 Audit GRO timing gate integration points (keygen, decrypt). Check constant-time primitives in secret_data.rs. Assess whether CT enforcement is active or still planned. Covers gaps C3/C4/C9/H6.",
+      "10. RNS-FHE Context and Homomorphic Operations \u2014 Files: crates/nine65/src/ops/rns_fhe.rs, crates/nine65/src/ops/homomorphic.rs, crates/nine65/src/ops/rns_mul.rs \u2014 Audit the core FHE operation pipeline (encrypt/add/multiply/decrypt). Check TrackedEvaluator noise integration. Verify rns_fhe.rs (7200 lines) for structural issues and refactoring opportunities. Covers gaps A6/H4/H12.",
+      "14. FHE Service Layer and Session Management \u2014 Files: crates/fhe-service/src/ \u2014 Audit session management, serialization (JSON + bincode), and TTL handling. Check for resource leaks, session exhaustion, or state corruption. Verify the dead-code warnings (new_with_ttl, ttl_seconds) are intentional or need cleanup."
+    ],
+    "claude": [
+      "3. Noise Budget Overflow and Tracking \u2014 Files: crates/nine65/src/noise/, crates/nine65/src/noise/exact_noise.rs, crates/nine65/src/noise/budget.rs \u2014 Verify noise budget uses checked arithmetic (no silent wraparound to negative). This is the IBM key recovery attack vector (gap C6). Check integration with evaluator. Verify millibit precision representation is sound.",
+      "7. Key Management and Entropy Pipeline \u2014 Files: crates/nine65/src/security/key_manager.rs, crates/nine65/src/entropy/, crates/nine65/src/entropy/shadow_entropy_monitor.rs \u2014 Verify key lifecycle management (generation, storage, zeroization). Check entropy source health monitoring. Assess the shadow entropy harvester from CRT operations. Covers gaps C8/A7. Check for panic!/unwrap in keygen paths.",
+      "11. Exact Transcendentals Correctness \u2014 Files: crates/exact_transcendentals/src/ \u2014 Verify integer CORDIC implementations for sin/cos/exp/log. Check that all outputs are exact or bounded with certified error. Verify integration with the integer-only mandate. Assess test coverage (143 tests) for edge cases."
+    ],
+    "interactive-codex": [
+      "4. Bootstrap and Clockwork Depth Verification \u2014 Files: crates/nine65/src/ops/auto_bootstrap.rs, crates/nine65/src/ops/gso_fhe.rs, crates/nine65/src/ops/bootstrap.rs \u2014 Verify the Clockwork Bootstrap mechanism (25% threshold trigger, auto-refresh, unlimited depth claim). Audit bootstrap prime chain validation. Check that modswitch rescaling is exact. Assess circular security (boot_sk = work_sk). Covers gaps C10/H2/H3.",
+      "8. Error Handling Landscape (nine65 crate) \u2014 Files: crates/nine65/src/ (all modules) \u2014 Catalog all panic!(), unwrap(), expect() in non-test code across the entire nine65 crate. Count and classify by severity. Verify Nine65Error has sufficient variants. Check error messages for leaked cryptographic values. Covers gaps C1/C2/C11/A8/H13.",
+      "12. Coq Proof Coverage and Formalization Index \u2014 Files: proofs/coq/*.v, docs/FORMALIZATION_INDEX.md \u2014 Audit all 14 Coq proofs for completeness (no admitted/sorry). Map each proof to its corresponding Rust module. Identify modules with Coq theorems that lack runtime enforcement. Assess formalization index completeness. Covers gaps H9/F1."
+    ]
+  },
+  "interactive_codex_assignment": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime/jobs/compost_interactive-codex_20260216_102340.md",
+  "receiving_agent_prompts": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime/prompts/receiving_agents_20260216_102340.md"
+}

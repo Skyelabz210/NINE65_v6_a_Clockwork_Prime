@@ -1,0 +1,27 @@
+{
+  "type": "compost_launched",
+  "project": "NINE65_v6_a_Clockwork_Prime",
+  "timestamp": "20260216_102340",
+  "jobs_dir": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime/jobs",
+  "blueprint_source": "/home/acid/Projects/NINE65/NINE65_v6_a_Clockwork_Prime/jobs/BLUEPRINT_v6_system_audit.md",
+  "launched_agents": [
+    {
+      "name": "codex",
+      "model": "gpt-5.3-codex"
+    },
+    {
+      "name": "qwen",
+      "model": "coder-model"
+    },
+    {
+      "name": "claude",
+      "model": "opus"
+    }
+  ],
+  "expected_reports": [
+    "jobs/compost_codex_gpt-5.3-codex_20260216_102340.md",
+    "jobs/compost_qwen_coder-model_20260216_102340.md",
+    "jobs/compost_claude_opus_20260216_102340.md"
+  ],
+  "interactive_codex_assignment": "jobs/compost_interactive-codex_20260216_102340.md"
+}

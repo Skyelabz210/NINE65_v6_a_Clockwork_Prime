@@ -1,0 +1,460 @@
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:21:7
+   |
+21 | #[cfg(feature = "simd")]
+   |       ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:43:19
+   |
+43 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+   |                   ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:48:19
+   |
+48 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+   |                   ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:53:23
+   |
+53 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+   |                       ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:58:23
+   |
+58 |         #[cfg(not(any(feature = "simd", feature = "parallel")))]
+   |                       ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:275:11
+    |
+275 |     #[cfg(feature = "simd")]
+    |           ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:295:11
+    |
+295 |     #[cfg(feature = "simd")]
+    |           ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:344:15
+    |
+344 |     #[cfg(all(feature = "simd", feature = "parallel"))]
+    |               ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:351:15
+    |
+351 |     #[cfg(all(feature = "simd", feature = "parallel"))]
+    |               ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:151:19
+    |
+151 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:173:19
+    |
+173 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:181:23
+    |
+181 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:195:23
+    |
+195 |         #[cfg(not(any(feature = "simd", feature = "parallel")))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:203:19
+    |
+203 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:225:19
+    |
+225 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:233:23
+    |
+233 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:247:23
+    |
+247 |         #[cfg(not(any(feature = "simd", feature = "parallel")))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: `unhal` (lib) generated 17 warnings
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:389:19
+    |
+389 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:392:19
+    |
+392 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:395:23
+    |
+395 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: `unhal` (lib test) generated 20 warnings (17 duplicates)
+warning: unexpected `cfg` condition value: `secure_seed`
+   --> crates/nine65/src/entropy/wassan_noise.rs:133:11
+    |
+133 |     #[cfg(feature = "secure_seed")]
+    |           ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `accelerated`, `default`, `mana`, `ntt_fft`, `parallel`, `rayon`, `secure-keygen`, `unhal`, `v2`, and `wassan`
+    = help: consider adding `secure_seed` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unused import: `rayon::prelude`
+  --> crates/nine65/src/ops/homomorphic.rs:21:5
+   |
+21 | use rayon::prelude::*;
+   |     ^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: variable `stage` is assigned to, but never used
+   --> crates/nine65/src/arithmetic/ntt_fft.rs:201:17
+    |
+201 |         let mut stage = 0;
+    |                 ^^^^^
+    |
+    = note: consider using `_stage` instead
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `used_bits`
+   --> crates/nine65/src/noise/budget.rs:231:13
+    |
+231 |         let used_bits = used as f64 / 1000.0;
+    |             ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_used_bits`
+
+warning: unused variable: `zero`
+   --> crates/nine65/src/quantum/amplitude.rs:226:24
+    |
+226 |         let (pos, neg, zero) = state.sign_distribution();
+    |                        ^^^^ help: if this is intentional, prefix it with an underscore: `_zero`
+
+warning: fields `psi_mont`, `omega_mont`, `omega_inv_mont`, `psi_inv_mont`, and `scratch` are never read
+  --> crates/nine65/src/arithmetic/ntt_fft.rs:38:5
+   |
+24 | pub struct NTTEngineFFT {
+   |            ------------ fields in this struct
+...
+38 |     psi_mont: u64,
+   |     ^^^^^^^^
+...
+42 |     omega_mont: u64,
+   |     ^^^^^^^^^^
+43 |     /// ω⁻¹ in Montgomery form
+44 |     omega_inv_mont: u64,
+   |     ^^^^^^^^^^^^^^
+45 |     /// ψ⁻¹ in Montgomery form
+46 |     psi_inv_mont: u64,
+   |     ^^^^^^^^^^^^
+...
+58 |     scratch: Vec<u64>,
+   |     ^^^^^^^
+   |
+   = note: `NTTEngineFFT` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` on by default
+
+warning: field `factorials` is never read
+  --> crates/nine65/src/arithmetic/pade_engine.rs:25:5
+   |
+21 | pub struct PadeEngine {
+   |            ---------- field in this struct
+...
+25 |     factorials: Vec<i128>,
+   |     ^^^^^^^^^^
+   |
+   = note: `PadeEngine` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: associated function `from_shadow_seed_sequential` is never used
+  --> crates/nine65/src/entropy/wassan_noise.rs:58:8
+   |
+44 | impl WassanNoiseField {
+   | --------------------- associated function in this implementation
+...
+58 |     fn from_shadow_seed_sequential(seed: u64) -> Self {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `plaintext_mod` is never read
+  --> crates/nine65/src/ops/neural.rs:56:5
+   |
+46 | pub struct FHENeuralEvaluator {
+   |            ------------------ field in this struct
+...
+56 |     plaintext_mod: u64,
+   |     ^^^^^^^^^^^^^
+   |
+   = note: `FHENeuralEvaluator` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `m_total` is never read
+   --> crates/nine65/src/quantum/entanglement.rs:152:5
+    |
+148 | pub struct GHZState {
+    |            -------- field in this struct
+...
+152 |     m_total: u128,
+    |     ^^^^^^^
+    |
+    = note: `GHZState` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: unused variable: `ntt`
+   --> crates/nine65/src/keys/mod.rs:279:13
+    |
+279 |         let ntt = NTTEngine::new(config.q, config.n);
+    |             ^^^ help: if this is intentional, prefix it with an underscore: `_ntt`
+
+warning: unused variable: `expected`
+   --> crates/nine65/src/ops/homomorphic.rs:377:13
+    |
+377 |         let expected = (a * b) % config.t;
+    |             ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_expected`
+
+warning: unused variable: `r0`
+   --> crates/nine65/src/quantum/entanglement.rs:405:13
+    |
+405 |         let r0 = ghz.measure(0);
+    |             ^^ help: if this is intentional, prefix it with an underscore: `_r0`
+
+warning: unused variable: `other_amp`
+   --> crates/nine65/src/quantum/amplitude.rs:315:13
+    |
+315 |         let other_amp = state.amplitudes[1].magnitude();
+    |             ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_other_amp`
+
+warning: comparison is useless due to type limits
+   --> crates/nine65/src/noise/budget.rs:327:17
+    |
+327 |         assert!(remaining_muls >= 0);
+    |                 ^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_comparisons)]` on by default
+
+warning: `nine65` (lib) generated 10 warnings
+warning: `nine65` (lib test) generated 15 warnings (10 duplicates)
+    Finished `bench` profile [optimized] target(s) in 0.20s
+     Running unittests src/lib.rs (target/release/deps/mana-28611ba08510e2f2)
+
+running 30 tests
+test anchor::tests::test_exact_division ... ignored
+test anchor::tests::test_fhe_anchor ... ignored
+test anchor::tests::test_k_anchor_basic ... ignored
+test anchor::tests::test_scale_and_round ... ignored
+test gso::tests::test_agent_luciferin_update ... ignored
+test gso::tests::test_gso_swarm_iteration ... ignored
+test gso::tests::test_qbit_measure_deterministic ... ignored
+test gso::tests::test_qbit_rotation ... ignored
+test gso::tests::test_qbit_uniform ... ignored
+test lane::tests::test_lane_add ... ignored
+test lane::tests::test_lane_mul ... ignored
+test lane::tests::test_lane_neg ... ignored
+test lane::tests::test_lane_sub ... ignored
+test lane::tests::test_lane_sub_wrap ... ignored
+test lane::tests::test_montgomery_mul ... ignored
+test lane::tests::test_montgomery_roundtrip ... ignored
+test lane::tests::test_persistent_lane_add ... ignored
+test lane::tests::test_persistent_lane_benchmark ... ignored
+test lane::tests::test_persistent_lane_chain ... ignored
+test lane::tests::test_persistent_lane_mul ... ignored
+test lane::tests::test_persistent_vs_regular_mul ... ignored
+test parallel::tests::test_batch_operations ... ignored
+test parallel::tests::test_parallel_add ... ignored
+test parallel::tests::test_parallel_mul ... ignored
+test parallel::tests::test_parallel_ntt ... ignored
+test parallel::tests::test_parallel_vs_sequential ... ignored
+test stream::tests::test_crt_reconstruction ... ignored
+test stream::tests::test_large_value_reconstruction ... ignored
+test stream::tests::test_stream_add ... ignored
+test stream::tests::test_stream_mul ... ignored
+
+test result: ok. 0 passed; 0 failed; 30 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running benches/lane_ops.rs (target/release/deps/lane_ops-fb897708e4a7b61d)
+Benchmarking lane_add/sequential/2048
+Benchmarking lane_add/sequential/2048: Warming up for 3.0000 s
+Benchmarking lane_add/sequential/2048: Collecting 100 samples in estimated 5.0292 s (838k iterations)
+Benchmarking lane_add/sequential/2048: Analyzing
+lane_add/sequential/2048
+                        time:   [5.7563 µs 6.0205 µs 6.3461 µs]
+                        change: [-0.9056% +3.9940% +9.2466%] (p = 0.12 > 0.05)
+                        No change in performance detected.
+Found 11 outliers among 100 measurements (11.00%)
+  8 (8.00%) high mild
+  3 (3.00%) high severe
+Benchmarking lane_add/sequential/4096
+Benchmarking lane_add/sequential/4096: Warming up for 3.0000 s
+Benchmarking lane_add/sequential/4096: Collecting 100 samples in estimated 5.0580 s (404k iterations)
+Benchmarking lane_add/sequential/4096: Analyzing
+lane_add/sequential/4096
+                        time:   [11.532 µs 11.898 µs 12.312 µs]
+                        change: [-6.2309% -1.8806% +2.7413%] (p = 0.42 > 0.05)
+                        No change in performance detected.
+Found 10 outliers among 100 measurements (10.00%)
+  5 (5.00%) high mild
+  5 (5.00%) high severe
+Benchmarking lane_add/sequential/8192
+Benchmarking lane_add/sequential/8192: Warming up for 3.0000 s
+Benchmarking lane_add/sequential/8192: Collecting 100 samples in estimated 5.0340 s (207k iterations)
+Benchmarking lane_add/sequential/8192: Analyzing
+lane_add/sequential/8192
+                        time:   [24.147 µs 24.883 µs 25.767 µs]
+                        change: [-4.4664% +0.2478% +5.1401%] (p = 0.92 > 0.05)
+                        No change in performance detected.
+Found 7 outliers among 100 measurements (7.00%)
+  3 (3.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking stream_add/sequential/2048
+Benchmarking stream_add/sequential/2048: Warming up for 3.0000 s
+Benchmarking stream_add/sequential/2048: Collecting 100 samples in estimated 5.0743 s (106k iterations)
+Benchmarking stream_add/sequential/2048: Analyzing
+stream_add/sequential/2048
+                        time:   [45.969 µs 46.700 µs 47.618 µs]
+                        change: [-17.010% -14.530% -12.036%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 16 outliers among 100 measurements (16.00%)
+  8 (8.00%) high mild
+  8 (8.00%) high severe
+Benchmarking stream_add/rayon_8lane/2048
+Benchmarking stream_add/rayon_8lane/2048: Warming up for 3.0000 s
+Benchmarking stream_add/rayon_8lane/2048: Collecting 100 samples in estimated 5.0717 s (66k iterations)
+Benchmarking stream_add/rayon_8lane/2048: Analyzing
+stream_add/rayon_8lane/2048
+                        time:   [67.358 µs 70.944 µs 75.421 µs]
+                        change: [-18.181% -9.3940% +1.6963%] (p = 0.06 > 0.05)
+                        No change in performance detected.
+Found 6 outliers among 100 measurements (6.00%)
+  3 (3.00%) high mild
+  3 (3.00%) high severe
+Benchmarking stream_add/sequential/4096
+Benchmarking stream_add/sequential/4096: Warming up for 3.0000 s
+Benchmarking stream_add/sequential/4096: Collecting 100 samples in estimated 5.3159 s (61k iterations)
+Benchmarking stream_add/sequential/4096: Analyzing
+stream_add/sequential/4096
+                        time:   [87.541 µs 89.506 µs 91.688 µs]
+                        change: [-7.7250% -4.7681% -1.7322%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking stream_add/rayon_8lane/4096
+Benchmarking stream_add/rayon_8lane/4096: Warming up for 3.0000 s
+Benchmarking stream_add/rayon_8lane/4096: Collecting 100 samples in estimated 5.2621 s (50k iterations)
+Benchmarking stream_add/rayon_8lane/4096: Analyzing
+stream_add/rayon_8lane/4096
+                        time:   [99.202 µs 107.20 µs 116.50 µs]
+                        change: [+19.571% +28.259% +37.775%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 6 outliers among 100 measurements (6.00%)
+  2 (2.00%) high mild
+  4 (4.00%) high severe
+Benchmarking stream_add/sequential/8192
+Benchmarking stream_add/sequential/8192: Warming up for 3.0000 s

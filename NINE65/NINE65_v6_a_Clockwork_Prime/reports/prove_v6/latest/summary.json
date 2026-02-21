@@ -1,0 +1,39 @@
+{
+  "project": "NINE65 v6",
+  "verification_script": "prove_v6.sh",
+  "git": {
+    "commit_sha": "3681fa635b967790a375352baa0c8c7c62936af5",
+    "branch": "main"
+  },
+  "timestamp": {
+    "iso8601": "2026-02-16T20:13:24Z",
+    "friendly": "2026-02-16 14:13:24 CST"
+  },
+  "test_summary": {
+    "total": 727,
+    "passed": 693,
+    "failed": 0,
+    "skipped": 34
+  },
+  "rust_tests": {
+    "passed": 693,
+    "failed": 00,
+    "skipped": 34,
+    "command": "cargo test -p nine65 --release --verbose",
+    "log_file": "rust_tests.log"
+  },
+  "python_tests": {
+    "passed": 00,
+    "failed": 00,
+    "skipped": 00,
+    "command": "pytest crates/nine65-python/tests/",
+    "log_file": "python_tests.log"
+  },
+  "regression_scan": {
+    "files_scanned": 72,
+    "issues_found": 0,
+    "source_directory": "crates/nine65/src",
+    "log_file": "regression_scan.log"
+  },
+  "overall_status": "success"
+}

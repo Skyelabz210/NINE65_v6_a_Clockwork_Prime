@@ -1,0 +1,29 @@
+{
+  "type": "consult_launched",
+  "consultants": [
+    {
+      "name": "codex",
+      "model": "o1-preview"
+    },
+    {
+      "name": "qwen",
+      "model": "qwen-coder-turbo"
+    },
+    {
+      "name": "gemini",
+      "model": "gemini-2.0-flash-thinking-exp"
+    },
+    {
+      "name": "claude",
+      "model": "opus"
+    }
+  ],
+  "project": "NINE65",
+  "receipt_time": "2026-02-10T20:36:15.528507",
+  "expected_reports": [
+    "jobs/NINE65/consult_codex_o1-preview_20260210_203615.md",
+    "jobs/NINE65/consult_qwen_qwen-coder-turbo_20260210_203615.md",
+    "jobs/NINE65/consult_gemini_gemini-2.0-flash-thinking-exp_20260210_203615.md",
+    "jobs/NINE65/consult_claude_opus_20260210_203615.md"
+  ]
+}

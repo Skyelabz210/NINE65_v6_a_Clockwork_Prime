@@ -1,0 +1,14 @@
+{
+  "type": "consult_launched",
+  "consultants": [
+    {
+      "name": "codex",
+      "model": "gpt-5.3-codex"
+    }
+  ],
+  "project": "NINE65",
+  "receipt_time": "2026-02-10T20:59:42.370057",
+  "expected_reports": [
+    "jobs/NINE65/consult_codex_gpt-5.3-codex_20260210_205942.md"
+  ]
+}

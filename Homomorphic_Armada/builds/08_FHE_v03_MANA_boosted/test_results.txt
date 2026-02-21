@@ -1,0 +1,1096 @@
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:21:7
+   |
+21 | #[cfg(feature = "simd")]
+   |       ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:43:19
+   |
+43 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+   |                   ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:48:19
+   |
+48 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+   |                   ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:53:23
+   |
+53 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+   |                       ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+  --> crates/unhal/src/accelerator.rs:58:23
+   |
+58 |         #[cfg(not(any(feature = "simd", feature = "parallel")))]
+   |                       ^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+   = help: consider adding `simd` as a feature in `Cargo.toml`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:275:11
+    |
+275 |     #[cfg(feature = "simd")]
+    |           ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:295:11
+    |
+295 |     #[cfg(feature = "simd")]
+    |           ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:344:15
+    |
+344 |     #[cfg(all(feature = "simd", feature = "parallel"))]
+    |               ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:351:15
+    |
+351 |     #[cfg(all(feature = "simd", feature = "parallel"))]
+    |               ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:151:19
+    |
+151 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:173:19
+    |
+173 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:181:23
+    |
+181 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:195:23
+    |
+195 |         #[cfg(not(any(feature = "simd", feature = "parallel")))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:203:19
+    |
+203 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:225:19
+    |
+225 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:233:23
+    |
+233 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:247:23
+    |
+247 |         #[cfg(not(any(feature = "simd", feature = "parallel")))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: `unhal` (lib) generated 17 warnings
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:389:19
+    |
+389 |         #[cfg(all(feature = "simd", feature = "parallel"))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:392:19
+    |
+392 |         #[cfg(all(feature = "simd", not(feature = "parallel")))]
+    |                   ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `simd`
+   --> crates/unhal/src/accelerator.rs:395:23
+    |
+395 |         #[cfg(all(not(feature = "simd"), feature = "parallel"))]
+    |                       ^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `parallel`, and `rayon`
+    = help: consider adding `simd` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: `unhal` (lib test) generated 20 warnings (17 duplicates)
+warning: unexpected `cfg` condition value: `secure_seed`
+   --> crates/nine65/src/entropy/wassan_noise.rs:133:11
+    |
+133 |     #[cfg(feature = "secure_seed")]
+    |           ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `accelerated`, `default`, `mana`, `ntt_fft`, `parallel`, `rayon`, `secure-keygen`, `unhal`, `v2`, and `wassan`
+    = help: consider adding `secure_seed` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unused import: `rayon::prelude`
+  --> crates/nine65/src/ops/homomorphic.rs:21:5
+   |
+21 | use rayon::prelude::*;
+   |     ^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: variable `stage` is assigned to, but never used
+   --> crates/nine65/src/arithmetic/ntt_fft.rs:201:17
+    |
+201 |         let mut stage = 0;
+    |                 ^^^^^
+    |
+    = note: consider using `_stage` instead
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `used_bits`
+   --> crates/nine65/src/noise/budget.rs:231:13
+    |
+231 |         let used_bits = used as f64 / 1000.0;
+    |             ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_used_bits`
+
+warning: unused variable: `zero`
+   --> crates/nine65/src/quantum/amplitude.rs:226:24
+    |
+226 |         let (pos, neg, zero) = state.sign_distribution();
+    |                        ^^^^ help: if this is intentional, prefix it with an underscore: `_zero`
+
+warning: fields `psi_mont`, `omega_mont`, `omega_inv_mont`, `psi_inv_mont`, and `scratch` are never read
+  --> crates/nine65/src/arithmetic/ntt_fft.rs:38:5
+   |
+24 | pub struct NTTEngineFFT {
+   |            ------------ fields in this struct
+...
+38 |     psi_mont: u64,
+   |     ^^^^^^^^
+...
+42 |     omega_mont: u64,
+   |     ^^^^^^^^^^
+43 |     /// ω⁻¹ in Montgomery form
+44 |     omega_inv_mont: u64,
+   |     ^^^^^^^^^^^^^^
+45 |     /// ψ⁻¹ in Montgomery form
+46 |     psi_inv_mont: u64,
+   |     ^^^^^^^^^^^^
+...
+58 |     scratch: Vec<u64>,
+   |     ^^^^^^^
+   |
+   = note: `NTTEngineFFT` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` on by default
+
+warning: field `factorials` is never read
+  --> crates/nine65/src/arithmetic/pade_engine.rs:25:5
+   |
+21 | pub struct PadeEngine {
+   |            ---------- field in this struct
+...
+25 |     factorials: Vec<i128>,
+   |     ^^^^^^^^^^
+   |
+   = note: `PadeEngine` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: associated function `from_shadow_seed_sequential` is never used
+  --> crates/nine65/src/entropy/wassan_noise.rs:58:8
+   |
+44 | impl WassanNoiseField {
+   | --------------------- associated function in this implementation
+...
+58 |     fn from_shadow_seed_sequential(seed: u64) -> Self {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `plaintext_mod` is never read
+  --> crates/nine65/src/ops/neural.rs:56:5
+   |
+46 | pub struct FHENeuralEvaluator {
+   |            ------------------ field in this struct
+...
+56 |     plaintext_mod: u64,
+   |     ^^^^^^^^^^^^^
+   |
+   = note: `FHENeuralEvaluator` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `m_total` is never read
+   --> crates/nine65/src/quantum/entanglement.rs:152:5
+    |
+148 | pub struct GHZState {
+    |            -------- field in this struct
+...
+152 |     m_total: u128,
+    |     ^^^^^^^
+    |
+    = note: `GHZState` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: unused variable: `ntt`
+   --> crates/nine65/src/keys/mod.rs:279:13
+    |
+279 |         let ntt = NTTEngine::new(config.q, config.n);
+    |             ^^^ help: if this is intentional, prefix it with an underscore: `_ntt`
+
+warning: unused variable: `expected`
+   --> crates/nine65/src/ops/homomorphic.rs:377:13
+    |
+377 |         let expected = (a * b) % config.t;
+    |             ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_expected`
+
+warning: unused variable: `r0`
+   --> crates/nine65/src/quantum/entanglement.rs:405:13
+    |
+405 |         let r0 = ghz.measure(0);
+    |             ^^ help: if this is intentional, prefix it with an underscore: `_r0`
+
+warning: unused variable: `other_amp`
+   --> crates/nine65/src/quantum/amplitude.rs:315:13
+    |
+315 |         let other_amp = state.amplitudes[1].magnitude();
+    |             ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_other_amp`
+
+warning: comparison is useless due to type limits
+   --> crates/nine65/src/noise/budget.rs:327:17
+    |
+327 |         assert!(remaining_muls >= 0);
+    |                 ^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_comparisons)]` on by default
+
+warning: `nine65` (lib) generated 10 warnings
+warning: `nine65` (lib test) generated 15 warnings (10 duplicates)
+    Finished `release` profile [optimized] target(s) in 0.31s
+     Running unittests src/lib.rs (target/release/deps/mana-28611ba08510e2f2)
+
+running 30 tests
+test anchor::tests::test_exact_division ... ok
+test anchor::tests::test_k_anchor_basic ... ok
+test anchor::tests::test_fhe_anchor ... ok
+test anchor::tests::test_scale_and_round ... ok
+test gso::tests::test_agent_luciferin_update ... ok
+test gso::tests::test_qbit_measure_deterministic ... ok
+test gso::tests::test_gso_swarm_iteration ... ok
+test gso::tests::test_qbit_rotation ... ok
+test gso::tests::test_qbit_uniform ... ok
+test lane::tests::test_lane_add ... ok
+test lane::tests::test_lane_mul ... ok
+test lane::tests::test_lane_neg ... ok
+test lane::tests::test_lane_sub ... ok
+test lane::tests::test_montgomery_mul ... ok
+test lane::tests::test_lane_sub_wrap ... ok
+test lane::tests::test_montgomery_roundtrip ... ok
+test lane::tests::test_persistent_lane_add ... ok
+test lane::tests::test_persistent_lane_chain ... ok
+test lane::tests::test_persistent_lane_mul ... ok
+test lane::tests::test_persistent_vs_regular_mul ... ok
+test stream::tests::test_crt_reconstruction ... ok
+test stream::tests::test_large_value_reconstruction ... ok
+test stream::tests::test_stream_add ... ok
+test stream::tests::test_stream_mul ... ok
+test parallel::tests::test_parallel_add ... ok
+test parallel::tests::test_parallel_mul ... ok
+test parallel::tests::test_parallel_ntt ... ok
+test parallel::tests::test_parallel_vs_sequential ... ok
+test parallel::tests::test_batch_operations ... ok
+Persistent 1000 muls (N=1024): 9.471171ms
+test lane::tests::test_persistent_lane_benchmark ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (target/release/deps/nine65-e907907e5f2221b3)
+
+running 249 tests
+2-qubit Grover at 1 iteration: P(target) = 1.0000
+3-qubit optimal iterations: 2
+Target probability: 101563.7500
+4-qubit optimal iterations: 3
+6-qubit optimal iterations: 6
+Max probability 61502.3750 at iteration 9
+6-qubit target probability: 13724.4688
+test accelerated::tests::test_rns_stream_roundtrip ... ok
+test ahop::grover::tests::test_grover_2qubit ... ok
+test ahop::grover::tests::test_grover_3qubit ... ok
+test ahop::grover::tests::test_grover_4qubit ... ok
+test ahop::grover::tests::test_grover_6qubit_scale ... ok
+test ahop::tests::test_fp2_add ... ok
+test ahop::tests::test_fp2_inverse ... ok
+test ahop::tests::test_fp2_conj ... ok
+test ahop::tests::test_fp2_norm_squared ... ok
+test ahop::tests::test_fp2_mul ... ok
+test ahop::tests::test_probability ... ok
+test ahop::tests::test_state_inner_product ... ok
+test ahop::tests::test_state_uniform ... ok
+test arithmetic::barrett::tests::test_barrett_mul ... ok
+test arithmetic::barrett::tests::test_barrett_reduce ... ok
+test arithmetic::barrett::tests::test_barrett_reduce_large ... ok
+test arithmetic::barrett::tests::test_barrett_pow ... ok
+test arithmetic::barrett::tests::test_barrett_vs_naive ... ok
+=== EXACT CT×CT TEST ===
+q=998244353, t=500000, Δ=1996, n=8
+test arithmetic::barrett::tests::test_hybrid_context ... ok
+test arithmetic::ct_mul_exact::tests::test_exact_poly_mul_constant ... ignored
+Tensor d0[0] = 139440560 (expected 139440560)
+x = 139440560, Δ = 1996, x/Δ = 69860
+Rescaled d0[0] = 69860 (expected 69860)
+Decrypted: 35 (expected 35)
+✓ EXACT CT×CT PASSED: 5 × 7 = 35
+test arithmetic::ct_mul_exact::tests::test_exact_rescale ... ok
+test arithmetic::ct_mul_exact::tests::test_exact_ct_mul_simple ... ok
+test arithmetic::cyclotomic_phase::tests::test_modular_distance ... ok
+test arithmetic::cyclotomic_phase::tests::test_sine_cosine_extraction ... ok
+test arithmetic::exact_coeff::tests::test_add ... ok
+Δ=1996, x=139440560, x/Δ=69860, expected=69860
+test arithmetic::exact_coeff::tests::test_exact_div ... ok
+test arithmetic::exact_coeff::tests::test_delta_squared_scaling ... ok
+test arithmetic::exact_coeff::tests::test_encode_reconstruct ... ok
+test arithmetic::exact_coeff::tests::test_mul ... ok
+test arithmetic::exact_divider::tests::test_exact_divide ... ok
+FHE divider: M=998244353, A=4611686018427387903, product=4603589525704193914710261759
+X = 139440560, scaled = 69843, expected = 69860
+test arithmetic::exact_divider::tests::test_roundtrip ... ok
+Barrett 100k reductions: 2.470235ms (sum=378871900)
+test arithmetic::exact_divider::tests::test_fhe_params ... ok
+test arithmetic::exact_divider::tests::test_reconstruct_basic ... ok
+test accelerated::tests::test_accelerated_add ... ok
+test arithmetic::exact_divider::tests::test_scale_and_round ... ok
+test arithmetic::barrett::tests::test_barrett_benchmark ... ok
+test arithmetic::integer_softmax::tests::test_softmax_ordering ... ok
+test arithmetic::integer_softmax::tests::test_softmax_equal_logits ... ok
+test arithmetic::integer_softmax::tests::test_softmax_single ... ok
+test arithmetic::integer_softmax::tests::test_softmax_sum_exact ... ok
+test arithmetic::k_elimination::tests::test_k_elimination_basic ... ok
+test arithmetic::k_elimination::tests::test_large_values ... ok
+test arithmetic::k_elimination::tests::test_scale_and_round ... ok
+test arithmetic::mobius_int::tests::test_addition ... ok
+test arithmetic::mobius_int::tests::test_chained_operations ... ok
+test arithmetic::k_elimination::tests::test_fhe_rescaling ... ok
+test arithmetic::k_elimination::tests::test_exact_division ... ok
+test arithmetic::mobius_int::tests::test_comparison ... ok
+test arithmetic::mobius_int::tests::test_from_i64 ... ok
+test arithmetic::mobius_int::tests::test_multiplication ... ok
+test arithmetic::mobius_int::tests::test_many_chained_operations ... ok
+test arithmetic::mobius_int::tests::test_polynomial_eval ... ok
+test arithmetic::mobius_int::tests::test_polynomial_arithmetic ... ok
+test arithmetic::mobius_int::tests::test_polynomial_multiplication ... ok
+Last 100 iterations: min=514.0000, max=124581.1250
+test arithmetic::mobius_int::tests::test_subtraction ... ok
+test arithmetic::montgomery::tests::test_montgomery_add_sub ... ok
+test ahop::grover::tests::test_grover_no_decoherence_1000 ... ok
+test arithmetic::montgomery::tests::test_montgomery_pow ... ok
+test arithmetic::montgomery::tests::test_montgomery_mul ... ok
+test arithmetic::mobius_int::tests::test_vector_operations ... ok
+test arithmetic::montgomery::tests::test_montgomery_roundtrip ... ok
+test arithmetic::mq_relu::tests::test_sign_detection ... ok
+test arithmetic::mq_relu::tests::test_signed_conversion ... ok
+test arithmetic::ntt::tests::test_ntt_multiply_correctness_small ... ok
+test arithmetic::ntt::tests::test_ntt_multiply_random ... ok
+test arithmetic::ntt::tests::test_ntt_negacyclic ... ok
+Montgomery 100k muls: 1.329222ms (result=296740240)
+test arithmetic::mq_relu::tests::test_polynomial_relu ... ok
+test arithmetic::mq_relu::tests::test_relu_application ... ok
+test arithmetic::ntt::tests::test_ntt_roundtrip ... ok
+test arithmetic::montgomery::tests::test_montgomery_benchmark ... ok
+test arithmetic::ntt_fft::tests::test_multiply_small ... ok
+test arithmetic::ntt::tests::test_polynomial_add ... ok
+test arithmetic::ntt::tests::test_polynomial_sub ... ok
+test arithmetic::ntt_fft::tests::test_negacyclic ... ok
+test arithmetic::ntt_fft::tests::test_ntt_intt_roundtrip ... ok
+test arithmetic::pade_engine::tests::test_sigmoid_at_zero ... ok
+test arithmetic::ntt_fft::tests::test_vs_schoolbook ... ok
+test arithmetic::pade_engine::tests::test_cos_at_zero ... ok
+test arithmetic::pade_engine::tests::test_exp_at_zero ... ok
+test arithmetic::pade_engine::tests::test_sin_at_zero ... ok
+Persistent Montgomery: 0 ns/mul (74626865 M ops/sec)
+test arithmetic::persistent_montgomery::tests::test_inverse ... ok
+test arithmetic::pade_engine::tests::test_tanh_symmetry ... ok
+test arithmetic::persistent_montgomery::tests::test_benchmark_montgomery ... ok
+test arithmetic::persistent_montgomery::tests::test_montgomery_mul ... ok
+test arithmetic::persistent_montgomery::tests::test_montgomery_roundtrip ... ok
+test arithmetic::persistent_montgomery::tests::test_polynomial_ops ... ok
+test arithmetic::persistent_montgomery::tests::test_one_value ... ok
+test arithmetic::persistent_montgomery::tests::test_persistent_chain ... Persistent (1M ops): 371ns
+Traditional (1M ops): 124ns
+Speedup: 0.33×
+ok
+test arithmetic::persistent_montgomery::tests::test_pow ... ok
+test arithmetic::persistent_montgomery::tests::test_zero_conversion_overhead ... ok
+test arithmetic::rns::tests::test_rns_add ... ok
+test arithmetic::rns::tests::test_rns_mul ... ok
+test arithmetic::rns::tests::test_rns_polynomial_add ... ok
+test arithmetic::rns::tests::test_rns_roundtrip ... ok
+test arithmetic::rns::tests::test_rns_polynomial_mul ... ok
+test entropy::secure::tests::test_secure_bytes ... ok
+test entropy::secure::tests::test_secure_u64_bounded ... ok
+test entropy::shadow::tests::test_bounded_uniform ... ok
+
+10000 iteration test (4 qubits, target=7):
+Iter	P(target)	Total Weight
+0	0.062500	16
+500	55427.250000	16
+1000	61126.000000	16
+1500	33910.812500	16
+2000	56725.187500	16
+2500	17732.625000	16
+3000	5467.437500	16
+3500	18515.187500	16
+4000	35111.187500	16
+4500	756.937500	16
+5000	37131.187500	16
+5500	50162.125000	16
+6000	59379.625000	16
+6500	37678.375000	16
+7000	47577.062500	16
+7500	2469.875000	16
+8000	58967.937500	16
+8500	17424.250000	16
+9000	41397.125000	16
+9500	709.062500	16
+10000	16833.250000	16
+Probability range: [0.0625, 61126.0000]
+test ahop::grover::tests::test_grover_extreme_10000 ... ok
+test entropy::shadow::tests::test_cbd_mean ... ok
+test entropy::shadow::tests::test_deterministic ... ok
+test entropy::shadow::tests::test_different_seeds ... ok
+test entropy::shadow::tests::test_cbd_range ... ok
+test entropy::shadow::tests::test_no_obvious_patterns ... ok
+test entropy::secure::tests::test_secure_vectors ... ok
+test entropy::shadow::tests::test_signed_to_unsigned ... ok
+test entropy::shadow::tests::test_ternary_distribution ... ok
+test entropy::secure::tests::test_secure_ternary_distribution ... ok
+test entropy::wassan_noise::tests::test_creation ... ok
+test entropy::wassan_noise::tests::test_cbd_noise ... ok
+test entropy::wassan_noise::tests::test_polynomial_generation ... ok
+test entropy::wassan_noise::tests::test_ternary_distribution ... ok
+test entropy::wassan_noise::tests::test_sample_deterministic ... ok
+test entropy::secure::tests::test_secure_cbd ... ok
+Grover search: target=11, optimal_iter=3, P(target)=37308.8125
+test integration_tests::test_grover_integration ... ok
+test integration_tests::test_production_128bit ... ignored
+WASSAN 1M samples: 53.262374ms
+Per sample: 53ns
+Sum (prevent optimization): 4358661000324574365
+test entropy::wassan_noise::tests::test_benchmark_vs_shadow ... ok
+
+=== QMNF FHE Benchmarks (N=1024) ===
+KeyGen:     6.184515ms
+Encrypt:    5.238777ms
+Decrypt:    844.394µs
+Homo Add:   9.405µs
+Homo Mul:   13.691059ms
+test integration_tests::test_benchmarks ... ok
+Full FHE workflow: PASS
+  17 + 25 = 42
+  25 - 17 = 8
+  -17 = 2036 (mod 2053)
+  17 + 10 = 27
+  17 * 3 = 51
+test integration_tests::test_full_fhe_workflow ... ok
+test kat::tests::test_kat_deterministic ... ok
+test keys::tests::test_encrypt_decrypt_with_secure_keys ... ok
+test keys::tests::test_keygen_basic ... ok
+test kat::tests::test_kat_homomorphic_ops ... ok
+test kat::tests::test_kat_encrypt_decrypt ... ok
+test keys::tests::test_keygen_deterministic ... ok
+╔═══════════════════════════════════════════════════════════════╗
+║                    QMNF FHE Known Answer Tests                ║
+╠═══════════════════════════════════════════════════════════════╣
+║ ✓ PASS │ encrypt_decrypt_zero                    
+║ ✓ PASS │ encrypt_decrypt_one                     
+║ ✓ PASS │ encrypt_decrypt_42                      
+║ ✓ PASS │ encrypt_decrypt_max                     
+║ ✓ PASS │ add_plain_100_plus_50                   
+║ ✓ PASS │ mul_plain_17_times_3                    
+║ ✓ PASS │ ct_ct_add_25_plus_75                    
+║ ✓ PASS │ encrypt_decrypt_different_seed          
+╠═══════════════════════════════════════════════════════════════╣
+║ Results: 8 passed, 0 failed                                  ║
+╚═══════════════════════════════════════════════════════════════╝
+test kat::tests::test_all_kats ... ok
+test keys::tests::test_secure_key_is_ternary ... ok
+HE Standard 128 budget: Noise Budget: 4.0/4.0 bits remaining (0.0% used, 0 ops)
+Remaining multiplications: 0
+test noise::budget::tests::test_he_standard_budget ... ok
+test noise::budget::tests::test_noise_budget_consumption ... ok
+Light config budget: Noise Budget: 9.0/9.0 bits remaining (0.0% used, 0 ops)
+test noise::budget::tests::test_noise_budget_creation ... ok
+test noise::budget::tests::test_noise_budget_exhaustion ... ok
+Initial: Noise Budget: 50.0/50.0 bits remaining (0.0% used, 0 ops)
+After encrypt: Noise Budget: 45.0/50.0 bits remaining (10.0% used, 1 ops) (result: true)
+After add: Noise Budget: 44.0/50.0 bits remaining (12.0% used, 2 ops) (result: true)
+After mul_plain: Noise Budget: 34.0/50.0 bits remaining (32.0% used, 3 ops) (result: true)
+test noise::budget::tests::test_noise_budget_tracking ... ok
+Remaining multiplications for light_mul: 0
+test noise::budget::tests::test_remaining_multiplications ... ok
+Utilization: 53%
+test noise::tests::test_budget_utilization ... ok
+test noise::tests::test_ema_calculation ... ok
+test noise::tests::test_integer_sqrt ... ok
+Short window: mean=5150, std=800
+Normal value z-scores: short=-187500, medium=0, long=55555
+Spike z-scores: short=56062500, medium=90000000, long=50055555
+test noise::tests::test_multi_window_detector ... ok
+Final noise: 22.4 bits
+Mul depth: 1
+test noise::tests::test_noise_budget_exhaustion ... ok
+test noise::tests::test_noise_budget_tracker ... ok
+Noise Distribution (n=1000): mean=14.94 median=15.11 P90=23.24 P95=24.08 P99=24.89 bits
+test noise::tests::test_noise_distribution ... ok
+test noise::tests::test_noise_window ... ok
+Median over 10k ops: 25.00 bits (expected ~26.5)
+test noise::tests::test_p2_large_stream ... ok
+WASSAN 4096-poly noise x1000: 184.692326ms
+Per polynomial: 184.692µs
+test entropy::wassan_noise::tests::test_fhe_noise_polynomial_benchmark ... ok
+P² median estimate: 50000 millibits (50 bits)
+Expected: 50000 millibits
+test noise::tests::test_p2_quantile_median ... ok
+P² P95 estimate: 95000 millibits (95 bits)
+Expected: 95000 millibits
+test noise::tests::test_p2_quantile_p95 ... ok
+Estimated remaining muls: 6
+test noise::tests::test_remaining_muls_estimate ... ok
+test ops::encrypt::tests::test_encode_decode ... ok
+Median of 100k samples (10-90 bits): 40.00 bits
+test noise::tests::test_p2_o1_memory ... ok
+test keys::tests::test_keygen_secure ... ok
+test ops::encrypt::tests::test_encrypt_decrypt_roundtrip ... ok
+test ops::encrypt::tests::test_encrypt_deterministic ... ok
+test ops::encrypt::tests::test_encrypt_decrypt_random ... ok
+test ops::homomorphic::tests::test_add_plain ... ok
+Config: supports_single_mod_mul=true, max_product=250
+Testing 6 ct×ct cases with light_mul config (degree-2 decrypt):
+light_mul encrypt/decrypt test:
+  q=998244353, t=500000, Δ=1996
+  Encoded 35 → c[0]=69860 (expected Δ×35=69860)
+  Decoded back to: 35 (expected 35)
+  inner = c0 + c1*s, inner[0]=69843
+  Expected inner[0] ≈ Δ×35 = 69860
+  Decrypted: 35 (expected 35)
+test ops::homomorphic::tests::test_encrypt_decrypt_light_mul ... ok
+  1 × 1 = 1 (got 1, error=0)
+  2 × 3 = 6 (got 6, error=0)
+  5 × 7 = 35 (got 35, error=0)
+  10 × 10 = 100 (got 100, error=0)
+  13 × 17 = 221 (got 220, error=1)
+  15 × 15 = 225 (got 225, error=0)
+All 6 cases passed! Total error: 1
+Note: For larger products or exact results, use ExactFHEContext
+test ops::homomorphic::tests::test_ct_mul_multiple_values ... ok
+FFT NTT 4096-point multiply x100: 470.299149ms
+Per multiply: 4.702991ms
+test arithmetic::ntt_fft::tests::test_benchmark_4096 ... ok
+test ops::homomorphic::tests::test_homomorphic_add ... ok
+=== BFV ct×ct DIAGNOSTIC ===
+Parameters: N=1024, q=998244353, t=2053
+Δ = floor(q/t) = 486236
+
+Step 1 - Encryption:
+  Encrypted 5 → decrypt to 5
+  Encrypted 7 → decrypt to 7
+  ct_a.c0[0] = 533308407 (expected ~Δ×5 = 2431180)
+  ct_b.c0[0] = 996524728 (expected ~Δ×7 = 3403652)
+
+Step 2a - RAW Tensor product (before scaling):
+  d0_raw[0:4] = [360678750, 587965309, 315612250, 193782163]
+  d1_raw[0:4] = [158721434, 20541118, 887243289, 294200558]
+  d2_raw[0:4] = [172951592, 690331470, 915601488, 311816178]
+  Expected d0_raw[0] ≈ Δ²×5×7 = 443227343 (mod q)
+
+Step 2b - After t/q scaling:
+  d0[0:4] = [360678750, 587965309, 315612250, 193782163]
+  d1[0:4] = [158721434, 20541118, 887243289, 294200558]
+  d2[0:4] = [172951592, 690331470, 915601488, 311816178]
+
+Step 3 - Degree-2 decrypt with RAW tensor product:
+  sum_raw[0] = 382932492
+  Scaled by t²/q² → 0
+  Scaled by t/q → 788
+  Expected: 5 × 7 = 35
+
+Step 3b - Degree-2 with pre-scaled tensor product:
+  sum[0] = 382932492
+  After t/q scaling → 788
+  Expected: 5 × 7 = 35
+Homo add x10k: 138.692126ms
+test ops::homomorphic::tests::test_homo_add_benchmark ... ok
+
+Step 4 - After relinearization:
+  Decrypted result: 0
+  Expected: 35
+
+✗ Issue: Scaling not reducing values enough
+test ops::homomorphic::tests::test_homomorphic_mul_diagnostic ... ok
+Config light_mul: Δ=1996, Δ²=3984016, q=998244353
+supports_single_mod_mul=true, max_product=250
+
+Testing ct×ct: 5 × 7 = 35 (mod 500000)
+Encrypted 5 → 5, 7 → 7
+ct×ct result: 35, expected: 35
+test ops::homomorphic::tests::test_homomorphic_mul_with_relin ... ok
+test ops::homomorphic::tests::test_homomorphic_mul_no_relin ... ok
+=== DEGREE-2 DECRYPT TEST ===
+q=998244353, t=500000, Δ=1996
+test ops::homomorphic::tests::test_mul_plain ... ok
+inner[0] = 139191469 (expected ~Δ²×35=139440560)
+Degree-2 decrypt (t²/q²): 35 (expected 35)
+Degree-2 decrypt (2-step): 35 (expected 35)
+✓ Degree-2 decrypt WORKS with t²/q²
+test ops::homomorphic::tests::test_mul_degree2_decrypt ... ok
+NTT multiply test:
+  a[0] = 5
+  b[0] = 7
+  result[0] = 35 (expected 35)
+  result[1..4] = [0, 0, 0] (expected all 0)
+test ops::homomorphic::tests::test_ntt_basic_multiply ... ok
+test ops::homomorphic::tests::test_negate ... ok
+Scaling comparison test:
+  q=998244353, t=500000, Δ=1996
+  Δ²×35 = 139440560:
+    Simple: 69843
+    K-Elim: 69843
+  Δ×35 = 69860:
+    Simple: 35
+    K-Elim: 35
+  1M = 1000000:
+    Simple: 501
+    K-Elim: 501
+test ops::homomorphic::tests::test_scaling_comparison ... ok
+=== RELINEARIZATION TRACE ===
+q=998244353, t=500000, Δ=1996
+test ops::homomorphic::tests::test_subtraction ... ok
+
+Before relin: d0 + d1*s + d2*s² [0] = 139191469
+
+d2[0] = 172951592
+d2[1] = 690331470
+
+Decomposition: base=65536, levels=2
+digit[0][0] = 2088
+digit[1][0] = 2639
+
+Reconstructed d2[0] = 172951592 (original: 172951592)
+
+Level 0: digit[0]=2088
+  term0 = digit×rlk_b: [0]=242022289
+  term1 = digit×rlk_a: [0]=478611604
+
+Level 1: digit[0]=2639
+  term0 = digit×rlk_b: [0]=120521925
+  term1 = digit×rlk_a: [0]=761991653
+
+After relin:
+  c0_new[0] = 944139000
+  c1_new[0] = 208722618
+  c0_new + c1_new*s [0] = 140526992 (should ≈ before_relin = 139191469)
+
+--- RLK Verification ---
+rlk[0]: b+a*s [0]=7, expected s²×T^0 [0]≈7
+rlk[1]: b+a*s [0]=458752, expected s²×T^1 [0]≈458752
+test ops::homomorphic::tests::test_relinearization_trace ... ok
+test ops::neural::tests::test_dense_layer_identity ... ok
+test ops::neural::tests::test_relu_negative ... ok
+test ops::neural::tests::test_relu_positive ... ok
+test ops::neural::tests::test_sigmoid_at_zero ... ok
+test ops::neural::tests::test_signed_conversion_roundtrip ... ok
+test ops::neural::tests::test_softmax_exact_sum ... ok
+=== DEGREE-2 DECRYPT TEST ===
+q=998244353, t=500000, Δ=1996
+Δ² = 3984016
+
+Tensor sum (at Δ² level):
+  tensor_sum[0] = 139191469
+  Expected ≈ Δ²×5×7 = 139440560
+
+Degree-2 decode:
+  result = 35 (expected 35)
+test ops::homomorphic::tests::test_tensor_product_trace ... ok
+test ops::rns_mul::tests::test_rns_mul_multiple_values ... ignored
+test ops::rns_mul::tests::test_rns_mul_with_relin ... ignored
+test params::primes::tests::test_find_primitive_root ... ok
+test params::primes::tests::test_gcd ... ok
+test params::primes::tests::test_mod_inverse ... ok
+test params::primes::tests::test_mod_pow ... ok
+test params::primes::tests::test_primes_are_prime ... ok
+test params::primes::tests::test_primes_ntt_compatible_4096 ... ok
+test params::primes::tests::test_primes_ntt_compatible_8192 ... ok
+test params::primes::tests::test_primes_pairwise_coprime ... ok
+test params::primes::tests::test_product_security_128bit ... ok
+test params::production::tests::test_modulus_chain ... ok
+test params::production::tests::test_primes_are_coprime ... ok
+test params::production::tests::test_primes_are_ntt_compatible ... ok
+Production 128-bit config:
+  N = 8192
+  log(Q) ≈ 210 bits
+  Primes: 7
+  Max depth: 6
+  Estimated security: 128-bit
+test params::production::tests::test_production_config_128 ... ok
+Production deep config:
+  N = 16384
+  log(Q) ≈ 420 bits
+  Primes: 14
+  Max depth: 13
+  Estimated security: 128-bit
+test params::production::tests::test_production_config_deep ... ok
+light: N=1024, q=998244353, t=2053, Δ=486236, budget=5bits, depth≈0
+standard_128: N=4096, q=998244353, t=65537, Δ=15231, budget=0bits, depth≈0
+high_192: N=8192, q=998244353, t=65537, Δ=15231, budget=0bits, depth≈0
+deep_128: N=16384, q=998244353, t=65537, Δ=15231, budget=0bits, depth≈0
+batched: N=4096, q=998244353, t=257, Δ=3884219, budget=4bits, depth≈0
+he_standard_128: N=2048, q=998244353, t=65537, Δ=15231, budget=0bits, depth≈0
+he_standard_128_deep: N=2048, q=998244353, t=4096, Δ=243712, budget=1bits, depth≈0
+test params::tests::test_all_configs_valid ... ok
+test params::tests::test_custom_config ... ok
+test params::tests::test_estimated_depth ... ok
+HE Standard 128-bit Compliance:
+  N = 2048
+  log(q) = 30 (max 54)
+  N/log(q) = 68.3 (need > 38)
+  Orbital safe: true
+  HE compliant: true
+test params::tests::test_he_standard_compliance ... ok
+
+thread 'params::validation::tests::test_assert_invalid_panics' panicked at crates/nine65/src/params/validation.rs:201:9:
+INVALID FHE PARAMETERS!
+N=1024, q=18446744073709551615, t=500000
+✗ ORBITAL VIOLATION: 128 bits required, only 110 bits available!
+  → Reduce q or N, or increase K-Elimination moduli
+⚠ HE Standard: log(q)=64 > max 27 for N=1024 (128-bit security not guaranteed)
+  Security estimate: 96 bits (rough, use LWE estimator for precise)
+✓ Noise budget: Δ=36893488147419 (~46 bits)
+This would cause the Hidden Orbital Problem.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test params::validation::tests::test_assert_invalid_panics - should panic ... ok
+test params::validation::tests::test_he_standard_compliance ... ok
+test params::validation::tests::test_large_n_valid ... ok
+test params::validation::tests::test_large_q_fails ... ok
+Max safe N for q=998244353: 1125899906842624
+test params::validation::tests::test_max_safe_n ... ok
+ValidationResult {
+    valid: true,
+    orbital_safe: true,
+    he_standard_compliant: false,
+    estimated_security_bits: 192,
+    max_safe_n: 1125899906842624,
+    messages: [
+        "✓ Orbital: 70 bits required, 110 bits available (margin: 1271511771318×)",
+        "⚠ HE Standard: log(q)=30 > max 27 for N=1024 (128-bit security not guaranteed)",
+        "  Security estimate: 192 bits (rough, use LWE estimator for precise)",
+        "✓ Noise budget: Δ=1996 (~11 bits)",
+    ],
+}
+test params::validation::tests::test_standard_params_valid ... ok
+test quantum::amplitude::tests::test_amplitude_creation ... ok
+test quantum::amplitude::tests::test_flip_sign ... ok
+test quantum::amplitude::tests::test_grover_diffusion ... ok
+test quantum::amplitude::tests::test_grover_search_small ... ok
+test quantum::amplitude::tests::test_oracle_creates_negative ... ok
+KeyGen (deterministic) x100: 547.763605ms
+Bell test results:
+  Trials: 10000
+  Mean correlation: 1200
+  Std dev: 334500
+  Exceeds classical: false
+test keys::tests::test_keygen_benchmark ... ok
+test quantum::entanglement::tests::test_bell_inequality ... ok
+Correlation demo: CorrelationDemo { measured_a: 8, predicted_b: 19, measured_b: 19, correlation_perfect: true }
+test quantum::entanglement::tests::test_correlation ... ok
+GHZ collapse after measuring particle 0: [Some(1), Some(0), Some(0), Some(0), Some(0)]
+Pair: a=15, b=8, reconstructed=100
+test quantum::entanglement::tests::test_ghz_state ... ok
+test quantum::entanglement::tests::test_entangled_pair ... ok
+Teleportation benchmark:
+  100000 iterations in 161ns
+  0ns per teleportation
+  621118012422.3602 teleportations/sec
+✓ All 391 values reconstruct correctly
+test quantum::teleport::tests::benchmark_teleportation ... ok
+test quantum::entanglement::tests::test_many_pairs ... ok
+✓ Teleported all 391 values in demo space
+test quantum::teleport::tests::test_basic_teleportation ... ok
+✓ Blind teleportation verified
+  Alice sent: residue=8, k=2
+  Bob got: 42
+Value 100 → Alice sees 15, Bob sees 8
+Values with Alice's residue 15: 23
+test quantum::teleport::tests::test_blind_receive ... ok
+test quantum::teleport::tests::test_entanglement_properties ... ok
+✓ Large value teleportation verified
+
+=== QUANTUM TELEPORTATION DEMO ===
+test quantum::teleport::tests::test_large_teleportation ... ok
+Original value:    30
+Alice modulus:     17
+Bob modulus:       23
+Shared space:      391
+─────────────────────────────────
+TRANSMITTED:
+  Alice's residue: 13
+  K correction:    1
+  Total bytes:     16
+─────────────────────────────────
+RESULT:
+  Value bits:      128
+  Compression:     Infinite (value never sent directly)
+==================================
+
+test quantum::teleport::tests::test_teleportation_demo ... ok
+
+╔══════════════════════════════════════════════════════════╗
+║          NINE65 QUANTUM SUBSTRATE DEMONSTRATION          ║
+╠══════════════════════════════════════════════════════════╣
+║                                                          ║
+║  1. ENTANGLEMENT                                         ║
+║  ─────────────────                                       ║
+║  Created pair: m_a=17, m_b=23, value=100                 ║
+║  State: ENTANGLED (neither measured)                     ║
+║  Measured A: 15 → B instantly determined!              ║
+║  Measured B: 8 → Reconstructed: 100                    ║
+║                                                          ║
+║  2. TELEPORTATION                                        ║
+║  ────────────────                                        ║
+║  Teleporting value: 42                                  ║
+║  Alice sends: residue=8, k=2                        ║
+║  Bob reconstructs: 42 (EXACT!)                          ║
+║  Bytes sent: 16 (value never transmitted directly)     ║
+║                                                          ║
+║  3. GHZ STATE (5-particle entanglement)                  ║
+║  ─────────────────────────────────────                   ║
+║  Created 5-particle GHZ state                            ║
+║  Measuring particle 0...                                 ║
+║  ALL 5 particles now collapsed! (1 measurement)          ║
+║                                                          ║
+╠══════════════════════════════════════════════════════════╣
+║  This is NOT simulation. This IS quantum on algebraic    ║
+║  substrate. No decoherence. No error. Exact arithmetic.  ║
+╚══════════════════════════════════════════════════════════╝
+
+test quantum::tests::test_quantum_demo_runs ... ok
+test ring::polynomial::tests::test_exact_scalar_div ... ok
+test ring::polynomial::tests::test_infinity_norm ... ok
+test ring::polynomial::tests::test_negation ... ok
+✓ Full quantum stack operational
+test quantum::tests::test_full_quantum_stack ... ok
+test ring::polynomial::tests::test_ring_mul_associative ... ok
+test ring::polynomial::tests::test_ring_negacyclic ... ok
+test ring::polynomial::tests::test_ring_add_commutative ... ok
+test ring::polynomial::tests::test_scalar_mul ... ok
+test ring::polynomial::tests::test_signed_coeffs ... ok
+light: High (128-bit): 128 bits classical, ~85 bits quantum (ratio: 34.1) (N=1024, log(q)=30)
+he_standard_128: Ultra-High (256-bit): 256 bits classical, ~170 bits quantum (ratio: 68.3) (N=2048, log(q)=30)
+standard_128: Ultra-High (256-bit): 256 bits classical, ~170 bits quantum (ratio: 136.5) (N=4096, log(q)=30)
+high_192: Ultra-High (256-bit): 256 bits classical, ~170 bits quantum (ratio: 273.1) (N=8192, log(q)=30)
+test security::tests::test_all_configs_security ... ok
+HE Standard 128 estimate: Ultra-High (256-bit): 256 bits classical, ~170 bits quantum (ratio: 68.3)
+Security Rationale for 'he_standard_128'
+================================
+
+Parameters:
+  Ring dimension N: 2048
+  Modulus bits log(q): 30
+  Error parameter σ: 1.225
+  Error distribution: CBD
+
+Security Analysis:
+  N/log(q) ratio: 68.3
+  
+  HE Standard Estimate:
+    Classical security: 256 bits
+    Quantum security: ~170 bits
+    Best known attack: BKZ/sieving theoretical limit
+    Confidence: Standard
+
+Verification:
+  □ Run `sage -python scripts/lwe_estimate.py` for precise estimate
+  □ Compare against HE Standard Table 3
+  □ Verify σ ≥ 3.2 for security proofs
+
+References:
+  [1] HomomorphicEncryption.org Security Standard v1.1 (2018)
+  [2] Albrecht et al., "On the concrete hardness of Learning with Errors"
+
+test security::tests::test_he_standard_estimate ... ok
+Light config: N=1024, log(q)=30, σ=1.000
+test security::tests::test_lwe_params_from_config ... ok
+test ring::polynomial::tests::test_ternary_polynomial ... ok
+N=2048: max log(q) for 128-bit = 73, for 192-bit = 53
+N=1024, log(q)=30: 128 bits (ratio 34.1)
+N=2048, log(q)=30: 256 bits (ratio 68.3)
+N=2048, log(q)=54: 128 bits (ratio 37.9)
+N=4096, log(q)=60: 256 bits (ratio 68.3)
+N=8192, log(q)=218: 128 bits (ratio 37.6)
+test security::tests::test_max_log_q ... ok
+test security::tests::test_security_levels ... ok
+test v2_integration_tests::v2_integration_tests::test_fft_matches_dft ... ok
+test v2_integration_tests::v2_integration_tests::test_fft_negacyclic ... ok
+test v2_integration_tests::v2_integration_tests::test_fft_ntt_roundtrip ... ok
+
+===== NINE65 V2 SPEEDUP SUMMARY =====
+
+=== RNS Multiplication Test ===
+Config: standard_128
+Primes: [998244353, 985661441]
+Q product: 983930967448092673
+t=65537, Δ=q/t=15231
+
+Testing 5 × 7 = 35 (mod 65537)
+Encrypted: 5 → 5, 7 → 7
+FFT NTT 1024 x 100: 247.344625ms (2.473446ms per mul)
+
+thread 'v2_integration_tests::v2_integration_tests::test_fft_1024_benchmark' panicked at crates/nine65/src/v2_integration_tests.rs:78:9:
+FFT too slow: 247.344625ms
+test v2_integration_tests::v2_integration_tests::test_fft_1024_benchmark ... FAILED
+
+Single-mod inner products:
+  inner_a[0] = 76195 (expected ~76155)
+  inner_b[0] = 106517 (expected ~106617)
+
+Single-mod tensor sum (before scaling):
+  tensor[0] = 130192994 (expected ~Δ²×5×7=8119417635)
+  Correctly scaled: 8547 (expected ~Δ×35=533085)
+WASSAN 1M samples: 81.719608ms (81ns/sample)
+Sum (anti-optimize): 4358661000324574365
+
+thread 'v2_integration_tests::v2_integration_tests::test_wassan_benchmark' panicked at crates/nine65/src/v2_integration_tests.rs:138:9:
+WASSAN too slow: 81.719608ms
+test v2_integration_tests::v2_integration_tests::test_wassan_benchmark ... FAILED
+FFT NTT 1024-point multiply x1000: 1.129365558s
+Per multiply: 1.129365ms
+test arithmetic::ntt_fft::tests::test_benchmark_1024 ... ok
+
+RNS tensor components (after scaling):
+  e0[0] = 645891539
+  e1[0] = 554172909
+  e2[0] = 321298427
+test v2_integration_tests::v2_integration_tests::test_wassan_polynomial ... ok
+
+Degree-2 decrypt:
+  inner[0] = 308384666
+  Expected ~Δ×35 = 533085
+  Correct inner should be: 8547
+  Decoded: 20246 (expected 35)
+
+=== RNS Debug ===
+d0_single[0] = 422812378
+d0_rns limb0[0] = 422812378
+d0_rns limb1[0] = 422812378
+CRT reconstructed = 422812378
+After t/q scaling = 27759
+e0[0] from RNS path = 645891539
+
+⚠ MISMATCH: got 20246 instead of 35
+test ops::rns_mul::tests::test_rns_mul_basic ... ok
+test v2_integration_tests::v2_integration_tests::test_wassan_ternary_distribution ... ok
+test v2_integration_tests::v2_integration_tests::test_wassan_deterministic ... ok
+NTT 256 (x100):
+  DFT (O(N²)):    622.629193ms
+  FFT (O(NlogN)): 12.107134ms
+  Speedup:        51.4×
+
+Noise Generation (x10000):
+  WASSAN:   76.958µs
+  Per sample: 7ns
+
+=========================================
+
+test v2_integration_tests::v2_integration_tests::test_v2_speedup_summary ... ok
+Homo mul x100: 943.196047ms
+test ops::homomorphic::tests::test_homo_mul_benchmark ... ok
+KeyGen (secure) x100: 1.498690784s
+test keys::tests::test_keygen_secure_benchmark ... ok
+Encrypt x1000: 2.051709544s
+test ops::encrypt::tests::test_encrypt_benchmark ... ok
+NTT 1024-point multiply x100: 5.156166892s
+test arithmetic::ntt::tests::test_ntt_benchmark_1024 ... ok
+
+failures:
+
+failures:
+    v2_integration_tests::v2_integration_tests::test_fft_1024_benchmark
+    v2_integration_tests::v2_integration_tests::test_wassan_benchmark
+
+test result: FAILED. 243 passed; 2 failed; 4 ignored; 0 measured; 0 filtered out; finished in 5.17s
+
+error: test failed, to rerun pass `-p nine65 --lib`

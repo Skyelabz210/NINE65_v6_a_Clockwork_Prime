@@ -33,9 +33,12 @@ MYSTIC/
 qmnf-security-proofs/
 QMNF_System/
 
-# Nested git repos within NINE65 (they have their own remotes)
-# But we want to backup the rest of NINE65
-# So we'll include NINE65 but its .git subdirs will be regular files
+# Nested git repos (they have their own remotes)
+NINE65/NINE65_v7/
+NINE65/NINE65_v6_a_Clockwork_Prime/nine65_v2_complete/
+Homomorphic_Armada/builds/
+MANGEN_collab/
+qmnf-lean-coq-security-proofs/
 
 # Virtual environments
 venv/
@@ -51,3 +54,6 @@ env/
 
 # Logs
 *.log
+
+.qwen/
+gha-creds-*.json

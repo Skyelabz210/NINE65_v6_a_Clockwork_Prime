@@ -1,0 +1,158 @@
+---
+title: "QMNF Consolidated Master DAG — 132 Tasks · 26 Gates · 4 Tracks"
+---
+graph TD
+    subgraph L0["Layer 0 — Immediate Start"]
+        A0["A0: Pre-Flight<br/>5 tasks · Hard Gate"]
+        B0["B0: Primitive Isolation<br/>+ Clockwork Bootstrap<br/>5 tasks · Hard Gate"]
+        B3["B3: Legal/IP<br/>5 tasks · Hard Gate"]
+        S0["S0: Threat Model<br/>2 tasks · Hard Gate"]
+    end
+
+    subgraph L1["Layer 1 — Foundations"]
+        A1["A1: Core Stabilization<br/>5 tasks · Hard Gate"]
+        B1["B1: Crypto API<br/>+ Bootstrap API<br/>8 tasks · Hard Gate"]
+        S11["S1.1: Dual-Regime<br/>Shadow Entropy"]
+        S12["S1.2: HWRNG +<br/>Health Monitor"]
+        S21["S2.1: VM/TEE/DBI<br/>Detection"]
+        S36["S3.6: NTT Side-Channel<br/>Hardening"]
+    end
+
+    subgraph L2["Layer 2 — Design & Hardening"]
+        A2["A2: API Design<br/>6 tasks · Hard Gate"]
+        B25["B2.5: Key Mgmt"]
+        S13["S1.3: Key-Dependent<br/>Entropy Mixing"]
+        S22["S2.2: TEE +<br/>Attestation"]
+        S23["S2.3: Register Key<br/>Confinement"]
+        S24["S2.4: IOMMU/DMA"]
+        S25["S2.5: Fuse-Exhaustion<br/>Destruction"]
+        S31["S3.1: Parameter<br/>Compliance + CI"]
+        S32["S3.2: Ciphertext<br/>Validation"]
+        S33["S3.3: Anti-CPA^D"]
+        S35["S3.5: Provisioning<br/>Protocol"]
+        S37["S3.7: Rowhammer"]
+    end
+
+    subgraph L3["Layer 3 — Integration"]
+        A3["A3: C ABI<br/>5 tasks · Hard Gate"]
+        S14["S1.4: INV-8 +<br/>Optional MAC"]
+        S34["S3.4: Computation<br/>Receipt"]
+        S310["S3.10: Bootstrap<br/>Security Analysis"]
+        S4["S4: Multi-Instance<br/>3 tasks · Soft Gate"]
+    end
+
+    subgraph L4["Layer 4 — Bindings & Testing"]
+        A4["A4: Python FFI<br/>5 tasks · Firm"]
+        A5["A5: JS/WASM<br/>5 tasks · Firm"]
+        B4["B4: CryptKit FFI<br/>4 tasks · Firm"]
+        S5["S5: Adversarial Tests<br/>3 tasks · Firm"]
+    end
+
+    subgraph L5["Layer 5 — Docs & Vectors"]
+        A6["A6: Documentation<br/>6 tasks · Firm"]
+        A7["A7: Testing Infra<br/>5 tasks · Firm"]
+        B5["B5: Test Vectors<br/>+ Bootstrap<br/>7 tasks · Firm"]
+    end
+
+    subgraph L6["Layer 6 — Pipeline & Docs"]
+        A8["A8: CI/CD<br/>5 tasks · Firm"]
+        B6["B6: Crypto Docs<br/>+ White Paper<br/>6 tasks · Firm"]
+    end
+
+    subgraph L7["Layer 7 — Launch"]
+        A9["A9: Launch<br/>6 tasks · Soft"]
+        B7["B7: Validation<br/>4 tasks · Soft"]
+        X["X1-X5: Cross-Track<br/>5 tasks"]
+    end
+
+    subgraph L8["Layer 8 — Production"]
+        A10["A10: Stable 1.0<br/>4 tasks · Soft"]
+        B8["B8: Commercial<br/>4 tasks · Soft"]
+    end
+
+    A0 --> A1 --> A2 --> A3
+    A3 --> A4 & A5
+    A2 --> A7
+    A4 & A5 --> A6
+    A7 --> A8
+    A6 & A8 --> A9 --> A10
+
+    B0 --> B1 --> B25
+    B1 --> B4
+    B25 --> B4
+    A3 ==>|"C ABI gate"| B4
+    B4 --> B5 --> B6 --> B7 --> B8
+
+    S0 --> S11 & S21 & S32 & S33
+    S0 --> B1
+
+    B0 --> S11
+    S11 --> S12 --> S13
+    B1 -->|"AHOP session key"| S13
+    S13 --> S14 & S34
+
+    S21 --> S22
+    B0 --> S23
+    S23 --> S24 & S25 & S37
+
+    B0 --> S31 & S36
+    B1 --> S33 & S35
+    S33 --> S34
+
+    B0 -->|"Clockwork Bootstrap"| S310
+    S33 --> S310
+
+    S33 --> S4
+    S4 --> B7
+
+    S13 & S23 & S32 & S33 & S35 & S25 & S310 --> S5
+    S5 --> B5
+
+    S0 & S13 & S33 --> B6
+    S5 --> B7
+
+    A8 --> X
+    B4 --> X
+    B3 -.-> B4 & B8
+
+    style A0 fill:#2563eb,color:#fff
+    style A1 fill:#2563eb,color:#fff
+    style A2 fill:#2563eb,color:#fff
+    style A3 fill:#2563eb,color:#fff,stroke:#dc2626,stroke-width:3px
+    style A4 fill:#93c5fd,color:#000
+    style A5 fill:#93c5fd,color:#000
+    style A6 fill:#93c5fd,color:#000
+    style A7 fill:#93c5fd,color:#000
+    style A8 fill:#93c5fd,color:#000
+    style A9 fill:#bfdbfe,color:#000
+    style A10 fill:#bfdbfe,color:#000
+    style B0 fill:#7c3aed,color:#fff
+    style B1 fill:#7c3aed,color:#fff
+    style B25 fill:#7c3aed,color:#fff
+    style B3 fill:#059669,color:#fff
+    style B4 fill:#7c3aed,color:#fff
+    style B5 fill:#a78bfa,color:#000
+    style B6 fill:#a78bfa,color:#000
+    style B7 fill:#c4b5fd,color:#000
+    style B8 fill:#c4b5fd,color:#000
+    style S0 fill:#dc2626,color:#fff
+    style S11 fill:#dc2626,color:#fff
+    style S12 fill:#dc2626,color:#fff
+    style S13 fill:#dc2626,color:#fff,stroke:#f59e0b,stroke-width:3px
+    style S14 fill:#ef4444,color:#fff
+    style S21 fill:#ea580c,color:#fff
+    style S22 fill:#ea580c,color:#fff
+    style S23 fill:#ea580c,color:#fff
+    style S24 fill:#ea580c,color:#fff
+    style S25 fill:#ea580c,color:#fff
+    style S31 fill:#b91c1c,color:#fff
+    style S32 fill:#b91c1c,color:#fff
+    style S33 fill:#b91c1c,color:#fff
+    style S34 fill:#b91c1c,color:#fff
+    style S35 fill:#b91c1c,color:#fff
+    style S36 fill:#b91c1c,color:#fff
+    style S37 fill:#b91c1c,color:#fff
+    style S310 fill:#f59e0b,color:#000,stroke:#dc2626,stroke-width:3px
+    style S4 fill:#fca5a5,color:#000
+    style S5 fill:#ef4444,color:#fff
+    style X fill:#6b7280,color:#fff

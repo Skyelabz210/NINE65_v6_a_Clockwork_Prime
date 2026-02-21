@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-02-16T18:35:19Z",
+  "git": {
+    "commit_sha": "3681fa635b967790a375352baa0c8c7c62936af5",
+    "branch": "main",
+    "dirty": true
+  },
+  "test_summary": {
+    "rust": {
+      "passed": 0,
+      "failed": 0,
+      "ignored": 0,
+      "total": 0
+    },
+    "python": {
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "total": 0
+    }
+  },
+  "regression_scan": {
+    "dirs_scanned": 12,
+    "test_count": 3,
+    "violations": 0
+  },
+  "claim_verification": {
+    "claims_verified": false,
+    "proofs_valid": false,
+    "invariants_hold": false,
+    "performance_met": false,
+    "security_properties": false
+  },
+  "verdict": "FAIL"
+}

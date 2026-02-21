@@ -105,17 +105,20 @@ pub mod noise;     // CDHS-based noise tracking
 pub mod security;  // LWE security estimation
 pub mod kat;       // Known Answer Tests
 pub mod quantum;   // QMNF algebraic quantum operations
+pub mod parallel;  // Parallel FHE operations
+pub mod adaptive_parallel;  // Adaptive parallel FHE operations
+pub mod shadow_entropy_monitor;  // Shadow Entropy Monitor for adaptive resource management
 
 #[cfg(test)]
 mod v2_integration_tests;
 
 /// Prelude module - import commonly used types with a single `use` statement.
-/// 
+///
 /// # Example
-/// 
+///
 /// ```
 /// use qmnf_fhe::prelude::*;
-/// 
+///
 /// let config = FHEConfig::light();
 /// let ntt = NTTEngine::new(config.q, config.n);
 /// ```
@@ -130,45 +133,54 @@ pub mod prelude {
         MQReLU, MQReLUPolynomial, Sign,                        // O(1) SIGN DETECTION
         IntegerSoftmax, SOFTMAX_SCALE,                         // EXACT SUM SOFTMAX
         CyclotomicRing, CyclotomicPolynomial,                  // NATIVE RING TRIG
-        modular_distance, toric_coupling,                       // TORIC GEOMETRY
+        modular_distance, toric_coupling,                       // TORIC GEOMETRY,
     };
-    
+
     // NTT: Conditional export - use FFT version when v2 feature enabled
     #[cfg(feature = "ntt_fft")]
     pub use crate::arithmetic::NTTEngineFFT as NTTEngine;
-    
+
     #[cfg(not(feature = "ntt_fft"))]
     pub use crate::arithmetic::NTTEngine;
-    
+
     // Also export both explicitly for users who need both
     pub use crate::arithmetic::NTTEngine as NTTEngineDFT;
     pub use crate::arithmetic::NTTEngineFFT;
-    
+
     // Entropy sources
     pub use crate::entropy::ShadowHarvester;
     pub use crate::entropy::WassanNoiseField;  // V2: Holographic noise
     pub use crate::entropy::{secure_bytes, secure_u64, secure_ternary};
-    
+
     // Parameters
     pub use crate::params::FHEConfig;
-    
+
     // Ring operations
     pub use crate::ring::RingPolynomial;
-    
+
     // Key management
     pub use crate::keys::{SecretKey, PublicKey, EvaluationKey, KeySet};
-    
+
     // FHE operations
     pub use crate::ops::{BFVEncoder, BFVEncryptor, BFVDecryptor, BFVEvaluator, Ciphertext};
     pub use crate::ops::{FHENeuralEvaluator, ActivationType, DenseLayer, NeuralNetwork};
+
+    // Parallel operations
+    pub use crate::parallel::{ParallelFHEContext, BatchProcessor};
     
+    // Adaptive parallel operations
+    pub use crate::adaptive_parallel::AdaptiveParallelFHEContext;
+
+    // Shadow entropy monitor
+    pub use crate::shadow_entropy_monitor::{ShadowEntropyMonitor, AdaptiveFHEContext};
+
     // Quantum operations
     pub use crate::ahop::{Fp2Element, StateVector, GroverSearch, GroverStats};
     pub use crate::quantum::{
         QuantumAmplitude, QuantumState, GroverResult,          // SIGNED AMPLITUDES
         grover_search,                                          // PROPER GROVER
     };
-    
+
     // Noise tracking
     pub use crate::noise::{
         NoiseBudgetTracker, NoiseSnapshot, EMACalculator,
@@ -176,7 +188,7 @@ pub mod prelude {
         P2QuantileEstimator, NoiseDistribution,
     };
     pub use crate::noise::budget::{NoiseBudget, NoiseOpType};
-    
+
     // Security estimation
     pub use crate::security::{LWEParams, SecurityEstimate, ConfidenceLevel};
 }

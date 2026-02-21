@@ -1,0 +1,30 @@
+[package]
+name = "armada-bench"
+version = "0.1.0"
+edition = "2021"
+description = "Cross-build criterion benchmarks for the Homomorphic Armada"
+
+[features]
+default = ["v5_live"]
+
+# Feature pass-through to armada-shim
+v01_original = ["armada-shim/v01_original"]
+v02_stable   = ["armada-shim/v02_stable"]
+v03_mana     = ["armada-shim/v03_mana"]
+v04_qclassic = ["armada-shim/v04_qclassic"]
+v5_live      = ["armada-shim/v5_live"]
+exact_trans  = ["armada-shim/exact_trans"]
+
+[dependencies]
+armada-shim = { path = "../armada-shim", default-features = false }
+
+[dev-dependencies]
+criterion = { workspace = true }
+
+[[bench]]
+name = "cross_build"
+harness = false
+
+[[bench]]
+name = "tracked_audit"
+harness = false
