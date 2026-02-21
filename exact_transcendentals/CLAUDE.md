@@ -11,11 +11,12 @@ A Rust library (`no_std`-compatible) providing exact integer-only implementation
 ```bash
 cargo build                    # Debug build
 cargo build --release          # Optimized build (LTO enabled)
-cargo test                     # Run all 82 tests
+cargo test                     # Run all 143 tests (base)
+cargo test --features arbitrary-precision  # Run all 179 tests (with CRTBigInt)
 cargo test -- --nocapture      # With println! output visible
 cargo test cordic              # Tests for a specific module
 cargo test test_sincos_zero    # Run a single test by name
-cargo test --features simd     # Build with SIMD feature
+cargo test --no-default-features --features arbitrary-precision  # no_std + CRT
 cargo test --no-default-features  # Build in no_std mode
 ```
 
@@ -36,8 +37,9 @@ A **git pre-commit hook** automatically runs the quality gate when `src/` or `Ca
 | Debug build | `cargo build` succeeds |
 | Release build | `cargo build --release` succeeds (LTO) |
 | no_std build | `cargo build --no-default-features` succeeds |
-| Tests (debug) | `cargo test` — all 82 tests pass |
+| Tests (debug) | `cargo test` — all 143 base tests pass |
 | Tests (release) | `cargo test --release` — identical results under optimization |
+| Tests (arb-prec) | `cargo test --features arbitrary-precision` — 179 tests (base + CRT) |
 
 ## Architecture
 
@@ -53,19 +55,24 @@ All values are represented as **scaled integers**: a real value `v` is stored as
 | `binary_splitting` | exp, sin, cos, atan, pi (Machin + Chudnovsky), ln2, e | Recursive divide-and-conquer series evaluation | Configurable |
 | `continued_fraction` | CF for sqrt(n)/e/pi/phi/ln2, convergents, Pell equation solver, generalized tan CF | Continued fraction expansion | Exact rational |
 | `constants` | Precomputed pi/e/phi/sqrt2/ln2/etc at 30-bit and 62-bit precision, rational approximations, CORDIC angle tables, Pade coefficients | Lookup tables | `2^30` / `2^62` |
+| `bigint`* | `HCVLangBigInt` — arbitrary-precision signed integers (base 2^64 limbs) | Schoolbook mul, binary GCD | Unlimited |
+| `crt`* | `CRTBigInt` — Chinese Remainder Theorem bounded integers (10 Fibonacci-prime moduli) | CRT + Garner reconstruction | ±2^126 |
+| `crt_rational`* | `CRTRational` — exact rational with arbitrary-precision num/den | BigInt GCD reduction | Unlimited |
+
+*Modules marked with `*` require `--features arbitrary-precision`.
 
 ### Key Design Patterns
 
 - **Two CORDIC engines**: `CordicEngine` (circular: trig) and `HyperbolicCordic` (hyperbolic: exp/ln). Hyperbolic mode repeats iterations at indices 4, 13, 40, ... (the 3k+1 sequence) for convergence.
 - **Binary splitting** uses a `BinarySplitState { p, q, b, t }` tuple that combines recursively — the generic `binary_split()` function accepts closures for `a(k)`, `b(k)`, `p(k)`, `q(k)`.
-- **Overflow protection**: `binary_splitting` uses `saturating_mul`/`checked_mul` throughout. AGM uses `saturating_mul` for intermediate products.
+- **Overflow protection**: `binary_split()` returns `Option` (None on overflow). AGM uses `checked_mul` with fallback paths. `checked_mul_i128`/`checked_add_i128` helpers return `TranscendentalError`.
+- **Checked API**: `tan_checked()`, `ln_checked()`, `exp_checked()` return `TransResult<T>` instead of sentinel values (`i64::MAX`, `i64::MIN`, `u128::MAX`). `ExactRational` has `checked_add`, `checked_mul`, `checked_div` returning `Option`. Legacy sentinel-based methods are retained for backward compatibility.
 - **`#[cfg(test)]` float usage**: `to_f64()` and `from_scaled()` helpers exist only behind `#[cfg(test)]` for verification against `std::f64::consts`. This is the only place floats appear.
 
 ### Feature Flags
 
 - `std` (default) — standard library support
-- `simd` — SIMD optimizations for CORDIC (stub)
-- `arbitrary-precision` — CRTBigInt integration (stub)
+- `arbitrary-precision` — CRTBigInt + HCVLangBigInt + CRTRational + big binary splitting + big_isqrt
 
 ## Integer-Only Mandate
 

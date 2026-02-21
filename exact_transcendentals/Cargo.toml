@@ -2,26 +2,26 @@
 
 [package]
 name = "exact_transcendentals"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
-authors = ["QMNF Research Team"]
-description = "Exact integer arithmetic for transcendental functions - no floating point"
+authors = ["HackFate Research <research@hackfate.us>"]
+description = "Exact integer arithmetic for transcendental functions — zero floating-point, provable error bounds"
 license = "MIT OR Apache-2.0"
 keywords = ["math", "transcendental", "cordic", "exact-arithmetic", "fhe"]
 categories = ["mathematics", "algorithms", "no-std"]
 readme = "README.md"
+repository = "https://hackfate.us"
 
 [features]
 default = ["std"]
 std = []
-# Enable SIMD optimizations for CORDIC
-simd = []
-# Enable arbitrary precision via CRTBigInt integration
+# Enable arbitrary precision via CRTBigInt + HCVLangBigInt integration
 arbitrary-precision = []
 
 [dependencies]
 
 [dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
 
 [profile.release]
 opt-level = 3
