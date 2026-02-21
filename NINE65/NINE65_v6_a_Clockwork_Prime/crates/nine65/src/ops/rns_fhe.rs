@@ -1,9 +1,9 @@
 //! RNS-Native FHE Operations with K-Elimination
 //!
-//! Bootstrap-Free FHE implementation based on the QMNF papers:
+//! Clockwork Bootstrap FHE implementation based on the QMNF papers:
 //! - Paper1: K-Elimination for exact division
 //! - Paper2: Persistent Montgomery (values stay in Montgomery form)
-//! - Paper4: Bootstrap-Free FHE architecture
+//! - Paper4: Clockwork Bootstrap (depth-1) FHE architecture
 //!
 //! Key components:
 //! 1. Dual-RNS Architecture: Main RNS for computation + Anchor RNS for K-Elimination

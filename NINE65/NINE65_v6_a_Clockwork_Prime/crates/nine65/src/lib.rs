@@ -1,4 +1,4 @@
-//! # NINE65 FHE - Bootstrap-Free Fully Homomorphic Encryption
+//! # NINE65 FHE - Clockwork Bootstrap Fully Homomorphic Encryption
 //!
 //! A complete BFV Fully Homomorphic Encryption implementation with
 //! K-Elimination exact arithmetic and post-quantum security.
@@ -125,6 +125,7 @@
 // compile_error!("The `allow_insecure` feature must not be enabled in release builds");
 
 pub mod arithmetic;
+pub mod bootstrap; // Three-Lock Bootstrap: protected re-encryption with conjunction security
 pub mod compiler;
 #[cfg(test)]
 pub mod comprehensive_benchmarks; // Additional comprehensive benchmarks

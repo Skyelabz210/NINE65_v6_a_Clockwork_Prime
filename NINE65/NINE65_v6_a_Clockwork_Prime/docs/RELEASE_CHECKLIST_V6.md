@@ -12,7 +12,7 @@ All items must pass before tagging a release.
 
 ## Phase 2: Test Suite
 
-- [ ] `cargo test --workspace` — all tests pass (target: 1,039+)
+- [ ] `cargo test --workspace` — all tests pass (target: 1,056+)
 - [ ] `cargo test -p nine65 --lib --features clockwork` — clockwork tests pass (target: 589+)
 - [ ] `cargo test -p nine65 --test error_variant_coverage` — all 29 error variants covered
 - [ ] `cargo test -p nine65 --features v2,parallel,accelerated,wassan` — optional features pass

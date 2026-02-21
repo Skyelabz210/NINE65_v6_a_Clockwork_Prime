@@ -1,9 +1,9 @@
-# NINE65 v5 - Claude Code Guide
+# NINE65 v6 "a Clockwork Prime" - Claude Code Guide
 
 ## Build & Test
 
 ```bash
-cargo build --release --workspace        # Build all 5 crates (nine65, nexgen_rational, clockwork-core, mana, unhal)
+cargo build --release --workspace        # Build all 7 crates (nine65, clockwork-core, exact_transcendentals, nexgen_rational, fhe-service, mana, unhal)
 cargo test --workspace --release          # Run all tests
 cargo test -p nine65 --lib --release      # Core crate only
 cargo test -p nine65 security::tests -- --nocapture  # Security tests
@@ -13,18 +13,21 @@ cargo test -p nine65 security::tests -- --nocapture  # Security tests
 
 | Crate | Path | Purpose |
 |-------|------|---------|
-| `nine65` | `crates/nine65/` | Core FHE: arithmetic, ring, ops, security, entropy, keys, noise, params |
+| `nine65` | `crates/nine65/` | Core FHE: arithmetic, ring, ops, security, entropy, keys, noise, params (621 tests) |
 | `clockwork-core` | `crates/clockwork-core/` | Formal-spec RNS arithmetic: bound tracking, GRO timing, key lifecycle, Garner, integrity (46 tests) |
-| `mana` | `crates/mana/` | FHE stream accelerator (lane-parallel via Rayon) |
-| `nexgen_rational` | `crates/nexgen_rational/` | Exact i128 rational arithmetic (zero-dep) |
-| `unhal` | `crates/unhal/` | Hardware abstraction layer |
+| `exact_transcendentals` | `crates/exact_transcendentals/` | Exact transcendental functions via integer CORDIC (143 tests) |
+| `nexgen_rational` | `crates/nexgen_rational/` | Exact i128 rational arithmetic, zero-dep (95 tests) |
+| `fhe-service` | `crates/fhe-service/` | FHE session management and serialization (22 tests) |
+| `mana` | `crates/mana/` | FHE stream accelerator, lane-parallel via Rayon (30 tests) |
+| `unhal` | `crates/unhal/` | Hardware abstraction layer (10 tests) |
 
 ## Key Paths
 
 - **Secure configs**: `crates/nine65/src/params/secure_configs.rs` - `SecureConfig::secure_128()`, `secure_192()`, `secure_256()`
 - **Test configs**: Require `--features allow_insecure` flag
 - **K-Elimination**: `crates/nine65/src/arithmetic/k_elimination.rs`
-- **GSO-FHE**: `crates/nine65/src/ops/gso_fhe.rs` - Bootstrap-free depth operations
+- **GSO-FHE**: `crates/nine65/src/ops/gso_fhe.rs` - Depth operations with Clockwork Bootstrap
+- **Three-Lock Bootstrap**: `crates/nine65/src/bootstrap/` - Protected re-encryption with conjunction security (Shannon mask + RLWE outer + Clockwork)
 - **NTT**: `crates/nine65/src/arithmetic/ntt.rs`
 - **Security estimator**: `crates/nine65/src/params/security_estimator.rs`
 - **CT primitives**: `crates/nine65/src/security/secret_data.rs`
@@ -35,6 +38,7 @@ cargo test -p nine65 security::tests -- --nocapture  # Security tests
 - **GRO timing gate**: `crates/nine65/src/security/gro_gate.rs` (requires `clockwork` feature)
 - **Key lifecycle**: `crates/nine65/src/security/key_manager.rs` (requires `clockwork` feature)
 - **Limb integrity**: `crates/nine65/src/security/integrity.rs` (requires `clockwork` feature)
+- **Shadow entropy monitor**: `crates/nine65/src/entropy/shadow_entropy_monitor.rs` (adaptive tests require `adaptive-threading` feature)
 - **Integer math utilities**: `crates/nine65/src/arithmetic/integer_math.rs` - log2, sqrt, format, trig LUT
 - **Garner reconstruction**: `crates/clockwork-core/src/garner.rs` (cross-validates K-Elimination)
 - **Coq proofs**: `proofs/coq/*.v` (14 proofs, requires Coq 8.18+)
@@ -50,6 +54,7 @@ cargo test -p nine65 security::tests -- --nocapture  # Security tests
 - `deterministic_rng` - Reproducible testing via rand_chacha
 - `exact_rational` - Enable NexGen rational bridge (exact noise tracking, BFV delta)
 - `clockwork` - Enable Clockwork-Core integration (bound tracking, GRO timing, key lifecycle, integrity)
+- `adaptive-threading` - Enable entropy-based adaptive thread count (depends on `shadow-entropy`)
 - `slow_tests` - Enable expensive tests
 - Defaults: `ntt_fft`, `parallel` (Rayon)
 

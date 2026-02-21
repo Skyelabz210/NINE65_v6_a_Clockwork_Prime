@@ -47,6 +47,12 @@ pub struct ShadowEntropyMonitor {
     performance_history: std::sync::Mutex<Vec<(usize, std::time::Duration)>>,
 }
 
+impl Default for ShadowEntropyMonitor {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ShadowEntropyMonitor {
     /// Create a new shadow entropy monitor
     pub fn new() -> Self {
@@ -655,7 +661,7 @@ impl AdaptiveFHEContext {
 
                         // Reuse cached NTT and encoder from this thread
                         let evaluator = BFVEvaluator::new(
-                            &ntt,
+                            ntt,
                             encoder,
                             Some(&self.keys.eval_key),
                         );
@@ -713,7 +719,7 @@ impl AdaptiveFHEContext {
 
                         // Reuse cached NTT and encoder from this thread
                         let evaluator = BFVEvaluator::new(
-                            &ntt,
+                            ntt,
                             encoder,
                             Some(&self.keys.eval_key),
                         );

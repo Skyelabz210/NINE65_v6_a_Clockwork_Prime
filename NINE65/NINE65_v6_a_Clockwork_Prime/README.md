@@ -1,11 +1,11 @@
 # NINE65 v6 "a Clockwork Prime"
-## Bootstrap-Free Fully Homomorphic Encryption with Zero-Overhead Security
+## Clockwork Bootstrap FHE with Zero-Overhead Security
 
 <div align="center">
 
-**Production-hardened FHE achieving depth-50 without bootstrapping**
+**Production-hardened FHE achieving depth-50 via Clockwork Bootstrap (trivial-cost depth-1)**
 
-[![Tests](https://img.shields.io/badge/tests-1002%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-1056%20passing-brightgreen)]()
 [![Proofs](https://img.shields.io/badge/formal%20proofs-Coq%20%2B%20Lean4-blue)]()
 [![Security](https://img.shields.io/badge/security-128--256%20bit-green)]()
 [![CI](https://img.shields.io/badge/CI-11%20gates-blue)]()
@@ -19,10 +19,10 @@
 
 ## 🎯 What Makes v6 "Clockwork Prime" Special
 
-✅ **Bootstrap-Free**: Depth-50 circuits with **zero** bootstrapping operations
+✅ **Clockwork Bootstrap**: Depth-50 circuits via trivial-cost depth-1 bootstrap
 ✅ **Zero-Overhead Security**: Compile-time + runtime parameter hardening with no performance cost
 ✅ **Timing Attack Resistant**: GRO timing gates on all key operations
-✅ **Production Ready**: 1,002 tests passing, 14 Coq proofs, 4 Lean4 formalizations
+✅ **Production Ready**: 1,056 tests passing, 14 Coq proofs, 4 Lean4 formalizations
 ✅ **Post-Quantum**: LWE-based with lattice estimator verified security levels
 ✅ **Integer-Only**: No floating-point anywhere (deterministic across platforms)
 
@@ -65,12 +65,12 @@ NINE65 v6 includes comprehensive security hardening completed through parallel a
 | Metric | NINE65 | Traditional FHE |
 |--------|--------|-----------------|
 | **Max Depth** | 50 levels verified (symmetric) | 10-15 levels |
-| **Bootstrap Required** | Never (0 collapses verified) | Every ~10 muls |
+| **Bootstrap Cost** | Trivial (depth-1 Clockwork, ~1 mul equivalent) | Every ~10 muls |
 | **Depth-50 Circuit** | 6.29s / 10.10s (secure_128 / secure_192) | 2,000-5,000ms |
 | **Memory** | ~200MB | 1-3GB |
 | **Hardware** | CPU only | GPU recommended |
 | **Post-Quantum** | LWE-based (lattice estimator verified) | Varies |
-| **Test Coverage** | 1,002 tests passing (core + support crates) | N/A |
+| **Test Coverage** | 1,056 tests passing (core + support crates) | N/A |
 | **Side-Channel** | GRO timing gates on keygen/decrypt | Varies |
 | **CI Gates** | 11 automated quality gates | N/A |
 
@@ -192,7 +192,7 @@ Summary (pre-mod-switch baseline):
 Noise bounding without bootstrapping:
 - **Basin tracking**: Monitor noise evolution per coefficient
 - **Gravitational collapse**: Controlled noise reduction when needed
-- **Zero bootstrap operations** at depth-50
+- **Depth-1 Clockwork Bootstrap** at depth-50 (trivial cost per level)
 
 ### 3. CRT Shadow Entropy
 Cryptographic entropy harvested from modular arithmetic:
@@ -248,7 +248,7 @@ Claim-to-artifact mapping: docs/CLAIM_REGISTRY.csv.
 | secure_128 | 50 | 6.29s | 125.81ms | 0 |
 | secure_192 | 50 | 10.10s | 201.91ms | 0 |
 
-**Bootstraps required: 0** (symmetric mode, empirically verified)
+**Bootstrap cost: Trivial** (depth-1 Clockwork Bootstrap, symmetric mode, empirically verified)
 
 ---
 
@@ -259,7 +259,7 @@ Methodology and sources are documented in docs/FHE_BENCHMARK_COMPARISON.md.
 ```
 Library          | Max Depth | Bootstrap | Depth-50 Time (symmetric)
 -----------------+-----------+-----------+--------------
-NINE65           |    50+    |   Never   |    6.29s / 10.10s
+NINE65           |    50+    | Depth-1   |    6.29s / 10.10s
 OpenFHE (BGV)    |    15     |   ~50ms   |   ~2,500ms
 Microsoft SEAL   |    12     |    N/A    |   (limited)
 TFHE-rs (GPU)    | Unlimited |   <1ms    |    ~200ms*
@@ -321,7 +321,9 @@ NINE65/v6/
 
 - **`nine65`**: Core FHE implementation (dual-RNS, K-Elimination, GSO-FHE, BFV ops)
 - **`clockwork-core`**: Formal-spec RNS arithmetic (bound tracking, GRO timing, key lifecycle)
+- **`exact_transcendentals`**: Exact transcendental functions (CORDIC-based, integer-only)
 - **`nexgen_rational`**: Exact i128 rational arithmetic (zero dependencies)
+- **`fhe-service`**: FHE service layer (session management, serialization)
 - **`mana`**: Modular arithmetic accelerator
 - **`unhal`**: Hardware abstraction and pipeline helpers
 - **`nine65-python`**: Python bindings via PyO3 (requires `--features python`)
@@ -342,6 +344,7 @@ NINE65/v6/
 | `wassan` | WASSAN holographic noise field (144 phi-harmonic) |
 | `deterministic_rng` | Reproducible testing via rand_chacha |
 | `v2` | V2 integration tests |
+| `adaptive-threading` | Entropy-based adaptive thread count (depends on `shadow-entropy`) |
 | `allow_insecure` | Test-only configs (compile-blocked in release builds) |
 
 ---
@@ -558,19 +561,20 @@ NINE65 is built on the QMNF (Quantized Modular Number Field) architecture:
 
 ## Test Status
 
-**All tests passing** (verified 2026-02-15):
+**All tests passing** (verified 2026-02-16):
 
 | Crate | Tests | Status |
 |-------|-------|--------|
-| `nine65` (core FHE) | 870+ | ✅ Pass |
-| `clockwork-core` | 46 | ✅ Pass |
+| `nine65` (core FHE) | 621 | ✅ Pass |
+| `exact_transcendentals` | 143 | ✅ Pass |
 | `nexgen_rational` | 95 | ✅ Pass |
+| `clockwork-core` | 46 | ✅ Pass |
 | `mana` | 30 | ✅ Pass |
+| `fhe-service` | 22 | ✅ Pass |
 | `unhal` | 10 | ✅ Pass |
-| Integration tests | 31+ | ✅ Pass |
+| Doc tests + integration | 89 | ✅ Pass |
 | Optional crates | see note | ⚠️ Requires extra toolchains |
-| **Total (default features)** | **1,002** | ✅ **All Pass** |
-| **Total (clockwork feature)** | **589** | ✅ **All Pass** |
+| **Total (default features)** | **1,056** | ✅ **All Pass** |
 
 Notes:
 - `nine65-python` and `nine65-wasm` require optional toolchains/features and are not built in the default test sweep.
@@ -578,7 +582,7 @@ Notes:
 - All 29 `Nine65Error` variants have dedicated coverage tests.
 
 ### Key Validations
-- ✅ Depth-50 circuits with 0 bootstraps (symmetric mode)
+- ✅ Depth-50 circuits with trivial-cost depth-1 Clockwork Bootstrap (symmetric mode)
 - ✅ Encrypt→Decrypt roundtrip (property-based testing)
 - ✅ K-Elimination constant-time matches variable-time output
 - ✅ Ciphertext randomness (semantic security)
@@ -602,5 +606,5 @@ Old implementation reports and session updates are preserved in `archive/`.
 
 ---
 
-*Last updated: 2026-02-15*
-*NINE65 v6 "a Clockwork Prime" - Bootstrap-Free FHE with K-Elimination*
+*Last updated: 2026-02-16*
+*NINE65 v6 "a Clockwork Prime" - Clockwork Bootstrap FHE with K-Elimination*

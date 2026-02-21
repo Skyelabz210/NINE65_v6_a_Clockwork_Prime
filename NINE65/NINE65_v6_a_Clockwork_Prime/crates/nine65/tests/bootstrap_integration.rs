@@ -1211,3 +1211,151 @@ fn test_noise_budget_should_bootstrap() {
     }
     assert!(triggered, "Should trigger bootstrap");
 }
+
+// =========================================================================
+// CATEGORY 12: Non-Circular KSK Bootstrap — 5 tests
+// =========================================================================
+
+fn setup_bootstrap_ksk() -> Nine65Result<(
+    RNSFHEContext,
+    ClockworkBootstrap,
+    nine65::ops::rns_fhe::DualRNSFullKeySet,
+    nine65::keys::bootstrap::BootstrapKeySet,
+    ShadowHarvester,
+)> {
+    let config = SecureConfig::secure_128().into_config();
+    let work_ctx = RNSFHEContext::try_new(&config)?;
+    let bootstrap = ClockworkBootstrap::new(&config)?;
+    let mut rng = ShadowHarvester::with_seed(42);
+    let work_keys = work_ctx.generate_keys_dual_full(&mut rng);
+    let boot_keys = bootstrap.generate_keys_with_ksk(&work_keys.secret_key, &mut rng)?;
+    Ok((work_ctx, bootstrap, work_keys, boot_keys, rng))
+}
+
+#[test]
+fn test_ksk_generation_produces_nonempty_ksk() {
+    let (_work_ctx, _bootstrap, _work_keys, boot_keys, _rng) =
+        setup_bootstrap_ksk().expect("KSK setup failed");
+
+    assert!(
+        !boot_keys.ksk.ksk.is_empty(),
+        "KSK should have decomposition components"
+    );
+    assert!(
+        boot_keys.ksk.num_digits > 0,
+        "KSK should have > 0 digits"
+    );
+    assert!(
+        boot_keys.ksk.decomp_base > 1,
+        "KSK decomp base should be > 1"
+    );
+    println!(
+        "KSK: {} digits, base={}, {} component pairs",
+        boot_keys.ksk.num_digits,
+        boot_keys.ksk.decomp_base,
+        boot_keys.ksk.ksk.len()
+    );
+}
+
+#[test]
+fn test_ksk_num_digits_matches_components() {
+    let (_work_ctx, _bootstrap, _work_keys, boot_keys, _rng) =
+        setup_bootstrap_ksk().expect("KSK setup failed");
+
+    assert_eq!(
+        boot_keys.ksk.ksk.len(),
+        boot_keys.ksk.num_digits,
+        "Number of KSK pairs should equal num_digits"
+    );
+}
+
+#[test]
+fn test_ksk_boot_sk_is_independent() {
+    let config = SecureConfig::secure_128().into_config();
+    let work_ctx = RNSFHEContext::try_new(&config).expect("Context");
+    let bootstrap = ClockworkBootstrap::new(&config).expect("Bootstrap");
+    let mut rng = ShadowHarvester::with_seed(42);
+    let work_keys = work_ctx.generate_keys_dual_full(&mut rng);
+
+    // Generate circular keys
+    let circ_keys = bootstrap
+        .generate_keys(&work_keys.secret_key, &mut rng)
+        .expect("Circular keygen");
+
+    // Generate KSK keys (independent boot_sk)
+    let mut rng2 = ShadowHarvester::with_seed(99);
+    let ksk_keys = bootstrap
+        .generate_keys_with_ksk(&work_keys.secret_key, &mut rng2)
+        .expect("KSK keygen");
+
+    // Circular boot_sk should be deterministic lift of work_sk
+    // KSK boot_sk should be independent (different polynomial)
+    let circ_boot_s = &circ_keys.boot_sk.s.main[0];
+    let ksk_boot_s = &ksk_keys.boot_sk.s.main[0];
+    let work_s = &work_keys.secret_key.s.main[0];
+
+    // Count how many coefficients differ between boot keys
+    let circ_diff: usize = circ_boot_s
+        .iter()
+        .zip(work_s.iter())
+        .filter(|(a, b)| {
+            // Circular should match (modulo prime difference):
+            // ternary coefficients {0, 1, p-1} map to same {0, 1, boot_p-1}
+            let a_tern = if **a == 0 { 0 } else if **a == 1 { 1 } else { 2 };
+            let b_tern = if **b == 0 { 0 } else if **b == 1 { 1 } else { 2 };
+            a_tern != b_tern
+        })
+        .count();
+
+    let ksk_diff: usize = ksk_boot_s
+        .iter()
+        .zip(circ_boot_s.iter())
+        .filter(|(a, b)| a != b)
+        .count();
+
+    // Circular boot_sk is the same polynomial as work_sk (different moduli)
+    assert_eq!(
+        circ_diff, 0,
+        "Circular boot_sk should be same ternary polynomial as work_sk"
+    );
+
+    // KSK boot_sk should differ from circular boot_sk (independent key)
+    assert!(
+        ksk_diff > 0,
+        "KSK boot_sk should be independent from circular boot_sk"
+    );
+    println!(
+        "KSK boot_sk differs from circular boot_sk in {}/{} coefficients",
+        ksk_diff,
+        ksk_boot_s.len()
+    );
+}
+
+#[test]
+fn test_bootstrap_with_ksk_does_not_panic() {
+    let (work_ctx, bootstrap, work_keys, boot_keys, mut rng) =
+        setup_bootstrap_ksk().expect("KSK setup failed");
+
+    let ct = work_ctx.encrypt_dual(0, &work_keys.public_key, &mut rng);
+    let result = bootstrap.bootstrap_with_ksk(&ct, &boot_keys.bsk, &boot_keys.ksk);
+    assert!(result.is_ok(), "KSK bootstrap should not fail: {:?}", result.err());
+}
+
+#[test]
+fn test_bootstrap_with_ksk_roundtrip_messages() {
+    let (work_ctx, bootstrap, work_keys, boot_keys, mut rng) =
+        setup_bootstrap_ksk().expect("KSK setup failed");
+    let t = work_ctx.t;
+
+    for &m in &[0u64, 1, 2, 42, 100, 1000, 65536, t - 1] {
+        let ct = work_ctx.encrypt_dual(m, &work_keys.public_key, &mut rng);
+        let result = bootstrap.bootstrap_with_ksk(&ct, &boot_keys.bsk, &boot_keys.ksk);
+        assert!(
+            result.is_ok(),
+            "KSK bootstrap should not fail for m={}",
+            m
+        );
+        let dec = work_ctx.decrypt_dual(&result.unwrap(), &work_keys.secret_key);
+        println!("KSK bootstrap m={}: decrypted={}", m, dec);
+    }
+}

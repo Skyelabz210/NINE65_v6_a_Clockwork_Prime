@@ -174,9 +174,10 @@ impl SecureConfig {
     ///
     /// Uses 4 primes for ~120 bits of ciphertext modulus.
     /// Supports ~15 multiplicative levels.
+    /// Uses n=8192 to maintain 128-bit security with larger Q.
     pub fn secure_128_deep() -> Self {
         Self::new_verified(
-            4096,
+            8192,  // Increased from 4096 to maintain security with larger Q
             vec![
                 998244353, 985661441, 754974721, 469762049, // 4th 30-bit NTT prime
             ],
@@ -197,7 +198,7 @@ impl SecureConfig {
     /// - Quantum: 128 bits
     pub fn secure_192() -> Self {
         Self::new_verified(
-            8192,
+            16384,  // Increased from 8192 to achieve claimed 192-bit security
             vec![
                 998244353, 985661441, 754974721, 469762049,
                 167772161, // 5th prime for larger Q
