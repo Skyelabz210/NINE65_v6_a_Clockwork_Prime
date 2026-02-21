@@ -135,12 +135,12 @@ impl PolynomialPool {
         (self.stats_acquires, self.stats_hits)
     }
 
-    /// Get cache hit ratio (0.0 to 1.0)
-    pub fn hit_ratio(&self) -> f64 {
+    /// Get cache hit ratio in permille (0-1000, where 1000 = 100%)
+    pub fn hit_ratio_permille(&self) -> u32 {
         if self.stats_acquires == 0 {
-            0.0
+            0
         } else {
-            self.stats_hits as f64 / self.stats_acquires as f64
+            ((self.stats_hits as u64 * 1000) / self.stats_acquires as u64) as u32
         }
     }
 
@@ -222,19 +222,25 @@ impl<'a> PoolGuard<'a> {
     /// Take ownership of the polynomial (prevents auto-release)
     pub fn take(mut self) -> PooledPolynomial {
         // SAFETY: PoolGuard always contains Some until Drop takes it
-        self.poly.take().expect("PoolGuard invariant: poly is always Some until drop")
+        self.poly
+            .take()
+            .expect("PoolGuard invariant: poly is always Some until drop")
     }
 }
 
 impl<'a> AsRef<PooledPolynomial> for PoolGuard<'a> {
     fn as_ref(&self) -> &PooledPolynomial {
-        self.poly.as_ref().expect("PoolGuard invariant: poly is always Some until drop")
+        self.poly
+            .as_ref()
+            .expect("PoolGuard invariant: poly is always Some until drop")
     }
 }
 
 impl<'a> AsMut<PooledPolynomial> for PoolGuard<'a> {
     fn as_mut(&mut self) -> &mut PooledPolynomial {
-        self.poly.as_mut().expect("PoolGuard invariant: poly is always Some until drop")
+        self.poly
+            .as_mut()
+            .expect("PoolGuard invariant: poly is always Some until drop")
     }
 }
 
@@ -294,14 +300,20 @@ mod tests {
 
         // Create polynomial with data
         let mut poly = pool.acquire(8, 100);
-        poly.coeffs.iter_mut().enumerate().for_each(|(i, c)| *c = i as u64 + 1);
+        poly.coeffs
+            .iter_mut()
+            .enumerate()
+            .for_each(|(i, c)| *c = i as u64 + 1);
 
         // Release should zero
         pool.release(poly);
 
         // Acquire again - should be zeroed
         let poly2 = pool.acquire(8, 100);
-        assert!(poly2.coeffs.iter().all(|&c| c == 0), "Buffer should be zeroed");
+        assert!(
+            poly2.coeffs.iter().all(|&c| c == 0),
+            "Buffer should be zeroed"
+        );
     }
 
     #[test]
@@ -407,15 +419,15 @@ mod tests {
 
         // First acquire is a miss
         let p1 = pool.acquire(8, 100);
-        assert_eq!(pool.hit_ratio(), 0.0);
+        assert_eq!(pool.hit_ratio_permille(), 0);
 
         pool.release(p1);
 
         // Second acquire is a hit
         let p2 = pool.acquire(8, 100);
         assert_eq!(pool.stats(), (2, 1));
-        // hit_ratio uses f64, so approximately 0.5
-        assert!((pool.hit_ratio() - 0.5).abs() < 0.001);
+        // 1 hit / 2 acquires = 500 permille
+        assert_eq!(pool.hit_ratio_permille(), 500);
 
         pool.release(p2);
     }

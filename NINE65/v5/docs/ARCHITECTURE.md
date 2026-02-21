@@ -1,14 +1,16 @@
 # NINE65 Architecture
 
 **Version**: 5.0
-**Status**: Production Ready
-**Security Rating**: 8.5/10
+**Status**: Pre-production (deployment not recommended yet)
+**Security Rating**: Provisional (see RedShirt assessment)
 
 ---
 
 ## Overview
 
-NINE65 is a bootstrap-free Fully Homomorphic Encryption (FHE) library built on the BFV scheme with novel innovations including K-Elimination for exact RNS division and GSO-FHE for gravitational swarm noise optimization.
+NINE65 is a bootstrap-free Fully Homomorphic Encryption (FHE) library built on the BFV scheme with novel components including K-Elimination for exact RNS division and GSO-FHE for gravitational swarm noise optimization.
+
+**Deployment note**: Production deployment is not recommended until timing side-channel mitigations and parameter baselines are fully reconciled (see docs/REDSHIRT_SECURITY_ASSESSMENT.md). Minimum recommended configuration for evaluation is `SecureConfig::secure_192()`.
 
 ---
 
@@ -62,7 +64,7 @@ NINE65 is a bootstrap-free Fully Homomorphic Encryption (FHE) library built on t
 
 ### Arithmetic Submodules (`arithmetic/`)
 
-| File | Innovation | Speedup |
+| File | Component | Speedup |
 |------|------------|---------|
 | `k_elimination.rs` | Exact RNS division | 40x vs MRC |
 | `order_finding.rs` | Non-circular BSGS | Novel |
@@ -85,12 +87,12 @@ NINE65 is a bootstrap-free Fully Homomorphic Encryption (FHE) library built on t
 
 ---
 
-## Key Innovations
+## Key Components
 
-### 1. K-Elimination (Innovation #1)
+### 1. K-Elimination Component
 **Location**: `arithmetic/k_elimination.rs`
 
-Solves the 60-year RNS division problem with O(k) complexity vs O(k^2) for MRC.
+Provides exact RNS division with O(k) complexity vs O(k^2) for MRC.
 
 ```
 Given V in dual-codex (α, β):
@@ -104,7 +106,7 @@ Recover V exactly:
 
 **Coq Proof**: `proofs/coq/KElimination.v`
 
-### 2. GSO-FHE (Innovation #2)
+### 2. GSO-FHE Component
 **Location**: `ops/gso_fhe.rs`
 
 Gravitational Swarm Optimization for noise management without bootstrapping.
@@ -115,7 +117,7 @@ Gravitational Swarm Optimization for noise management without bootstrapping.
 
 **Coq Proof**: `proofs/coq/GSOFHE.v`
 
-### 3. Persistent Montgomery (Innovation #3)
+### 3. Persistent Montgomery Component
 **Location**: `arithmetic/montgomery.rs`
 
 Keep values in Montgomery form across operations:
@@ -164,7 +166,9 @@ impl SecretData for SecretPoly {}
 | `light()` | 1024 | 80-bit | 36-bit | TEST ONLY (gated) |
 | `he_standard_128()` | 2048 | 128-bit | 56-bit | TEST ONLY (gated) |
 | `standard_128()` | 4096 | 128-bit | 96-bit | MARGINAL |
-| `SecureConfig::secure_128()` | 4096 | 128-bit | 128-bit | PRODUCTION |
+| `SecureConfig::secure_128()` | 4096 | 128-bit | 128-bit | MARGINAL (not recommended) |
+| `SecureConfig::secure_192()` | 8192 | 192-bit | 176-bit | RECOMMENDED |
+| `SecureConfig::secure_256()` | 16384 | 256-bit | 268-bit | MAXIMUM |
 
 ---
 
@@ -263,7 +267,7 @@ cargo tarpaulin -p nine65 --out Html
 ## Related Documents
 
 - `SECURITY_GAP_ANALYSIS.md` - Security assessment and roadmap
-- `proofs/coq/` - Formal Coq proofs for all innovations
+- `proofs/coq/` - Formal Coq proofs for all components
 - `lean4/KElimination/` - Lean 4 proofs
 
 ---

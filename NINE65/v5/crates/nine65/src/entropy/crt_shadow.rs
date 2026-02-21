@@ -1,6 +1,11 @@
 //! CRT Shadow - Entropy Harvesting from RNS Operations
 //!
-//! QMNF Innovation: Zero-cost entropy generation from computational byproducts.
+//! Zero-cost entropy generation from computational byproducts.
+//!
+//! # Theorem Reference
+//! - Proof File: `CRTShadowEntropy.v`
+//! - Lean File: `ShadowEntropy.lean`
+//! - Status: VERIFIED
 //!
 //! ## Core Concept
 //!
@@ -221,7 +226,9 @@ impl CRTShadowContext {
             }
         }
 
-        let product: u128 = primes.iter().fold(1u128, |acc, &p| acc.saturating_mul(p as u128));
+        let product: u128 = primes
+            .iter()
+            .fold(1u128, |acc, &p| acc.saturating_mul(p as u128));
 
         // Precompute CRT values
         let crt_values: Vec<_> = primes
@@ -268,7 +275,10 @@ impl CRTShadowContext {
 
     /// Convert u128 to RNS representation
     pub fn from_u128(&self, x: u128) -> Vec<u64> {
-        self.primes.iter().map(|&p| (x % p as u128) as u64).collect()
+        self.primes
+            .iter()
+            .map(|&p| (x % p as u128) as u64)
+            .collect()
     }
 
     /// Convert RNS to integer using CRT reconstruction
@@ -306,7 +316,11 @@ impl CRTShadowContext {
             shadows.push(wrap ^ (sum as u64)); // Mix wrap bit with low bits
 
             // Result
-            let result = if sum >= p { (sum - p) as u64 } else { sum as u64 };
+            let result = if sum >= p {
+                (sum - p) as u64
+            } else {
+                sum as u64
+            };
             results.push(result);
         }
 
@@ -445,14 +459,22 @@ impl CRTShadowContext {
     ///
     /// Returns (result, shadows, signature) where signature enables
     /// O(1) magnitude comparison without full CRT reconstruction.
-    pub fn mul_with_signature(&self, a: &[u64], b: &[u64]) -> (Vec<u64>, Vec<u64>, QuotientSignature) {
+    pub fn mul_with_signature(
+        &self,
+        a: &[u64],
+        b: &[u64],
+    ) -> (Vec<u64>, Vec<u64>, QuotientSignature) {
         let (result, shadows) = self.mul_with_shadows(a, b);
         let sig = QuotientSignature::from_shadows(&shadows);
         (result, shadows, sig)
     }
 
     /// Add with quotient signature
-    pub fn add_with_signature(&self, a: &[u64], b: &[u64]) -> (Vec<u64>, Vec<u64>, QuotientSignature) {
+    pub fn add_with_signature(
+        &self,
+        a: &[u64],
+        b: &[u64],
+    ) -> (Vec<u64>, Vec<u64>, QuotientSignature) {
         let (result, shadows) = self.add_with_shadows(a, b);
         let sig = QuotientSignature::from_shadows(&shadows);
         (result, shadows, sig)
@@ -607,8 +629,11 @@ impl std::fmt::Display for ShadowStats {
         write!(
             f,
             "ops={}, lanes={}, ingested={} bits, entropy~{} bits, raw~{} bits",
-            self.operations, self.lanes, self.bits_ingested,
-            self.estimated_entropy, self.raw_shadow_bits
+            self.operations,
+            self.lanes,
+            self.bits_ingested,
+            self.estimated_entropy,
+            self.raw_shadow_bits
         )
     }
 }
@@ -619,7 +644,7 @@ impl std::fmt::Display for ShadowStats {
 
 /// Quotient Signature - Magnitude tracking via captured quotients
 ///
-/// QMNF Innovation: CRT reconstruction computes k = (X - r_m) / M
+/// CRT reconstruction computes k = (X - r_m) / M
 /// This k value encodes magnitude information. By tracking k values
 /// across operations, we can compare magnitudes in O(1) without
 /// full CRT reconstruction.
@@ -981,7 +1006,13 @@ mod tests {
         let stats = rns.stats();
         println!("\nThroughput test (10000 muls):");
         println!("  {}", stats);
-        println!("  Entropy per op: {:.2} bits", stats.estimated_entropy as f64 / stats.operations as f64);
+        // Integer-only: compute entropy_per_op_x100 = (entropy * 100) / ops
+        let entropy_per_op_x100 = (stats.estimated_entropy * 100) / stats.operations;
+        println!(
+            "  Entropy per op: {}.{:02} bits",
+            entropy_per_op_x100 / 100,
+            entropy_per_op_x100 % 100
+        );
 
         // Should have accumulated significant entropy
         assert!(stats.estimated_entropy > 10000);
@@ -1010,7 +1041,7 @@ mod tests {
         // Use numbers large enough to produce quotients > 0
         // Need a*b >= prime for quotient to be non-zero
         // Prime is ~10^9, so we need products > 10^9
-        let a = ctx.from_int(500_000_000);  // Half a billion
+        let a = ctx.from_int(500_000_000); // Half a billion
 
         let (_, shadows1) = ctx.mul_with_shadows(&a, &ctx.from_int(3));
         let (_, shadows2) = ctx.mul_with_shadows(&a, &ctx.from_int(4));
@@ -1022,8 +1053,10 @@ mod tests {
         println!("  shadows3: {:?}", shadows3);
 
         // With large enough inputs, quotients should differ
-        assert!(shadows1 != shadows2 || shadows2 != shadows3,
-                "Different inputs should produce different shadows");
+        assert!(
+            shadows1 != shadows2 || shadows2 != shadows3,
+            "Different inputs should produce different shadows"
+        );
     }
 
     #[test]
@@ -1038,7 +1071,10 @@ mod tests {
 
         // Shadows should be larger for larger inputs
         let total_shadow: u64 = shadows.iter().sum();
-        assert!(total_shadow > 0, "Large multiply should produce non-trivial shadows");
+        assert!(
+            total_shadow > 0,
+            "Large multiply should produce non-trivial shadows"
+        );
         println!("Large number shadows: {:?}, sum={}", shadows, total_shadow);
     }
 
@@ -1059,18 +1095,25 @@ mod tests {
         }
 
         let elapsed = start.elapsed();
-        let ops_per_sec = ops as f64 / elapsed.as_secs_f64();
-        let entropy_per_sec = rns.entropy_bits() as f64 / elapsed.as_secs_f64();
+        // Integer-only: ops_per_sec = (ops * 1_000_000_000) / elapsed_nanos
+        let elapsed_nanos = elapsed.as_nanos().max(1);
+        let ops_per_sec = (ops as u128 * 1_000_000_000) / elapsed_nanos;
+        let entropy_per_sec = (rns.entropy_bits() as u128 * 1_000_000_000) / elapsed_nanos;
+        let entropy_mbits_per_sec_x100 = entropy_per_sec * 100 / 1_000_000;
 
         println!("\n=== CRT Shadow Benchmark ({} ops) ===", ops);
         println!("  Time: {:?}", elapsed);
-        println!("  Ops/sec: {:.2e}", ops_per_sec);
+        println!("  Ops/sec: {}", ops_per_sec);
         println!("  Stats: {}", rns.stats());
-        println!("  Entropy throughput: {:.2e} bits/sec", entropy_per_sec);
-        println!("  Entropy throughput: {:.2} Mbits/sec", entropy_per_sec / 1_000_000.0);
+        println!("  Entropy throughput: {} bits/sec", entropy_per_sec);
+        println!(
+            "  Entropy throughput: {}.{:02} Mbits/sec",
+            entropy_mbits_per_sec_x100 / 100,
+            entropy_mbits_per_sec_x100 % 100
+        );
 
         // Verify we're getting reasonable throughput (>100k ops/sec in debug, >1M in release)
-        assert!(ops_per_sec > 100_000.0, "Throughput too low: {:.2e}", ops_per_sec);
+        assert!(ops_per_sec > 100_000, "Throughput too low: {}", ops_per_sec);
     }
 
     #[test]
@@ -1108,8 +1151,12 @@ mod tests {
 
         // With 10 samples, expect 3-7 ones per bit position (loose bounds)
         for (bit, &count) in bit_counts.iter().enumerate() {
-            assert!((1..=9).contains(&count),
-                    "Bit {} has count {} (expected 3-7)", bit, count);
+            assert!(
+                (1..=9).contains(&count),
+                "Bit {} has count {} (expected 3-7)",
+                bit,
+                count
+            );
         }
     }
 
@@ -1199,7 +1246,10 @@ mod tests {
 
         // Verify signature captures shadows correctly
         assert_eq!(sig.lane_count, shadows.len() as u32);
-        assert!(sig.k_max > 0, "Large multiply should have non-zero quotients");
+        assert!(
+            sig.k_max > 0,
+            "Large multiply should have non-zero quotients"
+        );
 
         println!("mul_with_signature test:");
         println!("  shadows: {:?}", shadows);
@@ -1207,7 +1257,10 @@ mod tests {
 
         // Verify result is correct
         let recovered = ctx.to_int(&result);
-        assert_eq!(recovered, 1_000_000_000_000u128 * 2_000_000_000_000u128 % ctx.product);
+        assert_eq!(
+            recovered,
+            1_000_000_000_000u128 * 2_000_000_000_000u128 % ctx.product
+        );
     }
 
     #[test]
@@ -1227,8 +1280,10 @@ mod tests {
         println!("  large² sig: {}", sig_large);
 
         // Large squared should have larger signature than small squared
-        assert!(sig_large.magnitude_greater(&sig_small),
-                "large² should have greater magnitude than small²");
+        assert!(
+            sig_large.magnitude_greater(&sig_small),
+            "large² should have greater magnitude than small²"
+        );
     }
 
     #[test]
@@ -1244,7 +1299,8 @@ mod tests {
             10_000_000_000,
         ];
 
-        let sigs: Vec<QuotientSignature> = values.iter()
+        let sigs: Vec<QuotientSignature> = values
+            .iter()
             .map(|&v| {
                 let rns = ctx.from_u128(v);
                 let (_, _, sig) = ctx.mul_with_signature(&rns, &rns);
@@ -1259,9 +1315,12 @@ mod tests {
 
         // Verify monotonic ordering
         for i in 0..sigs.len() - 1 {
-            assert!(sigs[i + 1].magnitude_gte(&sigs[i]),
-                    "Signature ordering should match value ordering: {} vs {}",
-                    values[i], values[i + 1]);
+            assert!(
+                sigs[i + 1].magnitude_gte(&sigs[i]),
+                "Signature ordering should match value ordering: {} vs {}",
+                values[i],
+                values[i + 1]
+            );
         }
     }
 
@@ -1307,11 +1366,20 @@ mod tests {
         println!("\n=== Signature Overhead Benchmark ({} ops) ===", ops);
         println!("  Without signature: {:?}", time_no_sig);
         println!("  With signature: {:?}", time_with_sig);
-        println!("  Overhead: {:.1}%",
-                 (time_with_sig.as_nanos() as f64 / time_no_sig.as_nanos() as f64 - 1.0) * 100.0);
+        // Integer-only: overhead_pct = ((with - without) * 100) / without
+        let ns_no = time_no_sig.as_nanos().max(1);
+        let ns_with = time_with_sig.as_nanos();
+        let overhead_x10 = if ns_with > ns_no {
+            ((ns_with - ns_no) * 1000 / ns_no) as u64
+        } else {
+            0
+        };
+        println!("  Overhead: {}.{}%", overhead_x10 / 10, overhead_x10 % 10);
 
         // Signature creation should be cheap (<50% overhead)
-        assert!(time_with_sig.as_nanos() < time_no_sig.as_nanos() * 2,
-                "Signature overhead should be < 100%");
+        assert!(
+            time_with_sig.as_nanos() < time_no_sig.as_nanos() * 2,
+            "Signature overhead should be < 100%"
+        );
     }
 }

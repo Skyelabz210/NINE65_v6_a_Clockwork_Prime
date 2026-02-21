@@ -28,6 +28,19 @@ Commands:
 - `cargo bench --workspace`
 - Archive `target/criterion` reports for the release artifact.
 
+## Baseline Artifacts (Reproducible)
+- `scripts/generate_security_baseline.sh` -> `docs/LATTICE_ESTIMATOR_BASELINE_YYYY-MM-DD.md`
+- `scripts/generate_performance_baseline.sh` -> `docs/PERFORMANCE_BASELINE_YYYY-MM-DD.md`
+  and machine-readable artifacts:
+  - `docs/PERFORMANCE_BASELINE_YYYY-MM-DD.json`
+  - `docs/PERFORMANCE_BASELINE_YYYY-MM-DD_criterion.json`
+- Archive generated baseline docs with the release artifact.
+
+## Claim Drift Gates
+- `scripts/check_claim_registry.sh`
+- `scripts/check_stale_claims.sh`
+- CI must fail when claim drift is detected (README vs artifact mismatch).
+
 ## Docs
 - Update `README.md` feature list and examples if flags or paths change.
 - Review `docs/SECURITY_PROOFS.md` and `docs/FHE_BENCHMARK_COMPARISON.md` for accuracy.

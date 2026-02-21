@@ -1,0 +1,29 @@
+{
+  "type": "consult_launched",
+  "consultants": [
+    {
+      "name": "codex",
+      "model": "gpt-5.1-codex-max"
+    },
+    {
+      "name": "qwen",
+      "model": "coder-model"
+    },
+    {
+      "name": "gemini",
+      "model": "gemini-2.5-pro"
+    },
+    {
+      "name": "claude",
+      "model": "opus"
+    }
+  ],
+  "project": "v5",
+  "receipt_time": "2026-02-10T21:38:40.053057",
+  "expected_reports": [
+    "jobs/v5/consult_codex_gpt-5.1-codex-max_20260210_213840.md",
+    "jobs/v5/consult_qwen_coder-model_20260210_213840.md",
+    "jobs/v5/consult_gemini_gemini-2.5-pro_20260210_213840.md",
+    "jobs/v5/consult_claude_opus_20260210_213840.md"
+  ]
+}

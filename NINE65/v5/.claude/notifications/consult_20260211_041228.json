@@ -1,0 +1,14 @@
+{
+  "type": "consult_launched",
+  "consultants": [
+    {
+      "name": "qwen",
+      "model": "coder-model"
+    }
+  ],
+  "project": "v5",
+  "receipt_time": "2026-02-11T04:12:28.301777",
+  "expected_reports": [
+    "jobs/v5/consult_qwen_coder-model_20260211_041228.md"
+  ]
+}

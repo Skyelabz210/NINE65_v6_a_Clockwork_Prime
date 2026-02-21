@@ -208,11 +208,25 @@ jobs:
           name: timing-results
           path: timing-results.txt
 
+  claim-drift-check:
+    name: Claim Drift Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'schedule'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate claim registry
+        run: bash scripts/check_claim_registry.sh
+
+      - name: Detect stale claims
+        run: bash scripts/check_stale_claims.sh
+
   benchmark-check:
     name: Benchmark Regression Check
     runs-on: ubuntu-latest
-    # Run on PRs and weekly, but don't block merges
-    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    # Tiered gate: PRs are advisory, schedule/main pushes are enforced.
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule' || github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -234,11 +248,26 @@ jobs:
           path: target
           key: ${{ runner.os }}-target-bench-${{ hashFiles('**/Cargo.lock') }}
 
+      - name: Select benchmark gate mode
+        id: gate_mode
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+            echo "mode=advisory" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=enforced" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Selected benchmark gate mode: $(cat "$GITHUB_OUTPUT")"
+
+      - name: Validate claim registry
+        continue-on-error: ${{ steps.gate_mode.outputs.mode == 'advisory' }}
+        run: bash scripts/check_claim_registry.sh
+
       - name: Run benchmarks
+        continue-on-error: ${{ steps.gate_mode.outputs.mode == 'advisory' }}
         run: |
           cargo bench -p nine65 -- --noplot --save-baseline current 2>&1 | tee bench-results.txt
           # Extract timing summary
-          echo "=== BENCHMARK SUMMARY ===" >> bench-results.txt
+          echo "=== BENCHMARK SUMMARY ===" >> bench-summary.txt
           grep -E "time:.*\[" bench-results.txt | tail -20 >> bench-summary.txt || true
 
       - name: Upload benchmark results
@@ -251,12 +280,19 @@ jobs:
             target/criterion/
 
       - name: Check for major regressions
+        continue-on-error: ${{ steps.gate_mode.outputs.mode == 'advisory' }}
+        env:
+          BENCHMARK_GATE_MODE: ${{ steps.gate_mode.outputs.mode }}
         run: |
-          # Fail if any benchmark shows >50% regression
+          # Criterion emits "Performance has regressed" when baseline comparison fails.
           if grep -q "Performance has regressed" bench-results.txt; then
-            echo "WARNING: Performance regression detected"
+            echo "Performance regression marker detected"
             grep -B2 "Performance has regressed" bench-results.txt
-            # Don't fail the build, just warn
+            if [[ "${BENCHMARK_GATE_MODE}" == "enforced" ]]; then
+              echo "Enforced mode active: failing benchmark gate"
+              exit 1
+            fi
+            echo "::warning::Benchmark regression marker detected (advisory mode)"
           fi
 
   coverage:

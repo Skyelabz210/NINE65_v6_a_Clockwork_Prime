@@ -15,7 +15,7 @@ use crate::arithmetic::NTTEngineFFT as NTTEngine;
 
 #[cfg(not(feature = "ntt_fft"))]
 use crate::arithmetic::NTTEngine;
-use crate::entropy::{ShadowHarvester, SecureRng, FheRng};
+use crate::entropy::{try_secure_cbd_vector, try_secure_ternary_vector, FheRng, ShadowHarvester};
 use crate::errors::{Nine65Error, Nine65Result};
 use crate::keys::{PublicKey, SecretKey};
 use crate::params::FHEConfig;
@@ -43,13 +43,14 @@ impl BFVEncoder {
             n: config.n,
         }
     }
-    
+
     /// Encode a scalar message as polynomial
     ///
     /// # Panics
     /// Panics if m >= t. Use `try_encode()` for fallible encoding.
     pub fn encode(&self, m: u64) -> RingPolynomial {
-        self.try_encode(m).expect("Message must be less than plaintext modulus")
+        self.try_encode(m)
+            .expect("Message must be less than plaintext modulus")
     }
 
     /// Fallible encoding: returns error if m >= t
@@ -69,54 +70,54 @@ impl BFVEncoder {
 
         Ok(RingPolynomial::from_coeffs(coeffs, self.q))
     }
-    
+
     /// Decode polynomial to scalar message
     pub fn decode(&self, poly: &RingPolynomial) -> u64 {
         // m = round(t * c / q) mod t
         // Using integer formula: floor((2*t*c + q) / (2*q)) mod t
         let c = poly.coeffs[0];
-        
+
         // Careful computation to avoid overflow
         let numerator = 2u128 * (self.t as u128) * (c as u128) + (self.q as u128);
         let denominator = 2u128 * (self.q as u128);
         let result = (numerator / denominator) as u64;
-        
+
         result % self.t
     }
-    
+
     /// Decode a polynomial from a degree-2 ciphertext (at Δ² level)
-    /// 
+    ///
     /// After tensor product, values are at Δ² level instead of Δ level.
     /// Use t²/q² scaling to recover message.
-    /// 
+    ///
     /// Formula: m = round(t² × coeff / q²) = round(coeff × t² / q²)
     pub fn decode_degree2(&self, poly: &RingPolynomial) -> u64 {
         let c = poly.coeffs[0];
-        
+
         // Compute round(c * t² / q²)
         // Using: round(x/y) = (2x + y) / (2y)
-        // 
+        //
         // But t² and q² might overflow u128. Let's be careful.
-        // 
+        //
         // Alternative: c * t² / q² = c * t / q * t / q = (c * t / q) * t / q
-        // First scale: temp = round(c * t / q)  
+        // First scale: temp = round(c * t / q)
         // Second scale: result = round(temp * t / q)
-        
-        let temp = ((2u128 * self.t as u128 * c as u128) + self.q as u128) 
-                   / (2u128 * self.q as u128);
-        
-        let result = ((2u128 * self.t as u128 * temp) + self.q as u128) 
-                     / (2u128 * self.q as u128);
-        
+
+        let temp =
+            ((2u128 * self.t as u128 * c as u128) + self.q as u128) / (2u128 * self.q as u128);
+
+        let result = ((2u128 * self.t as u128 * temp) + self.q as u128) / (2u128 * self.q as u128);
+
         (result as u64) % self.t
     }
-    
+
     /// Encode a vector of messages (for batching)
     ///
     /// # Panics
     /// Panics if any message >= t or vector too long. Use `try_encode_vector()` for fallible encoding.
     pub fn encode_vector(&self, msgs: &[u64]) -> RingPolynomial {
-        self.try_encode_vector(msgs).expect("Invalid message vector")
+        self.try_encode_vector(msgs)
+            .expect("Invalid message vector")
     }
 
     /// Fallible vector encoding: returns error on invalid inputs
@@ -141,15 +142,17 @@ impl BFVEncoder {
 
         Ok(RingPolynomial::from_coeffs(coeffs, self.q))
     }
-    
+
     /// Decode polynomial to vector of messages
     pub fn decode_vector(&self, poly: &RingPolynomial, len: usize) -> Vec<u64> {
-        (0..len).map(|i| {
-            let c = poly.coeffs[i];
-            let numerator = 2u128 * (self.t as u128) * (c as u128) + (self.q as u128);
-            let denominator = 2u128 * (self.q as u128);
-            ((numerator / denominator) as u64) % self.t
-        }).collect()
+        (0..len)
+            .map(|i| {
+                let c = poly.coeffs[i];
+                let numerator = 2u128 * (self.t as u128) * (c as u128) + (self.q as u128);
+                let denominator = 2u128 * (self.q as u128);
+                ((numerator / denominator) as u64) % self.t
+            })
+            .collect()
     }
 }
 
@@ -162,6 +165,7 @@ impl BFVEncoder {
 /// Clone before modifying in different threads.
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", derive(bincode::Encode, bincode::Decode))]
 pub struct Ciphertext {
     /// First component
     pub c0: RingPolynomial,
@@ -254,14 +258,18 @@ impl Ciphertext {
     /// This method does NOT validate the deserialized ciphertext.
     /// For untrusted input, use `from_json_validated()` instead to ensure
     /// ciphertext integrity and prevent DoS attacks via malformed data.
-    #[deprecated(since = "0.1.0", note = "Use from_json_validated() for untrusted input")]
+    #[deprecated(
+        since = "0.1.0",
+        note = "Use from_json_validated() for untrusted input"
+    )]
     pub fn from_json(s: &str) -> Result<Self, serde_json::Error> {
         serde_json::from_str(s)
     }
 
     /// Serialize to bincode bytes
-    pub fn to_bytes(&self) -> Result<Vec<u8>, bincode::Error> {
-        bincode::serialize(self)
+    pub fn to_bytes(&self) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        bincode::encode_to_vec(self, bincode::config::standard())
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
     }
 
     /// Deserialize from bincode bytes
@@ -270,23 +278,34 @@ impl Ciphertext {
     /// This method does NOT validate the deserialized ciphertext.
     /// For untrusted input, use `from_bytes_validated()` instead to ensure
     /// ciphertext integrity and prevent DoS attacks via malformed data.
-    #[deprecated(since = "0.1.0", note = "Use from_bytes_validated() for untrusted input")]
-    pub fn from_bytes(bytes: &[u8]) -> Result<Self, bincode::Error> {
-        bincode::deserialize(bytes)
+    #[deprecated(
+        since = "0.1.0",
+        note = "Use from_bytes_validated() for untrusted input"
+    )]
+    pub fn from_bytes(bytes: &[u8]) -> Result<Self, Box<dyn std::error::Error>> {
+        let (result, _): (Self, usize) = bincode::decode_from_slice(bytes, bincode::config::standard())
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>)?;
+        Ok(result)
     }
 
     /// Deserialize from JSON with validation
     pub fn from_json_validated(s: &str, expected_n: usize, expected_q: u64) -> Nine65Result<Self> {
-        let ct: Self = serde_json::from_str(s)
-            .map_err(|e| Nine65Error::ConfigError { message: e.to_string() })?;
+        let ct: Self = serde_json::from_str(s).map_err(|e| Nine65Error::ConfigError {
+            message: e.to_string(),
+        })?;
         ct.validate(expected_n, expected_q)?;
         Ok(ct)
     }
 
     /// Deserialize from bytes with validation
-    pub fn from_bytes_validated(bytes: &[u8], expected_n: usize, expected_q: u64) -> Nine65Result<Self> {
-        let ct: Self = bincode::deserialize(bytes)
-            .map_err(|e| Nine65Error::ConfigError { message: e.to_string() })?;
+    pub fn from_bytes_validated(
+        bytes: &[u8],
+        expected_n: usize,
+        expected_q: u64,
+    ) -> Nine65Result<Self> {
+        let (ct, _): (Self, usize) = bincode::decode_from_slice(bytes, bincode::config::standard()).map_err(|e| Nine65Error::ConfigError {
+            message: e.to_string(),
+        })?;
         ct.validate(expected_n, expected_q)?;
         Ok(ct)
     }
@@ -302,15 +321,21 @@ pub struct BFVEncryptor<'a> {
 
 impl<'a> BFVEncryptor<'a> {
     pub fn new(pk: &'a PublicKey, encoder: &'a BFVEncoder, ntt: &'a NTTEngine, eta: usize) -> Self {
-        Self { pk, encoder, ntt, eta }
+        Self {
+            pk,
+            encoder,
+            ntt,
+            eta,
+        }
     }
-    
+
     /// Encrypt a message
     ///
     /// # Panics
     /// Panics if m >= plaintext modulus. Use `try_encrypt()` for fallible encryption.
     pub fn encrypt(&self, m: u64, harvester: &mut ShadowHarvester) -> Ciphertext {
-        self.try_encrypt(m, harvester).expect("Failed to encrypt message")
+        self.try_encrypt(m, harvester)
+            .expect("Failed to encrypt message")
     }
 
     /// Fallible encryption: returns error if message out of bounds
@@ -330,9 +355,13 @@ impl<'a> BFVEncryptor<'a> {
         let mut harvester = ShadowHarvester::with_seed(seed);
         self.try_encrypt(m, &mut harvester)
     }
-    
+
     /// Encrypt a polynomial
-    pub fn encrypt_poly(&self, plaintext: &RingPolynomial, harvester: &mut ShadowHarvester) -> Ciphertext {
+    pub fn encrypt_poly(
+        &self,
+        plaintext: &RingPolynomial,
+        harvester: &mut ShadowHarvester,
+    ) -> Ciphertext {
         let n = self.encoder.n;
         let q = self.encoder.q;
 
@@ -380,7 +409,8 @@ impl<'a> BFVEncryptor<'a> {
     /// # Panics
     /// Panics if message >= plaintext modulus. Use `try_encrypt_with_rng()` for fallible.
     pub fn encrypt_with_rng<R: FheRng>(&self, m: u64, rng: &mut R) -> Ciphertext {
-        self.try_encrypt_with_rng(m, rng).expect("Failed to encrypt message")
+        self.try_encrypt_with_rng(m, rng)
+            .expect("Failed to encrypt message")
     }
 
     /// Fallible encryption with generic RNG
@@ -403,21 +433,26 @@ impl<'a> BFVEncryptor<'a> {
     /// # Panics
     /// Panics if message >= plaintext modulus. Use `try_encrypt_secure()` for fallible.
     pub fn encrypt_secure(&self, m: u64) -> Ciphertext {
-        self.try_encrypt_secure(m).expect("Failed to encrypt message")
+        self.try_encrypt_secure(m)
+            .expect("Failed to encrypt message")
     }
 
     /// Fallible secure encryption (RECOMMENDED FOR PRODUCTION)
     ///
     /// Returns error if message is out of bounds instead of panicking.
     pub fn try_encrypt_secure(&self, m: u64) -> Nine65Result<Ciphertext> {
-        let mut rng = SecureRng::new();
-        self.try_encrypt_with_rng(m, &mut rng)
+        let plaintext = self.encoder.try_encode(m)?;
+        self.try_encrypt_poly_secure(&plaintext)
     }
 
     /// Encrypt a polynomial using a generic RNG source
     ///
     /// Core encryption routine using any `FheRng` implementation.
-    pub fn encrypt_poly_with_rng<R: FheRng>(&self, plaintext: &RingPolynomial, rng: &mut R) -> Ciphertext {
+    pub fn encrypt_poly_with_rng<R: FheRng>(
+        &self,
+        plaintext: &RingPolynomial,
+        rng: &mut R,
+    ) -> Ciphertext {
         let n = self.encoder.n;
         let q = self.encoder.q;
 
@@ -441,8 +476,55 @@ impl<'a> BFVEncryptor<'a> {
 
     /// Encrypt a polynomial with cryptographically secure randomness
     pub fn encrypt_poly_secure(&self, plaintext: &RingPolynomial) -> Ciphertext {
-        let mut rng = SecureRng::new();
-        self.encrypt_poly_with_rng(plaintext, &mut rng)
+        self.try_encrypt_poly_secure(plaintext)
+            .expect("CRITICAL: OS CSPRNG failure during secure encryption")
+    }
+
+    /// Fallible secure polynomial encryption using OS CSPRNG.
+    pub fn try_encrypt_poly_secure(&self, plaintext: &RingPolynomial) -> Nine65Result<Ciphertext> {
+        let n = self.encoder.n;
+        let q = self.encoder.q;
+
+        // u <- ternary via OS CSPRNG
+        let u_signed = try_secure_ternary_vector(n).map_err(|e| Nine65Error::ConfigError {
+            message: format!("secure RNG failure generating encryption mask: {}", e),
+        })?;
+        let u_coeffs: Vec<u64> = u_signed
+            .iter()
+            .map(|&v| if v < 0 { q - 1 } else { v as u64 })
+            .collect();
+        let u = RingPolynomial::from_coeffs(u_coeffs, q);
+
+        // e1, e2 <- CBD(eta) via OS CSPRNG
+        let e1_signed =
+            try_secure_cbd_vector(n, self.eta).map_err(|e| Nine65Error::ConfigError {
+                message: format!("secure RNG failure generating encryption error e1: {}", e),
+            })?;
+        let e2_signed =
+            try_secure_cbd_vector(n, self.eta).map_err(|e| Nine65Error::ConfigError {
+                message: format!("secure RNG failure generating encryption error e2: {}", e),
+            })?;
+        let to_mod_q = |vals: Vec<i64>| -> Vec<u64> {
+            vals.into_iter()
+                .map(|v| {
+                    if v < 0 {
+                        ((q as i64) + v) as u64
+                    } else {
+                        v as u64
+                    }
+                })
+                .collect()
+        };
+        let e1 = RingPolynomial::from_coeffs(to_mod_q(e1_signed), q);
+        let e2 = RingPolynomial::from_coeffs(to_mod_q(e2_signed), q);
+
+        let pk0_u = self.pk.pk0.mul(&u, self.ntt);
+        let c0 = pk0_u.add(&e1, self.ntt).add(plaintext, self.ntt);
+
+        let pk1_u = self.pk.pk1.mul(&u, self.ntt);
+        let c1 = pk1_u.add(&e2, self.ntt);
+
+        Ok(Ciphertext { c0, c1 })
     }
 }
 
@@ -457,35 +539,41 @@ impl<'a> BFVDecryptor<'a> {
     pub fn new(sk: &'a SecretKey, encoder: &'a BFVEncoder, ntt: &'a NTTEngine) -> Self {
         Self { sk, encoder, ntt }
     }
-    
+
     /// Decrypt ciphertext to message
     pub fn decrypt(&self, ct: &Ciphertext) -> u64 {
         let decrypted = self.decrypt_raw(ct);
         self.encoder.decode(&decrypted)
     }
-    
+
     /// Decrypt to raw polynomial (before decoding)
     pub fn decrypt_raw(&self, ct: &Ciphertext) -> RingPolynomial {
         // m_noisy = c0 + c1 * s
-        let c1_s = ct.c1.mul(&self.sk.s, self.ntt);
+        // Use constant-time multiplication to prevent timing side-channels
+        let c1_s = ct.c1.mul_ct(&self.sk.s, self.ntt);
         ct.c0.add(&c1_s, self.ntt)
     }
-    
+
     /// Decrypt a degree-2 ciphertext (d0, d1, d2)
     /// These are at Δ² level from tensor product, requires t²/q² scaling
-    pub fn decrypt_degree2(&self, d0: &RingPolynomial, d1: &RingPolynomial, d2: &RingPolynomial) -> u64 {
+    pub fn decrypt_degree2(
+        &self,
+        d0: &RingPolynomial,
+        d1: &RingPolynomial,
+        d2: &RingPolynomial,
+    ) -> u64 {
         let s = &self.sk.s;
         let s2 = s.mul(s, self.ntt);
-        
+
         // Compute inner = d0 + d1*s + d2*s²
         let d1_s = d1.mul(s, self.ntt);
         let d2_s2 = d2.mul(&s2, self.ntt);
         let inner = d0.add(&d1_s, self.ntt).add(&d2_s2, self.ntt);
-        
+
         // Decode using t²/q² scaling
         self.encoder.decode_degree2(&inner)
     }
-    
+
     /// Decrypt vector
     pub fn decrypt_vector(&self, ct: &Ciphertext, len: usize) -> Vec<u64> {
         let decrypted = self.decrypt_raw(ct);
@@ -515,8 +603,8 @@ const _: () = {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::keys::KeySet;
     use crate::entropy::FheRng;
+    use crate::keys::KeySet;
 
     fn test_config() -> FHEConfig {
         FHEConfig {
@@ -529,7 +617,7 @@ mod tests {
             security_bits: 36,
         }
     }
-    
+
     fn setup() -> (FHEConfig, NTTEngine, KeySet, ShadowHarvester, BFVEncoder) {
         let config = test_config();
         let ntt = NTTEngine::new(config.q, config.n);
@@ -538,26 +626,26 @@ mod tests {
         let encoder = BFVEncoder::new(&config);
         (config, ntt, keys, harvester, encoder)
     }
-    
+
     #[test]
     fn test_encode_decode() {
         let config = test_config();
         let encoder = BFVEncoder::new(&config);
-        
+
         for m in [0, 1, 100, config.t - 1] {
             let encoded = encoder.encode(m);
             let decoded = encoder.decode(&encoded);
             assert_eq!(decoded, m, "Encode/decode failed for m={}", m);
         }
     }
-    
+
     #[test]
     fn test_encrypt_decrypt_roundtrip() {
         let (config, ntt, keys, mut harvester, encoder) = setup();
-        
+
         let encryptor = BFVEncryptor::new(&keys.public_key, &encoder, &ntt, config.eta);
         let decryptor = BFVDecryptor::new(&keys.secret_key, &encoder, &ntt);
-        
+
         // Test various messages (staying well within noise budget)
         for m in [0u64, 1, 10, 100, 500, 1000] {
             let ct = encryptor.encrypt(m, &mut harvester);
@@ -565,35 +653,35 @@ mod tests {
             assert_eq!(decrypted, m, "Encrypt/decrypt failed for m={}", m);
         }
     }
-    
+
     #[test]
     fn test_encrypt_decrypt_random() {
         let (config, ntt, keys, mut harvester, encoder) = setup();
-        
+
         let encryptor = BFVEncryptor::new(&keys.public_key, &encoder, &ntt, config.eta);
         let decryptor = BFVDecryptor::new(&keys.secret_key, &encoder, &ntt);
-        
+
         for _ in 0..20 {
-            let m = harvester.uniform(config.t / 2);  // Stay within safe range
+            let m = harvester.uniform(config.t / 2); // Stay within safe range
             let ct = encryptor.encrypt(m, &mut harvester);
             let decrypted = decryptor.decrypt(&ct);
             assert_eq!(decrypted, m, "Random encrypt/decrypt failed");
         }
     }
-    
+
     #[test]
     fn test_encrypt_deterministic() {
         let (config, ntt, keys, _, encoder) = setup();
-        
+
         let encryptor = BFVEncryptor::new(&keys.public_key, &encoder, &ntt, config.eta);
-        
+
         let ct1 = encryptor.encrypt_seeded(42, 12345);
         let ct2 = encryptor.encrypt_seeded(42, 12345);
-        
+
         assert_eq!(ct1.c0.coeffs, ct2.c0.coeffs);
         assert_eq!(ct1.c1.coeffs, ct2.c1.coeffs);
     }
-    
+
     #[test]
     fn test_encrypt_benchmark() {
         let (config, ntt, keys, mut harvester, encoder) = setup();
@@ -672,8 +760,10 @@ mod tests {
         let ct2 = encryptor.encrypt_secure(42);
 
         // Different randomness means different ciphertexts
-        assert_ne!(ct1.c0.coeffs, ct2.c0.coeffs,
-                   "Secure encryption should produce different ciphertexts");
+        assert_ne!(
+            ct1.c0.coeffs, ct2.c0.coeffs,
+            "Secure encryption should produce different ciphertexts"
+        );
     }
 
     #[test]
@@ -799,7 +889,10 @@ mod tests {
     fn test_error_category() {
         use crate::errors::Nine65Error;
 
-        let err = Nine65Error::MessageOutOfBounds { message: 100, modulus: 50 };
+        let err = Nine65Error::MessageOutOfBounds {
+            message: 100,
+            modulus: 50,
+        };
         assert_eq!(err.category(), "Encoding");
     }
 }

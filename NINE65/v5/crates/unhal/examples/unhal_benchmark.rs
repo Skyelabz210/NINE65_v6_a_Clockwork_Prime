@@ -9,15 +9,17 @@ use unhal::prelude::*;
 
 /// 8 NTT-friendly primes for 8-lane parallelism
 const PRIMES: [u64; 8] = [
-    998244353, 985661441, 754974721, 469762049,
-    1638350849, 1638137857, 1637990401, 1637613569,
+    998244353, 985661441, 754974721, 469762049, 1638350849, 1638137857, 1637990401, 1637613569,
 ];
 
 fn format_ops(ops: u128) -> String {
     if ops >= 1_000_000_000 {
-        format!("{:.1}G", ops as f64 / 1_000_000_000.0)
+        let whole = ops / 1_000_000_000;
+        let frac = (ops % 1_000_000_000) / 100_000_000; // tenths
+        format!("{}.{}G", whole, frac)
     } else if ops >= 1_000_000 {
-        format!("{:.0}M", ops as f64 / 1_000_000.0)
+        let whole = ops / 1_000_000;
+        format!("{}M", whole)
     } else {
         format!("{}", ops)
     }

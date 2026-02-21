@@ -21,9 +21,9 @@
 //! to transform the ciphertext after applying the automorphism to coefficients.
 
 use super::encrypt::Ciphertext;
-use crate::ring::RingPolynomial;
 use crate::entropy::FheRng;
 use crate::errors::{Nine65Error, Nine65Result};
+use crate::ring::RingPolynomial;
 
 #[cfg(test)]
 use crate::entropy::ShadowHarvester;
@@ -39,6 +39,7 @@ use crate::arithmetic::NTTEngine;
 /// Enables key switching after applying σ_k to a ciphertext.
 #[derive(Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", derive(bincode::Encode, bincode::Decode))]
 pub struct GaloisKey {
     /// The automorphism exponent k
     pub exponent: usize,
@@ -142,6 +143,7 @@ impl GaloisKey {
 /// Collection of Galois keys for supported rotations
 #[derive(Clone, Default)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", derive(bincode::Encode, bincode::Decode))]
 pub struct GaloisKeySet {
     /// Map from rotation exponent to Galois key
     keys: std::collections::HashMap<usize, GaloisKey>,
@@ -155,8 +157,9 @@ impl GaloisKey {
     }
 
     /// Serialize to bincode bytes
-    pub fn to_bytes(&self) -> Result<Vec<u8>, bincode::Error> {
-        bincode::serialize(self)
+    pub fn to_bytes(&self) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        bincode::encode_to_vec(self, bincode::config::standard())
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
     }
 
     /// Deserialize from JSON with validation
@@ -164,8 +167,9 @@ impl GaloisKey {
     /// This is the **recommended** deserialization method for production use.
     /// It validates structural integrity and bounds before returning the key.
     pub fn from_json_validated(s: &str, expected_n: usize, expected_q: u64) -> Nine65Result<Self> {
-        let key: Self = serde_json::from_str(s)
-            .map_err(|e| Nine65Error::ConfigError { message: e.to_string() })?;
+        let key: Self = serde_json::from_str(s).map_err(|e| Nine65Error::ConfigError {
+            message: e.to_string(),
+        })?;
         key.validate(expected_n, expected_q)?;
         Ok(key)
     }
@@ -174,9 +178,14 @@ impl GaloisKey {
     ///
     /// This is the **recommended** deserialization method for production use.
     /// It validates structural integrity and bounds before returning the key.
-    pub fn from_bytes_validated(bytes: &[u8], expected_n: usize, expected_q: u64) -> Nine65Result<Self> {
-        let key: Self = bincode::deserialize(bytes)
-            .map_err(|e| Nine65Error::ConfigError { message: e.to_string() })?;
+    pub fn from_bytes_validated(
+        bytes: &[u8],
+        expected_n: usize,
+        expected_q: u64,
+    ) -> Nine65Result<Self> {
+        let (key, _): (Self, usize) = bincode::decode_from_slice(bytes, bincode::config::standard()).map_err(|e| Nine65Error::ConfigError {
+            message: e.to_string(),
+        })?;
         key.validate(expected_n, expected_q)?;
         Ok(key)
     }
@@ -193,7 +202,10 @@ impl GaloisKey {
     /// # Security Warning
     /// This method does NOT validate the deserialized key.
     /// Only use for trusted input. For untrusted input, use `from_json_validated()`.
-    #[deprecated(since = "0.1.0", note = "Use from_json_validated() for untrusted input")]
+    #[deprecated(
+        since = "0.1.0",
+        note = "Use from_json_validated() for untrusted input"
+    )]
     pub fn from_json(s: &str) -> Result<Self, serde_json::Error> {
         serde_json::from_str(s)
     }
@@ -203,9 +215,14 @@ impl GaloisKey {
     /// # Security Warning
     /// This method does NOT validate the deserialized key.
     /// Only use for trusted input. For untrusted input, use `from_bytes_validated()`.
-    #[deprecated(since = "0.1.0", note = "Use from_bytes_validated() for untrusted input")]
-    pub fn from_bytes(bytes: &[u8]) -> Result<Self, bincode::Error> {
-        bincode::deserialize(bytes)
+    #[deprecated(
+        since = "0.1.0",
+        note = "Use from_bytes_validated() for untrusted input"
+    )]
+    pub fn from_bytes(bytes: &[u8]) -> Result<Self, Box<dyn std::error::Error>> {
+        let (result, _): (Self, usize) = bincode::decode_from_slice(bytes, bincode::config::standard())
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>)?;
+        Ok(result)
     }
 }
 
@@ -217,8 +234,9 @@ impl GaloisKeySet {
     }
 
     /// Serialize to bincode bytes
-    pub fn to_bytes(&self) -> Result<Vec<u8>, bincode::Error> {
-        bincode::serialize(self)
+    pub fn to_bytes(&self) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        bincode::encode_to_vec(self, bincode::config::standard())
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
     }
 
     /// Deserialize from JSON with validation
@@ -226,8 +244,9 @@ impl GaloisKeySet {
     /// This is the **recommended** deserialization method for production use.
     /// It validates structural integrity and bounds of all keys before returning.
     pub fn from_json_validated(s: &str, expected_n: usize, expected_q: u64) -> Nine65Result<Self> {
-        let keys: Self = serde_json::from_str(s)
-            .map_err(|e| Nine65Error::ConfigError { message: e.to_string() })?;
+        let keys: Self = serde_json::from_str(s).map_err(|e| Nine65Error::ConfigError {
+            message: e.to_string(),
+        })?;
         keys.validate(expected_n, expected_q)?;
         Ok(keys)
     }
@@ -236,9 +255,14 @@ impl GaloisKeySet {
     ///
     /// This is the **recommended** deserialization method for production use.
     /// It validates structural integrity and bounds of all keys before returning.
-    pub fn from_bytes_validated(bytes: &[u8], expected_n: usize, expected_q: u64) -> Nine65Result<Self> {
-        let keys: Self = bincode::deserialize(bytes)
-            .map_err(|e| Nine65Error::ConfigError { message: e.to_string() })?;
+    pub fn from_bytes_validated(
+        bytes: &[u8],
+        expected_n: usize,
+        expected_q: u64,
+    ) -> Nine65Result<Self> {
+        let (keys, _): (Self, usize) = bincode::decode_from_slice(bytes, bincode::config::standard()).map_err(|e| Nine65Error::ConfigError {
+            message: e.to_string(),
+        })?;
         keys.validate(expected_n, expected_q)?;
         Ok(keys)
     }
@@ -252,7 +276,10 @@ impl GaloisKeySet {
     /// # Security Warning
     /// This method does NOT validate the deserialized key set.
     /// Only use for trusted input. For untrusted input, use `from_json_validated()`.
-    #[deprecated(since = "0.1.0", note = "Use from_json_validated() for untrusted input")]
+    #[deprecated(
+        since = "0.1.0",
+        note = "Use from_json_validated() for untrusted input"
+    )]
     pub fn from_json(s: &str) -> Result<Self, serde_json::Error> {
         serde_json::from_str(s)
     }
@@ -262,9 +289,14 @@ impl GaloisKeySet {
     /// # Security Warning
     /// This method does NOT validate the deserialized key set.
     /// Only use for trusted input. For untrusted input, use `from_bytes_validated()`.
-    #[deprecated(since = "0.1.0", note = "Use from_bytes_validated() for untrusted input")]
-    pub fn from_bytes(bytes: &[u8]) -> Result<Self, bincode::Error> {
-        bincode::deserialize(bytes)
+    #[deprecated(
+        since = "0.1.0",
+        note = "Use from_bytes_validated() for untrusted input"
+    )]
+    pub fn from_bytes(bytes: &[u8]) -> Result<Self, Box<dyn std::error::Error>> {
+        let (result, _): (Self, usize) = bincode::decode_from_slice(bytes, bincode::config::standard())
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>)?;
+        Ok(result)
     }
 }
 
@@ -606,7 +638,9 @@ impl<'a> GaloisEvaluator<'a> {
 
         for l in 0..num_levels {
             let shift = l * self.decomp_bits;
-            let coeffs: Vec<u64> = poly.coeffs.iter()
+            let coeffs: Vec<u64> = poly
+                .coeffs
+                .iter()
                 .map(|&c| (c >> shift) & (base - 1))
                 .collect();
             result.push(RingPolynomial::from_coeffs(coeffs, poly.q));
@@ -652,7 +686,10 @@ mod tests {
         // Check generator and inverse
         assert_eq!(galois.generator, 5);
         let prod = (galois.generator * galois.generator_inv) % galois.two_n;
-        assert_eq!(prod, 1, "Generator inverse should satisfy g * g^-1 = 1 mod 2N");
+        assert_eq!(
+            prod, 1,
+            "Generator inverse should satisfy g * g^-1 = 1 mod 2N"
+        );
     }
 
     #[test]
@@ -715,7 +752,10 @@ mod tests {
         let auto_b = galois.apply_automorphism(&b, exp);
         let sum_auto = auto_a.add(&auto_b, &ntt);
 
-        assert_eq!(auto_sum.coeffs, sum_auto.coeffs, "Automorphism should be additive");
+        assert_eq!(
+            auto_sum.coeffs, sum_auto.coeffs,
+            "Automorphism should be additive"
+        );
     }
 
     #[test]
